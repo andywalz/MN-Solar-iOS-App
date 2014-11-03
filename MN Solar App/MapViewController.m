@@ -6,13 +6,15 @@
 //  Copyright (c) 2014 MN Solar Suitability Team. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MapViewController.h"
 
-@interface ViewController ()
+@interface MapViewController ()
+
+- (IBAction)exitHere:(UIStoryboardSegue *)sender;
 
 @end
 
-@implementation ViewController
+@implementation MapViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,6 +24,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)exitHere:(UIStoryboardSegue *)sender {
+    //Excute this code upon unwinding
 }
 
 @end
