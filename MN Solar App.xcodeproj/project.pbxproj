@@ -39,6 +39,7 @@
 		CA8ED96F1A06DCFC009728AE /* BookmarksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED96E1A06DCFC009728AE /* BookmarksTableViewController.m */; };
 		CA8ED9721A0729BB009728AE /* ReportSaveFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED9711A0729BB009728AE /* ReportSaveFormViewController.m */; };
 		CA8ED9751A073141009728AE /* ReportCustomizedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED9741A073141009728AE /* ReportCustomizedViewController.m */; };
+		CAC410DF1A0AE44800FE6312 /* solar-app-loading-768x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC410DE1A0AE44800FE6312 /* solar-app-loading-768x1024.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		CA8ED9711A0729BB009728AE /* ReportSaveFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportSaveFormViewController.m; sourceTree = "<group>"; };
 		CA8ED9731A073141009728AE /* ReportCustomizedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCustomizedViewController.h; sourceTree = "<group>"; };
 		CA8ED9741A073141009728AE /* ReportCustomizedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCustomizedViewController.m; sourceTree = "<group>"; };
+		CAC410DE1A0AE44800FE6312 /* solar-app-loading-768x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "solar-app-loading-768x1024.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +258,7 @@
 		CA8ED9601A06B1B2009728AE /* customIcons */ = {
 			isa = PBXGroup;
 			children = (
+				CAC410DE1A0AE44800FE6312 /* solar-app-loading-768x1024.png */,
 				CA8ED96B1A06B76B009728AE /* menu-22.png */,
 				CA8ED9631A06B596009728AE /* LocationArrowBlk-22.png */,
 				CA8ED9641A06B596009728AE /* LocationArrowBlk-44.png */,
@@ -359,6 +362,7 @@
 				CA8ED94B1A058A9B009728AE /* mil2525c.dat in Resources */,
 				CA8ED9681A06B596009728AE /* LocationArrowBlk-44.png in Resources */,
 				CA8ED9671A06B596009728AE /* LocationArrowBlk-22.png in Resources */,
+				CAC410DF1A0AE44800FE6312 /* solar-app-loading-768x1024.png in Resources */,
 				CA8ED9481A058A9B009728AE /* Chemlight.json in Resources */,
 				CA8ED9431A058A9B009728AE /* ios_framework.plist in Resources */,
 				CA8ED9461A058A9B009728AE /* positionreport.json in Resources */,
@@ -607,6 +611,7 @@
 				CA8ED92C1A058978009728AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CA8ED92D1A058978009728AE /* Build configuration list for PBXNativeTarget "MN Solar AppTests" */ = {
 			isa = XCConfigurationList;
@@ -615,6 +620,7 @@
 				CA8ED92F1A058978009728AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
