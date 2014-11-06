@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35C0E0EC1A0AF41100B32B68 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 35C0E0EB1A0AF41100B32B68 /* ArcGIS.bundle */; };
 		CA8ED90D1A058978009728AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED90C1A058978009728AE /* main.m */; };
 		CA8ED9101A058978009728AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED90F1A058978009728AE /* AppDelegate.m */; };
 		CA8ED9131A058978009728AE /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED9121A058978009728AE /* MapViewController.m */; };
@@ -14,28 +15,11 @@
 		CA8ED9181A058978009728AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA8ED9171A058978009728AE /* Images.xcassets */; };
 		CA8ED91B1A058978009728AE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8ED9191A058978009728AE /* LaunchScreen.xib */; };
 		CA8ED9271A058978009728AE /* MN_Solar_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED9261A058978009728AE /* MN_Solar_AppTests.m */; };
-		CA8ED9311A0589F4009728AE /* ArcGIS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA8ED9301A0589F4009728AE /* ArcGIS.framework */; };
-		CA8ED9421A058A9B009728AE /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CA8ED9331A058A9B009728AE /* ArcGIS.bundle */; };
-		CA8ED9431A058A9B009728AE /* ios_framework.plist in Resources */ = {isa = PBXBuildFile; fileRef = CA8ED9341A058A9B009728AE /* ios_framework.plist */; };
-		CA8ED9441A058A9B009728AE /* app6b.dat in Resources */ = {isa = PBXBuildFile; fileRef = CA8ED9371A058A9B009728AE /* app6b.dat */; };
-		CA8ED9451A058A9B009728AE /* chemlight.json in Resources */ = {isa = PBXBuildFile; fileRef = CA8ED9391A058A9B009728AE /* chemlight.json */; };
-		CA8ED9461A058A9B009728AE /* positionreport.json in Resources */ = {isa = PBXBuildFile; fileRef = CA8ED93A1A058A9B009728AE /* positionreport.json */; };
-		CA8ED9471A058A9B009728AE /* spotreport.json in Resources */ = {isa = PBXBuildFile; fileRef = CA8ED93B1A058A9B009728AE /* spotreport.json */; };
-		CA8ED9481A058A9B009728AE /* Chemlight.json in Resources */ = {isa = PBXBuildFile; fileRef = CA8ED93E1A058A9B009728AE /* Chemlight.json */; };
-		CA8ED9491A058A9B009728AE /* PositionReport.json in Resources */ = {isa = PBXBuildFile; fileRef = CA8ED93F1A058A9B009728AE /* PositionReport.json */; };
-		CA8ED94A1A058A9B009728AE /* SpotReport.json in Resources */ = {isa = PBXBuildFile; fileRef = CA8ED9401A058A9B009728AE /* SpotReport.json */; };
-		CA8ED94B1A058A9B009728AE /* mil2525c.dat in Resources */ = {isa = PBXBuildFile; fileRef = CA8ED9411A058A9B009728AE /* mil2525c.dat */; };
 		CA8ED9511A068D43009728AE /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED9501A068D43009728AE /* ReportViewController.m */; };
 		CA8ED9551A069426009728AE /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED9531A069426009728AE /* WelcomeViewController.m */; };
 		CA8ED9561A069426009728AE /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA8ED9541A069426009728AE /* WelcomeViewController.xib */; };
 		CA8ED9591A069536009728AE /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED9581A069536009728AE /* CameraViewController.m */; };
 		CA8ED95F1A06A514009728AE /* MenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED95E1A06A514009728AE /* MenuTableViewController.m */; };
-		CA8ED9621A06B1D0009728AE /* LocationArrowBlk-128.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8ED9611A06B1D0009728AE /* LocationArrowBlk-128.png */; };
-		CA8ED9671A06B596009728AE /* LocationArrowBlk-22.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8ED9631A06B596009728AE /* LocationArrowBlk-22.png */; };
-		CA8ED9681A06B596009728AE /* LocationArrowBlk-44.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8ED9641A06B596009728AE /* LocationArrowBlk-44.png */; };
-		CA8ED9691A06B596009728AE /* LocationArrowWht-22.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8ED9651A06B596009728AE /* LocationArrowWht-22.png */; };
-		CA8ED96A1A06B596009728AE /* LocationArrowWht-44.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8ED9661A06B596009728AE /* LocationArrowWht-44.png */; };
-		CA8ED96C1A06B76B009728AE /* menu-22.png in Resources */ = {isa = PBXBuildFile; fileRef = CA8ED96B1A06B76B009728AE /* menu-22.png */; };
 		CA8ED96F1A06DCFC009728AE /* BookmarksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED96E1A06DCFC009728AE /* BookmarksTableViewController.m */; };
 		CA8ED9721A0729BB009728AE /* ReportSaveFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED9711A0729BB009728AE /* ReportSaveFormViewController.m */; };
 		CA8ED9751A073141009728AE /* ReportCustomizedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED9741A073141009728AE /* ReportCustomizedViewController.m */; };
@@ -52,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		35C0E0EB1A0AF41100B32B68 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ArcGIS.bundle; sourceTree = "<group>"; };
 		CA8ED9071A058978009728AE /* MN Solar App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MN Solar App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA8ED90B1A058978009728AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA8ED90C1A058978009728AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -65,17 +50,6 @@
 		CA8ED9201A058978009728AE /* MN Solar AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MN Solar AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA8ED9251A058978009728AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA8ED9261A058978009728AE /* MN_Solar_AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MN_Solar_AppTests.m; sourceTree = "<group>"; };
-		CA8ED9301A0589F4009728AE /* ArcGIS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ArcGIS.framework; path = ../../../Library/SDKs/ArcGIS/iOS/ArcGIS.framework; sourceTree = "<group>"; };
-		CA8ED9331A058A9B009728AE /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ArcGIS.bundle; sourceTree = "<group>"; };
-		CA8ED9341A058A9B009728AE /* ios_framework.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ios_framework.plist; sourceTree = "<group>"; };
-		CA8ED9371A058A9B009728AE /* app6b.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = app6b.dat; sourceTree = "<group>"; };
-		CA8ED9391A058A9B009728AE /* chemlight.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chemlight.json; sourceTree = "<group>"; };
-		CA8ED93A1A058A9B009728AE /* positionreport.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = positionreport.json; sourceTree = "<group>"; };
-		CA8ED93B1A058A9B009728AE /* spotreport.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spotreport.json; sourceTree = "<group>"; };
-		CA8ED93E1A058A9B009728AE /* Chemlight.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Chemlight.json; sourceTree = "<group>"; };
-		CA8ED93F1A058A9B009728AE /* PositionReport.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PositionReport.json; sourceTree = "<group>"; };
-		CA8ED9401A058A9B009728AE /* SpotReport.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SpotReport.json; sourceTree = "<group>"; };
-		CA8ED9411A058A9B009728AE /* mil2525c.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = mil2525c.dat; sourceTree = "<group>"; };
 		CA8ED94F1A068D43009728AE /* ReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportViewController.h; sourceTree = "<group>"; };
 		CA8ED9501A068D43009728AE /* ReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportViewController.m; sourceTree = "<group>"; };
 		CA8ED9521A069426009728AE /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
@@ -85,12 +59,6 @@
 		CA8ED9581A069536009728AE /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		CA8ED95D1A06A514009728AE /* MenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewController.h; sourceTree = "<group>"; };
 		CA8ED95E1A06A514009728AE /* MenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewController.m; sourceTree = "<group>"; };
-		CA8ED9611A06B1D0009728AE /* LocationArrowBlk-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LocationArrowBlk-128.png"; sourceTree = "<group>"; };
-		CA8ED9631A06B596009728AE /* LocationArrowBlk-22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LocationArrowBlk-22.png"; sourceTree = "<group>"; };
-		CA8ED9641A06B596009728AE /* LocationArrowBlk-44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LocationArrowBlk-44.png"; sourceTree = "<group>"; };
-		CA8ED9651A06B596009728AE /* LocationArrowWht-22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LocationArrowWht-22.png"; sourceTree = "<group>"; };
-		CA8ED9661A06B596009728AE /* LocationArrowWht-44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LocationArrowWht-44.png"; sourceTree = "<group>"; };
-		CA8ED96B1A06B76B009728AE /* menu-22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-22.png"; sourceTree = "<group>"; };
 		CA8ED96D1A06DCFC009728AE /* BookmarksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarksTableViewController.h; sourceTree = "<group>"; };
 		CA8ED96E1A06DCFC009728AE /* BookmarksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarksTableViewController.m; sourceTree = "<group>"; };
 		CA8ED9701A0729BB009728AE /* ReportSaveFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportSaveFormViewController.h; sourceTree = "<group>"; };
@@ -104,7 +72,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA8ED9311A0589F4009728AE /* ArcGIS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,8 +88,8 @@
 		CA8ED8FE1A058978009728AE = {
 			isa = PBXGroup;
 			children = (
+				35C0E0EB1A0AF41100B32B68 /* ArcGIS.bundle */,
 				CA8ED9321A058A9B009728AE /* Resources */,
-				CA8ED9301A0589F4009728AE /* ArcGIS.framework */,
 				CA8ED9091A058978009728AE /* MN Solar App */,
 				CA8ED9231A058978009728AE /* MN Solar AppTests */,
 				CA8ED9081A058978009728AE /* Products */,
@@ -197,73 +164,9 @@
 		CA8ED9321A058A9B009728AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CA8ED9601A06B1B2009728AE /* customIcons */,
-				CA8ED9331A058A9B009728AE /* ArcGIS.bundle */,
-				CA8ED9341A058A9B009728AE /* ios_framework.plist */,
-				CA8ED9351A058A9B009728AE /* Symbols */,
 			);
 			name = Resources;
 			path = ../../../Library/SDKs/ArcGIS/iOS/ArcGIS.framework/Versions/Current/Resources;
-			sourceTree = "<group>";
-		};
-		CA8ED9351A058A9B009728AE /* Symbols */ = {
-			isa = PBXGroup;
-			children = (
-				CA8ED9361A058A9B009728AE /* app6b */,
-				CA8ED93C1A058A9B009728AE /* mil2525c */,
-			);
-			path = Symbols;
-			sourceTree = "<group>";
-		};
-		CA8ED9361A058A9B009728AE /* app6b */ = {
-			isa = PBXGroup;
-			children = (
-				CA8ED9371A058A9B009728AE /* app6b.dat */,
-				CA8ED9381A058A9B009728AE /* messagetypes */,
-			);
-			path = app6b;
-			sourceTree = "<group>";
-		};
-		CA8ED9381A058A9B009728AE /* messagetypes */ = {
-			isa = PBXGroup;
-			children = (
-				CA8ED9391A058A9B009728AE /* chemlight.json */,
-				CA8ED93A1A058A9B009728AE /* positionreport.json */,
-				CA8ED93B1A058A9B009728AE /* spotreport.json */,
-			);
-			path = messagetypes;
-			sourceTree = "<group>";
-		};
-		CA8ED93C1A058A9B009728AE /* mil2525c */ = {
-			isa = PBXGroup;
-			children = (
-				CA8ED93D1A058A9B009728AE /* messagetypes */,
-				CA8ED9411A058A9B009728AE /* mil2525c.dat */,
-			);
-			path = mil2525c;
-			sourceTree = "<group>";
-		};
-		CA8ED93D1A058A9B009728AE /* messagetypes */ = {
-			isa = PBXGroup;
-			children = (
-				CA8ED93E1A058A9B009728AE /* Chemlight.json */,
-				CA8ED93F1A058A9B009728AE /* PositionReport.json */,
-				CA8ED9401A058A9B009728AE /* SpotReport.json */,
-			);
-			path = messagetypes;
-			sourceTree = "<group>";
-		};
-		CA8ED9601A06B1B2009728AE /* customIcons */ = {
-			isa = PBXGroup;
-			children = (
-				CA8ED96B1A06B76B009728AE /* menu-22.png */,
-				CA8ED9631A06B596009728AE /* LocationArrowBlk-22.png */,
-				CA8ED9641A06B596009728AE /* LocationArrowBlk-44.png */,
-				CA8ED9651A06B596009728AE /* LocationArrowWht-22.png */,
-				CA8ED9661A06B596009728AE /* LocationArrowWht-44.png */,
-				CA8ED9611A06B1D0009728AE /* LocationArrowBlk-128.png */,
-			);
-			name = customIcons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,26 +249,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA8ED9691A06B596009728AE /* LocationArrowWht-22.png in Resources */,
 				CA8ED9161A058978009728AE /* Main.storyboard in Resources */,
-				CA8ED9621A06B1D0009728AE /* LocationArrowBlk-128.png in Resources */,
 				CA8ED9561A069426009728AE /* WelcomeViewController.xib in Resources */,
-				CA8ED96C1A06B76B009728AE /* menu-22.png in Resources */,
-				CA8ED94A1A058A9B009728AE /* SpotReport.json in Resources */,
-				CA8ED9491A058A9B009728AE /* PositionReport.json in Resources */,
-				CA8ED9441A058A9B009728AE /* app6b.dat in Resources */,
-				CA8ED9451A058A9B009728AE /* chemlight.json in Resources */,
-				CA8ED96A1A06B596009728AE /* LocationArrowWht-44.png in Resources */,
-				CA8ED94B1A058A9B009728AE /* mil2525c.dat in Resources */,
-				CA8ED9681A06B596009728AE /* LocationArrowBlk-44.png in Resources */,
-				CA8ED9671A06B596009728AE /* LocationArrowBlk-22.png in Resources */,
-				CA8ED9481A058A9B009728AE /* Chemlight.json in Resources */,
-				CA8ED9431A058A9B009728AE /* ios_framework.plist in Resources */,
-				CA8ED9461A058A9B009728AE /* positionreport.json in Resources */,
-				CA8ED9471A058A9B009728AE /* spotreport.json in Resources */,
 				CA8ED91B1A058978009728AE /* LaunchScreen.xib in Resources */,
-				CA8ED9421A058A9B009728AE /* ArcGIS.bundle in Resources */,
 				CA8ED9181A058978009728AE /* Images.xcassets in Resources */,
+				35C0E0EC1A0AF41100B32B68 /* ArcGIS.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,10 +404,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/SDKs/ArcGIS/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(USER_LIBRARY_DIR)/SDKs/ArcGIS/iOS";
 				INFOPLIST_FILE = "MN Solar App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -537,10 +422,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/SDKs/ArcGIS/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(USER_LIBRARY_DIR)/SDKs/ArcGIS/iOS";
 				INFOPLIST_FILE = "MN Solar App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -607,6 +489,7 @@
 				CA8ED92C1A058978009728AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CA8ED92D1A058978009728AE /* Build configuration list for PBXNativeTarget "MN Solar AppTests" */ = {
 			isa = XCConfigurationList;
@@ -615,6 +498,7 @@
 				CA8ED92F1A058978009728AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
