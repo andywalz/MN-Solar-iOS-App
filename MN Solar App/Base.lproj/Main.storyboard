@@ -50,7 +50,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="zlF-Cy-DBL"/>
                                     <barButtonItem systemItem="bookmarks" id="wYQ-5e-UK1">
                                         <connections>
-                                            <segue destination="r33-iq-wmY" kind="popoverPresentation" identifier="toBookmarksPopover" popoverAnchorBarButtonItem="wYQ-5e-UK1" id="Nym-hY-df9">
+                                            <segue destination="e17-l5-lXa" kind="popoverPresentation" popoverAnchorBarButtonItem="wYQ-5e-UK1" id="PF5-TD-oKL">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
@@ -118,6 +118,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9JX-BS-i6H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-452" y="1324"/>
+        </scene>
+        <!--Bookmarks View Controller-->
+        <scene sceneID="eL3-c4-P6J">
+            <objects>
+                <viewController id="e17-l5-lXa" customClass="BookmarksViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="kSK-hU-5PP">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="500"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="Meq-Jy-1dl">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="e17-l5-lXa" id="VYf-8L-2Zt"/>
+                            </connections>
+                        </searchBar>
+                        <connections>
+                            <outlet property="dataSource" destination="e17-l5-lXa" id="w1W-pW-UN2"/>
+                            <outlet property="delegate" destination="e17-l5-lXa" id="q8M-xG-DNP"/>
+                        </connections>
+                    </tableView>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="500"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="xi1-Yo-sZ9" id="K7v-58-ePv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YgA-qk-z6m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="xi1-Yo-sZ9">
+                    <connections>
+                        <outlet property="delegate" destination="e17-l5-lXa" id="zXZ-aB-FJa"/>
+                        <outlet property="searchBar" destination="Meq-Jy-1dl" id="9VF-0M-RBo"/>
+                        <outlet property="searchContentsController" destination="e17-l5-lXa" id="00O-l7-Cjf"/>
+                        <outlet property="searchResultsDataSource" destination="e17-l5-lXa" id="RoF-Yh-ekW"/>
+                        <outlet property="searchResultsDelegate" destination="e17-l5-lXa" id="2aM-OF-YcE"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="-519" y="-771"/>
         </scene>
         <!--Bookmarks-->
         <scene sceneID="amu-nk-j13">

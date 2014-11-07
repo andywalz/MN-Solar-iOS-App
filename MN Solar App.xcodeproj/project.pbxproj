@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		35C0E0EC1A0AF41100B32B68 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 35C0E0EB1A0AF41100B32B68 /* ArcGIS.bundle */; };
+		C618056C1A0D7C52002C2FFB /* BookmarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C618056B1A0D7C52002C2FFB /* BookmarksViewController.m */; };
 		CA6E55D51A0C865A00D60677 /* TakeActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6E55D41A0C865A00D60677 /* TakeActionViewController.m */; };
 		CA8ED90D1A058978009728AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED90C1A058978009728AE /* main.m */; };
 		CA8ED9101A058978009728AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED90F1A058978009728AE /* AppDelegate.m */; };
@@ -42,6 +43,8 @@
 
 /* Begin PBXFileReference section */
 		35C0E0EB1A0AF41100B32B68 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ArcGIS.bundle; sourceTree = "<group>"; };
+		C618056A1A0D7C52002C2FFB /* BookmarksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarksViewController.h; sourceTree = "<group>"; };
+		C618056B1A0D7C52002C2FFB /* BookmarksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarksViewController.m; sourceTree = "<group>"; };
 		CA6E55D31A0C865A00D60677 /* TakeActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeActionViewController.h; sourceTree = "<group>"; };
 		CA6E55D41A0C865A00D60677 /* TakeActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeActionViewController.m; sourceTree = "<group>"; };
 		CA8ED90B1A058978009728AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,6 +126,8 @@
 				CA8ED9111A058978009728AE /* MapViewController.h */,
 				CA8ED9121A058978009728AE /* MapViewController.m */,
 				CA8ED9141A058978009728AE /* Main.storyboard */,
+				C618056A1A0D7C52002C2FFB /* BookmarksViewController.h */,
+				C618056B1A0D7C52002C2FFB /* BookmarksViewController.m */,
 				CA6E55D31A0C865A00D60677 /* TakeActionViewController.h */,
 				CA6E55D41A0C865A00D60677 /* TakeActionViewController.m */,
 				CA8ED9731A073141009728AE /* ReportCustomizedViewController.h */,
@@ -337,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C618056C1A0D7C52002C2FFB /* BookmarksViewController.m in Sources */,
 				CA6E55D51A0C865A00D60677 /* TakeActionViewController.m in Sources */,
 				CA8ED9751A073141009728AE /* ReportCustomizedViewController.m in Sources */,
 				CA8ED9551A069426009728AE /* WelcomeViewController.m in Sources */,
