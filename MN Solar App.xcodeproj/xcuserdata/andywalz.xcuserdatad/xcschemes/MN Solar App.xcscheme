@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CA8ED9061A058978009728AE"
-               BuildableName = "MN Solar App.app"
+               BuildableName = "MN Solar App"
                BlueprintName = "MN Solar App"
                ReferencedContainer = "container:MN Solar App.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CA8ED9061A058978009728AE"
-            BuildableName = "MN Solar App.app"
+            BuildableName = "MN Solar App"
             BlueprintName = "MN Solar App"
             ReferencedContainer = "container:MN Solar App.xcodeproj">
          </BuildableReference>
@@ -72,15 +72,18 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <PathRunnable
+         FilePath = "/Users/andywalz/Library/Developer/Xcode/DerivedData/MN_Solar_App-fnhoivzkelxkemdpkicdrcchbcfi/Build/Products/Debug-iphonesimulator/MN Solar App.app">
+      </PathRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CA8ED9061A058978009728AE"
-            BuildableName = "MN Solar App.app"
+            BuildableName = "MN Solar App"
             BlueprintName = "MN Solar App"
             ReferencedContainer = "container:MN Solar App.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -94,7 +97,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CA8ED9061A058978009728AE"
-            BuildableName = "MN Solar App.app"
+            BuildableName = "MN Solar App"
             BlueprintName = "MN Solar App"
             ReferencedContainer = "container:MN Solar App.xcodeproj">
          </BuildableReference>

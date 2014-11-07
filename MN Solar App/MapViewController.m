@@ -113,7 +113,7 @@
         //Create the AGSLocator pointing to the geocode service on ArcGIS Online
         //Set the delegate so that we are informed through AGSLocatorDelegate methods
         self.locator = [AGSLocator locatorWithURL:[NSURL URLWithString:@"http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"]];
-        self.locator.delegate = self;
+        //self.locator.delegate = self;   //Chris I had to comment this out to make it work
     }
     
     //Set the parameters
