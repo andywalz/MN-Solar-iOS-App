@@ -24,7 +24,10 @@
 		CA8ED96F1A06DCFC009728AE /* BookmarksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED96E1A06DCFC009728AE /* BookmarksTableViewController.m */; };
 		CA8ED9721A0729BB009728AE /* ReportSaveFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED9711A0729BB009728AE /* ReportSaveFormViewController.m */; };
 		CA8ED9751A073141009728AE /* ReportCustomizedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED9741A073141009728AE /* ReportCustomizedViewController.m */; };
-		CAC410DF1A0AE44800FE6312 /* solar-app-loading-768x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC410DE1A0AE44800FE6312 /* solar-app-loading-768x1024.png */; };
+		CAEC98581A0D600200E271F4 /* LocationArrowWht-22.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEC98541A0D600200E271F4 /* LocationArrowWht-22.png */; };
+		CAEC98591A0D600200E271F4 /* LocationArrowWht-44.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEC98551A0D600200E271F4 /* LocationArrowWht-44.png */; };
+		CAEC985A1A0D600200E271F4 /* menu-22.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEC98561A0D600200E271F4 /* menu-22.png */; };
+		CAEC985B1A0D600200E271F4 /* solar-app-loading-768x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEC98571A0D600200E271F4 /* solar-app-loading-768x1024.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +41,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CA6E55D31A0C865A00D60677 /* TakeActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeActionViewController.h; sourceTree = "<group>"; };
 		35C0E0EB1A0AF41100B32B68 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ArcGIS.bundle; sourceTree = "<group>"; };
 		CA6E55D31A0C865A00D60677 /* TakeActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeActionViewController.h; sourceTree = "<group>"; };
 		CA6E55D41A0C865A00D60677 /* TakeActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeActionViewController.m; sourceTree = "<group>"; };
@@ -63,19 +65,16 @@
 		CA8ED9581A069536009728AE /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		CA8ED95D1A06A514009728AE /* MenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewController.h; sourceTree = "<group>"; };
 		CA8ED95E1A06A514009728AE /* MenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewController.m; sourceTree = "<group>"; };
-		CA8ED9611A06B1D0009728AE /* LocationArrowBlk-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LocationArrowBlk-128.png"; path = "../../../../Library/SDKs/ArcGIS/iOS/ArcGIS.framework/Versions/Current/Resources/LocationArrowBlk-128.png"; sourceTree = "<group>"; };
-		CA8ED9631A06B596009728AE /* LocationArrowBlk-22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LocationArrowBlk-22.png"; path = "../../../../Library/SDKs/ArcGIS/iOS/ArcGIS.framework/Versions/Current/Resources/LocationArrowBlk-22.png"; sourceTree = "<group>"; };
-		CA8ED9641A06B596009728AE /* LocationArrowBlk-44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LocationArrowBlk-44.png"; path = "../../../../Library/SDKs/ArcGIS/iOS/ArcGIS.framework/Versions/Current/Resources/LocationArrowBlk-44.png"; sourceTree = "<group>"; };
-		CA8ED9651A06B596009728AE /* LocationArrowWht-22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LocationArrowWht-22.png"; path = "../../../../Library/SDKs/ArcGIS/iOS/ArcGIS.framework/Versions/Current/Resources/LocationArrowWht-22.png"; sourceTree = "<group>"; };
-		CA8ED9661A06B596009728AE /* LocationArrowWht-44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LocationArrowWht-44.png"; path = "../../../../Library/SDKs/ArcGIS/iOS/ArcGIS.framework/Versions/Current/Resources/LocationArrowWht-44.png"; sourceTree = "<group>"; };
-		CA8ED96B1A06B76B009728AE /* menu-22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-22.png"; path = "../../../../Library/SDKs/ArcGIS/iOS/ArcGIS.framework/Versions/Current/Resources/menu-22.png"; sourceTree = "<group>"; };
 		CA8ED96D1A06DCFC009728AE /* BookmarksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarksTableViewController.h; sourceTree = "<group>"; };
 		CA8ED96E1A06DCFC009728AE /* BookmarksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarksTableViewController.m; sourceTree = "<group>"; };
 		CA8ED9701A0729BB009728AE /* ReportSaveFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportSaveFormViewController.h; sourceTree = "<group>"; };
 		CA8ED9711A0729BB009728AE /* ReportSaveFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportSaveFormViewController.m; sourceTree = "<group>"; };
 		CA8ED9731A073141009728AE /* ReportCustomizedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCustomizedViewController.h; sourceTree = "<group>"; };
 		CA8ED9741A073141009728AE /* ReportCustomizedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCustomizedViewController.m; sourceTree = "<group>"; };
-		CAC410DE1A0AE44800FE6312 /* solar-app-loading-768x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "solar-app-loading-768x1024.png"; path = "../../../../Library/SDKs/ArcGIS/iOS/ArcGIS.framework/Versions/Current/Resources/solar-app-loading-768x1024.png"; sourceTree = "<group>"; };
+		CAEC98541A0D600200E271F4 /* LocationArrowWht-22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LocationArrowWht-22.png"; path = "Assets/LocationArrowWht-22.png"; sourceTree = "<group>"; };
+		CAEC98551A0D600200E271F4 /* LocationArrowWht-44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LocationArrowWht-44.png"; path = "Assets/LocationArrowWht-44.png"; sourceTree = "<group>"; };
+		CAEC98561A0D600200E271F4 /* menu-22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-22.png"; path = "Assets/menu-22.png"; sourceTree = "<group>"; };
+		CAEC98571A0D600200E271F4 /* solar-app-loading-768x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "solar-app-loading-768x1024.png"; path = "Assets/solar-app-loading-768x1024.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +98,7 @@
 		CA8ED8FE1A058978009728AE = {
 			isa = PBXGroup;
 			children = (
+				CAEC984B1A0D5EB400E271F4 /* Assets */,
 				35C0E0EB1A0AF41100B32B68 /* ArcGIS.bundle */,
 				CA8ED9321A058A9B009728AE /* Resources */,
 				CA8ED9091A058978009728AE /* MN Solar App */,
@@ -110,7 +110,6 @@
 		CA8ED9081A058978009728AE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CA8ED9071A058978009728AE /* MN Solar App.app */,
 				CA8ED9201A058978009728AE /* MN Solar AppTests.xctest */,
 			);
 			name = Products;
@@ -119,7 +118,6 @@
 		CA8ED9091A058978009728AE /* MN Solar App */ = {
 			isa = PBXGroup;
 			children = (
-				CAFE06C21A0B1E9B0083926E /* Assets */,
 				CA8ED90E1A058978009728AE /* AppDelegate.h */,
 				CA8ED90F1A058978009728AE /* AppDelegate.m */,
 				CA8ED9111A058978009728AE /* MapViewController.h */,
@@ -178,8 +176,6 @@
 		CA8ED9321A058A9B009728AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				CA8ED9331A058A9B009728AE /* ArcGIS.bundle */,
-				CA8ED9341A058A9B009728AE /* ios_framework.plist */,
 				CA8ED9351A058A9B009728AE /* Symbols */,
 			);
 			name = Resources;
@@ -198,7 +194,6 @@
 		CA8ED9361A058A9B009728AE /* app6b */ = {
 			isa = PBXGroup;
 			children = (
-				CA8ED9371A058A9B009728AE /* app6b.dat */,
 				CA8ED9381A058A9B009728AE /* messagetypes */,
 			);
 			path = app6b;
@@ -207,9 +202,6 @@
 		CA8ED9381A058A9B009728AE /* messagetypes */ = {
 			isa = PBXGroup;
 			children = (
-				CA8ED9391A058A9B009728AE /* chemlight.json */,
-				CA8ED93A1A058A9B009728AE /* positionreport.json */,
-				CA8ED93B1A058A9B009728AE /* spotreport.json */,
 			);
 			path = messagetypes;
 			sourceTree = "<group>";
@@ -218,7 +210,6 @@
 			isa = PBXGroup;
 			children = (
 				CA8ED93D1A058A9B009728AE /* messagetypes */,
-				CA8ED9411A058A9B009728AE /* mil2525c.dat */,
 			);
 			path = mil2525c;
 			sourceTree = "<group>";
@@ -226,23 +217,17 @@
 		CA8ED93D1A058A9B009728AE /* messagetypes */ = {
 			isa = PBXGroup;
 			children = (
-				CA8ED93E1A058A9B009728AE /* Chemlight.json */,
-				CA8ED93F1A058A9B009728AE /* PositionReport.json */,
-				CA8ED9401A058A9B009728AE /* SpotReport.json */,
 			);
 			path = messagetypes;
 			sourceTree = "<group>";
 		};
-		CAFE06C21A0B1E9B0083926E /* Assets */ = {
+		CAEC984B1A0D5EB400E271F4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				CAC410DE1A0AE44800FE6312 /* solar-app-loading-768x1024.png */,
-				CA8ED96B1A06B76B009728AE /* menu-22.png */,
-				CA8ED9631A06B596009728AE /* LocationArrowBlk-22.png */,
-				CA8ED9641A06B596009728AE /* LocationArrowBlk-44.png */,
-				CA8ED9651A06B596009728AE /* LocationArrowWht-22.png */,
-				CA8ED9661A06B596009728AE /* LocationArrowWht-44.png */,
-				CA8ED9611A06B1D0009728AE /* LocationArrowBlk-128.png */,
+				CAEC98541A0D600200E271F4 /* LocationArrowWht-22.png */,
+				CAEC98551A0D600200E271F4 /* LocationArrowWht-44.png */,
+				CAEC98561A0D600200E271F4 /* menu-22.png */,
+				CAEC98571A0D600200E271F4 /* solar-app-loading-768x1024.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -264,7 +249,6 @@
 			);
 			name = "MN Solar App";
 			productName = "MN Solar App";
-			productReference = CA8ED9071A058978009728AE /* MN Solar App.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CA8ED91F1A058978009728AE /* MN Solar AppTests */ = {
@@ -327,22 +311,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAEC98581A0D600200E271F4 /* LocationArrowWht-22.png in Resources */,
+				CAEC98591A0D600200E271F4 /* LocationArrowWht-44.png in Resources */,
 				CA8ED9161A058978009728AE /* Main.storyboard in Resources */,
 				CA8ED9561A069426009728AE /* WelcomeViewController.xib in Resources */,
-				CA8ED96C1A06B76B009728AE /* menu-22.png in Resources */,
-				CA8ED94A1A058A9B009728AE /* SpotReport.json in Resources */,
-				CA8ED9491A058A9B009728AE /* PositionReport.json in Resources */,
-				CA8ED9441A058A9B009728AE /* app6b.dat in Resources */,
-				CA8ED9451A058A9B009728AE /* chemlight.json in Resources */,
-				CA8ED96A1A06B596009728AE /* LocationArrowWht-44.png in Resources */,
-				CA8ED94B1A058A9B009728AE /* mil2525c.dat in Resources */,
-				CA8ED9681A06B596009728AE /* LocationArrowBlk-44.png in Resources */,
-				CA8ED9671A06B596009728AE /* LocationArrowBlk-22.png in Resources */,
-				CAC410DF1A0AE44800FE6312 /* solar-app-loading-768x1024.png in Resources */,
-				CA8ED9481A058A9B009728AE /* Chemlight.json in Resources */,
-				CA8ED9431A058A9B009728AE /* ios_framework.plist in Resources */,
-				CA8ED9461A058A9B009728AE /* positionreport.json in Resources */,
-				CA8ED9471A058A9B009728AE /* spotreport.json in Resources */,
+				CAEC985B1A0D600200E271F4 /* solar-app-loading-768x1024.png in Resources */,
+				CAEC985A1A0D600200E271F4 /* menu-22.png in Resources */,
 				CA8ED91B1A058978009728AE /* LaunchScreen.xib in Resources */,
 				CA8ED9181A058978009728AE /* Images.xcassets in Resources */,
 				35C0E0EC1A0AF41100B32B68 /* ArcGIS.bundle in Resources */,
