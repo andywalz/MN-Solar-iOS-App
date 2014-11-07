@@ -6,10 +6,17 @@
 //  Copyright (c) 2014 MN Solar Suitability Team. All rights reserved.
 //
 
-#import <ArcGIS/ArcGIS.h>
 #import <UIKit/UIKit.h>
 
-@interface MapViewController : UIViewController
+#import <ArcGIS/ArcGIS.h>
 
+@interface MapViewController : UIViewController
+@property (strong, nonatomic) IBOutlet AGSMapView *mapView;
+@property (nonatomic, strong) AGSGraphicsLayer *graphicsLayer;
+@property (nonatomic, strong) AGSLocator *locator;
+@property (nonatomic, strong) AGSCalloutTemplate *calloutTemplate;
+
+
+- (IBAction)basemapChanged:(id)sender;
 @end
 
