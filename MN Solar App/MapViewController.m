@@ -23,11 +23,27 @@
     // set the delegate for the map view
     self.mapView.layerDelegate = self;
     
+    //add new layer
+    AGSTiledMapServiceLayer* newBasemapLayer = [AGSTiledMapServiceLayer tiledMapServiceLayerWithURL:[NSURL URLWithString:@"http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer"]];
+    [self.mapView insertMapLayer:newBasemapLayer withName:@"Basemap Tiled Layer" atIndex:0];
+    
+    //zoom to an area
+    AGSEnvelope *envelope = [AGSEnvelope envelopeWithXmin:-10874639 ymin:5330544 xmax:-9900890  ymax:6349425  spatialReference:self.mapView.spatialReference];
+    [self.mapView zoomToEnvelope:envelope animated:YES];
+    
+    //add solar layer
+    NSURL* url = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer"];
+    AGSImageServiceLayer* solarLayer = [AGSImageServiceLayer imageServiceLayerWithURL: url];
+    
+    [self.mapView insertMapLayer:solarLayer withName:@"Solar Tiled Layer" atIndex:1];
+    
     //create an instance of a tiled map service layer
     /*AGSTiledMapServiceLayer *tiledLayer = [[AGSTiledMapServiceLayer alloc] initWithURL:[NSURL URLWithString:@"http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer"]];*/
     
     //Add it to the map view
     //[self.mapView addMapLayer:tiledLayer withName:@"Tiled Layer"];
+    
+
     
 }
 
