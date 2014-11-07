@@ -43,7 +43,16 @@
     //Add it to the map view
     //[self.mapView addMapLayer:tiledLayer withName:@"Tiled Layer"];
     
-
+    //initialize the operation queue which will make webservice requests in the background
+    self.queue = [[NSOperationQueue alloc] init];
+    
+    //Set the touch delegate so we can respond when user taps on the map
+    self.mapView.touchDelegate = self;
+    
+    //Prepare the view we will display while loading weather information
+    self.loadingView =  [[[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:nil options:nil] objectAtIndex:0];
+    
+    
     
 }
 
@@ -62,6 +71,79 @@
 }
 
 
+- (void)mapView:(AGSMapView *)mapView didClickAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint features:(NSDictionary *)features{
+    
+    //Cancel any outstanding operations for previous webservice requests
+    [self.queue cancelAllOperations];
+    
+    
+    //Show an activity indicator while we initiate a new request
+    self.mapView.callout.customView = self.loadingView;
+    [self.mapView.callout showCalloutAt:mappoint screenOffset:CGPointZero animated:YES];
+    
+    //NSLog(@"%@", mappoint);
+    
+    //Convert Web Mercator to LatLong
+    
+    AGSPoint* latLong = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:mappoint toSpatialReference:[AGSSpatialReference wgs84SpatialReference]];
+    
+    NSLog(@"%f", latLong.x);
+    
+    /*
+    //Set up the parameters to send the webservice
+    NSMutableDictionary* params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithDouble:latLong.x] forKey:@"lng"];
+    [params setObject:[NSNumber numberWithDouble:latLong.y] forKey:@"lat"];
+    
+    //Set up an operation for the current request
+    NSURL* url = [NSURL URLWithString:@"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer/indentify"];
+    self.currentJsonOp = [[AGSJSONRequestOperation alloc]initWithURL:url queryParameters:params];
+    self.currentJsonOp.target = self;
+    self.currentJsonOp.action = @selector(operation:didSucceedWithResponse:);
+    self.currentJsonOp.errorAction = @selector(operation:didFailWithError:);
+    
+    //Add operation to the queue to execute in the background
+    [self.queue addOperation:self.currentJsonOp];
+    */
+    
+}
+
+
+- (void)operation:(NSOperation*)op didSucceedWithResponse:(NSDictionary *)solarInfo {
+    //The webservice was invoked successfully.
+    //Print the response to see what the JSON payload looks like.
+    NSLog(@"%@", solarInfo);
+    
+    /*If we got any weather information
+    if([weatherInfo objectForKey:@"weatherObservation"]!=nil){
+        NSString* station = [[weatherInfo objectForKey:@"weatherObservation"] objectForKey:@"stationName"];
+        NSString* clouds = [[weatherInfo objectForKey:@"weatherObservation"] objectForKey:@"clouds"];
+        NSString* temp = [[weatherInfo objectForKey:@"weatherObservation"] objectForKey:@"temperature"];
+        NSString* humidity = [[weatherInfo objectForKey:@"weatherObservation"] objectForKey:@"humidity"];
+        //Hide the progress indicator, display weather information
+        self.mapView.callout.customView = nil;
+        self.mapView.callout.title = station;
+        self.mapView.callout.detail = [NSString stringWithFormat:@"%@\u00B0c, %@%% Humidity, Condition:%@",temp,humidity,clouds];
+    }else {
+        //display the message returned by the webservice
+        self.mapView.callout.customView = nil;
+        self.mapView.callout.title = [[weatherInfo objectForKey:@"status"] objectForKey:@"message"];
+        self.mapView.callout.detail = @"";
+    } */
+}
+
+- (void)operation:(NSOperation*)op didFailWithError:(NSError *)error {
+    //Error encountered while invoking webservice. Alert user
+    self.mapView.callout.hidden = YES;
+    UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"Sorry"
+                                                 message:[error localizedDescription] 
+                                                delegate:nil cancelButtonTitle:@"OK" 
+                                       otherButtonTitles:nil];
+    [av show];
+}
+
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -70,6 +152,9 @@
 - (IBAction)exitHere:(UIStoryboardSegue *)sender {
     //Excute this code upon unwinding
 }
+
+
+
 
 - (IBAction)basemapChanged:(id)sender {
     
