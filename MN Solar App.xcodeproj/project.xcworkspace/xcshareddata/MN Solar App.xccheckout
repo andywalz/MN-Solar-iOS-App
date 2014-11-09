@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4D8229CE-329D-445B-94B7-01588A9E38DA</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MN Solar App</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F196D931FAB50C1839816F7C0561023821865F44</key>
+		<string>https://github.com/andywalz/MN-Solar-iOS-App.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MN Solar App.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F196D931FAB50C1839816F7C0561023821865F44</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/andywalz/MN-Solar-iOS-App.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F196D931FAB50C1839816F7C0561023821865F44</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F196D931FAB50C1839816F7C0561023821865F44</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MN-Solar-iOS-App</string>
+		</dict>
+	</array>
+</dict>
+</plist>
