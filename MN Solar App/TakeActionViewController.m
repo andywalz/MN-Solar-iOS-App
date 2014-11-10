@@ -1,30 +1,22 @@
 //
-//  ReportViewController.m
+//  TakeActionViewController.m
 //  MN Solar App
 //
-//  Created by Andy Walz on 11/2/14.
+//  Created by Andy Walz on 11/6/14.
 //  Copyright (c) 2014 MN Solar Suitability Team. All rights reserved.
 //
 
-#import "ReportViewController.h"
+#import "TakeActionViewController.h"
 
-@interface ReportViewController ()
-
-- (IBAction)backToMap:(id)sender;
-@property (weak, nonatomic) IBOutlet UIWebView *reportView;
+@interface TakeActionViewController ()
 
 @end
 
-@implementation ReportViewController
+@implementation TakeActionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    NSURL *appleURL; appleURL =[ NSURL URLWithString:@"http://solar.maps.umn.edu/report.php"]; [_reportView loadRequest:[ NSURLRequest requestWithURL: appleURL]];
-    
-    self.reportView.hidden = NO;
-  
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,9 +34,4 @@
 }
 */
 
-- (IBAction)backToMap:(id)sender {
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-}
 @end

@@ -10,11 +10,26 @@
 
 #import <ArcGIS/ArcGIS.h>
 
-@interface MapViewController : UIViewController
+@interface MapViewController : UIViewController <AGSMapViewTouchDelegate>
 @property (strong, nonatomic) IBOutlet AGSMapView *mapView;
 @property (nonatomic, strong) AGSGraphicsLayer *graphicsLayer;
 @property (nonatomic, strong) AGSLocator *locator;
 @property (nonatomic, strong) AGSCalloutTemplate *calloutTemplate;
+@property (nonatomic, strong) AGSJSONRequestOperation* currentJsonOp;
+@property (nonatomic, strong) NSOperationQueue *queue;
+@property (nonatomic, strong) UIView* loadingView;
+@property(nonatomic, strong)AGSQueryTask* queryTask;
+
+
+@property (weak, nonatomic) IBOutlet UIButton *zoomIn;
+- (IBAction)zoomIn:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *zoomOut;
+- (IBAction)zoomOut:(id)sender;
+
+
+@property (weak, nonatomic) IBOutlet UIButton *solarToggle;
+- (IBAction)solarToggle:(id)sender;
 
 
 - (IBAction)basemapChanged:(id)sender;

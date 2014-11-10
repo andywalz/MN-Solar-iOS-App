@@ -15,26 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CA8ED9061A058978009728AE"
-<<<<<<< HEAD
-               BuildableName = "MN Solar App.app"
-=======
                BuildableName = "MN Solar App"
->>>>>>> dev1
                BlueprintName = "MN Solar App"
-               ReferencedContainer = "container:MN Solar App.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CA8ED91F1A058978009728AE"
-               BuildableName = "MN Solar AppTests.xctest"
-               BlueprintName = "MN Solar AppTests"
                ReferencedContainer = "container:MN Solar App.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,30 +28,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CA8ED91F1A058978009728AE"
-               BuildableName = "MN Solar AppTests.xctest"
-               BlueprintName = "MN Solar AppTests"
-               ReferencedContainer = "container:MN Solar App.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CA8ED9061A058978009728AE"
-<<<<<<< HEAD
-            BuildableName = "MN Solar App.app"
-=======
-            BuildableName = "MN Solar App"
->>>>>>> dev1
-            BlueprintName = "MN Solar App"
-            ReferencedContainer = "container:MN Solar App.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -80,17 +39,9 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-<<<<<<< HEAD
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CA8ED9061A058978009728AE"
-            BuildableName = "MN Solar App.app"
-            BlueprintName = "MN Solar App"
-            ReferencedContainer = "container:MN Solar App.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
-=======
+      <PathRunnable
+         FilePath = "/Users/chrismartin/Library/Developer/Xcode/DerivedData/MN_Solar_App-atgbolthzppimtdkqhskndjcwens/Build/Products/Debug-iphonesimulator/MN Solar App.app">
+      </PathRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -100,7 +51,6 @@
             ReferencedContainer = "container:MN Solar App.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
->>>>>>> dev1
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -110,17 +60,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-<<<<<<< HEAD
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CA8ED9061A058978009728AE"
-            BuildableName = "MN Solar App.app"
-            BlueprintName = "MN Solar App"
-            ReferencedContainer = "container:MN Solar App.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
-=======
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -130,7 +69,6 @@
             ReferencedContainer = "container:MN Solar App.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
->>>>>>> dev1
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

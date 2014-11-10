@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		35C0E0EC1A0AF41100B32B68 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 35C0E0EB1A0AF41100B32B68 /* ArcGIS.bundle */; };
+		CA6E55D51A0C865A00D60677 /* TakeActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6E55D41A0C865A00D60677 /* TakeActionViewController.m */; };
 		CA8ED90D1A058978009728AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED90C1A058978009728AE /* main.m */; };
 		CA8ED9101A058978009728AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED90F1A058978009728AE /* AppDelegate.m */; };
 		CA8ED9131A058978009728AE /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED9121A058978009728AE /* MapViewController.m */; };
@@ -23,6 +24,11 @@
 		CA8ED96F1A06DCFC009728AE /* BookmarksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED96E1A06DCFC009728AE /* BookmarksTableViewController.m */; };
 		CA8ED9721A0729BB009728AE /* ReportSaveFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED9711A0729BB009728AE /* ReportSaveFormViewController.m */; };
 		CA8ED9751A073141009728AE /* ReportCustomizedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED9741A073141009728AE /* ReportCustomizedViewController.m */; };
+		CAEC98581A0D600200E271F4 /* LocationArrowWht-22.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEC98541A0D600200E271F4 /* LocationArrowWht-22.png */; };
+		CAEC98591A0D600200E271F4 /* LocationArrowWht-44.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEC98551A0D600200E271F4 /* LocationArrowWht-44.png */; };
+		CAEC985A1A0D600200E271F4 /* menu-22.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEC98561A0D600200E271F4 /* menu-22.png */; };
+		CAEC985B1A0D600200E271F4 /* solar-app-loading-768x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEC98571A0D600200E271F4 /* solar-app-loading-768x1024.png */; };
+		CAEC985D1A0D798800E271F4 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAEC985C1A0D798800E271F4 /* LoadingView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +43,8 @@
 
 /* Begin PBXFileReference section */
 		35C0E0EB1A0AF41100B32B68 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ArcGIS.bundle; sourceTree = "<group>"; };
-		CA8ED9071A058978009728AE /* MN Solar App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MN Solar App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA6E55D31A0C865A00D60677 /* TakeActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeActionViewController.h; sourceTree = "<group>"; };
+		CA6E55D41A0C865A00D60677 /* TakeActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeActionViewController.m; sourceTree = "<group>"; };
 		CA8ED90B1A058978009728AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA8ED90C1A058978009728AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CA8ED90E1A058978009728AE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -65,6 +72,11 @@
 		CA8ED9711A0729BB009728AE /* ReportSaveFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportSaveFormViewController.m; sourceTree = "<group>"; };
 		CA8ED9731A073141009728AE /* ReportCustomizedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCustomizedViewController.h; sourceTree = "<group>"; };
 		CA8ED9741A073141009728AE /* ReportCustomizedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCustomizedViewController.m; sourceTree = "<group>"; };
+		CAEC98541A0D600200E271F4 /* LocationArrowWht-22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LocationArrowWht-22.png"; path = "Assets/LocationArrowWht-22.png"; sourceTree = "<group>"; };
+		CAEC98551A0D600200E271F4 /* LocationArrowWht-44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LocationArrowWht-44.png"; path = "Assets/LocationArrowWht-44.png"; sourceTree = "<group>"; };
+		CAEC98561A0D600200E271F4 /* menu-22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-22.png"; path = "Assets/menu-22.png"; sourceTree = "<group>"; };
+		CAEC98571A0D600200E271F4 /* solar-app-loading-768x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "solar-app-loading-768x1024.png"; path = "Assets/solar-app-loading-768x1024.png"; sourceTree = "<group>"; };
+		CAEC985C1A0D798800E271F4 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +100,7 @@
 		CA8ED8FE1A058978009728AE = {
 			isa = PBXGroup;
 			children = (
+				CAEC984B1A0D5EB400E271F4 /* Assets */,
 				35C0E0EB1A0AF41100B32B68 /* ArcGIS.bundle */,
 				CA8ED9321A058A9B009728AE /* Resources */,
 				CA8ED9091A058978009728AE /* MN Solar App */,
@@ -99,7 +112,6 @@
 		CA8ED9081A058978009728AE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CA8ED9071A058978009728AE /* MN Solar App.app */,
 				CA8ED9201A058978009728AE /* MN Solar AppTests.xctest */,
 			);
 			name = Products;
@@ -112,7 +124,10 @@
 				CA8ED90F1A058978009728AE /* AppDelegate.m */,
 				CA8ED9111A058978009728AE /* MapViewController.h */,
 				CA8ED9121A058978009728AE /* MapViewController.m */,
+				CAEC985C1A0D798800E271F4 /* LoadingView.xib */,
 				CA8ED9141A058978009728AE /* Main.storyboard */,
+				CA6E55D31A0C865A00D60677 /* TakeActionViewController.h */,
+				CA6E55D41A0C865A00D60677 /* TakeActionViewController.m */,
 				CA8ED9731A073141009728AE /* ReportCustomizedViewController.h */,
 				CA8ED9741A073141009728AE /* ReportCustomizedViewController.m */,
 				CA8ED9701A0729BB009728AE /* ReportSaveFormViewController.h */,
@@ -164,9 +179,60 @@
 		CA8ED9321A058A9B009728AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CA8ED9351A058A9B009728AE /* Symbols */,
 			);
 			name = Resources;
 			path = ../../../Library/SDKs/ArcGIS/iOS/ArcGIS.framework/Versions/Current/Resources;
+			sourceTree = "<group>";
+		};
+		CA8ED9351A058A9B009728AE /* Symbols */ = {
+			isa = PBXGroup;
+			children = (
+				CA8ED9361A058A9B009728AE /* app6b */,
+				CA8ED93C1A058A9B009728AE /* mil2525c */,
+			);
+			path = Symbols;
+			sourceTree = "<group>";
+		};
+		CA8ED9361A058A9B009728AE /* app6b */ = {
+			isa = PBXGroup;
+			children = (
+				CA8ED9381A058A9B009728AE /* messagetypes */,
+			);
+			path = app6b;
+			sourceTree = "<group>";
+		};
+		CA8ED9381A058A9B009728AE /* messagetypes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = messagetypes;
+			sourceTree = "<group>";
+		};
+		CA8ED93C1A058A9B009728AE /* mil2525c */ = {
+			isa = PBXGroup;
+			children = (
+				CA8ED93D1A058A9B009728AE /* messagetypes */,
+			);
+			path = mil2525c;
+			sourceTree = "<group>";
+		};
+		CA8ED93D1A058A9B009728AE /* messagetypes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = messagetypes;
+			sourceTree = "<group>";
+		};
+		CAEC984B1A0D5EB400E271F4 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				CAEC98541A0D600200E271F4 /* LocationArrowWht-22.png */,
+				CAEC98551A0D600200E271F4 /* LocationArrowWht-44.png */,
+				CAEC98561A0D600200E271F4 /* menu-22.png */,
+				CAEC98571A0D600200E271F4 /* solar-app-loading-768x1024.png */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,7 +252,6 @@
 			);
 			name = "MN Solar App";
 			productName = "MN Solar App";
-			productReference = CA8ED9071A058978009728AE /* MN Solar App.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CA8ED91F1A058978009728AE /* MN Solar AppTests */ = {
@@ -249,11 +314,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAEC98581A0D600200E271F4 /* LocationArrowWht-22.png in Resources */,
+				CAEC98591A0D600200E271F4 /* LocationArrowWht-44.png in Resources */,
 				CA8ED9161A058978009728AE /* Main.storyboard in Resources */,
 				CA8ED9561A069426009728AE /* WelcomeViewController.xib in Resources */,
+				CAEC985B1A0D600200E271F4 /* solar-app-loading-768x1024.png in Resources */,
+				CAEC985A1A0D600200E271F4 /* menu-22.png in Resources */,
 				CA8ED91B1A058978009728AE /* LaunchScreen.xib in Resources */,
 				CA8ED9181A058978009728AE /* Images.xcassets in Resources */,
 				35C0E0EC1A0AF41100B32B68 /* ArcGIS.bundle in Resources */,
+				CAEC985D1A0D798800E271F4 /* LoadingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA6E55D51A0C865A00D60677 /* TakeActionViewController.m in Sources */,
 				CA8ED9751A073141009728AE /* ReportCustomizedViewController.m in Sources */,
 				CA8ED9551A069426009728AE /* WelcomeViewController.m in Sources */,
 				CA8ED96F1A06DCFC009728AE /* BookmarksTableViewController.m in Sources */,
