@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MN Solar App/MapViewController.m"
-            timestampString = "437420474.994271"
+            timestampString = "437434500.836052"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "-mapView:didClickAtPoint:mapPoint:features:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,27 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MN Solar App/MapViewController.m"
-            timestampString = "437428898.230195"
+            timestampString = "437435801.393466"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
-            landmarkName = "-operation:didSucceedWithResponse:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MN Solar App/MapViewController.m"
-            timestampString = "437428898.230195"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "-mapView:didClickAtPoint:mapPoint:features:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MN Solar App/MapViewController.m"
-            timestampString = "437428615.274916"
+            timestampString = "437434500.836052"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "-mapView:didClickAtPoint:mapPoint:features:"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MN Solar App/MapViewController.m"
-            timestampString = "437431444.457097"
+            timestampString = "437435801.393466"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "-queryTask:operation:didExecuteWithFeatureSetResult:"
             landmarkType = "5">
          </BreakpointContent>

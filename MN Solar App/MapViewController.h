@@ -21,6 +21,11 @@
 @property(nonatomic, strong)AGSQueryTask* queryTask;
 @property(nonatomic,strong)AGSQuery* query;
 
+@property(nonatomic,strong)NSString* dsmTile;
+@property(nonatomic, strong)AGSQueryTask* dsmqueryTask;
+@property(nonatomic,strong)AGSQuery* dsmquery;
+@property(nonatomic,weak)NSString* dsmname;
+
 
 @property (weak, nonatomic) IBOutlet UIButton *zoomIn;
 - (IBAction)zoomIn:(id)sender;

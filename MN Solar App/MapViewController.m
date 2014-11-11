@@ -43,15 +43,6 @@ int graphicCount = 0;
     //solarLayer.visible = NO;
     //[self drawSolar];
     
-    
-    
-    
-    //create an instance of a tiled map service layer
-    /*AGSTiledMapServiceLayer *tiledLayer = [[AGSTiledMapServiceLayer alloc] initWithURL:[NSURL URLWithString:@"http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer"]];*/
-    
-    //Add it to the map view
-    //[self.mapView addMapLayer:tiledLayer withName:@"Tiled Layer"];
-    
     //initialize the operation queue which will make webservice requests in the background
     self.queue = [[NSOperationQueue alloc] init];
     
@@ -60,8 +51,6 @@ int graphicCount = 0;
     
     //Prepare the view we will display while loading weather information
     self.loadingView =  [[[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:nil options:nil] objectAtIndex:0];
-    
-    
     
 }
 
@@ -92,47 +81,39 @@ int graphicCount = 0;
     //self.mapView.callout.customView = self.loadingView;
     //[self.mapView.callout showCalloutAt:mappoint screenOffset:CGPointZero animated:YES];
     
-    //NSLog(@"%@", mappoint);
-    
-    //Convert Web Mercator to LatLong
+    //Convert Web Mercator to UTM15
     
     AGSPoint* utm15Point = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:mappoint toSpatialReference:[AGSSpatialReference spatialReferenceWithWKID:26915]];
     
-    //NSLog(@"%f, %f", latLong.x, latLong.y);
-    
     //EUSA query test
-    NSURL* url = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/solar_fgdb/MapServer/0"];
-    //AGSQueryTask* queryTask = [[AGSQueryTask alloc] initWithURL: url];
-    //self.queryTask.delegate = self;
+    NSURL* EUSAURL = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/solar_fgdb/MapServer/0"];
     
-    //AGSQuery* query = [AGSQuery query];
-    
-    self.queryTask = [AGSQueryTask queryTaskWithURL:url];
+    self.queryTask = [AGSQueryTask queryTaskWithURL:EUSAURL];
     self.queryTask.delegate = self;
-    
     self.query = [AGSQuery query];
     self.query.outFields = [NSArray arrayWithObjects:@"*", nil];
-    
     self.query.geometry = utm15Point;
     self.query.returnGeometry = NO;
     self.query.whereClause = @"1=1";
-    //query.outFields = [NSArray arrayWithObjects:@"*",nil];
-    //self.query.spatialRelationship =  AGSSpatialRelationshipIntersects;
     
     [self.queryTask executeWithQuery:self.query];
-    
-    //self.query = [AGSQuery query];
-    NSLog(@"%@",self.query.geometry);
-    
-    //[queryTask executeWithQuery:query] ;
-    
-    //NSLog(@"%@", utm15Point);
-    
     
 
     // Add graphics layer
     [self addPoint:mappoint];
     
+    //EUSA query test
+    NSURL* dsmURL = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/MN_DSM/ImageServer"];
+    
+    self.dsmqueryTask = [AGSQueryTask queryTaskWithURL:dsmURL];
+    self.dsmqueryTask.delegate = self;
+    self.dsmquery = [AGSQuery query];
+    self.dsmquery.outFields = [NSArray arrayWithObjects:@"*", nil];
+    self.dsmquery.geometry = utm15Point;
+    self.dsmquery.returnGeometry = NO;
+    self.dsmquery.whereClause = @"1=1";
+    
+    [self.dsmqueryTask executeWithQuery:self.dsmquery];
     
     /*//Set up the parameters to send the webservice
     NSMutableDictionary* params = [NSMutableDictionary dictionary];
@@ -153,122 +134,25 @@ int graphicCount = 0;
     
 }
 
--(void)addPoint:(AGSPoint*) mappoint{
-    
-    graphicCount+=1;
-    //NSLog(@"%@", mappoint);
-    AGSGraphicsLayer* myGraphicsLayer = [AGSGraphicsLayer graphicsLayer];
-    [self.mapView addMapLayer:myGraphicsLayer withName:@"Graphics Layer"];
-    
-    //create a marker symbol to be used by our Graphic
-    AGSSimpleMarkerSymbol *myMarkerSymbol =
-    [AGSSimpleMarkerSymbol simpleMarkerSymbol];
-    myMarkerSymbol.color = [UIColor blueColor];
-    //myMarkerSymbol.size ={70};
-    
-    
-    
-    //Create an AGSPoint (which inherits from AGSGeometry) that
-    //defines where the Graphic will be drawn
-    AGSPoint* myMarkerPoint =
-    [AGSPoint pointWithX:mappoint.x
-                       y:mappoint.y
-        spatialReference:[AGSSpatialReference wgs84SpatialReference]];
-    
-    //Create the Graphic, using the symbol and
-    //geometry created earlier
-    AGSGraphic* myGraphic =
-    [AGSGraphic graphicWithGeometry:myMarkerPoint
-                             symbol:myMarkerSymbol
-                         attributes:nil];
-    
-    
-    if(graphicCount>1){
-        //NSLog(@"DELETING OLD GRAPHICS");
-        [self.graphicsLayer removeAllGraphics];
-        graphicCount=0;
-    }
-    
-    
-    //Add the graphic to the Graphics layer
-    [myGraphicsLayer addGraphic:myGraphic];
-    //NSLog(@"%lu", myGraphicsLayer.graphicsCount);
-    //NSLog(@"%i", graphicCount);
-    
-    
 
-}
-
-- (void)operation:(NSOperation*)op didSucceedWithResponse:(NSDictionary *)solarInfo {
-    //The webservice was invoked successfully.
-    //Print the response to see what the JSON payload looks like.
-    NSLog(@"%@", solarInfo);
-    
-    /*If we got any weather information
-    if([weatherInfo objectForKey:@"weatherObservation"]!=nil){
-        NSString* station = [[weatherInfo objectForKey:@"weatherObservation"] objectForKey:@"stationName"];
-        NSString* clouds = [[weatherInfo objectForKey:@"weatherObservation"] objectForKey:@"clouds"];
-        NSString* temp = [[weatherInfo objectForKey:@"weatherObservation"] objectForKey:@"temperature"];
-        NSString* humidity = [[weatherInfo objectForKey:@"weatherObservation"] objectForKey:@"humidity"];
-        //Hide the progress indicator, display weather information
-        self.mapView.callout.customView = nil;
-        self.mapView.callout.title = station;
-        self.mapView.callout.detail = [NSString stringWithFormat:@"%@\u00B0c, %@%% Humidity, Condition:%@",temp,humidity,clouds];
-    }else {
-        //display the message returned by the webservice
-        self.mapView.callout.customView = nil;
-        self.mapView.callout.title = [[weatherInfo objectForKey:@"status"] objectForKey:@"message"];
-        self.mapView.callout.detail = @"";
-    } */
-}
-
-- (void)drawSolar{
-    //add solar layer
-    /*NSURL* url = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer"];
-    AGSImageServiceLayer* solarLayer = [AGSImageServiceLayer imageServiceLayerWithURL: url];
-    
-    [self.mapView insertMapLayer:solarLayer withName:@"Solar Tiled Layer" atIndex:1];*/
-    
-    
-    
-    
-    /*if (self.solarLayer.visible){
-        NSLog(@"Visible solar");
-        solarLayer.visible = NO;
-        NSLog(@"Hiding solar");
-    }else{
-        solarLayer.visible = YES;
-        NSLog(@"Showing solar");
-    }*/
-    
-}
-
-- (void)operation:(NSOperation*)op didFailWithError:(NSError *)error {
-    //Error encountered while invoking webservice. Alert user
-    self.mapView.callout.hidden = YES;
-    UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"Sorry"
-                                                 message:[error localizedDescription] 
-                                                delegate:nil cancelButtonTitle:@"OK" 
-                                       otherButtonTitles:nil];
-    [av show];
-}
 
 - (void) queryTask:(AGSQueryTask*)queryTask operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet{
     
     AGSGraphic *feature = [featureSet.features objectAtIndex:0];
     NSString *fullName = [feature attributeAsStringForKey:@"FULL_NAME"];
     NSString *phone = [feature attributeAsStringForKey:@"PHONE"];
+    NSString *temp = [feature attributeAsStringForKey:@"Name"];
     
-    NSLog(@"Name: %@, Phone: %@",fullName, phone);
+    self.dsmname = temp;
+    
+    //NSLog(@"Name: %@, Phone: %@",fullName, phone);
+    //NSLog(@"DSMName: %@",temp);
+    
+    [self gpTool];
 }
 
-- (void) queryTask:(AGSQueryTask*)queryTask operation:(NSOperation*)op didExecuteWithRelatedFeatures:(NSDictionary*) relatedFeatures {
-    
-    NSLog(@"queryTask 2executed");
-    
-}
 
-- (void) queryTask:(AGSQueryTask*)queryTask operation:(NSOperation*)	op didFailRelationshipQueryWithError: (NSError*)	error {
+- (void) queryTask:(AGSQueryTask*)queryTask operation:(NSOperation*)	op didFailWithError:(NSError *)error{
     NSLog(@"Error: %@",error);
     /*   //Error encountered while invoking webservice. Alert user
      self.mapView.callout.hidden = YES;
@@ -279,6 +163,26 @@ int graphicCount = 0;
      [av show];*/
 }
 
+-(void) gpTool{
+    //NSLog(@"gpTool%@",self.dsmname);
+    
+    NSString *fullTileName = [NSString stringWithFormat:@"%@.img", self.dsmname];
+    
+    NSURL* gpURL = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/SolarPointQuery_fast/GPServer/Script"];
+    
+    NSLog(@"%@",fullTileName);
+    //AGSGeoprocessor* geoprocessor = [AGSGeoprocessor geoprocessorWithURL:gpURL];
+    //AGSGPParameterValue *point = [];
+    //AGSGPParameterValue *tile =
+}
+
+-(void) dsmqueryTask:(AGSQueryTask *)dsmqueryTask operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet{
+    NSLog(@"dsmquery");
+}
+
+-(void)dsmqueryTask:(AGSQueryTask *)dsmqueryTask operation:(NSOperation *)op didFailWithError:(NSError *)error{
+    NSLog(@"dsmerror");
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -420,4 +324,104 @@ int graphicCount = 0;
 - (IBAction)zoomOut:(id)sender {
     [self.mapView zoomOut:YES];
 }
+-(void)addPoint:(AGSPoint*) mappoint{
+    
+    graphicCount+=1;
+    //NSLog(@"%@", mappoint);
+    AGSGraphicsLayer* myGraphicsLayer = [AGSGraphicsLayer graphicsLayer];
+    [self.mapView addMapLayer:myGraphicsLayer withName:@"Graphics Layer"];
+    
+    //create a marker symbol to be used by our Graphic
+    AGSSimpleMarkerSymbol *myMarkerSymbol =
+    [AGSSimpleMarkerSymbol simpleMarkerSymbol];
+    myMarkerSymbol.color = [UIColor blueColor];
+    //myMarkerSymbol.size ={70};
+    
+    
+    
+    //Create an AGSPoint (which inherits from AGSGeometry) that
+    //defines where the Graphic will be drawn
+    AGSPoint* myMarkerPoint =
+    [AGSPoint pointWithX:mappoint.x
+                       y:mappoint.y
+        spatialReference:[AGSSpatialReference wgs84SpatialReference]];
+    
+    //Create the Graphic, using the symbol and
+    //geometry created earlier
+    AGSGraphic* myGraphic =
+    [AGSGraphic graphicWithGeometry:myMarkerPoint
+                             symbol:myMarkerSymbol
+                         attributes:nil];
+    
+    
+    if(graphicCount>1){
+        //NSLog(@"DELETING OLD GRAPHICS");
+        [self.graphicsLayer removeAllGraphics];
+        graphicCount=0;
+    }
+    
+    
+    //Add the graphic to the Graphics layer
+    [myGraphicsLayer addGraphic:myGraphic];
+    //NSLog(@"%lu", myGraphicsLayer.graphicsCount);
+    //NSLog(@"%i", graphicCount);
+    
+    
+    
+}
+
+- (void)operation:(NSOperation*)op didSucceedWithResponse:(NSDictionary *)solarInfo {
+    //The webservice was invoked successfully.
+    //Print the response to see what the JSON payload looks like.
+    NSLog(@"%@", solarInfo);
+    
+    /*If we got any weather information
+     if([weatherInfo objectForKey:@"weatherObservation"]!=nil){
+     NSString* station = [[weatherInfo objectForKey:@"weatherObservation"] objectForKey:@"stationName"];
+     NSString* clouds = [[weatherInfo objectForKey:@"weatherObservation"] objectForKey:@"clouds"];
+     NSString* temp = [[weatherInfo objectForKey:@"weatherObservation"] objectForKey:@"temperature"];
+     NSString* humidity = [[weatherInfo objectForKey:@"weatherObservation"] objectForKey:@"humidity"];
+     //Hide the progress indicator, display weather information
+     self.mapView.callout.customView = nil;
+     self.mapView.callout.title = station;
+     self.mapView.callout.detail = [NSString stringWithFormat:@"%@\u00B0c, %@%% Humidity, Condition:%@",temp,humidity,clouds];
+     }else {
+     //display the message returned by the webservice
+     self.mapView.callout.customView = nil;
+     self.mapView.callout.title = [[weatherInfo objectForKey:@"status"] objectForKey:@"message"];
+     self.mapView.callout.detail = @"";
+     } */
+}
+
+- (void)drawSolar{
+    //add solar layer
+    /*NSURL* url = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer"];
+     AGSImageServiceLayer* solarLayer = [AGSImageServiceLayer imageServiceLayerWithURL: url];
+     
+     [self.mapView insertMapLayer:solarLayer withName:@"Solar Tiled Layer" atIndex:1];*/
+    
+    
+    
+    
+    /*if (self.solarLayer.visible){
+     NSLog(@"Visible solar");
+     solarLayer.visible = NO;
+     NSLog(@"Hiding solar");
+     }else{
+     solarLayer.visible = YES;
+     NSLog(@"Showing solar");
+     }*/
+    
+}
+
+- (void)operation:(NSOperation*)op didFailWithError:(NSError *)error {
+    //Error encountered while invoking webservice. Alert user
+    self.mapView.callout.hidden = YES;
+    UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"Sorry"
+                                                 message:[error localizedDescription]
+                                                delegate:nil cancelButtonTitle:@"OK"
+                                       otherButtonTitles:nil];
+    [av show];
+}
+
 @end
