@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSOperationQueue *queue;
 @property (nonatomic, strong) UIView* loadingView;
 @property(nonatomic, strong)AGSQueryTask* queryTask;
+@property(nonatomic,strong)AGSQuery* query;
 
 
 @property (weak, nonatomic) IBOutlet UIButton *zoomIn;
@@ -33,5 +34,6 @@
 
 
 - (IBAction)basemapChanged:(id)sender;
+
 @end
 

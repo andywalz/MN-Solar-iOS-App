@@ -8,13 +8,15 @@
 
 #import "MapViewController.h"
 
-@interface MapViewController () <AGSMapViewLayerDelegate>
+@interface MapViewController () <AGSMapViewLayerDelegate, AGSQueryTaskDelegate>
 
 - (IBAction)exitHere:(UIStoryboardSegue *)sender;
 
 @end
 
 @implementation MapViewController
+
+int graphicCount = 0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -87,34 +89,74 @@
     
     
     //Show an activity indicator while we initiate a new request
-    self.mapView.callout.customView = self.loadingView;
-    [self.mapView.callout showCalloutAt:mappoint screenOffset:CGPointZero animated:YES];
+    //self.mapView.callout.customView = self.loadingView;
+    //[self.mapView.callout showCalloutAt:mappoint screenOffset:CGPointZero animated:YES];
     
     //NSLog(@"%@", mappoint);
     
     //Convert Web Mercator to LatLong
     
-    AGSPoint* latLong = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:mappoint toSpatialReference:[AGSSpatialReference wgs84SpatialReference]];
+    AGSPoint* utm15Point = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:mappoint toSpatialReference:[AGSSpatialReference spatialReferenceWithWKID:26915]];
     
-    NSLog(@"%f, %f", latLong.x, latLong.y);
+    //NSLog(@"%f, %f", latLong.x, latLong.y);
     
-    /*//EUSA query test
+    //EUSA query test
     NSURL* url = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/solar_fgdb/MapServer/0"];
-    AGSQueryTask* queryTask = [[AGSQueryTask alloc] initWithURL: url];
+    //AGSQueryTask* queryTask = [[AGSQueryTask alloc] initWithURL: url];
+    //self.queryTask.delegate = self;
     
-    AGSQuery* query = [AGSQuery query];
-    query.geometry = latLong;
-    //query.outFields = "*";
-    query.spatialRelationship =  AGSSpatialRelationshipIntersects;
+    //AGSQuery* query = [AGSQuery query];
     
-    [queryTask executeWithQuery:query] ;
+    self.queryTask = [AGSQueryTask queryTaskWithURL:url];
+    self.queryTask.delegate = self;
     
-    self.queryTask.delegate = self;*/
+    self.query = [AGSQuery query];
+    self.query.outFields = [NSArray arrayWithObjects:@"*", nil];
     
-    //---------------------------------------------------
+    self.query.geometry = utm15Point;
+    self.query.returnGeometry = NO;
+    self.query.whereClause = @"1=1";
+    //query.outFields = [NSArray arrayWithObjects:@"*",nil];
+    //self.query.spatialRelationship =  AGSSpatialRelationshipIntersects;
     
-    // Add graphics layer (NOT WORKING BUT NO ERRORS)
+    [self.queryTask executeWithQuery:self.query];
     
+    //self.query = [AGSQuery query];
+    NSLog(@"%@",self.query.geometry);
+    
+    //[queryTask executeWithQuery:query] ;
+    
+    //NSLog(@"%@", utm15Point);
+    
+    
+
+    // Add graphics layer
+    [self addPoint:mappoint];
+    
+    
+    /*//Set up the parameters to send the webservice
+    NSMutableDictionary* params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithDouble:utm15Point.x] forKey:@"x"];
+    [params setObject:[NSNumber numberWithDouble:utm15Point.y] forKey:@"y"];
+    //[params setObject:[NSNumber numberWithDouble:mappoint.y] forKey:@"y"];
+    
+    //Set up an operation for the current request
+    NSURL* url = [NSURL URLWithString:@"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer/query"];
+    self.currentJsonOp = [[AGSJSONRequestOperation alloc]initWithURL:url queryParameters:params];
+    self.currentJsonOp.target = self;
+    self.currentJsonOp.action = @selector(operation:didSucceedWithResponse:);
+    self.currentJsonOp.errorAction = @selector(operation:didFailWithError:);
+    
+    //Add operation to the queue to execute in the background
+    [self.queue addOperation:self.currentJsonOp];*/
+    
+    
+}
+
+-(void)addPoint:(AGSPoint*) mappoint{
+    
+    graphicCount+=1;
+    //NSLog(@"%@", mappoint);
     AGSGraphicsLayer* myGraphicsLayer = [AGSGraphicsLayer graphicsLayer];
     [self.mapView addMapLayer:myGraphicsLayer withName:@"Graphics Layer"];
     
@@ -124,11 +166,13 @@
     myMarkerSymbol.color = [UIColor blueColor];
     //myMarkerSymbol.size ={70};
     
+    
+    
     //Create an AGSPoint (which inherits from AGSGeometry) that
     //defines where the Graphic will be drawn
     AGSPoint* myMarkerPoint =
-    [AGSPoint pointWithX:-latLong.x
-                       y:latLong.y
+    [AGSPoint pointWithX:mappoint.x
+                       y:mappoint.y
         spatialReference:[AGSSpatialReference wgs84SpatialReference]];
     
     //Create the Graphic, using the symbol and
@@ -138,30 +182,22 @@
                              symbol:myMarkerSymbol
                          attributes:nil];
     
+    
+    if(graphicCount>1){
+        //NSLog(@"DELETING OLD GRAPHICS");
+        [self.graphicsLayer removeAllGraphics];
+        graphicCount=0;
+    }
+    
+    
     //Add the graphic to the Graphics layer
     [myGraphicsLayer addGraphic:myGraphic];
+    //NSLog(@"%lu", myGraphicsLayer.graphicsCount);
+    //NSLog(@"%i", graphicCount);
+    
+    
 
-    //---------------------------------------------------
-    
-    /*
-    //Set up the parameters to send the webservice
-    NSMutableDictionary* params = [NSMutableDictionary dictionary];
-    [params setObject:[NSNumber numberWithDouble:latLong.x] forKey:@"lng"];
-    [params setObject:[NSNumber numberWithDouble:latLong.y] forKey:@"lat"];
-    
-    //Set up an operation for the current request
-    NSURL* url = [NSURL URLWithString:@"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer/indentify"];
-    self.currentJsonOp = [[AGSJSONRequestOperation alloc]initWithURL:url queryParameters:params];
-    self.currentJsonOp.target = self;
-    self.currentJsonOp.action = @selector(operation:didSucceedWithResponse:);
-    self.currentJsonOp.errorAction = @selector(operation:didFailWithError:);
-    
-    //Add operation to the queue to execute in the background
-    [self.queue addOperation:self.currentJsonOp];
-    */
-    
 }
-
 
 - (void)operation:(NSOperation*)op didSucceedWithResponse:(NSDictionary *)solarInfo {
     //The webservice was invoked successfully.
@@ -217,12 +253,30 @@
     [av show];
 }
 
+- (void) queryTask:(AGSQueryTask*)queryTask operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet{
+    
+    AGSGraphic *feature = [featureSet.features objectAtIndex:0];
+    NSString *fullName = [feature attributeAsStringForKey:@"FULL_NAME"];
+    NSString *phone = [feature attributeAsStringForKey:@"PHONE"];
+    
+    NSLog(@"Name: %@, Phone: %@",fullName, phone);
+}
+
 - (void) queryTask:(AGSQueryTask*)queryTask operation:(NSOperation*)op didExecuteWithRelatedFeatures:(NSDictionary*) relatedFeatures {
+    
+    NSLog(@"queryTask 2executed");
     
 }
 
 - (void) queryTask:(AGSQueryTask*)queryTask operation:(NSOperation*)	op didFailRelationshipQueryWithError: (NSError*)	error {
     NSLog(@"Error: %@",error);
+    /*   //Error encountered while invoking webservice. Alert user
+     self.mapView.callout.hidden = YES;
+     UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"Sorry"
+     message:[error localizedDescription]
+     delegate:nil cancelButtonTitle:@"OK"
+     otherButtonTitles:nil];
+     [av show];*/
 }
 
 
