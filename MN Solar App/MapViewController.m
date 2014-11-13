@@ -152,12 +152,13 @@ bool isHidden = YES;
         if (!fullName){
             // Error checking doesn't work, currently crashes outside MN
             NSLog(@"DSMName: %@",self.dsmname);
+            [self gpTool];
         }
         else {
             NSLog(@"Name: %@, Phone: %@",fullName, phone);
         };
     
-        [self gpTool];
+        
     }
 }
 
@@ -204,12 +205,14 @@ bool isHidden = YES;
     geoprocessor.interval = 10;
     [geoprocessor submitJobWithParameters:params];
     
-    NSString *string = @"21865.1328496\n39619.3044974\n84117.1905997\n126159.758433\n167013.891821\n175695.394165\n174199.414434\n143438.383851\n97395.6361771\n51997.4207866\n25002.0289475\n16517.4218279\n";
-    NSMutableArray *stringArray = [string componentsSeparatedByString: @"\n"];
-    NSLog(@"count = %d", [stringArray count]);
-    [stringArray removeObjectAtIndex:12];
-    NSLog(@"count = %d", [stringArray count]);
-    NSLog(@"%@", stringArray);
+    NSString *results = @"21865.1328496\n39619.3044974\n84117.1905997\n126159.758433\n167013.891821\n175695.394165\n174199.414434\n143438.383851\n97395.6361771\n51997.4207866\n25002.0289475\n16517.4218279\n";
+    
+    // Split string into array
+    NSMutableArray *resultsArray = [results componentsSeparatedByString: @"\n"];
+    
+    // Remove blank item from end of array
+    [resultsArray removeObjectAtIndex:12];
+    NSLog(@"%@", resultsArray);
 }
 
 //this is the delegate method that gets called when job completes successfully
@@ -398,7 +401,7 @@ bool isHidden = YES;
 }
 
 //[self.solarSwitch addTarget:self
-                  action:@selector(stateChanged:) forControlEvents:UIControlEventValueChanged];
+                  action:@selector(stateChanged:) forControlEvents:UIControlEventValueChanged];*/
 
 - (IBAction)solarSwitchToggle:(id)sender {
     if ([self.solarSwitch isOn]){
@@ -407,7 +410,7 @@ bool isHidden = YES;
     }else{
         self.solarLayer.visible = NO;
     }
-}*/
+}
 
 
 // ---------------------------------
