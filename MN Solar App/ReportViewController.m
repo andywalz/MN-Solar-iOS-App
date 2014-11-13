@@ -21,9 +21,23 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSURL *appleURL; appleURL =[ NSURL URLWithString:@"http://solar.maps.umn.edu/report.php"]; [_reportView loadRequest:[ NSURLRequest requestWithURL: appleURL]];
+    //self.thePin =
+    
+    NSString * myurl = [NSString stringWithFormat:@"http://solar.maps.umn.edu/ios/index.html?lat=%f&long=%f",self.thePin.y,self.thePin.x];
+    
+    NSLog(@"%@",myurl);
+    
+    NSURL *appleURL; appleURL =[ NSURL URLWithString:myurl]; [_reportView loadRequest:[ NSURLRequest requestWithURL: appleURL]];
     
     self.reportView.hidden = NO;
+    
+    //AGSPoint *mypin = ((MapViewController *)self.presentingViewController).pin;
+    
+    NSLog(@"%f", self.thePin.x);
+    
+// NSString *html = [self.reportWeb stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
+    
+//   NSLog(@"%@",html);
   
 }
 

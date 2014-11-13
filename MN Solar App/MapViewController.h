@@ -10,6 +10,8 @@
 
 #import <ArcGIS/ArcGIS.h>
 
+#import "ReportViewController.h"
+
 @interface MapViewController : UIViewController <AGSMapViewTouchDelegate>
 @property (strong, nonatomic) IBOutlet AGSMapView *mapView;
 @property (nonatomic, strong) AGSGraphicsLayer *graphicsLayer;
@@ -18,6 +20,7 @@
 @property (nonatomic, strong) AGSJSONRequestOperation* currentJsonOp;
 @property (nonatomic, strong) NSOperationQueue *queue;
 @property (nonatomic, strong) UIView* loadingView;
+@property (nonatomic, strong) AGSPoint* pin;
 
 
 - (IBAction)basemapChanged:(id)sender;

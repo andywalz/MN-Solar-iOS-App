@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ArcGIS/ArcGIS.h>
 
 @interface ReportViewController : UIViewController
+
+@property (nonatomic, strong) AGSPoint *thePin;
+@property (weak, nonatomic) IBOutlet UIWebView *reportWeb;
 
 @end

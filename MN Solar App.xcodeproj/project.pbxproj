@@ -278,11 +278,12 @@
 		CA8ED8FF1A058978009728AE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "MN Solar Suitability Team";
 				TargetAttributes = {
 					CA8ED9061A058978009728AE = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = EQ2YD8D3UN;
 					};
 					CA8ED91F1A058978009728AE = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -475,6 +476,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(USER_LIBRARY_DIR)/SDKs/ArcGIS/iOS";
 				INFOPLIST_FILE = "MN Solar App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -486,6 +489,7 @@
 					"c++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -493,6 +497,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(USER_LIBRARY_DIR)/SDKs/ArcGIS/iOS";
 				INFOPLIST_FILE = "MN Solar App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -504,6 +510,7 @@
 					"c++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

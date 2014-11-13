@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0600"
+   LastUpgradeVersion = "0610"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -73,7 +73,7 @@
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
       <PathRunnable
-         FilePath = "/Users/andywalz/Library/Developer/Xcode/DerivedData/MN_Solar_App-fnhoivzkelxkemdpkicdrcchbcfi/Build/Products/Debug-iphonesimulator/MN Solar App.app">
+         FilePath = "/Users/andywalz/Library/Developer/Xcode/DerivedData/MN_Solar_App-fnhoivzkelxkemdpkicdrcchbcfi/Build/Products/Debug-iphoneos/MN Solar App.app">
       </PathRunnable>
       <MacroExpansion>
          <BuildableReference

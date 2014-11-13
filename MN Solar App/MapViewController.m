@@ -7,6 +7,8 @@
 //
 
 #import "MapViewController.h"
+#define kResultsSegueIdentifier @"toReport"
+#define kResultsViewControllerIdentifier @"ReportViewController"
 
 @interface MapViewController () <AGSMapViewLayerDelegate>
 
@@ -81,13 +83,17 @@
     self.mapView.callout.customView = self.loadingView;
     [self.mapView.callout showCalloutAt:mappoint screenOffset:CGPointZero animated:YES];
     
-    //NSLog(@"%@", mappoint);
+    NSLog(@"%@", mappoint);
     
     //Convert Web Mercator to LatLong
     
     AGSPoint* latLong = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:mappoint toSpatialReference:[AGSSpatialReference wgs84SpatialReference]];
     
-    NSLog(@"%f", latLong.x);
+    self.pin = latLong;
+    
+    NSLog(@"%f", self.pin.x);
+    
+   [self performSegueWithIdentifier:@"toReport" sender:self];
     
     /*
     //Set up the parameters to send the webservice
@@ -96,7 +102,7 @@
     [params setObject:[NSNumber numberWithDouble:latLong.y] forKey:@"lat"];
     
     //Set up an operation for the current request
-    NSURL* url = [NSURL URLWithString:@"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer/indentify"];
+    NSURL* url = [NSURL URLWithString:@"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer/identify"];
     self.currentJsonOp = [[AGSJSONRequestOperation alloc]initWithURL:url queryParameters:params];
     self.currentJsonOp.target = self;
     self.currentJsonOp.action = @selector(operation:didSucceedWithResponse:);
@@ -257,6 +263,15 @@
     }
 }
 
+#pragma mark - segues
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:kResultsSegueIdentifier]) {
+        ReportViewController *controller = [segue destinationViewController];
+        //set our attributes/results into the results VC
+        controller.thePin = self.pin;
+    }
+}
 
 
 @end
