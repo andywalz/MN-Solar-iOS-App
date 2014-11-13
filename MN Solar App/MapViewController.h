@@ -12,6 +12,11 @@
 
 @interface MapViewController : UIViewController <AGSMapViewTouchDelegate>
 @property (strong, nonatomic) IBOutlet AGSMapView *mapView;
+@property (weak, nonatomic) IBOutlet UISwitch *solarSwitch;
+- (IBAction)solarSwitchToggle:(id)sender;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *statusMsgLabel;
 @property (nonatomic, strong) AGSGraphicsLayer *graphicsLayer;
 @property (nonatomic, strong) AGSLocator *locator;
 @property (nonatomic, strong) AGSCalloutTemplate *calloutTemplate;
@@ -20,6 +25,10 @@
 @property (nonatomic, strong) UIView* loadingView;
 @property(nonatomic, strong)AGSQueryTask* queryTask;
 @property(nonatomic,strong)AGSQuery* query;
+@property(nonatomic,strong) AGSPoint *utm15Point;
+@property(nonatomic,strong)AGSPoint *wgsPoint;
+
+@property(nonatomic,weak)AGSImageServiceLayer *solarLayer;
 
 @property(nonatomic,strong)NSString* dsmTile;
 @property(nonatomic, strong)AGSQueryTask* dsmqueryTask;

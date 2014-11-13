@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35A59BCE1A14194D008BEC96 /* zoomIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 35A59BCC1A14194D008BEC96 /* zoomIn.png */; };
+		35A59BCF1A14194D008BEC96 /* zoomOut.png in Resources */ = {isa = PBXBuildFile; fileRef = 35A59BCD1A14194D008BEC96 /* zoomOut.png */; };
 		35C0E0EC1A0AF41100B32B68 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 35C0E0EB1A0AF41100B32B68 /* ArcGIS.bundle */; };
 		CA6E55D51A0C865A00D60677 /* TakeActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6E55D41A0C865A00D60677 /* TakeActionViewController.m */; };
 		CA8ED90D1A058978009728AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED90C1A058978009728AE /* main.m */; };
@@ -42,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		35A59BCC1A14194D008BEC96 /* zoomIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zoomIn.png; sourceTree = "<group>"; };
+		35A59BCD1A14194D008BEC96 /* zoomOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zoomOut.png; sourceTree = "<group>"; };
 		35C0E0EB1A0AF41100B32B68 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ArcGIS.bundle; sourceTree = "<group>"; };
 		CA6E55D31A0C865A00D60677 /* TakeActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeActionViewController.h; sourceTree = "<group>"; };
 		CA6E55D41A0C865A00D60677 /* TakeActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeActionViewController.m; sourceTree = "<group>"; };
@@ -227,6 +231,8 @@
 		CAEC984B1A0D5EB400E271F4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				35A59BCC1A14194D008BEC96 /* zoomIn.png */,
+				35A59BCD1A14194D008BEC96 /* zoomOut.png */,
 				CAEC98541A0D600200E271F4 /* LocationArrowWht-22.png */,
 				CAEC98551A0D600200E271F4 /* LocationArrowWht-44.png */,
 				CAEC98561A0D600200E271F4 /* menu-22.png */,
@@ -321,6 +327,8 @@
 				CAEC985B1A0D600200E271F4 /* solar-app-loading-768x1024.png in Resources */,
 				CAEC985A1A0D600200E271F4 /* menu-22.png in Resources */,
 				CA8ED91B1A058978009728AE /* LaunchScreen.xib in Resources */,
+				35A59BCF1A14194D008BEC96 /* zoomOut.png in Resources */,
+				35A59BCE1A14194D008BEC96 /* zoomIn.png in Resources */,
 				CA8ED9181A058978009728AE /* Images.xcassets in Resources */,
 				35C0E0EC1A0AF41100B32B68 /* ArcGIS.bundle in Resources */,
 				CAEC985D1A0D798800E271F4 /* LoadingView.xib in Resources */,

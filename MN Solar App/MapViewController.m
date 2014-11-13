@@ -8,7 +8,7 @@
 
 #import "MapViewController.h"
 
-@interface MapViewController () <AGSMapViewLayerDelegate, AGSQueryTaskDelegate>
+@interface MapViewController () <AGSMapViewLayerDelegate, AGSQueryTaskDelegate, AGSGeoprocessorDelegate>
 
 - (IBAction)exitHere:(UIStoryboardSegue *)sender;
 
@@ -17,6 +17,7 @@
 @implementation MapViewController
 
 int graphicCount = 0;
+bool isHidden = YES;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,8 +25,6 @@ int graphicCount = 0;
     
     // set the delegate for the map view
     self.mapView.layerDelegate = self;
-    
-    
     
     //add new layer
     AGSTiledMapServiceLayer* newBasemapLayer = [AGSTiledMapServiceLayer tiledMapServiceLayerWithURL:[NSURL URLWithString:@"http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer"]];
@@ -37,11 +36,9 @@ int graphicCount = 0;
     
     //add solar layer
     NSURL* url = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer"];
-    AGSImageServiceLayer* solarLayer = [AGSImageServiceLayer imageServiceLayerWithURL: url];
+    self.solarLayer = [AGSImageServiceLayer imageServiceLayerWithURL: url];
     
-    [self.mapView insertMapLayer:solarLayer withName:@"Solar Tiled Layer" atIndex:1];
-    //solarLayer.visible = NO;
-    //[self drawSolar];
+    [self.mapView insertMapLayer:self.solarLayer withName:@"Solar Tiled Layer" atIndex:1];
     
     //initialize the operation queue which will make webservice requests in the background
     self.queue = [[NSOperationQueue alloc] init];
@@ -83,7 +80,12 @@ int graphicCount = 0;
     
     //Convert Web Mercator to UTM15
     
-    AGSPoint* utm15Point = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:mappoint toSpatialReference:[AGSSpatialReference spatialReferenceWithWKID:26915]];
+    self.utm15Point = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:mappoint toSpatialReference:[AGSSpatialReference spatialReferenceWithWKID:26915]];
+    
+    self.wgsPoint = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:mappoint toSpatialReference:[AGSSpatialReference wgs84SpatialReference]];
+    
+    // Add graphics layer
+    [self addPoint:mappoint];
     
     //EUSA query test
     NSURL* EUSAURL = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/solar_fgdb/MapServer/0"];
@@ -92,24 +94,20 @@ int graphicCount = 0;
     self.queryTask.delegate = self;
     self.query = [AGSQuery query];
     self.query.outFields = [NSArray arrayWithObjects:@"*", nil];
-    self.query.geometry = utm15Point;
+    self.query.geometry = self.utm15Point;
     self.query.returnGeometry = NO;
     self.query.whereClause = @"1=1";
     
     [self.queryTask executeWithQuery:self.query];
     
-
-    // Add graphics layer
-    [self addPoint:mappoint];
-    
-    //EUSA query test
+    //dsm query test
     NSURL* dsmURL = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/MN_DSM/ImageServer"];
     
     self.dsmqueryTask = [AGSQueryTask queryTaskWithURL:dsmURL];
     self.dsmqueryTask.delegate = self;
     self.dsmquery = [AGSQuery query];
     self.dsmquery.outFields = [NSArray arrayWithObjects:@"*", nil];
-    self.dsmquery.geometry = utm15Point;
+    self.dsmquery.geometry = self.utm15Point;
     self.dsmquery.returnGeometry = NO;
     self.dsmquery.whereClause = @"1=1";
     
@@ -145,10 +143,22 @@ int graphicCount = 0;
     
     self.dsmname = temp;
     
-    //NSLog(@"Name: %@, Phone: %@",fullName, phone);
-    //NSLog(@"DSMName: %@",temp);
     
-    [self gpTool];
+    if (!fullName && !self.dsmname){
+        NSLog(@"No Data!");
+        
+    }else{
+        
+        if (!fullName){
+            // Error checking doesn't work, currently crashes outside MN
+            NSLog(@"DSMName: %@",self.dsmname);
+        }
+        else {
+            NSLog(@"Name: %@, Phone: %@",fullName, phone);
+        };
+    
+        [self gpTool];
+    }
 }
 
 
@@ -169,12 +179,93 @@ int graphicCount = 0;
     NSString *fullTileName = [NSString stringWithFormat:@"%@.img", self.dsmname];
     
     NSURL* gpURL = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/SolarPointQuery_fast/GPServer/Script"];
+    //NSLog(@"%f", self.wgsPoint.x);
+    //NSLog(@"%f", self.wgsPoint.y);
+    //NSLog(@"%@",fullTileName);
     
-    NSLog(@"%@",fullTileName);
-    //AGSGeoprocessor* geoprocessor = [AGSGeoprocessor geoprocessorWithURL:gpURL];
-    //AGSGPParameterValue *point = [];
-    //AGSGPParameterValue *tile =
+    // Build geoprocessor
+    AGSGeoprocessor* geoprocessor = [AGSGeoprocessor geoprocessorWithURL:gpURL];
+    
+    geoprocessor.delegate = self;
+    
+    // Geoprocessor build parameters
+    AGSGPParameterValue *pointX = [AGSGPParameterValue parameterWithName:@"Point_X" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.x]];
+    AGSGPParameterValue *pointY = [AGSGPParameterValue parameterWithName:@"Point_Y" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.y]];
+    AGSGPParameterValue *tile = [AGSGPParameterValue parameterWithName:@"File_Name" type:AGSGPParameterTypeString value:fullTileName];
+    
+    // GP Parameters to array
+    NSArray *params = [NSArray arrayWithObjects:pointX, pointY,tile, nil];
+    
+    // Run GP tool with no asynch delay
+    //geoprocessor.interval = 20;
+    //[geoprocessor executeWithParameters:params];
+    
+    //Run GP tool with asych delay
+    geoprocessor.interval = 10;
+    [geoprocessor submitJobWithParameters:params];
+    
+    NSString *string = @"21865.1328496\n39619.3044974\n84117.1905997\n126159.758433\n167013.891821\n175695.394165\n174199.414434\n143438.383851\n97395.6361771\n51997.4207866\n25002.0289475\n16517.4218279\n";
+    NSMutableArray *stringArray = [string componentsSeparatedByString: @"\n"];
+    NSLog(@"count = %d", [stringArray count]);
+    [stringArray removeObjectAtIndex:12];
+    NSLog(@"count = %d", [stringArray count]);
+    NSLog(@"%@", stringArray);
 }
+
+//this is the delegate method that gets called when job completes successfully
+- (void)geoprocessor:(AGSGeoprocessor *)geoprocessor operation:(NSOperation *)op didSubmitJob:(AGSGPJobInfo *)jobInfo {
+    
+    NSLog(@"Geoprocessing Job Submitted!");
+    //update status
+    //self.statusMsgLabel.text = @"Geoprocessing Job Submitted!";
+}
+
+//this is the delegate method that gets called when gp job completes successfully.
+- (void)geoprocessor:(AGSGeoprocessor *) geoprocessor operation:(NSOperation *) op jobDidSucceed:(AGSGPJobInfo *) jobInfo {
+    
+    NSLog(@"Geoprocessing Job Succeeded!");
+    
+    //job succeed..query result data
+    //[geoprocessor queryResultData:jobInfo.jobId paramName:@"outerg_shp"];
+}
+
+- (void)geoprocessor:(AGSGeoprocessor *) geoprocessor operation:(NSOperation *) op jobDidFail:(AGSGPJobInfo *) jobInfo {
+    
+    NSLog(@"Geoprocessing Job Failed!");
+    
+    /*for (AGSGPMessage* msg in jobInfo.messages) {
+        NSLog(@"%@", msg.description);
+    }
+    
+    //update staus
+    self.statusMsgLabel.text = @"Job Failed!";
+    
+    //reset the status
+    [self performSelector:@selector(changeStatusLabel:) withObject:@"Tap on the map to get the spill analysis" afterDelay:4];*/
+}
+
+
+/*- (void) geoprocessor:(AGSGeoprocessor*) geoprocessor   operation:(NSOperation*) op didExecuteWithResults:(NSArray*) results  messages:(NSArray*) messages {
+    
+    NSLog(@"GP tool returned results");
+    //for (AGSGPParameterValue* param in results) {
+        //NSLog(@"Parameter: %@, Value: %@", param.name,param.value);
+    //}
+}
+
+-(void) geoprocessor:(AGSGeoprocessor*) geoprocessor operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet{
+    NSLog(@"GP returned second results");
+}
+
+- (void)geoprocessor:(AGSGeoprocessor *)geoprocessor operation:(NSOperation*)op ofType:(AGSGPAsyncOperationType)opType didFailWithError:(NSError *)error forJob:(NSString*)jobId {
+    NSLog(@"Error: %@",error);
+}*/
+
+/*- (void) geoprocessor:(AGSGeoprocessor*) geoprocessor operation:(AGSGPRequestOperation*)op jobDidFail:(AGSJobInfo*) jobInfo {
+    for (AGSGPMessage* msg in jobInfo.messages) {
+        NSLog(@"%@", msg.description);
+    }
+}*/
 
 -(void) dsmqueryTask:(AGSQueryTask *)dsmqueryTask operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet{
     NSLog(@"dsmquery");
@@ -184,67 +275,6 @@ int graphicCount = 0;
     NSLog(@"dsmerror");
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)exitHere:(UIStoryboardSegue *)sender {
-    //Excute this code upon unwinding
-}
-
-
-- (IBAction)solarToggle:(id)sender {
-    [self drawSolar];
-    NSLog(@"SolarToggle");
-    
-}
-
-- (IBAction)basemapChanged:(id)sender {
-    
-    NSURL* basemapURL ;
-    UISegmentedControl* segControl = (UISegmentedControl*)sender;
-    switch (segControl.selectedSegmentIndex) {
-        case 0: //gray
-            
-            //solarLayer.hidden = YES;
-            basemapURL = [NSURL URLWithString:@"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer"];
-            
-            break;
-        case 1: //aerial
-            basemapURL = [NSURL URLWithString:@"http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer"];
-            break;
-        case 2: //Streets
-            basemapURL = [NSURL URLWithString:@"http://services.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer"];
-            break;
-        default:
-            break;
-    }
-    
-    //remove existing basemap layer
-    [self.mapView removeMapLayerWithName:@"Basemap Tiled Layer"];
-    
-    if([[basemapURL absoluteString] isEqualToString:@"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer"]){
-        AGSImageServiceLayer* solarLayer = [AGSImageServiceLayer imageServiceLayerWithURL: basemapURL];
-        if (solarLayer.visible==YES){
-            solarLayer.visible = NO;
-            NSLog(@"HIDING SOLAR");
-        }
-        else{
-            solarLayer.visible = YES;
-            [self.mapView insertMapLayer:solarLayer withName:@"Solar Tiled Layer" atIndex:1];
-            NSLog(@"SHOWING SOLAR");
-        }
-        
-    }else{
-    
-        //add new layer
-        AGSTiledMapServiceLayer* newBasemapLayer = [AGSTiledMapServiceLayer tiledMapServiceLayerWithURL:basemapURL];
-        [self.mapView insertMapLayer:newBasemapLayer withName:@"Basemap Tiled Layer" atIndex:0];
-        NSLog(@"CHANGING BASEMAP");
-    }
-
-}
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     
@@ -315,15 +345,6 @@ int graphicCount = 0;
     }
 }
 
-
-
-- (IBAction)zoomIn:(id)sender {
-    [self.mapView zoomIn:YES];
-}
-
-- (IBAction)zoomOut:(id)sender {
-    [self.mapView zoomOut:YES];
-}
 -(void)addPoint:(AGSPoint*) mappoint{
     
     graphicCount+=1;
@@ -331,12 +352,19 @@ int graphicCount = 0;
     AGSGraphicsLayer* myGraphicsLayer = [AGSGraphicsLayer graphicsLayer];
     [self.mapView addMapLayer:myGraphicsLayer withName:@"Graphics Layer"];
     
+    AGSPictureMarkerSymbol* pushpin = [AGSPictureMarkerSymbol pictureMarkerSymbolWithImageNamed:@"BluePushpin.png"];
+    pushpin.offset = CGPointMake(9,16);
+    pushpin.leaderPoint = CGPointMake(-9,11);
+    AGSSimpleRenderer* renderer = [AGSSimpleRenderer simpleRendererWithSymbol:pushpin];
+    myGraphicsLayer.renderer = renderer;
+    
     //create a marker symbol to be used by our Graphic
     AGSSimpleMarkerSymbol *myMarkerSymbol =
     [AGSSimpleMarkerSymbol simpleMarkerSymbol];
     myMarkerSymbol.color = [UIColor blueColor];
-    //myMarkerSymbol.size ={70};
     
+    [myMarkerSymbol setSize:CGSizeMake(10,10)];
+    [myMarkerSymbol setOutline:[AGSSimpleLineSymbol simpleLineSymbolWithColor:[UIColor redColor] width:1]];
     
     
     //Create an AGSPoint (which inherits from AGSGeometry) that
@@ -353,22 +381,103 @@ int graphicCount = 0;
                              symbol:myMarkerSymbol
                          attributes:nil];
     
-    
     if(graphicCount>1){
-        //NSLog(@"DELETING OLD GRAPHICS");
-        [self.graphicsLayer removeAllGraphics];
+        NSLog(@"DELETING OLD GRAPHICS");
+        [myGraphicsLayer removeAllGraphics];
         graphicCount=0;
     }
     
-    
     //Add the graphic to the Graphics layer
     [myGraphicsLayer addGraphic:myGraphic];
-    //NSLog(@"%lu", myGraphicsLayer.graphicsCount);
-    //NSLog(@"%i", graphicCount);
-    
-    
     
 }
+
+/*- (IBAction)solarSwitch:(id)sender {
+    isHidden = !isHidden;
+    self.solarLayer.visible = isHidden;
+}
+
+//[self.solarSwitch addTarget:self
+                  action:@selector(stateChanged:) forControlEvents:UIControlEventValueChanged];
+
+- (IBAction)solarSwitchToggle:(id)sender {
+    if ([self.solarSwitch isOn]){
+        NSLog(@"Switch is on");
+        self.solarLayer.visible = YES;
+    }else{
+        self.solarLayer.visible = NO;
+    }
+}*/
+
+
+// ---------------------------------
+//  COMPLETE FUNCTIONS
+// ---------------------------------
+
+// Zoom in button
+- (IBAction)zoomIn:(id)sender {
+    [self.mapView zoomIn:YES];
+}
+
+// Zoom out button
+- (IBAction)zoomOut:(id)sender {
+    [self.mapView zoomOut:YES];
+}
+
+// Solar toggle
+- (IBAction)solarToggle:(id)sender {
+    isHidden = !isHidden;
+    self.solarLayer.visible = isHidden;
+    
+}
+
+// Change basemaps
+- (IBAction)basemapChanged:(id)sender {
+    
+    NSURL* basemapURL ;
+    UISegmentedControl* segControl = (UISegmentedControl*)sender;
+    switch (segControl.selectedSegmentIndex) {
+        case 0: //gray
+            basemapURL = [NSURL URLWithString:@"http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer"];
+            break;
+        case 1: //aerial
+            basemapURL = [NSURL URLWithString:@"http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer"];
+            break;
+        case 2: //Streets
+            basemapURL = [NSURL URLWithString:@"http://services.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer"];
+            break;
+        default:
+            break;
+    }
+    
+    //remove existing basemap layer
+    [self.mapView removeMapLayerWithName:@"Basemap Tiled Layer"];
+    
+    // Add new basemap
+    AGSTiledMapServiceLayer* newBasemapLayer = [AGSTiledMapServiceLayer tiledMapServiceLayerWithURL:basemapURL];
+    [self.mapView insertMapLayer:newBasemapLayer withName:@"Basemap Tiled Layer" atIndex:0];
+    
+}
+
+
+// ---------------------------------
+//  DEFAULT IOS FUNCTIONS
+// ---------------------------------
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)exitHere:(UIStoryboardSegue *)sender {
+    //Excute this code upon unwinding
+}
+
+
+// ---------------------------------
+//  SAVED CODE
+// ---------------------------------
 
 - (void)operation:(NSOperation*)op didSucceedWithResponse:(NSDictionary *)solarInfo {
     //The webservice was invoked successfully.
@@ -393,27 +502,6 @@ int graphicCount = 0;
      } */
 }
 
-- (void)drawSolar{
-    //add solar layer
-    /*NSURL* url = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer"];
-     AGSImageServiceLayer* solarLayer = [AGSImageServiceLayer imageServiceLayerWithURL: url];
-     
-     [self.mapView insertMapLayer:solarLayer withName:@"Solar Tiled Layer" atIndex:1];*/
-    
-    
-    
-    
-    /*if (self.solarLayer.visible){
-     NSLog(@"Visible solar");
-     solarLayer.visible = NO;
-     NSLog(@"Hiding solar");
-     }else{
-     solarLayer.visible = YES;
-     NSLog(@"Showing solar");
-     }*/
-    
-}
-
 - (void)operation:(NSOperation*)op didFailWithError:(NSError *)error {
     //Error encountered while invoking webservice. Alert user
     self.mapView.callout.hidden = YES;
@@ -423,5 +511,6 @@ int graphicCount = 0;
                                        otherButtonTitles:nil];
     [av show];
 }
+
 
 @end
