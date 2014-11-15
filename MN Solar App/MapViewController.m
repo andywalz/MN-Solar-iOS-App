@@ -61,8 +61,9 @@ bool isHidden = YES;
     // Enable location display on the map
     [self.mapView.locationDisplay startDataSource];
     self.mapView.locationDisplay.autoPanMode = AGSLocationDisplayAutoPanModeDefault;
-    
-    [mapView.locationDisplay startDataSource];
+
+    // Enable user location
+    [self.mapView.locationDisplay startDataSource];
     
     
 }
