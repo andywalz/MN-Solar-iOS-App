@@ -17,6 +17,52 @@
             endingLineNumber = "12"
             landmarkName = "imageView"
             landmarkType = "19">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ReportSaveFormViewController imageView]"
+                  moduleName = "MN Solar App"
+                  urlString = "file:///Users/andywalz/Repos/MN-Solar-iOS/MN%20Solar%20App/MN%20Solar%20App/ReportSaveFormViewController.m"
+                  timestampString = "437540000.526648"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ReportSaveFormViewController setImageView:]"
+                  moduleName = "MN Solar App"
+                  urlString = "file:///Users/andywalz/Repos/MN-Solar-iOS/MN%20Solar%20App/MN%20Solar%20App/ReportSaveFormViewController.m"
+                  timestampString = "437540000.526798"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MN Solar App/MapViewController.m"
+            timestampString = "437431866.923979"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "-mapView:didClickAtPoint:mapPoint:features:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

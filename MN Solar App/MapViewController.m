@@ -269,6 +269,7 @@
     if ([segue.identifier isEqualToString:kResultsSegueIdentifier]) {
         ReportViewController *controller = [segue destinationViewController];
         //set our attributes/results into the results VC
+        
         controller.thePin = self.pin;
     }
 }

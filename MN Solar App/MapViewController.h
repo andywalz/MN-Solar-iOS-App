@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSOperationQueue *queue;
 @property (nonatomic, strong) UIView* loadingView;
 @property (nonatomic, strong) AGSPoint* pin;
+@property (nonatomic, strong) NSDictionary* solarJSON;
 
 
 - (IBAction)basemapChanged:(id)sender;

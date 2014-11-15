@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+
 #import <ArcGIS/ArcGIS.h>
 
-@interface ReportViewController : UIViewController
+@interface ReportViewController : UIViewController <AGSMapViewTouchDelegate>
+@property (strong, nonatomic) IBOutlet AGSMapView *minimapView;
 
+@property (weak, nonatomic) IBOutlet UIView *minMapView;
 @property (nonatomic, strong) AGSPoint *thePin;
 @property (weak, nonatomic) IBOutlet UIWebView *reportWeb;
 
