@@ -28,6 +28,8 @@
 @property(nonatomic,strong) AGSPoint *utm15Point;
 @property(nonatomic,strong)AGSPoint *wgsPoint;
 
+@property (nonatomic, strong) AGSGeoprocessor *geoprocessor;
+
 @property(nonatomic,weak)AGSImageServiceLayer *solarLayer;
 
 @property(nonatomic,strong)NSString* dsmTile;
