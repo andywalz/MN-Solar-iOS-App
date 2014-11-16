@@ -61,8 +61,9 @@ bool isHidden = YES;
     // Enable location display on the map
     [self.mapView.locationDisplay startDataSource];
     self.mapView.locationDisplay.autoPanMode = AGSLocationDisplayAutoPanModeDefault;
-    
-    [mapView.locationDisplay startDataSource];
+
+    // Enable user location
+    [self.mapView.locationDisplay startDataSource];
     
     
 }
@@ -185,9 +186,9 @@ bool isHidden = YES;
     //NSLog(@"%@",fullTileName);
     
     // Build geoprocessor
-    AGSGeoprocessor* geoprocessor = [AGSGeoprocessor geoprocessorWithURL:gpURL];
+    self.geoprocessor = [AGSGeoprocessor geoprocessorWithURL:gpURL];
     
-    geoprocessor.delegate = self;
+    self.geoprocessor.delegate = self;
     
     // Geoprocessor build parameters
     AGSGPParameterValue *pointX = [AGSGPParameterValue parameterWithName:@"Point_X" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.x]];
@@ -202,8 +203,8 @@ bool isHidden = YES;
     //[geoprocessor executeWithParameters:params];
     
     //Run GP tool with asych delay
-    geoprocessor.interval = 10;
-    [geoprocessor submitJobWithParameters:params];
+    self.geoprocessor.interval = 10;
+    [self.geoprocessor submitJobWithParameters:params];
     
     NSString *results = @"21865.1328496\n39619.3044974\n84117.1905997\n126159.758433\n167013.891821\n175695.394165\n174199.414434\n143438.383851\n97395.6361771\n51997.4207866\n25002.0289475\n16517.4218279\n";
     
@@ -212,7 +213,7 @@ bool isHidden = YES;
     
     // Remove blank item from end of array
     [resultsArray removeObjectAtIndex:12];
-    NSLog(@"%@", resultsArray);
+    //NSLog(@"%@", resultsArray);
 }
 
 //this is the delegate method that gets called when job completes successfully
