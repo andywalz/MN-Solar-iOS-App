@@ -17,6 +17,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    // CHECK FOR CAMERA
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                              message:@"Device has no camera"
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles: nil];
+        
+        [myAlertView show];
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,4 +46,41 @@
 }
 */
 
+- (IBAction)takePhoto:(UIButton *)sender {
+    
+    self.picker = [[UIImagePickerController alloc] init];
+    self.picker.delegate = self;
+    //self.picker.allowsEditing = YES;
+    self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    [self presentViewController:self.picker animated:YES completion:NULL];
+}
+
+- (IBAction)selectPhoto:(UIButton *)sender {
+    self.picker = [[UIImagePickerController alloc] init];
+    self.picker.delegate = self;
+    //self.picker.allowsEditing = YES;
+    self.picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:self.picker animated:YES completion:NULL];
+}
+
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    
+    //self.image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    //[self.imageView setImage:self.image];
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.imageView.image = chosenImage;
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void) imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+
 @end
+
+
