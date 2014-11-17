@@ -87,9 +87,9 @@
     
     //Convert Web Mercator to LatLong
     
-    AGSPoint* latLong = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:mappoint toSpatialReference:[AGSSpatialReference wgs84SpatialReference]];
+    //AGSPoint* latLong = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:mappoint toSpatialReference:[AGSSpatialReference wgs84SpatialReference]];
     
-    self.pin = latLong;
+    self.pin = mappoint;
     
     NSLog(@"%f", self.pin.x);
     

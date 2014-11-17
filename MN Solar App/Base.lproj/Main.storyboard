@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Map-->
@@ -370,11 +371,11 @@
                         <viewControllerLayoutGuide type="top" id="M8Z-q4-Mdq"/>
                         <viewControllerLayoutGuide type="bottom" id="8AB-RC-oTY"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="xhd-JR-43S">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="768" placeholderIntrinsicHeight="1024" id="xhd-JR-43S">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBu-gn-Yz1">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBu-gn-Yz1">
                                 <rect key="frame" x="0.0" y="20" width="775" height="44"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
@@ -396,8 +397,19 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xy6-CW-PN7">
+                            <webView autoresizesSubviews="NO" contentMode="scaleToFill" restorationIdentifier="reportWebView" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ur-Wv-GcW">
+                                <rect key="frame" x="306" y="439" width="341" height="168"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="341" id="A1P-Ay-jyz"/>
+                                    <constraint firstAttribute="height" constant="168" id="vJw-OY-6cP"/>
+                                </constraints>
+                            </webView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xy6-CW-PN7">
                                 <rect key="frame" x="190" y="74" width="360" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="360" id="7eN-3K-kMD"/>
+                                </constraints>
                                 <attributedString key="attributedText">
                                     <fragment content="Minnesota Solar Suitability Location Report">
                                         <attributes>
@@ -409,64 +421,86 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt;address>" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJF-s8-sel">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;address>" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJF-s8-sel">
                                 <rect key="frame" x="346" y="103" width="82" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="INSOLATION (kWh/m2)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pY-Fz-oI1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INSOLATION (kWh/m2)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pY-Fz-oI1">
                                 <rect key="frame" x="23" y="360" width="178" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total per year: &lt;total>" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bek-F6-wr3">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total per year: &lt;total>" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bek-F6-wr3">
                                 <rect key="frame" x="23" y="384" width="168" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Avg per day: &lt;dailyavg>" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fd-XX-4WQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avg per day: &lt;dailyavg>" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fd-XX-4WQ">
                                 <rect key="frame" x="23" y="406" width="186" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Utility Service Provider:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEy-pw-TBz">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Utility Service Provider:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEy-pw-TBz">
                                 <rect key="frame" x="23" y="453" width="179" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt;eusa>" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BiO-SE-WYQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;eusa>" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BiO-SE-WYQ">
                                 <rect key="frame" x="23" y="477" width="58" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="reportWebView" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ur-Wv-GcW">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </webView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fQK-ul-M1E">
-                                <rect key="frame" x="36" y="138" width="312" height="214"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fQK-ul-M1E" customClass="AGSMapView">
+                                <rect key="frame" x="23" y="141" width="353" height="203"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dBu-gn-Yz1" firstAttribute="centerX" secondItem="IJF-s8-sel" secondAttribute="centerX" id="5b7-TP-DUi"/>
+                            <constraint firstItem="xy6-CW-PN7" firstAttribute="leading" secondItem="xhd-JR-43S" secondAttribute="leading" constant="190" id="5dU-uz-4DS"/>
+                            <constraint firstItem="9pY-Fz-oI1" firstAttribute="leading" secondItem="bek-F6-wr3" secondAttribute="leading" id="9ba-Vn-qsJ"/>
+                            <constraint firstItem="9pY-Fz-oI1" firstAttribute="leading" secondItem="xhd-JR-43S" secondAttribute="leadingMargin" constant="7" id="9ks-pS-oxP"/>
+                            <constraint firstItem="xy6-CW-PN7" firstAttribute="top" secondItem="dBu-gn-Yz1" secondAttribute="bottom" constant="10" id="A5r-IB-EbT"/>
+                            <constraint firstItem="bek-F6-wr3" firstAttribute="top" secondItem="9pY-Fz-oI1" secondAttribute="bottom" constant="3" id="AoZ-bU-hLK"/>
+                            <constraint firstItem="pEy-pw-TBz" firstAttribute="leading" secondItem="9Fd-XX-4WQ" secondAttribute="leading" id="C29-yd-Opf"/>
+                            <constraint firstItem="pEy-pw-TBz" firstAttribute="top" secondItem="9Fd-XX-4WQ" secondAttribute="bottom" constant="26" id="EXm-oH-9q0"/>
+                            <constraint firstItem="9Fd-XX-4WQ" firstAttribute="leading" secondItem="bek-F6-wr3" secondAttribute="leading" id="HEX-4P-mmq"/>
+                            <constraint firstItem="IJF-s8-sel" firstAttribute="top" secondItem="xy6-CW-PN7" secondAttribute="bottom" constant="8" symbolic="YES" id="Oez-PD-Bn1"/>
+                            <constraint firstItem="fQK-ul-M1E" firstAttribute="top" secondItem="IJF-s8-sel" secondAttribute="bottom" constant="17" id="Ov7-qr-6yU"/>
+                            <constraint firstItem="BiO-SE-WYQ" firstAttribute="top" secondItem="pEy-pw-TBz" secondAttribute="bottom" constant="3" id="Rls-oh-42k"/>
+                            <constraint firstItem="1ur-Wv-GcW" firstAttribute="leading" secondItem="xhd-JR-43S" secondAttribute="leading" constant="306" id="Xqf-kK-HQx"/>
+                            <constraint firstAttribute="trailing" secondItem="fQK-ul-M1E" secondAttribute="trailing" constant="392" id="aeV-Zv-InQ"/>
+                            <constraint firstItem="8AB-RC-oTY" firstAttribute="top" secondItem="BiO-SE-WYQ" secondAttribute="bottom" constant="526" id="b70-bl-bxr"/>
+                            <constraint firstItem="1ur-Wv-GcW" firstAttribute="top" secondItem="xy6-CW-PN7" secondAttribute="bottom" constant="344" id="eHn-2L-dMi"/>
+                            <constraint firstItem="dBu-gn-Yz1" firstAttribute="leading" secondItem="xhd-JR-43S" secondAttribute="leading" id="eVs-Lq-Owc"/>
+                            <constraint firstItem="fQK-ul-M1E" firstAttribute="leading" secondItem="bek-F6-wr3" secondAttribute="trailing" constant="-168" id="f3p-HB-fWF"/>
+                            <constraint firstItem="9Fd-XX-4WQ" firstAttribute="top" secondItem="fQK-ul-M1E" secondAttribute="bottom" constant="62" id="iEi-lX-ged"/>
+                            <constraint firstItem="pEy-pw-TBz" firstAttribute="leading" secondItem="BiO-SE-WYQ" secondAttribute="leading" id="p6Z-mU-Dwh"/>
+                            <constraint firstItem="dBu-gn-Yz1" firstAttribute="top" secondItem="M8Z-q4-Mdq" secondAttribute="bottom" id="q4A-SZ-mbJ"/>
+                            <constraint firstItem="9Fd-XX-4WQ" firstAttribute="top" secondItem="bek-F6-wr3" secondAttribute="bottom" constant="1" id="v42-B5-o7h"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dBu-gn-Yz1" secondAttribute="trailing" constant="-23" id="wKD-aP-uhT"/>
+                        </constraints>
                     </view>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
-                        <outlet property="minMapView" destination="fQK-ul-M1E" id="jTh-Fq-pLL"/>
+                        <outlet property="minSolarMap" destination="fQK-ul-M1E" id="caP-bh-OD4"/>
                         <outlet property="reportView" destination="1ur-Wv-GcW" id="BOe-l5-pwZ"/>
                         <outlet property="reportWeb" destination="1ur-Wv-GcW" id="C1N-st-zCU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Q0-RR-Tq5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="601" y="143"/>
+            <point key="canvasLocation" x="624" y="190"/>
         </scene>
         <!--Report Save Form-->
         <scene sceneID="V5i-Z5-Jev">

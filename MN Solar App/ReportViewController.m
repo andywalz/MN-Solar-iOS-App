@@ -38,9 +38,27 @@
 // NSString *html = [self.reportWeb stringByEvaluatingJavaScriptFromString:@"document.documentElement.outerHTML"];
     
 //   NSLog(@"%@",html);
+    self.minSolarMap.hidden = NO;
     
     
     // set the delegate for the map view
+    self.minSolarMap.layerDelegate = self;
+    
+    //zoom to an area
+    AGSEnvelope *envelope = [AGSEnvelope envelopeWithXmin:(self.thePin.x - 200) ymin:(self.thePin.y - 200) xmax:(self.thePin.x + 200)  ymax:(self.thePin.y - 200)  spatialReference:self.minSolarMap.spatialReference];
+    [self.minSolarMap zoomToEnvelope:envelope animated:NO];
+    
+    //add new layer
+    AGSTiledMapServiceLayer* newBasemapLayer = [AGSTiledMapServiceLayer tiledMapServiceLayerWithURL:[NSURL URLWithString:@"http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/"]];
+     
+    [self.minSolarMap insertMapLayer:newBasemapLayer withName:@"Basemap Tiled Layer" atIndex:0];
+    
+    //add solar layer
+    AGSImageServiceLayer* solarLayer = [AGSImageServiceLayer imageServiceLayerWithURL: [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer"]];
+    
+    [self.minSolarMap insertMapLayer:solarLayer withName:@"Solar Tiled Layer" atIndex:1];
+    
+    /* set the delegate for the map view
     self.minimapView.layerDelegate = self;
     
     //add new layer
@@ -56,7 +74,7 @@
     AGSImageServiceLayer* solarLayer = [AGSImageServiceLayer imageServiceLayerWithURL: url];
     
     [self.minimapView insertMapLayer:solarLayer withName:@"Solar Tiled Layer" atIndex:1];
-    
+    */
     //create an instance of a tiled map service layer
     /*AGSTiledMapServiceLayer *tiledLayer = [[AGSTiledMapServiceLayer alloc] initWithURL:[NSURL URLWithString:@"http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer"]];*/
     
@@ -64,7 +82,7 @@
     //[self.mapView addMapLayer:tiledLayer withName:@"Tiled Layer"];
     
     //Set the touch delegate so we can respond when user taps on the map
-    self.minimapView.touchDelegate = self;
+    //self.minimapView.touchDelegate = self;
     
 }
 
