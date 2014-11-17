@@ -7,6 +7,9 @@
 //
 
 #import "MapViewController.h"
+
+#import "ReportViewController.h"
+
 #define kResultsSegueIdentifier @"toReport"
 #define kResultsViewControllerIdentifier @"ReportViewController"
 

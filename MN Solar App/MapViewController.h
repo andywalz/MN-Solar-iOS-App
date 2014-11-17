@@ -10,7 +10,7 @@
 
 #import <ArcGIS/ArcGIS.h>
 
-#import "ReportViewController.h"
+@class ReportViewController;
 
 @interface MapViewController : UIViewController <AGSMapViewTouchDelegate>
 @property (strong, nonatomic) IBOutlet AGSMapView *mapView;

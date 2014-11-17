@@ -10,6 +10,8 @@
 
 #import <ArcGIS/ArcGIS.h>
 
+#import "MapViewController.h"
+
 @interface ReportViewController : UIViewController <AGSMapViewTouchDelegate>
 
 @property (nonatomic, strong) AGSGraphicsLayer *graphicsLayer;

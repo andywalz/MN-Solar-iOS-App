@@ -58,6 +58,9 @@
     
     [self.minSolarMap insertMapLayer:solarLayer withName:@"Solar Tiled Layer" atIndex:1];
     
+    // Add graphics layer
+    //[MapViewController addPoint:self.thePin];
+    
     /* set the delegate for the map view
     self.minimapView.layerDelegate = self;
     
