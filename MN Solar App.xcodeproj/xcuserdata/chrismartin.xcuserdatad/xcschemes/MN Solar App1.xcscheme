@@ -20,6 +20,20 @@
                ReferencedContainer = "container:MN Solar App.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CA8ED91F1A058978009728AE"
+               BuildableName = "MN Solar AppTests.xctest"
+               BlueprintName = "MN Solar AppTests"
+               ReferencedContainer = "container:MN Solar App.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -28,7 +42,26 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CA8ED91F1A058978009728AE"
+               BuildableName = "MN Solar AppTests.xctest"
+               BlueprintName = "MN Solar AppTests"
+               ReferencedContainer = "container:MN Solar App.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "CA8ED9061A058978009728AE"
+            BuildableName = "MN Solar App"
+            BlueprintName = "MN Solar App"
+            ReferencedContainer = "container:MN Solar App.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"

@@ -351,16 +351,18 @@ bool isHidden = YES;
 
 -(void)addPoint:(AGSPoint*) mappoint{
     
+    [self.myGraphicsLayer removeAllGraphics];
+    
     graphicCount+=1;
     //NSLog(@"%@", mappoint);
-    AGSGraphicsLayer* myGraphicsLayer = [AGSGraphicsLayer graphicsLayer];
-    [self.mapView addMapLayer:myGraphicsLayer withName:@"Graphics Layer"];
+    self.myGraphicsLayer = [AGSGraphicsLayer graphicsLayer];
+    [self.mapView addMapLayer:self.myGraphicsLayer withName:@"Graphics Layer"];
     
-    AGSPictureMarkerSymbol* pushpin = [AGSPictureMarkerSymbol pictureMarkerSymbolWithImageNamed:@"BluePushpin.png"];
+    /*AGSPictureMarkerSymbol* pushpin = [AGSPictureMarkerSymbol pictureMarkerSymbolWithImageNamed:@"BluePushpin.png"];
     pushpin.offset = CGPointMake(9,16);
     pushpin.leaderPoint = CGPointMake(-9,11);
     AGSSimpleRenderer* renderer = [AGSSimpleRenderer simpleRendererWithSymbol:pushpin];
-    myGraphicsLayer.renderer = renderer;
+    myGraphicsLayer.renderer = renderer;*/
     
     //create a marker symbol to be used by our Graphic
     AGSSimpleMarkerSymbol *myMarkerSymbol =
@@ -385,14 +387,14 @@ bool isHidden = YES;
                              symbol:myMarkerSymbol
                          attributes:nil];
     
-    if(graphicCount>1){
+    /*if(graphicCount>1){
         NSLog(@"DELETING OLD GRAPHICS");
         [myGraphicsLayer removeAllGraphics];
         graphicCount=0;
-    }
+    }*/
     
     //Add the graphic to the Graphics layer
-    [myGraphicsLayer addGraphic:myGraphic];
+    [self.myGraphicsLayer addGraphic:myGraphic];
     
 }
 
