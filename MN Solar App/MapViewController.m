@@ -144,7 +144,6 @@ bool isHidden = YES;
     
     self.dsmname = temp;
     
-    
     if (!fullName && !self.dsmname){
         NSLog(@"No Data!");
         
@@ -191,8 +190,8 @@ bool isHidden = YES;
     self.geoprocessor.delegate = self;
     
     // Geoprocessor build parameters
-    AGSGPParameterValue *pointX = [AGSGPParameterValue parameterWithName:@"Point_X" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.x]];
-    AGSGPParameterValue *pointY = [AGSGPParameterValue parameterWithName:@"Point_Y" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.y]];
+    AGSGPParameterValue *pointX = [AGSGPParameterValue parameterWithName:@"PointX" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.x]];
+    AGSGPParameterValue *pointY = [AGSGPParameterValue parameterWithName:@"PointY" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.y]];
     AGSGPParameterValue *tile = [AGSGPParameterValue parameterWithName:@"File_Name" type:AGSGPParameterTypeString value:fullTileName];
     
     // GP Parameters to array
@@ -200,21 +199,63 @@ bool isHidden = YES;
     
     // Run GP tool with no asynch delay
     //geoprocessor.interval = 20;
-    //[geoprocessor executeWithParameters:params];
+    NSLog(@"About to fire GP tool");
+    [self.geoprocessor executeWithParameters:params];
     
     //Run GP tool with asych delay
-    self.geoprocessor.interval = 10;
-    [self.geoprocessor submitJobWithParameters:params];
+    //self.geoprocessor.interval = 10;
+    //[self.geoprocessor submitJobWithParameters:params];
     
-    NSString *results = @"21865.1328496\n39619.3044974\n84117.1905997\n126159.758433\n167013.891821\n175695.394165\n174199.414434\n143438.383851\n97395.6361771\n51997.4207866\n25002.0289475\n16517.4218279\n";
+    //NSString *results = @"21865.1328496\n39619.3044974\n84117.1905997\n126159.758433\n167013.891821\n175695.394165\n174199.414434\n143438.383851\n97395.6361771\n51997.4207866\n25002.0289475\n16517.4218279\n";
     
     // Split string into array
-    NSMutableArray *resultsArray = [results componentsSeparatedByString: @"\n"];
+    //NSMutableArray *resultsArray = [results componentsSeparatedByString: @"\n"];
     
     // Remove blank item from end of array
-    [resultsArray removeObjectAtIndex:12];
+    //[resultsArray removeObjectAtIndex:12];
     //NSLog(@"%@", resultsArray);
 }
+
+- (void) geoprocessor:(AGSGeoprocessor*) geoprocessor   operation:(NSOperation*) op didExecuteWithResults:(NSArray*) results  messages:(NSArray*) messages {
+    //for (AGSGPParameterValue* param in results) {
+        //NSLog(@"Parameter: %@, Value: %@", param.name,param.value);
+    //}
+    
+    for (AGSGPParameterValue* param in results) {
+        //NSLog(@"Parameter: %@", param.name);
+        if ([param.name isEqualToString: @"Solar_Value"]){
+            self.solarValue = param.value;
+            
+            // Split string into array
+            self.solarValueArray = [self.solarValue componentsSeparatedByString: @"\n"];
+            
+            // Remove blank item from end of array
+            [self.solarValueArray removeObjectAtIndex:12];
+            NSLog(@"%@", self.solarValueArray);
+        }
+        else if ([param.name isEqualToString: @"Solar_Hours"]){
+            self.solarHours = param.value;
+            
+            // Split string into array
+            self.solarHoursArray = [self.solarHours componentsSeparatedByString: @"\n"];
+            
+            // Remove blank item from end of array
+            [self.solarHoursArray removeObjectAtIndex:12];
+            NSLog(@"%@", self.solarHoursArray);
+        };
+        
+        
+        
+    }
+    
+    
+}
+
+- (void) geoprocessor:(AGSGeoprocessor*) geoprocessor   operation:(NSOperation*) op didFailExecuteWithError:(NSError *)error{
+    NSLog(@"Failed but worked!");
+    NSLog(@"Error: %@",error);
+}
+
 
 //this is the delegate method that gets called when job completes successfully
 - (void)geoprocessor:(AGSGeoprocessor *)geoprocessor operation:(NSOperation *)op didSubmitJob:(AGSGPJobInfo *)jobInfo {

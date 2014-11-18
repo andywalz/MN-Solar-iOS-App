@@ -30,6 +30,10 @@
 @property(nonatomic,strong)AGSPoint *wgsPoint;
 
 @property (nonatomic, strong) AGSGeoprocessor *geoprocessor;
+@property (nonatomic,weak) NSString * solarValue;
+@property (nonatomic,weak) NSString * solarHours;
+@property (nonatomic,weak) NSMutableArray * solarValueArray;
+@property (nonatomic, weak) NSMutableArray * solarHoursArray;
 
 @property(nonatomic,weak)AGSImageServiceLayer *solarLayer;
 
