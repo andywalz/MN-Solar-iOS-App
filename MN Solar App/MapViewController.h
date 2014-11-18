@@ -11,6 +11,7 @@
 #import <ArcGIS/ArcGIS.h>
 
 @interface MapViewController : UIViewController <AGSMapViewTouchDelegate>
+
 @property (strong, nonatomic) IBOutlet AGSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UISwitch *solarSwitch;
 - (IBAction)solarSwitchToggle:(id)sender;
@@ -56,6 +57,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *solarToggle;
 - (IBAction)solarToggle:(id)sender;
+
+@property (weak,nonatomic) NSString *geocodeAddress;
+@property (strong,nonatomic) NSDictionary *geocode;
 
 
 - (IBAction)basemapChanged:(id)sender;

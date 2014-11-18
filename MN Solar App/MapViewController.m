@@ -8,6 +8,9 @@
 
 #import "MapViewController.h"
 
+//@class GCGeocodingService;
+//@synthesize gs;
+
 @interface MapViewController () <AGSMapViewLayerDelegate, AGSQueryTaskDelegate, AGSGeoprocessorDelegate>
 
 - (IBAction)exitHere:(UIStoryboardSegue *)sender;
@@ -20,7 +23,6 @@ bool isHidden = YES;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
     // set the delegate for the map view
     self.mapView.layerDelegate = self;
@@ -48,6 +50,8 @@ bool isHidden = YES;
     //Prepare the view we will display while loading weather information
     self.loadingView =  [[[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:nil options:nil] objectAtIndex:0];
     
+    //gs = [[GCGeocodingService alloc] init];
+    
 }
 
 #pragma mark AGSMapViewLayerDelegate methods
@@ -63,7 +67,6 @@ bool isHidden = YES;
 
     // Enable user location
     [self.mapView.locationDisplay startDataSource];
-    
     
 }
 
