@@ -19,6 +19,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusMsgLabel;
 @property (nonatomic, strong) AGSGraphicsLayer *graphicsLayer;
 @property (nonatomic, strong) AGSGraphicsLayer *myGraphicsLayer;
+@property (nonatomic, weak) AGSGraphic *pushpin;
+@property (nonatomic,weak) UIImage *pushpinImg;
+
+
 @property (nonatomic, strong) AGSLocator *locator;
 @property (nonatomic, strong) AGSCalloutTemplate *calloutTemplate;
 @property (nonatomic, strong) AGSJSONRequestOperation* currentJsonOp;

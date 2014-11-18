@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35A2544A1A1BEC9A00BFBCBC /* bluepushpin.png in Resources */ = {isa = PBXBuildFile; fileRef = 35A254491A1BEC9A00BFBCBC /* bluepushpin.png */; };
 		35A59BCE1A14194D008BEC96 /* zoomIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 35A59BCC1A14194D008BEC96 /* zoomIn.png */; };
 		35A59BCF1A14194D008BEC96 /* zoomOut.png in Resources */ = {isa = PBXBuildFile; fileRef = 35A59BCD1A14194D008BEC96 /* zoomOut.png */; };
 		35C0E0EC1A0AF41100B32B68 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 35C0E0EB1A0AF41100B32B68 /* ArcGIS.bundle */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		35A254491A1BEC9A00BFBCBC /* bluepushpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluepushpin.png; sourceTree = "<group>"; };
 		35A59BCC1A14194D008BEC96 /* zoomIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zoomIn.png; sourceTree = "<group>"; };
 		35A59BCD1A14194D008BEC96 /* zoomOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zoomOut.png; sourceTree = "<group>"; };
 		35C0E0EB1A0AF41100B32B68 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ArcGIS.bundle; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 		CAEC984B1A0D5EB400E271F4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				35A254491A1BEC9A00BFBCBC /* bluepushpin.png */,
 				35A59BCC1A14194D008BEC96 /* zoomIn.png */,
 				35A59BCD1A14194D008BEC96 /* zoomOut.png */,
 				CAEC98541A0D600200E271F4 /* LocationArrowWht-22.png */,
@@ -320,6 +323,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35A2544A1A1BEC9A00BFBCBC /* bluepushpin.png in Resources */,
 				CAEC98581A0D600200E271F4 /* LocationArrowWht-22.png in Resources */,
 				CAEC98591A0D600200E271F4 /* LocationArrowWht-44.png in Resources */,
 				CA8ED9161A058978009728AE /* Main.storyboard in Resources */,

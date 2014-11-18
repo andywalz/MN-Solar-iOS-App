@@ -16,7 +16,6 @@
 
 @implementation MapViewController
 
-int graphicCount = 0;
 bool isHidden = YES;
 
 - (void)viewDidLoad {
@@ -73,7 +72,6 @@ bool isHidden = YES;
     
     //Cancel any outstanding operations for previous webservice requests
     [self.queue cancelAllOperations];
-    
     
     //Show an activity indicator while we initiate a new request
     //self.mapView.callout.customView = self.loadingView;
@@ -133,8 +131,7 @@ bool isHidden = YES;
     
 }
 
-
-
+// EUSA query successful
 - (void) queryTask:(AGSQueryTask*)queryTask operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet{
     
     AGSGraphic *feature = [featureSet.features objectAtIndex:0];
@@ -162,7 +159,7 @@ bool isHidden = YES;
     }
 }
 
-
+// EUSA query fails
 - (void) queryTask:(AGSQueryTask*)queryTask operation:(NSOperation*)	op didFailWithError:(NSError *)error{
     NSLog(@"Error: %@",error);
     /*   //Error encountered while invoking webservice. Alert user
@@ -174,151 +171,18 @@ bool isHidden = YES;
      [av show];*/
 }
 
--(void) gpTool{
-    //NSLog(@"gpTool%@",self.dsmname);
-    
-    NSString *fullTileName = [NSString stringWithFormat:@"%@.img", self.dsmname];
-    
-    NSURL* gpURL = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/SolarPointQuery_fast/GPServer/Script"];
-    //NSLog(@"%f", self.wgsPoint.x);
-    //NSLog(@"%f", self.wgsPoint.y);
-    //NSLog(@"%@",fullTileName);
-    
-    // Build geoprocessor
-    self.geoprocessor = [AGSGeoprocessor geoprocessorWithURL:gpURL];
-    
-    self.geoprocessor.delegate = self;
-    
-    // Geoprocessor build parameters
-    AGSGPParameterValue *pointX = [AGSGPParameterValue parameterWithName:@"PointX" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.x]];
-    AGSGPParameterValue *pointY = [AGSGPParameterValue parameterWithName:@"PointY" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.y]];
-    AGSGPParameterValue *tile = [AGSGPParameterValue parameterWithName:@"File_Name" type:AGSGPParameterTypeString value:fullTileName];
-    
-    // GP Parameters to array
-    NSArray *params = [NSArray arrayWithObjects:pointX, pointY,tile, nil];
-    
-    // Run GP tool with no asynch delay
-    //geoprocessor.interval = 20;
-    NSLog(@"About to fire GP tool");
-    [self.geoprocessor executeWithParameters:params];
-    
-    //Run GP tool with asych delay
-    //self.geoprocessor.interval = 10;
-    //[self.geoprocessor submitJobWithParameters:params];
-    
-    //NSString *results = @"21865.1328496\n39619.3044974\n84117.1905997\n126159.758433\n167013.891821\n175695.394165\n174199.414434\n143438.383851\n97395.6361771\n51997.4207866\n25002.0289475\n16517.4218279\n";
-    
-    // Split string into array
-    //NSMutableArray *resultsArray = [results componentsSeparatedByString: @"\n"];
-    
-    // Remove blank item from end of array
-    //[resultsArray removeObjectAtIndex:12];
-    //NSLog(@"%@", resultsArray);
-}
 
-- (void) geoprocessor:(AGSGeoprocessor*) geoprocessor   operation:(NSOperation*) op didExecuteWithResults:(NSArray*) results  messages:(NSArray*) messages {
-    //for (AGSGPParameterValue* param in results) {
-        //NSLog(@"Parameter: %@, Value: %@", param.name,param.value);
-    //}
-    
-    for (AGSGPParameterValue* param in results) {
-        //NSLog(@"Parameter: %@", param.name);
-        if ([param.name isEqualToString: @"Solar_Value"]){
-            self.solarValue = param.value;
-            
-            // Split string into array
-            self.solarValueArray = [self.solarValue componentsSeparatedByString: @"\n"];
-            
-            // Remove blank item from end of array
-            [self.solarValueArray removeObjectAtIndex:12];
-            NSLog(@"%@", self.solarValueArray);
-        }
-        else if ([param.name isEqualToString: @"Solar_Hours"]){
-            self.solarHours = param.value;
-            
-            // Split string into array
-            self.solarHoursArray = [self.solarHours componentsSeparatedByString: @"\n"];
-            
-            // Remove blank item from end of array
-            [self.solarHoursArray removeObjectAtIndex:12];
-            NSLog(@"%@", self.solarHoursArray);
-        };
-        
-        
-        
-    }
-    
-    
-}
-
-- (void) geoprocessor:(AGSGeoprocessor*) geoprocessor   operation:(NSOperation*) op didFailExecuteWithError:(NSError *)error{
-    NSLog(@"Failed but worked!");
-    NSLog(@"Error: %@",error);
-}
-
-
-//this is the delegate method that gets called when job completes successfully
-- (void)geoprocessor:(AGSGeoprocessor *)geoprocessor operation:(NSOperation *)op didSubmitJob:(AGSGPJobInfo *)jobInfo {
-    
-    NSLog(@"Geoprocessing Job Submitted!");
-    //update status
-    //self.statusMsgLabel.text = @"Geoprocessing Job Submitted!";
-}
-
-//this is the delegate method that gets called when gp job completes successfully.
-- (void)geoprocessor:(AGSGeoprocessor *) geoprocessor operation:(NSOperation *) op jobDidSucceed:(AGSGPJobInfo *) jobInfo {
-    
-    NSLog(@"Geoprocessing Job Succeeded!");
-    
-    //job succeed..query result data
-    //[geoprocessor queryResultData:jobInfo.jobId paramName:@"outerg_shp"];
-}
-
-- (void)geoprocessor:(AGSGeoprocessor *) geoprocessor operation:(NSOperation *) op jobDidFail:(AGSGPJobInfo *) jobInfo {
-    
-    NSLog(@"Geoprocessing Job Failed!");
-    
-    /*for (AGSGPMessage* msg in jobInfo.messages) {
-        NSLog(@"%@", msg.description);
-    }
-    
-    //update staus
-    self.statusMsgLabel.text = @"Job Failed!";
-    
-    //reset the status
-    [self performSelector:@selector(changeStatusLabel:) withObject:@"Tap on the map to get the spill analysis" afterDelay:4];*/
-}
-
-
-/*- (void) geoprocessor:(AGSGeoprocessor*) geoprocessor   operation:(NSOperation*) op didExecuteWithResults:(NSArray*) results  messages:(NSArray*) messages {
-    
-    NSLog(@"GP tool returned results");
-    //for (AGSGPParameterValue* param in results) {
-        //NSLog(@"Parameter: %@, Value: %@", param.name,param.value);
-    //}
-}
-
--(void) geoprocessor:(AGSGeoprocessor*) geoprocessor operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet{
-    NSLog(@"GP returned second results");
-}
-
-- (void)geoprocessor:(AGSGeoprocessor *)geoprocessor operation:(NSOperation*)op ofType:(AGSGPAsyncOperationType)opType didFailWithError:(NSError *)error forJob:(NSString*)jobId {
-    NSLog(@"Error: %@",error);
-}*/
-
-/*- (void) geoprocessor:(AGSGeoprocessor*) geoprocessor operation:(AGSGPRequestOperation*)op jobDidFail:(AGSJobInfo*) jobInfo {
-    for (AGSGPMessage* msg in jobInfo.messages) {
-        NSLog(@"%@", msg.description);
-    }
-}*/
-
+// DSM query successful
 -(void) dsmqueryTask:(AGSQueryTask *)dsmqueryTask operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet{
     NSLog(@"dsmquery");
 }
 
+// DSM query fail - CURRENTLY CRASHES APP WHEN FAIL
 -(void)dsmqueryTask:(AGSQueryTask *)dsmqueryTask operation:(NSOperation *)op didFailWithError:(NSError *)error{
     NSLog(@"dsmerror");
 }
+
+#pragma mark Locator Methods #pragma mark -
 
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -390,28 +254,30 @@ bool isHidden = YES;
     }
 }
 
+#pragma mark Create Point #pragma mark -
+
 -(void)addPoint:(AGSPoint*) mappoint{
     
     [self.myGraphicsLayer removeAllGraphics];
-    
-    graphicCount+=1;
-    //NSLog(@"%@", mappoint);
+
     self.myGraphicsLayer = [AGSGraphicsLayer graphicsLayer];
     [self.mapView addMapLayer:self.myGraphicsLayer withName:@"Graphics Layer"];
     
-    /*AGSPictureMarkerSymbol* pushpin = [AGSPictureMarkerSymbol pictureMarkerSymbolWithImageNamed:@"BluePushpin.png"];
+    AGSPictureMarkerSymbol* pushpin = [AGSPictureMarkerSymbol pictureMarkerSymbolWithImageNamed:@"bluepushpin"];
+    //pushpin = [AGSPictureMarkerSymbol pictureMarkerSymbolWithImageNamed:@"zoomIn.png"];
     pushpin.offset = CGPointMake(9,16);
     pushpin.leaderPoint = CGPointMake(-9,11);
+    [pushpin setSize:CGSizeMake(10,15)];
     AGSSimpleRenderer* renderer = [AGSSimpleRenderer simpleRendererWithSymbol:pushpin];
-    myGraphicsLayer.renderer = renderer;*/
+    self.myGraphicsLayer.renderer = renderer;
     
     //create a marker symbol to be used by our Graphic
-    AGSSimpleMarkerSymbol *myMarkerSymbol =
+    /*AGSSimpleMarkerSymbol *myMarkerSymbol =
     [AGSSimpleMarkerSymbol simpleMarkerSymbol];
     myMarkerSymbol.color = [UIColor blueColor];
     
     [myMarkerSymbol setSize:CGSizeMake(10,10)];
-    [myMarkerSymbol setOutline:[AGSSimpleLineSymbol simpleLineSymbolWithColor:[UIColor redColor] width:1]];
+    [myMarkerSymbol setOutline:[AGSSimpleLineSymbol simpleLineSymbolWithColor:[UIColor redColor] width:1]];*/
     
     
     //Create an AGSPoint (which inherits from AGSGeometry) that
@@ -425,14 +291,8 @@ bool isHidden = YES;
     //geometry created earlier
     AGSGraphic* myGraphic =
     [AGSGraphic graphicWithGeometry:myMarkerPoint
-                             symbol:myMarkerSymbol
+                             symbol:pushpin
                          attributes:nil];
-    
-    /*if(graphicCount>1){
-        NSLog(@"DELETING OLD GRAPHICS");
-        [myGraphicsLayer removeAllGraphics];
-        graphicCount=0;
-    }*/
     
     //Add the graphic to the Graphics layer
     [self.myGraphicsLayer addGraphic:myGraphic];
@@ -456,6 +316,7 @@ bool isHidden = YES;
     }
 }
 
+#pragma mark Complete Methods #pragma mark -
 
 // ---------------------------------
 //  COMPLETE FUNCTIONS
@@ -506,7 +367,72 @@ bool isHidden = YES;
     
 }
 
+-(void) gpTool{
+    //NSLog(@"gpTool%@",self.dsmname);
+    
+    NSString *fullTileName = [NSString stringWithFormat:@"%@.img", self.dsmname];
+    
+    NSURL* gpURL = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/SolarPointQuery_fast/GPServer/Script"];
+    //NSLog(@"%f", self.wgsPoint.x);
+    //NSLog(@"%f", self.wgsPoint.y);
+    //NSLog(@"%@",fullTileName);
+    
+    // Build geoprocessor
+    self.geoprocessor = [AGSGeoprocessor geoprocessorWithURL:gpURL];
+    
+    self.geoprocessor.delegate = self;
+    
+    // Geoprocessor build parameters
+    AGSGPParameterValue *pointX = [AGSGPParameterValue parameterWithName:@"PointX" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.x]];
+    AGSGPParameterValue *pointY = [AGSGPParameterValue parameterWithName:@"PointY" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.y]];
+    AGSGPParameterValue *tile = [AGSGPParameterValue parameterWithName:@"File_Name" type:AGSGPParameterTypeString value:fullTileName];
+    
+    // GP Parameters to array
+    NSArray *params = [NSArray arrayWithObjects:pointX, pointY,tile, nil];
+    
+    // Run GP tool as synch
+    NSLog(@"About to fire GP tool");
+    [self.geoprocessor executeWithParameters:params];
+    
+}
 
+//this is the delegate method that gets called when GP completes successfully
+- (void) geoprocessor:(AGSGeoprocessor*) geoprocessor   operation:(NSOperation*) op didExecuteWithResults:(NSArray*) results  messages:(NSArray*) messages {
+    
+    for (AGSGPParameterValue* param in results) {
+        //NSLog(@"Parameter: %@", param.name);
+        if ([param.name isEqualToString: @"Solar_Value"]){
+            self.solarValue = param.value;
+            
+            // Split string into array
+            self.solarValueArray = [self.solarValue componentsSeparatedByString: @"\n"];
+            
+            // Remove blank item from end of array
+            [self.solarValueArray removeObjectAtIndex:12];
+            NSLog(@"%@", self.solarValueArray);
+        }
+        else if ([param.name isEqualToString: @"Solar_Hours"]){
+            self.solarHours = param.value;
+            
+            // Split string into array
+            self.solarHoursArray = [self.solarHours componentsSeparatedByString: @"\n"];
+            
+            // Remove blank item from end of array
+            [self.solarHoursArray removeObjectAtIndex:12];
+            NSLog(@"%@", self.solarHoursArray);
+        };
+        
+    }
+    
+}
+
+//this is the delegate method that gets called when GP fails
+- (void) geoprocessor:(AGSGeoprocessor*) geoprocessor   operation:(NSOperation*) op didFailExecuteWithError:(NSError *)error{
+    NSLog(@"Error: %@",error);
+}
+
+
+#pragma mark Default iOS Methods #pragma mark -
 // ---------------------------------
 //  DEFAULT IOS FUNCTIONS
 // ---------------------------------
