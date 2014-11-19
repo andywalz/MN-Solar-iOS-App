@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import <ArcGIS/ArcGIS.h>
+#import "GCGeocodingService.h"
 
 @interface MapViewController : UIViewController <AGSMapViewTouchDelegate>
 
@@ -46,6 +47,8 @@
 @property(nonatomic, strong)AGSQueryTask* dsmqueryTask;
 @property(nonatomic,strong)AGSQuery* dsmquery;
 @property(nonatomic,weak)NSString* dsmname;
+@property (weak, nonatomic) IBOutlet UITextField *searchBar;
+- (IBAction)textEdit:(id)sender;
 
 
 @property (weak, nonatomic) IBOutlet UIButton *zoomIn;

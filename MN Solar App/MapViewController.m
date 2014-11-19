@@ -8,7 +8,7 @@
 
 #import "MapViewController.h"
 
-//@class GCGeocodingService;
+@class GCGeocodingService;
 //@synthesize gs;
 
 @interface MapViewController () <AGSMapViewLayerDelegate, AGSQueryTaskDelegate, AGSGeoprocessorDelegate>
@@ -51,7 +51,9 @@ bool isHidden = YES;
     self.loadingView =  [[[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:nil options:nil] objectAtIndex:0];
     
     //gs = [[GCGeocodingService alloc] init];
-    
+    //GCGeocodingService * myGC = [[GCGeocodingService alloc] init];
+    //NSString *address = @"1217 matilda st 55117";
+    //[myGC geocodeAddress:address];
 }
 
 #pragma mark AGSMapViewLayerDelegate methods
@@ -190,8 +192,12 @@ bool isHidden = YES;
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     
+    //gs = [[GCGeocodingService alloc] init];
+    GCGeocodingService * myGC = [[GCGeocodingService alloc] init];
+    NSString *address = searchBar.text;
+    [myGC geocodeAddress:address];
     //Hide the keyboard
-    [searchBar resignFirstResponder];
+    /*[searchBar resignFirstResponder];
     
     if(!self.graphicsLayer){
         //Add a graphics layer to the map. This layer will hold geocoding results
@@ -226,7 +232,7 @@ bool isHidden = YES;
     //Kick off the geocoding operation.
     //This will invoke the geocode service on a background thread.
     [self.locator findWithParameters:params];
-    
+    */
     
 }
 
@@ -489,4 +495,11 @@ bool isHidden = YES;
 }
 
 
+- (IBAction)textEdit:(id)sender {
+    NSLog(@"textEdit fired!");
+    //gs = [[GCGeocodingService alloc] init];
+    GCGeocodingService * myGC = [[GCGeocodingService alloc] init];
+    NSString *address = self.searchBar.text;
+    [myGC geocodeAddress:address];
+}
 @end

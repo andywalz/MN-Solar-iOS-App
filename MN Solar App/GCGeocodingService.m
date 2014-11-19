@@ -8,6 +8,8 @@
 
 #import "GCGeocodingService.h"
 
+
+
 @interface GCGeocodingService ()
 
 @end
@@ -21,16 +23,18 @@
 }
 
 - (void) geocodeAddress:(NSString *)address{
+    NSLog(@"Got to geocode address");
     NSString *geocodingBaseUrl = @"http://maps.googleapis.com/maps/api/geocode/json?";
     NSString *url = [NSString stringWithFormat:@"%@address=%@&sensor=false", geocodingBaseUrl, address];
     url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *queryUrl = [NSURL URLWithString:url];
-    dispatch_sync(kBgqueue, ^{
+    NSLog(@"%@", queryUrl);
+    /*dispatch_sync(kBgqueue, ^{
         
         NSData *data = [NSData dataWithContentsofURL:queryUrl];
         
         [self fetchedData:data];
-    });
+    });*/
 }
 
 // Callback
