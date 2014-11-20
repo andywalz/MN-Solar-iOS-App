@@ -24,6 +24,8 @@ bool isHidden = YES;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.resultsDrawer.hidden=isHidden;
+    
     // set the delegate for the map view
     self.mapView.layerDelegate = self;
     
@@ -198,52 +200,6 @@ GCGeocodingService * myGC;
 
 #pragma mark Locator Methods #pragma mark -
 
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    
-    //gs = [[GCGeocodingService alloc] init];
-    GCGeocodingService * myGC = [[GCGeocodingService alloc] init];
-    NSString *address = searchBar.text;
-    [myGC geocodeAddress:address];
-    //Hide the keyboard
-    /*[searchBar resignFirstResponder];
-    
-    if(!self.graphicsLayer){
-        //Add a graphics layer to the map. This layer will hold geocoding results
-        self.graphicsLayer = [AGSGraphicsLayer graphicsLayer];
-        [self.mapView addMapLayer:self.graphicsLayer withName:@"Results"];
-        
-        //Assign a simple renderer to the layer to display results as pushpins
-        AGSPictureMarkerSymbol* pushpin = [AGSPictureMarkerSymbol pictureMarkerSymbolWithImageNamed:@"BluePushpin.png"];
-        pushpin.offset = CGPointMake(9,16);
-        pushpin.leaderPoint = CGPointMake(-9,11);
-        AGSSimpleRenderer* renderer = [AGSSimpleRenderer simpleRendererWithSymbol:pushpin];
-        self.graphicsLayer.renderer = renderer;
-    }else{
-        //Clear out previous results if we already have a graphics layer
-        [self.graphicsLayer removeAllGraphics];
-    }
-    
-    
-    if(!self.locator){
-        //Create the AGSLocator pointing to the geocode service on ArcGIS Online
-        //Set the delegate so that we are informed through AGSLocatorDelegate methods
-        self.locator = [AGSLocator locatorWithURL:[NSURL URLWithString:@"http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"]];
-        //self.locator.delegate = self;   //Chris I had to comment this out to make it work
-    }
-    
-    //Set the parameters
-    AGSLocatorFindParameters* params = [[AGSLocatorFindParameters alloc]init];
-    params.text = searchBar.text;
-    params.outFields = @[@"*"];
-    params.outSpatialReference = self.mapView.spatialReference;
-    
-    //Kick off the geocoding operation.
-    //This will invoke the geocode service on a background thread.
-    [self.locator findWithParameters:params];
-    */
-    
-}
 
 - (void)locator:(AGSLocator *)locator operation:(NSOperation *)op didFind:(NSArray *)results {
     if (results == nil || [results count] == 0)
@@ -491,6 +447,8 @@ GCGeocodingService * myGC;
             NSLog(@"%@", self.solarHoursArray);
         };
         
+        self.resultsDrawer.hidden = NO;
+        
     }
     
 }
@@ -552,6 +510,54 @@ GCGeocodingService * myGC;
                                                 delegate:nil cancelButtonTitle:@"OK"
                                        otherButtonTitles:nil];
     [av show];
+}
+
+
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    
+    //gs = [[GCGeocodingService alloc] init];
+    GCGeocodingService * myGC = [[GCGeocodingService alloc] init];
+    NSString *address = searchBar.text;
+    [myGC geocodeAddress:address];
+    //Hide the keyboard
+    /*[searchBar resignFirstResponder];
+     
+     if(!self.graphicsLayer){
+     //Add a graphics layer to the map. This layer will hold geocoding results
+     self.graphicsLayer = [AGSGraphicsLayer graphicsLayer];
+     [self.mapView addMapLayer:self.graphicsLayer withName:@"Results"];
+     
+     //Assign a simple renderer to the layer to display results as pushpins
+     AGSPictureMarkerSymbol* pushpin = [AGSPictureMarkerSymbol pictureMarkerSymbolWithImageNamed:@"BluePushpin.png"];
+     pushpin.offset = CGPointMake(9,16);
+     pushpin.leaderPoint = CGPointMake(-9,11);
+     AGSSimpleRenderer* renderer = [AGSSimpleRenderer simpleRendererWithSymbol:pushpin];
+     self.graphicsLayer.renderer = renderer;
+     }else{
+     //Clear out previous results if we already have a graphics layer
+     [self.graphicsLayer removeAllGraphics];
+     }
+     
+     
+     if(!self.locator){
+     //Create the AGSLocator pointing to the geocode service on ArcGIS Online
+     //Set the delegate so that we are informed through AGSLocatorDelegate methods
+     self.locator = [AGSLocator locatorWithURL:[NSURL URLWithString:@"http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"]];
+     //self.locator.delegate = self;   //Chris I had to comment this out to make it work
+     }
+     
+     //Set the parameters
+     AGSLocatorFindParameters* params = [[AGSLocatorFindParameters alloc]init];
+     params.text = searchBar.text;
+     params.outFields = @[@"*"];
+     params.outSpatialReference = self.mapView.spatialReference;
+     
+     //Kick off the geocoding operation.
+     //This will invoke the geocode service on a background thread.
+     [self.locator findWithParameters:params];
+     */
+    
 }
 
 @end

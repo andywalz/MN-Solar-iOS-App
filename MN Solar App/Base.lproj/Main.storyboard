@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--Map-->
@@ -16,48 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGa-o6-3xf">
-                                <rect key="frame" x="0.0" y="20" width="768" height="44"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <items>
-                                    <barButtonItem image="LocationArrowWht-22.png" id="IYj-As-VvO"/>
-                                    <barButtonItem style="plain" id="QE3-mF-0k8">
-                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" minimumFontSize="17" clearButtonMode="always" id="QeM-Sy-cNG">
-                                            <rect key="frame" x="48" y="7" width="357" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
-                                            <connections>
-                                                <action selector="textEdit:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="ALq-1N-khf"/>
-                                                <action selector="textEdit:" destination="BYZ-38-t0r" eventType="valueChanged" id="zfs-dO-kwa"/>
-                                            </connections>
-                                        </textField>
-                                    </barButtonItem>
-                                    <barButtonItem title="Go" id="Ry6-lC-7Nr">
-                                        <connections>
-                                            <action selector="geocodeSearch:" destination="BYZ-38-t0r" id="ka6-Gh-Mnx"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="zlF-Cy-DBL"/>
-                                    <barButtonItem systemItem="bookmarks" id="wYQ-5e-UK1">
-                                        <connections>
-                                            <segue destination="r33-iq-wmY" kind="popoverPresentation" identifier="toBookmarksPopover" popoverAnchorBarButtonItem="wYQ-5e-UK1" id="Nym-hY-df9">
-                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                            </segue>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem image="menu-22.png" id="NGV-x1-cE4">
-                                        <connections>
-                                            <segue destination="XN7-BA-avn" kind="popoverPresentation" identifier="toMenuPopover" popoverAnchorBarButtonItem="NGV-x1-cE4" id="mEi-IU-OZ3">
-                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                            </segue>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            </toolbar>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mD-iD-Xkz">
                                 <rect key="frame" x="359" y="200" width="185" height="52"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -84,13 +42,6 @@
                                             <action selector="basemapChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="uKC-BJ-9X1"/>
                                         </connections>
                                     </segmentedControl>
-                                    <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xRA-Te-uyK">
-                                        <rect key="frame" x="13" y="47" width="768" height="44"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="BYZ-38-t0r" id="MXG-Gx-CiY"/>
-                                        </connections>
-                                    </searchBar>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XFt-OP-aLO">
                                         <rect key="frame" x="67" y="210" width="50" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -122,12 +73,6 @@
                                             <action selector="solarToggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="85v-8F-1v1"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmr-s3-BuN">
-                                        <rect key="frame" x="266" y="769" width="253" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TMA-fh-6PD">
                                         <rect key="frame" x="633" y="883" width="51" height="31"/>
                                         <connections>
@@ -143,9 +88,64 @@
                                             <action selector="logGeocodeValue:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AbE-SX-pxb"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u9I-0L-HrG">
+                                        <rect key="frame" x="0.0" y="593" width="768" height="282"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Results preview goes here!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yDw-OJ-MW9">
+                                                <rect key="frame" x="414" y="82" width="206" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGa-o6-3xf">
+                                <rect key="frame" x="0.0" y="20" width="768" height="44"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <barButtonItem style="plain" id="QE3-mF-0k8">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" minimumFontSize="17" clearButtonMode="always" id="QeM-Sy-cNG">
+                                            <rect key="frame" x="48" y="7" width="357" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                                            <connections>
+                                                <action selector="textEdit:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="ALq-1N-khf"/>
+                                                <action selector="textEdit:" destination="BYZ-38-t0r" eventType="valueChanged" id="zfs-dO-kwa"/>
+                                            </connections>
+                                        </textField>
+                                    </barButtonItem>
+                                    <barButtonItem title="Go" id="Ry6-lC-7Nr">
+                                        <connections>
+                                            <action selector="geocodeSearch:" destination="BYZ-38-t0r" id="ka6-Gh-Mnx"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="4QL-8J-6F3"/>
+                                    <barButtonItem image="LocationArrowWht-22.png" id="IYj-As-VvO"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="zlF-Cy-DBL"/>
+                                    <barButtonItem systemItem="bookmarks" id="wYQ-5e-UK1">
+                                        <connections>
+                                            <segue destination="r33-iq-wmY" kind="popoverPresentation" identifier="toBookmarksPopover" popoverAnchorBarButtonItem="wYQ-5e-UK1" id="Nym-hY-df9">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem image="menu-22.png" id="NGV-x1-cE4">
+                                        <connections>
+                                            <segue destination="XN7-BA-avn" kind="popoverPresentation" identifier="toMenuPopover" popoverAnchorBarButtonItem="NGV-x1-cE4" id="mEi-IU-OZ3">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -154,10 +154,10 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
                         <outlet property="mapView" destination="8DM-Dg-3ZE" id="RS2-AV-y2a"/>
+                        <outlet property="resultsDrawer" destination="u9I-0L-HrG" id="vXg-4l-rjy"/>
                         <outlet property="searchBar" destination="QeM-Sy-cNG" id="jsc-KG-NiA"/>
                         <outlet property="solarSwitch" destination="TMA-fh-6PD" id="k3C-7j-ffN"/>
                         <outlet property="solarToggle" destination="Slv-nl-agX" id="flR-jt-aYL"/>
-                        <outlet property="statusMsgLabel" destination="qmr-s3-BuN" id="NAx-oT-JOs"/>
                         <outlet property="zoomIn" destination="XFt-OP-aLO" id="D2T-ed-oCX"/>
                         <outlet property="zoomOut" destination="UGT-ao-vsZ" id="YHx-gK-DId"/>
                         <segue destination="nlQ-gH-GXT" kind="presentation" identifier="toWelcome" id="AC1-7Z-d0X"/>

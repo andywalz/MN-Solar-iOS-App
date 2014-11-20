@@ -46,6 +46,7 @@
 
 @property(nonatomic,weak)AGSImageServiceLayer *solarLayer;
 
+@property (weak, nonatomic) IBOutlet UIView *resultsDrawer;
 @property(nonatomic,strong)NSString* dsmTile;
 @property(nonatomic, strong)AGSQueryTask* dsmqueryTask;
 @property(nonatomic,strong)AGSQuery* dsmquery;
