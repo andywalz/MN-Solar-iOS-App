@@ -367,11 +367,14 @@ GCGeocodingService * myGC;
                                           y:y
                            spatialReference:[AGSSpatialReference wgs84SpatialReference]];
     self.geocodePointWeb = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:self.geocodePoint toSpatialReference:[AGSSpatialReference webMercatorSpatialReference]];
+    
     NSLog(@"Trying to zoom!");
-    AGSEnvelope *envelope = [AGSEnvelope envelopeWithXmin:-10367000 ymin:5608000 xmax:-10365000  ymax:5606000  spatialReference:self.mapView.spatialReference];
+    
+    AGSEnvelope *envelope = [AGSEnvelope envelopeWithXmin:self.geocodePointWeb.x - 200 ymin:self.geocodePointWeb.y - 200 xmax:self.geocodePointWeb.x + 200  ymax:self.geocodePointWeb.y + 200 spatialReference:self.mapView.spatialReference];
     [self.mapView zoomToEnvelope:envelope animated:YES];
     
     [self addPoint:self.geocodePointWeb];
+    
 }
 
 // change basemaps

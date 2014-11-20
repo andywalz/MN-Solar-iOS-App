@@ -29,8 +29,7 @@
     NSURL *queryUrl = [NSURL URLWithString:url];
     NSLog(@"%@", queryUrl);
     NSData *data = [NSData dataWithContentsOfURL:queryUrl];
-    NSLog(@"%@",data);
-    [self fetchedData:data];
+    NSLog(@"%@",data); [self fetchedData:data];
    
 }
 
