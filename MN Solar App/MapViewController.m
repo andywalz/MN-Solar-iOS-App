@@ -75,6 +75,9 @@ GCGeocodingService * myGC;
     
 }
 
+-(void) convertToWGS:(AGSPoint*)mappoint{
+    self.wgsPoint = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:mappoint toSpatialReference:[AGSSpatialReference wgs84SpatialReference]];
+}
 
 - (void)mapView:(AGSMapView *)mapView didClickAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint features:(NSDictionary *)features{
     
@@ -89,7 +92,10 @@ GCGeocodingService * myGC;
     
     self.utm15Point = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:mappoint toSpatialReference:[AGSSpatialReference spatialReferenceWithWKID:26915]];
     
-    self.wgsPoint = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:mappoint toSpatialReference:[AGSSpatialReference wgs84SpatialReference]];
+    [self convertToWGS:self.utm15Point];
+    
+    
+    //self.wgsPoint = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:mappoint toSpatialReference:[AGSSpatialReference wgs84SpatialReference]];
     
     // Add graphics layer
     [self addPoint:mappoint];
@@ -375,6 +381,10 @@ GCGeocodingService * myGC;
     
     [self addPoint:self.geocodePointWeb];
     
+    [self convertToWGS:self.geocodePoint];
+    
+    [self gpTool];
+    
 }
 
 // change basemaps
@@ -412,7 +422,6 @@ GCGeocodingService * myGC;
 }
 
 -(void) gpTool{
-    //NSLog(@"gpTool%@",self.dsmname);
     
     NSString *fullTileName = [NSString stringWithFormat:@"%@.img", self.dsmname];
     
@@ -423,17 +432,36 @@ GCGeocodingService * myGC;
     
     self.geoprocessor.delegate = self;
     
+    if (!self.wgsPoint.x){
+        // Geoprocessor build parameters
+        AGSGPParameterValue *pointX = [AGSGPParameterValue parameterWithName:@"PointX" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.geocodePointWeb.x]];
+        AGSGPParameterValue *pointY = [AGSGPParameterValue parameterWithName:@"PointY" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.y]];
+        AGSGPParameterValue *tile = [AGSGPParameterValue parameterWithName:@"File_Name" type:AGSGPParameterTypeString value:fullTileName];
+        
+        // GP Parameters to array
+        NSArray *params = [NSArray arrayWithObjects:pointX, pointY,tile, nil];
+        // Run GP tool as synch
+        //NSLog(@"About to fire GP tool");
+        [self.geoprocessor executeWithParameters:params];
+        
+    }
+    else{
+    
     // Geoprocessor build parameters
     AGSGPParameterValue *pointX = [AGSGPParameterValue parameterWithName:@"PointX" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.x]];
     AGSGPParameterValue *pointY = [AGSGPParameterValue parameterWithName:@"PointY" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.y]];
     AGSGPParameterValue *tile = [AGSGPParameterValue parameterWithName:@"File_Name" type:AGSGPParameterTypeString value:fullTileName];
+        
+        // GP Parameters to array
+        NSArray *params = [NSArray arrayWithObjects:pointX, pointY,tile, nil];
+        // Run GP tool as synch
+        //NSLog(@"About to fire GP tool");
+        [self.geoprocessor executeWithParameters:params];
+    };
     
-    // GP Parameters to array
-    NSArray *params = [NSArray arrayWithObjects:pointX, pointY,tile, nil];
     
-    // Run GP tool as synch
-    //NSLog(@"About to fire GP tool");
-    [self.geoprocessor executeWithParameters:params];
+    
+    
     
 }
 
