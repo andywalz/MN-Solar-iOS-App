@@ -188,6 +188,7 @@ GCGeocodingService * myGC;
     
         
     }
+    // NEEDS ERROR CHECKING - set variable in GCGeocoding
     [self gpTool];
 }
 
@@ -306,6 +307,13 @@ GCGeocodingService * myGC;
     }else{
         self.solarLayer.visible = NO;
     }
+}
+
+- (bool) textFieldShouldReturn:(UITextField *)searchBar{
+    [self.view endEditing:YES];
+    [self geocodeSearch:(searchBar)];
+    
+    return YES;
 }
 
 #pragma mark Complete Methods #pragma mark -

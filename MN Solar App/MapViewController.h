@@ -12,7 +12,7 @@
 #import "GCGeocodingService.h"
 
 
-@interface MapViewController : UIViewController <AGSMapViewTouchDelegate>
+@interface MapViewController : UIViewController <AGSMapViewTouchDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet AGSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UISwitch *solarSwitch;

@@ -125,8 +125,7 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
                                             <connections>
-                                                <action selector="textEdit:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="ALq-1N-khf"/>
-                                                <action selector="textEdit:" destination="BYZ-38-t0r" eventType="valueChanged" id="zfs-dO-kwa"/>
+                                                <outlet property="delegate" destination="BYZ-38-t0r" id="QI9-yI-zHd"/>
                                             </connections>
                                         </textField>
                                     </barButtonItem>
