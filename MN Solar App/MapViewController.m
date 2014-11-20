@@ -560,4 +560,8 @@ GCGeocodingService * myGC;
     
 }
 
+- (IBAction)hideResultsDrawer:(id)sender {
+    
+    self.resultsDrawer.hidden = YES;
+}
 @end
