@@ -11,6 +11,7 @@
 #import <ArcGIS/ArcGIS.h>
 #import "GCGeocodingService.h"
 
+
 @interface MapViewController : UIViewController <AGSMapViewTouchDelegate>
 
 @property (strong, nonatomic) IBOutlet AGSMapView *mapView;
@@ -34,6 +35,8 @@
 @property(nonatomic,strong)AGSQuery* query;
 @property(nonatomic,strong) AGSPoint *utm15Point;
 @property(nonatomic,strong)AGSPoint *wgsPoint;
+@property(nonatomic,strong)AGSPoint *geocodePoint;
+@property(nonatomic,strong)AGSPoint *geocodePointWeb;
 
 @property (nonatomic, strong) AGSGeoprocessor *geoprocessor;
 @property (nonatomic,weak) NSString * solarValue;
@@ -62,10 +65,14 @@
 - (IBAction)solarToggle:(id)sender;
 
 @property (weak,nonatomic) NSString *geocodeAddress;
-@property (strong,nonatomic) NSDictionary *geocode;
 
+
+- (IBAction)geocodeSearch:(id)sender;
 
 - (IBAction)basemapChanged:(id)sender;
+
+- (IBAction)logGeocodeValue:(id)sender;
+
 
 @end
 

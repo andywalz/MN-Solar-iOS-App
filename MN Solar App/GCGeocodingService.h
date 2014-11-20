@@ -14,4 +14,5 @@
 -(void) geocodeAddress:(NSString *)address;
 
 @property (strong,nonatomic) NSDictionary *geocode;
+@property (strong,nonatomic) NSDictionary *geocodeResults;
 @end

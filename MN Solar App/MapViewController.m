@@ -51,10 +51,13 @@ bool isHidden = YES;
     self.loadingView =  [[[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:nil options:nil] objectAtIndex:0];
     
     //gs = [[GCGeocodingService alloc] init];
-    //GCGeocodingService * myGC = [[GCGeocodingService alloc] init];
+   myGC = [[GCGeocodingService alloc] init];
     //NSString *address = @"1217 matilda st 55117";
     //[myGC geocodeAddress:address];
+    
 }
+
+GCGeocodingService * myGC;
 
 #pragma mark AGSMapViewLayerDelegate methods
 
@@ -68,7 +71,7 @@ bool isHidden = YES;
     self.mapView.locationDisplay.autoPanMode = AGSLocationDisplayAutoPanModeDefault;
 
     // Enable user location
-    [self.mapView.locationDisplay startDataSource];
+    //[self.mapView.locationDisplay startDataSource];
     
 }
 
@@ -153,7 +156,7 @@ bool isHidden = YES;
         
         if (!fullName){
             // Error checking doesn't work, currently crashes outside MN
-            NSLog(@"DSMName: %@",self.dsmname);
+            //NSLog(@"DSMName: %@",self.dsmname);
             [self gpTool];
         }
         else {
@@ -288,13 +291,15 @@ bool isHidden = YES;
     [myMarkerSymbol setSize:CGSizeMake(10,10)];
     [myMarkerSymbol setOutline:[AGSSimpleLineSymbol simpleLineSymbolWithColor:[UIColor redColor] width:1]];*/
     
-    
     //Create an AGSPoint (which inherits from AGSGeometry) that
     //defines where the Graphic will be drawn
+    
     AGSPoint* myMarkerPoint =
     [AGSPoint pointWithX:mappoint.x
                        y:mappoint.y
         spatialReference:[AGSSpatialReference wgs84SpatialReference]];
+    
+    NSLog(@"%@", myMarkerPoint);
     
     //Create the Graphic, using the symbol and
     //geometry created earlier
@@ -348,7 +353,29 @@ bool isHidden = YES;
     
 }
 
-// Change basemaps
+- (IBAction)geocodeSearch:(id)sender {
+    NSString *address = self.searchBar.text;
+    NSLog(@"%@", address);
+    [myGC geocodeAddress:address];
+    
+    NSLog(@"Address: %@", myGC.geocodeResults[@"address"]);
+    
+    NSLog(@"Trying to add pin");
+    float x = [myGC.geocodeResults[@"lng"] floatValue];
+    float y = [myGC.geocodeResults[@"lat"] floatValue];
+    self.geocodePoint = [AGSPoint pointWithX:x
+                                          y:y
+                           spatialReference:[AGSSpatialReference wgs84SpatialReference]];
+    self.geocodePointWeb = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:self.geocodePoint toSpatialReference:[AGSSpatialReference webMercatorSpatialReference]];
+    NSLog(@"Trying to zoom!");
+    AGSEnvelope *envelope = [AGSEnvelope envelopeWithXmin:-10367000 ymin:5608000 xmax:-10365000  ymax:5606000  spatialReference:self.mapView.spatialReference];
+    [self.mapView zoomToEnvelope:envelope animated:YES];
+    
+    [self addPoint:self.geocodePointWeb];
+}
+
+// change basemaps
+
 - (IBAction)basemapChanged:(id)sender {
     
     NSURL* basemapURL ;
@@ -376,16 +403,18 @@ bool isHidden = YES;
     
 }
 
+- (IBAction)logGeocodeValue:(id)sender {
+    //NSLog(@"%@", myGC.geocodeResults );
+    NSLog(@"Address: %@", myGC.geocodeResults[@"address"]);
+}
+
 -(void) gpTool{
     //NSLog(@"gpTool%@",self.dsmname);
     
     NSString *fullTileName = [NSString stringWithFormat:@"%@.img", self.dsmname];
     
     NSURL* gpURL = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/SolarPointQuery_fast/GPServer/Script"];
-    //NSLog(@"%f", self.wgsPoint.x);
-    //NSLog(@"%f", self.wgsPoint.y);
-    //NSLog(@"%@",fullTileName);
-    
+
     // Build geoprocessor
     self.geoprocessor = [AGSGeoprocessor geoprocessorWithURL:gpURL];
     
@@ -400,7 +429,7 @@ bool isHidden = YES;
     NSArray *params = [NSArray arrayWithObjects:pointX, pointY,tile, nil];
     
     // Run GP tool as synch
-    NSLog(@"About to fire GP tool");
+    //NSLog(@"About to fire GP tool");
     [self.geoprocessor executeWithParameters:params];
     
 }
@@ -494,12 +523,4 @@ bool isHidden = YES;
     [av show];
 }
 
-
-- (IBAction)textEdit:(id)sender {
-    NSLog(@"textEdit fired!");
-    //gs = [[GCGeocodingService alloc] init];
-    GCGeocodingService * myGC = [[GCGeocodingService alloc] init];
-    NSString *address = self.searchBar.text;
-    [myGC geocodeAddress:address];
-}
 @end

@@ -22,15 +22,22 @@
                                 <items>
                                     <barButtonItem image="LocationArrowWht-22.png" id="IYj-As-VvO"/>
                                     <barButtonItem style="plain" id="QE3-mF-0k8">
-                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="QeM-Sy-cNG">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" minimumFontSize="17" clearButtonMode="always" id="QeM-Sy-cNG">
                                             <rect key="frame" x="48" y="7" width="357" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
                                                 <action selector="textEdit:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="ALq-1N-khf"/>
+                                                <action selector="textEdit:" destination="BYZ-38-t0r" eventType="valueChanged" id="zfs-dO-kwa"/>
                                             </connections>
                                         </textField>
+                                    </barButtonItem>
+                                    <barButtonItem title="Go" id="Ry6-lC-7Nr">
+                                        <connections>
+                                            <action selector="geocodeSearch:" destination="BYZ-38-t0r" id="ka6-Gh-Mnx"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="zlF-Cy-DBL"/>
                                     <barButtonItem systemItem="bookmarks" id="wYQ-5e-UK1">
@@ -127,6 +134,15 @@
                                             <action selector="solarSwitchToggle:" destination="BYZ-38-t0r" eventType="valueChanged" id="Cj5-07-s3f"/>
                                         </connections>
                                     </switch>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2YW-kc-ite">
+                                        <rect key="frame" x="171" y="631" width="94" height="30"/>
+                                        <state key="normal" title="Log Geocode">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="logGeocodeValue:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AbE-SX-pxb"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>

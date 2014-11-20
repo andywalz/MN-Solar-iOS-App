@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		350DA94D1A1D528800B33723 /* default.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 350DA94C1A1D528800B33723 /* default.gpx */; };
+		350DA94F1A1D52B400B33723 /* default.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 350DA94E1A1D52B400B33723 /* default.gpx */; };
 		35A2544A1A1BEC9A00BFBCBC /* bluepushpin.png in Resources */ = {isa = PBXBuildFile; fileRef = 35A254491A1BEC9A00BFBCBC /* bluepushpin.png */; };
 		35A2544D1A1BF4A200BFBCBC /* GCGeocodingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A2544C1A1BF4A200BFBCBC /* GCGeocodingService.m */; };
 		35A59BCE1A14194D008BEC96 /* zoomIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 35A59BCC1A14194D008BEC96 /* zoomIn.png */; };
@@ -46,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		350DA94C1A1D528800B33723 /* default.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = default.gpx; sourceTree = "<group>"; };
+		350DA94E1A1D52B400B33723 /* default.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = default.gpx; sourceTree = "<group>"; };
 		35A254491A1BEC9A00BFBCBC /* bluepushpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluepushpin.png; sourceTree = "<group>"; };
 		35A2544B1A1BF4A200BFBCBC /* GCGeocodingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCGeocodingService.h; sourceTree = "<group>"; };
 		35A2544C1A1BF4A200BFBCBC /* GCGeocodingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCGeocodingService.m; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 		CA8ED8FE1A058978009728AE = {
 			isa = PBXGroup;
 			children = (
+				350DA94E1A1D52B400B33723 /* default.gpx */,
 				CAEC984B1A0D5EB400E271F4 /* Assets */,
 				35C0E0EB1A0AF41100B32B68 /* ArcGIS.bundle */,
 				CA8ED9321A058A9B009728AE /* Resources */,
@@ -238,6 +243,7 @@
 		CAEC984B1A0D5EB400E271F4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				350DA94C1A1D528800B33723 /* default.gpx */,
 				35A254491A1BEC9A00BFBCBC /* bluepushpin.png */,
 				35A59BCC1A14194D008BEC96 /* zoomIn.png */,
 				35A59BCD1A14194D008BEC96 /* zoomOut.png */,
@@ -341,6 +347,8 @@
 				CA8ED9181A058978009728AE /* Images.xcassets in Resources */,
 				35C0E0EC1A0AF41100B32B68 /* ArcGIS.bundle in Resources */,
 				CAEC985D1A0D798800E271F4 /* LoadingView.xib in Resources */,
+				350DA94D1A1D528800B33723 /* default.gpx in Resources */,
+				350DA94F1A1D52B400B33723 /* default.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

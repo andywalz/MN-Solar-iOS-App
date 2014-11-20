@@ -23,22 +23,22 @@
 }
 
 - (void) geocodeAddress:(NSString *)address{
-    NSLog(@"Got to geocode address");
     NSString *geocodingBaseUrl = @"http://maps.googleapis.com/maps/api/geocode/json?";
     NSString *url = [NSString stringWithFormat:@"%@address=%@&sensor=false", geocodingBaseUrl, address];
     url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *queryUrl = [NSURL URLWithString:url];
     NSLog(@"%@", queryUrl);
-    /*dispatch_sync(kBgqueue, ^{
-        
-        NSData *data = [NSData dataWithContentsofURL:queryUrl];
-        
-        [self fetchedData:data];
-    });*/
+    NSData *data = [NSData dataWithContentsOfURL:queryUrl];
+    NSLog(@"%@",data);
+    [self fetchedData:data];
+   
 }
 
 // Callback
 - (void) fetchedData:(NSData *) data {
+    
+    NSLog(@"Got to fetch");
+    NSLog(@"%@",data);
     
     NSError* error;
     NSDictionary *json = [NSJSONSerialization
@@ -47,6 +47,7 @@
                           error:&error];
     NSArray *results = [json objectForKey:@"results"];
     
+    NSLog(@"%@", results);
     // Grad first result
     NSDictionary *result = [results objectAtIndex:0];
     NSString *address = [result objectForKey:@"formatted_address"];
@@ -57,7 +58,8 @@
     
     NSDictionary *gc = [[NSDictionary alloc]initWithObjectsAndKeys:lat, @"lat", lng, @"lng", address, @"address", nil];
     
-    self.geocode = gc;
+    NSLog(@"%@", gc);
+    self.geocodeResults = gc;
     }
 
 @end
