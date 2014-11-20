@@ -81,6 +81,10 @@ GCGeocodingService * myGC;
     self.wgsPoint = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:mappoint toSpatialReference:[AGSSpatialReference wgs84SpatialReference]];
 }
 
+-(void) convertToUTM15:(AGSPoint*)mappoint{
+    self.utm15Point = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:mappoint toSpatialReference:[AGSSpatialReference spatialReferenceWithWKID:26915]];
+}
+
 - (void)mapView:(AGSMapView *)mapView didClickAtPoint:(CGPoint)screen mapPoint:(AGSPoint *)mappoint features:(NSDictionary *)features{
     
     //Cancel any outstanding operations for previous webservice requests
@@ -92,7 +96,7 @@ GCGeocodingService * myGC;
     
     //Convert Web Mercator to UTM15
     
-    self.utm15Point = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:mappoint toSpatialReference:[AGSSpatialReference spatialReferenceWithWKID:26915]];
+    [self convertToUTM15:mappoint];
     
     [self convertToWGS:self.utm15Point];
     
@@ -102,6 +106,33 @@ GCGeocodingService * myGC;
     // Add graphics layer
     [self addPoint:mappoint];
     
+    // Run query
+    [self runQueries];
+    
+    // Run GP tool
+    //[self gpTool];
+
+    
+    /*//Set up the parameters to send the webservice
+    NSMutableDictionary* params = [NSMutableDictionary dictionary];
+    [params setObject:[NSNumber numberWithDouble:utm15Point.x] forKey:@"x"];
+    [params setObject:[NSNumber numberWithDouble:utm15Point.y] forKey:@"y"];
+    //[params setObject:[NSNumber numberWithDouble:mappoint.y] forKey:@"y"];
+    
+    //Set up an operation for the current request
+    NSURL* url = [NSURL URLWithString:@"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer/query"];
+    self.currentJsonOp = [[AGSJSONRequestOperation alloc]initWithURL:url queryParameters:params];
+    self.currentJsonOp.target = self;
+    self.currentJsonOp.action = @selector(operation:didSucceedWithResponse:);
+    self.currentJsonOp.errorAction = @selector(operation:didFailWithError:);
+    
+    //Add operation to the queue to execute in the background
+    [self.queue addOperation:self.currentJsonOp];*/
+    
+    
+}
+
+- (void) runQueries {
     //EUSA query test
     NSURL* EUSAURL = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/solar_fgdb/MapServer/0"];
     
@@ -127,24 +158,6 @@ GCGeocodingService * myGC;
     self.dsmquery.whereClause = @"1=1";
     
     [self.dsmqueryTask executeWithQuery:self.dsmquery];
-    
-    /*//Set up the parameters to send the webservice
-    NSMutableDictionary* params = [NSMutableDictionary dictionary];
-    [params setObject:[NSNumber numberWithDouble:utm15Point.x] forKey:@"x"];
-    [params setObject:[NSNumber numberWithDouble:utm15Point.y] forKey:@"y"];
-    //[params setObject:[NSNumber numberWithDouble:mappoint.y] forKey:@"y"];
-    
-    //Set up an operation for the current request
-    NSURL* url = [NSURL URLWithString:@"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer/query"];
-    self.currentJsonOp = [[AGSJSONRequestOperation alloc]initWithURL:url queryParameters:params];
-    self.currentJsonOp.target = self;
-    self.currentJsonOp.action = @selector(operation:didSucceedWithResponse:);
-    self.currentJsonOp.errorAction = @selector(operation:didFailWithError:);
-    
-    //Add operation to the queue to execute in the background
-    [self.queue addOperation:self.currentJsonOp];*/
-    
-    
 }
 
 // EUSA query successful
@@ -157,6 +170,8 @@ GCGeocodingService * myGC;
     
     self.dsmname = temp;
     
+    NSLog(@"DSM NAME UPPER === %@", self.dsmname);
+    
     if (!fullName && !self.dsmname){
         NSLog(@"No Data!");
         
@@ -164,8 +179,8 @@ GCGeocodingService * myGC;
         
         if (!fullName){
             // Error checking doesn't work, currently crashes outside MN
-            //NSLog(@"DSMName: %@",self.dsmname);
-            [self gpTool];
+            NSLog(@"DSMName: %@",self.dsmname);
+            //[self gpTool];
         }
         else {
             NSLog(@"Name: %@, Phone: %@",fullName, phone);
@@ -173,6 +188,7 @@ GCGeocodingService * myGC;
     
         
     }
+    [self gpTool];
 }
 
 // EUSA query fails
@@ -338,8 +354,9 @@ GCGeocodingService * myGC;
     [self addPoint:self.geocodePointWeb];
     
     [self convertToWGS:self.geocodePoint];
+    [self convertToUTM15:self.geocodePoint];
     
-    [self gpTool];
+    [self runQueries];
     
 }
 
@@ -379,6 +396,8 @@ GCGeocodingService * myGC;
 
 -(void) gpTool{
     
+    NSLog(@"DSM Name ===== %@", self.dsmname);
+    
     NSString *fullTileName = [NSString stringWithFormat:@"%@.img", self.dsmname];
     
     NSURL* gpURL = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/SolarPointQuery_fast/GPServer/Script"];
@@ -388,7 +407,7 @@ GCGeocodingService * myGC;
     
     self.geoprocessor.delegate = self;
     
-    if (!self.wgsPoint.x){
+    /*if (!self.wgsPoint.x){
         // Geoprocessor build parameters
         AGSGPParameterValue *pointX = [AGSGPParameterValue parameterWithName:@"PointX" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.geocodePointWeb.x]];
         AGSGPParameterValue *pointY = [AGSGPParameterValue parameterWithName:@"PointY" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.y]];
@@ -401,7 +420,7 @@ GCGeocodingService * myGC;
         [self.geoprocessor executeWithParameters:params];
         
     }
-    else{
+    else{*/
     
     // Geoprocessor build parameters
     AGSGPParameterValue *pointX = [AGSGPParameterValue parameterWithName:@"PointX" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.x]];
@@ -413,7 +432,7 @@ GCGeocodingService * myGC;
         // Run GP tool as synch
         //NSLog(@"About to fire GP tool");
         [self.geoprocessor executeWithParameters:params];
-    };
+    //};
     
     
     

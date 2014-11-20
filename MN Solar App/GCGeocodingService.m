@@ -27,17 +27,18 @@
     NSString *url = [NSString stringWithFormat:@"%@address=%@&sensor=false", geocodingBaseUrl, address];
     url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *queryUrl = [NSURL URLWithString:url];
-    NSLog(@"%@", queryUrl);
     NSData *data = [NSData dataWithContentsOfURL:queryUrl];
-    NSLog(@"%@",data); [self fetchedData:data];
+    if (!data){
+        UIAlertView* mes=[[UIAlertView alloc] initWithTitle:@"No Results"
+            message:@"There were no results for your search.  Please try again." delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        return;
+    }
+    [self fetchedData:data];
    
 }
 
 // Callback
 - (void) fetchedData:(NSData *) data {
-    
-    NSLog(@"Got to fetch");
-    NSLog(@"%@",data);
     
     NSError* error;
     NSDictionary *json = [NSJSONSerialization
@@ -46,7 +47,6 @@
                           error:&error];
     NSArray *results = [json objectForKey:@"results"];
     
-    NSLog(@"%@", results);
     // Grad first result
     NSDictionary *result = [results objectAtIndex:0];
     NSString *address = [result objectForKey:@"formatted_address"];
@@ -56,8 +56,6 @@
     NSString *lng = [location objectForKey:@"lng"];
     
     NSDictionary *gc = [[NSDictionary alloc]initWithObjectsAndKeys:lat, @"lat", lng, @"lng", address, @"address", nil];
-    
-    NSLog(@"%@", gc);
     self.geocodeResults = gc;
     }
 
