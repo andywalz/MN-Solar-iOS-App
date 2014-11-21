@@ -10,13 +10,18 @@
 
 #import <ArcGIS/ArcGIS.h>
 #import "GCGeocodingService.h"
+#import "Reachability.h"
 
 
 @interface MapViewController : UIViewController <AGSMapViewTouchDelegate, UITextFieldDelegate>
 
+// Internet connection check
+@property(weak,nonatomic) Reachability *internetReachableFoo;
+
 @property (strong, nonatomic) IBOutlet AGSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UISwitch *solarSwitch;
 - (IBAction)solarSwitchToggle:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *loadingIcon;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *statusMsgLabel;
@@ -53,7 +58,6 @@
 @property(nonatomic,strong)AGSQuery* dsmquery;
 @property(nonatomic,weak)NSString* dsmname;
 @property (weak, nonatomic) IBOutlet UITextField *searchBar;
-- (IBAction)textEdit:(id)sender;
 
 
 @property (weak, nonatomic) IBOutlet UIButton *zoomIn;

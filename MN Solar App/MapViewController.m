@@ -20,11 +20,16 @@
 @implementation MapViewController
 
 bool isHidden = YES;
+GCGeocodingService * myGC;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.resultsDrawer.hidden=isHidden;
+    self.loadingIcon.hidden=YES;
+    
+    // Check for internet connection
+    [self internetReachableFoo];
     
     // set the delegate for the map view
     self.mapView.layerDelegate = self;
@@ -52,14 +57,38 @@ bool isHidden = YES;
     //Prepare the view we will display while loading weather information
     self.loadingView =  [[[NSBundle mainBundle] loadNibNamed:@"LoadingView" owner:nil options:nil] objectAtIndex:0];
     
-    //gs = [[GCGeocodingService alloc] init];
-   myGC = [[GCGeocodingService alloc] init];
+    // Create reference to GCGeocodingService class
+    myGC = [[GCGeocodingService alloc] init];
     //NSString *address = @"1217 matilda st 55117";
     //[myGC geocodeAddress:address];
     
 }
 
-GCGeocodingService * myGC;
+// Checks if we have an internet connection or not
+- (void)testInternetConnection
+{
+    self.internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Internet is reachable
+    self.internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Yayyy, we have the interwebs!");
+        });
+    };
+    
+    // Internet is not reachable
+    self.internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Someone broke the internet :(");
+        });
+    };
+    
+    [self.internetReachableFoo startNotifier];
+}
 
 #pragma mark AGSMapViewLayerDelegate methods
 
@@ -258,7 +287,7 @@ GCGeocodingService * myGC;
     //pushpin = [AGSPictureMarkerSymbol pictureMarkerSymbolWithImageNamed:@"zoomIn.png"];
     pushpin.offset = CGPointMake(9,16);
     pushpin.leaderPoint = CGPointMake(-9,11);
-    [pushpin setSize:CGSizeMake(10,15)];
+    [pushpin setSize:CGSizeMake(20,30)];
     AGSSimpleRenderer* renderer = [AGSSimpleRenderer simpleRendererWithSymbol:pushpin];
     self.myGraphicsLayer.renderer = renderer;
     
@@ -404,7 +433,9 @@ GCGeocodingService * myGC;
 
 -(void) gpTool{
     
-    NSLog(@"DSM Name ===== %@", self.dsmname);
+    //NSLog(@"DSM Name ===== %@", self.dsmname);
+    
+    self.loadingIcon.hidden=NO;
     
     NSString *fullTileName = [NSString stringWithFormat:@"%@.img", self.dsmname];
     
@@ -473,7 +504,7 @@ GCGeocodingService * myGC;
             [self.solarHoursArray removeObjectAtIndex:12];
             NSLog(@"%@", self.solarHoursArray);
         };
-        
+        self.loadingIcon.hidden=YES;
         self.resultsDrawer.hidden = NO;
         
     }
