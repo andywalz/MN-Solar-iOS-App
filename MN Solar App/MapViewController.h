@@ -65,6 +65,29 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *zoomOut;
 - (IBAction)zoomOut:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *janVal;
+@property (weak, nonatomic) IBOutlet UILabel *febVal;
+@property (weak, nonatomic) IBOutlet UILabel *marVal;
+@property (weak, nonatomic) IBOutlet UILabel *aprVal;
+@property (weak, nonatomic) IBOutlet UILabel *mayVal;
+@property (weak, nonatomic) IBOutlet UILabel *junVal;
+@property (weak, nonatomic) IBOutlet UILabel *julVal;
+@property (weak, nonatomic) IBOutlet UILabel *augVal;
+@property (weak, nonatomic) IBOutlet UILabel *sepVal;
+@property (weak, nonatomic) IBOutlet UILabel *octVal;
+@property (weak, nonatomic) IBOutlet UILabel *novVal;
+@property (weak, nonatomic) IBOutlet UILabel *decVal;
+
+@property (weak, nonatomic) IBOutlet UILabel *janHr;
+@property (weak, nonatomic) IBOutlet UILabel *febHr;
+@property (weak, nonatomic) IBOutlet UILabel *marHr;
+@property (weak, nonatomic) IBOutlet UILabel *aprHr;
+@property (weak, nonatomic) IBOutlet UILabel *mayHr;
+@property (weak, nonatomic) IBOutlet UILabel *junHr;
+@property (weak, nonatomic) IBOutlet UILabel *julHr;
+
+
+
 
 
 @property (weak, nonatomic) IBOutlet UIButton *solarToggle;

@@ -504,6 +504,23 @@ GCGeocodingService * myGC;
             [self.solarHoursArray removeObjectAtIndex:12];
             NSLog(@"%@", self.solarHoursArray);
         };
+        
+        self.janVal.text = [self.solarValueArray objectAtIndex:0];
+        self.febVal.text = [self.solarValueArray objectAtIndex:1];
+        self.marVal.text = [self.solarValueArray objectAtIndex:2];
+        self.aprVal.text = [self.solarValueArray objectAtIndex:3];
+        self.mayVal.text = [self.solarValueArray objectAtIndex:4];
+        self.junVal.text = [self.solarValueArray objectAtIndex:5];
+        self.julVal.text = [self.solarValueArray objectAtIndex:6];
+        self.augVal.text = [self.solarValueArray objectAtIndex:7];
+        self.sepVal.text = [self.solarValueArray objectAtIndex:8];
+        self.octVal.text = [self.solarValueArray objectAtIndex:9];
+        self.novVal.text = [self.solarValueArray objectAtIndex:10];
+        self.decVal.text = [self.solarValueArray objectAtIndex:11];
+        
+        self.janHr.text = [self.solarHoursArray objectAtIndex:0];
+
+
         self.loadingIcon.hidden=YES;
         self.resultsDrawer.hidden = NO;
         
