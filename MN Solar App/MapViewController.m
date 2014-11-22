@@ -199,7 +199,6 @@ GCGeocodingService * myGC;
     
     self.dsmname = temp;
     
-    NSLog(@"DSM NAME UPPER === %@", self.dsmname);
     
     if (!fullName && !self.dsmname){
         NSLog(@"No Data!");
@@ -285,8 +284,8 @@ GCGeocodingService * myGC;
     
     AGSPictureMarkerSymbol* pushpin = [AGSPictureMarkerSymbol pictureMarkerSymbolWithImageNamed:@"bluepushpin"];
     //pushpin = [AGSPictureMarkerSymbol pictureMarkerSymbolWithImageNamed:@"zoomIn.png"];
-    pushpin.offset = CGPointMake(9,16);
-    pushpin.leaderPoint = CGPointMake(-9,11);
+    pushpin.offset = CGPointMake(0,15);
+    //pushpin.leaderPoint = CGPointMake(-9,11);
     [pushpin setSize:CGSizeMake(20,30)];
     AGSSimpleRenderer* renderer = [AGSSimpleRenderer simpleRendererWithSymbol:pushpin];
     self.myGraphicsLayer.renderer = renderer;
@@ -482,44 +481,129 @@ GCGeocodingService * myGC;
 //this is the delegate method that gets called when GP completes successfully
 - (void) geoprocessor:(AGSGeoprocessor*) geoprocessor   operation:(NSOperation*) op didExecuteWithResults:(NSArray*) results  messages:(NSArray*) messages {
     
+    
+    
     for (AGSGPParameterValue* param in results) {
         //NSLog(@"Parameter: %@", param.name);
+        
         if ([param.name isEqualToString: @"Solar_Value"]){
             self.solarValue = param.value;
-            
+            NSNumber *sunInsolMax = 0;
             // Split string into array
             self.solarValueArray = [self.solarValue componentsSeparatedByString: @"\n"];
             
             // Remove blank item from end of array
             [self.solarValueArray removeObjectAtIndex:12];
-            NSLog(@"%@", self.solarValueArray);
+            
+            self.solarValueArrayNum = [[NSMutableArray alloc]init];
+            self.solarValueArrayNumkwh = [[NSMutableArray alloc] init];
+            
+            // Convert string array to NSDecimalNumber array
+            for (NSInteger i = 0, count = [self.solarValueArray count]; i < count; i++){
+
+                NSNumber *convertToNum = [NSDecimalNumber decimalNumberWithString:self.solarValueArray[i]];
+                
+                [self.solarValueArrayNum addObject:convertToNum];
+                
+                float convertToNumFloat= [convertToNum floatValue];
+                float kwh = convertToNumFloat/1000;
+                NSNumber *kwhtoArray = [NSNumber numberWithFloat:kwh];
+                [self.solarValueArrayNumkwh addObject:kwhtoArray];
+                 };
+            
+            float totalInsValue;
+            
+            // Iterate kwh array, find sum, and find largest value
+            for (NSInteger i = 0, count = [self.solarValueArrayNumkwh count]; i < count; i++){
+      
+                if (self.solarValueArrayNumkwh[i]>sunInsolMax){
+                    sunInsolMax = self.solarValueArrayNumkwh[i];
+                    self.maxInsVal = self.solarValueArrayNumkwh[i];
+                };
+                
+                totalInsValue += [self.solarValueArrayNumkwh[i] floatValue];
+                
+            };
+            
+            self.totalInsVal = [NSNumber numberWithFloat:totalInsValue];
+            self.maxIns.text = [self.maxInsVal stringValue];
+            self.totalIns.text = [self.totalInsVal stringValue];
+            
         }
         else if ([param.name isEqualToString: @"Solar_Hours"]){
             self.solarHours = param.value;
-            
+            NSNumber *sunHrMax = 0;
             // Split string into array
             self.solarHoursArray = [self.solarHours componentsSeparatedByString: @"\n"];
             
             // Remove blank item from end of array
             [self.solarHoursArray removeObjectAtIndex:12];
-            NSLog(@"%@", self.solarHoursArray);
+            
+            self.solarHoursArrayNum = [[NSMutableArray alloc]init];
+            self.solarHoursArrayNumFloat = [[NSMutableArray alloc]init];
+            
+            // Convert string array to NSDecimalNumber array
+            for (NSInteger i = 0, count = [self.solarHoursArray count]; i < count; i++){
+                NSNumber *convertToNum = [NSDecimalNumber decimalNumberWithString:self.solarHoursArray[i]];
+                float convertToNumFloat = [convertToNum floatValue];
+                NSNumber *sunHrs = [NSNumber numberWithFloat:convertToNumFloat];
+                [self.solarHoursArrayNum addObject:convertToNum];
+                [self.solarHoursArrayNumFloat addObject:sunHrs];
+            };
+            
+            float totalSunHrValue;
+            
+            // Iterate kwh array, find sum, and find largest value
+            for (NSInteger i = 0, count = [self.solarHoursArrayNumFloat count]; i < count; i++){
+                
+                if (self.solarHoursArrayNumFloat[i]>sunHrMax){
+                    sunHrMax = self.solarHoursArrayNumFloat[i];
+                    self.maxHrsVal = self.solarHoursArrayNumFloat[i];
+                };
+                
+                totalSunHrValue += [self.solarHoursArrayNumFloat[i] floatValue];
+                
+            };
+            
+            /*// Iterate NSDecimalNumber array and find largest value
+            for (NSInteger i = 0, count = [self.solarHoursArrayNum count]; i < count; i++){
+                if ([self.solarHoursArrayNum[i] compare:sunHrMax]== NSOrderedDescending){
+                    self.maxHrsVal = self.solarHoursArrayNum[i];
+                    sunHrMax = self.solarHoursArrayNum[i];
+                };
+            };*/
+            
+            self.totalHrsVal = [NSNumber numberWithFloat:totalSunHrValue];
+            self.maxHrs.text = [self.maxHrsVal stringValue];
+            self.totalHrs.text = [self.totalHrsVal stringValue];
         };
         
-        self.janVal.text = [self.solarValueArray objectAtIndex:0];
-        self.febVal.text = [self.solarValueArray objectAtIndex:1];
-        self.marVal.text = [self.solarValueArray objectAtIndex:2];
-        self.aprVal.text = [self.solarValueArray objectAtIndex:3];
-        self.mayVal.text = [self.solarValueArray objectAtIndex:4];
-        self.junVal.text = [self.solarValueArray objectAtIndex:5];
-        self.julVal.text = [self.solarValueArray objectAtIndex:6];
-        self.augVal.text = [self.solarValueArray objectAtIndex:7];
-        self.sepVal.text = [self.solarValueArray objectAtIndex:8];
-        self.octVal.text = [self.solarValueArray objectAtIndex:9];
-        self.novVal.text = [self.solarValueArray objectAtIndex:10];
-        self.decVal.text = [self.solarValueArray objectAtIndex:11];
+        // Change value label using kwh array (float) as string value
+        self.janVal.text = [[self.solarValueArrayNumkwh objectAtIndex:0] stringValue];
+        self.febVal.text = [[self.solarValueArrayNumkwh objectAtIndex:1] stringValue];
+        self.marVal.text = [[self.solarValueArrayNumkwh objectAtIndex:2] stringValue];
+        self.aprVal.text = [[self.solarValueArrayNumkwh objectAtIndex:3] stringValue];
+        self.mayVal.text = [[self.solarValueArrayNumkwh objectAtIndex:4] stringValue];
+        self.junVal.text = [[self.solarValueArrayNumkwh objectAtIndex:5] stringValue];
+        self.julVal.text = [[self.solarValueArrayNumkwh objectAtIndex:6] stringValue];
+        self.augVal.text = [[self.solarValueArrayNumkwh objectAtIndex:7] stringValue];
+        self.sepVal.text = [[self.solarValueArrayNumkwh objectAtIndex:8] stringValue];
+        self.octVal.text = [[self.solarValueArrayNumkwh objectAtIndex:9] stringValue];
+        self.novVal.text = [[self.solarValueArrayNumkwh objectAtIndex:10] stringValue];
+        self.decVal.text = [[self.solarValueArrayNumkwh objectAtIndex:11] stringValue];
         
         self.janHr.text = [self.solarHoursArray objectAtIndex:0];
-
+        self.febHr.text = [self.solarHoursArray objectAtIndex:1];
+        self.marHr.text = [self.solarHoursArray objectAtIndex:2];
+        self.aprHr.text = [self.solarHoursArray objectAtIndex:3];
+        self.mayHr.text = [self.solarHoursArray objectAtIndex:4];
+        self.junHr.text = [self.solarHoursArray objectAtIndex:5];
+        self.julHr.text = [self.solarHoursArray objectAtIndex:6];
+        self.augHr.text = [self.solarHoursArray objectAtIndex:7];
+        self.sepHr.text = [self.solarHoursArray objectAtIndex:8];
+        self.octHr.text = [self.solarHoursArray objectAtIndex:9];
+        self.novHr.text = [self.solarHoursArray objectAtIndex:10];
+        self.decHr.text = [self.solarHoursArray objectAtIndex:11];
 
         self.loadingIcon.hidden=YES;
         self.resultsDrawer.hidden = NO;

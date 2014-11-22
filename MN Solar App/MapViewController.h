@@ -47,7 +47,11 @@
 @property (nonatomic,weak) NSString * solarValue;
 @property (nonatomic,weak) NSString * solarHours;
 @property (nonatomic,weak) NSMutableArray * solarValueArray;
+@property (nonatomic,strong) NSMutableArray * solarValueArrayNum;
+@property (nonatomic,strong) NSMutableArray * solarValueArrayNumkwh;
 @property (nonatomic, weak) NSMutableArray * solarHoursArray;
+@property (nonatomic, strong) NSMutableArray * solarHoursArrayNum;
+@property (nonatomic, strong) NSMutableArray * solarHoursArrayNumFloat;
 
 @property(nonatomic,weak)AGSImageServiceLayer *solarLayer;
 
@@ -65,6 +69,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *zoomOut;
 - (IBAction)zoomOut:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UILabel *janVal;
 @property (weak, nonatomic) IBOutlet UILabel *febVal;
 @property (weak, nonatomic) IBOutlet UILabel *marVal;
@@ -85,10 +90,20 @@
 @property (weak, nonatomic) IBOutlet UILabel *mayHr;
 @property (weak, nonatomic) IBOutlet UILabel *junHr;
 @property (weak, nonatomic) IBOutlet UILabel *julHr;
+@property (weak, nonatomic) IBOutlet UILabel *augHr;
+@property (weak, nonatomic) IBOutlet UILabel *sepHr;
+@property (weak, nonatomic) IBOutlet UILabel *octHr;
+@property (weak, nonatomic) IBOutlet UILabel *novHr;
+@property (weak, nonatomic) IBOutlet UILabel *decHr;
+@property (weak, nonatomic) IBOutlet UILabel *maxIns;
+@property (weak, nonatomic) IBOutlet UILabel *maxHrs;
+@property (weak, nonatomic) IBOutlet UILabel *totalIns;
+@property (weak, nonatomic) IBOutlet UILabel *totalHrs;
 
-
-
-
+@property (strong, nonatomic) NSNumber *maxInsVal;
+@property (strong, nonatomic) NSNumber *maxHrsVal;
+@property (strong, nonatomic) NSNumber *totalInsVal;
+@property (strong, nonatomic) NSNumber *totalHrsVal;
 
 @property (weak, nonatomic) IBOutlet UIButton *solarToggle;
 - (IBAction)solarToggle:(id)sender;
