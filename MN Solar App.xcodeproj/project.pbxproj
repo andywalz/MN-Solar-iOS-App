@@ -63,6 +63,7 @@
 		3523ABD91A203A6000956DF2 /* EditInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInfoViewController.m; sourceTree = "<group>"; };
 		3523ABDB1A203C6C00956DF2 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		3523ABDC1A203C6C00956DF2 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		3523ABDF1A2141A500956DF2 /* solarDB.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = solarDB.sql; sourceTree = "<group>"; };
 		3547C4CA1A1F88A30023232F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3547C4CC1A1F89660023232F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		3547C4CD1A1F89660023232F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -133,6 +134,7 @@
 		CA8ED8FE1A058978009728AE = {
 			isa = PBXGroup;
 			children = (
+				3523ABDF1A2141A500956DF2 /* solarDB.sql */,
 				3523ABD71A20384400956DF2 /* sampledb.sql */,
 				3523ABD21A20295100956DF2 /* libsqlite3.dylib */,
 				3547C4CA1A1F88A30023232F /* SystemConfiguration.framework */,
