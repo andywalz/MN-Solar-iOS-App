@@ -26,6 +26,35 @@
     
     self.location.text = [NSString stringWithFormat:@"Lat: %f  Long: %f",self.mainMapView.wgsPoint.y, self.mainMapView.wgsPoint.x];
     
+    
+    // Change value label using kwh array (float) as string value
+    self.janVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:0] stringValue];
+    self.febVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:1] stringValue];
+    self.marVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:2] stringValue];
+    self.aprVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:3] stringValue];
+    self.mayVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:4] stringValue];
+    self.junVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:5] stringValue];
+    self.julVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:6] stringValue];
+    self.augVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:7] stringValue];
+    self.sepVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:8] stringValue];
+    self.octVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:9] stringValue];
+    self.novVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:10] stringValue];
+    self.decVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:11] stringValue];
+    
+    self.janHr.text = [self.mainMapView.solarHoursArray objectAtIndex:0];
+    self.febHr.text = [self.mainMapView.solarHoursArray objectAtIndex:1];
+    self.marHr.text = [self.mainMapView.solarHoursArray objectAtIndex:2];
+    self.aprHr.text = [self.mainMapView.solarHoursArray objectAtIndex:3];
+    self.mayHr.text = [self.mainMapView.solarHoursArray objectAtIndex:4];
+    self.junHr.text = [self.mainMapView.solarHoursArray objectAtIndex:5];
+    self.julHr.text = [self.mainMapView.solarHoursArray objectAtIndex:6];
+    self.augHr.text = [self.mainMapView.solarHoursArray objectAtIndex:7];
+    self.sepHr.text = [self.mainMapView.solarHoursArray objectAtIndex:8];
+    self.octHr.text = [self.mainMapView.solarHoursArray objectAtIndex:9];
+    self.novHr.text = [self.mainMapView.solarHoursArray objectAtIndex:10];
+    self.decHr.text = [self.mainMapView.solarHoursArray objectAtIndex:11];
+    
+    
     // set the delegate for the map view
     self.solarLocMap.layerDelegate = self;
     self.satLocMap.layerDelegate = self;
@@ -40,6 +69,7 @@
     
     [self.solarLocMap zoomToEnvelope:envelope animated:YES];
     [self.satLocMap zoomToEnvelope:envelope animated:YES];
+    
     
     /*
     NSLog(@"%@",self.mainMapView.solarLayer);
@@ -62,12 +92,14 @@
     
     NSString *chartURL = [NSString stringWithFormat:@"http://solar.maps.umn.edu/ios/chart2.php?1=%@&2=%@&3=%@&4=%@&5=%@&6=%@&7=%@&8=%@&9=%@&10=%@&11=%@&12=%@",[self.mainMapView.solarValueArrayNumkwh objectAtIndex:0],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:1],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:2],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:3],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:4],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:5],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:6],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:7],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:8],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:9],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:10],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:11]];
     
+        NSString *monthlyHrsURL = [NSString stringWithFormat:@"http://solar.maps.umn.edu/ios/chart2.php?1=%@&2=%@&3=%@&4=%@&5=%@&6=%@&7=%@&8=%@&9=%@&10=%@&11=%@&12=%@",[self.mainMapView.solarHoursArray objectAtIndex:0],[self.mainMapView.solarHoursArray objectAtIndex:1],[self.mainMapView.solarHoursArray objectAtIndex:2],[self.mainMapView.solarHoursArray objectAtIndex:3],[self.mainMapView.solarHoursArray objectAtIndex:4],[self.mainMapView.solarHoursArray objectAtIndex:5],[self.mainMapView.solarHoursArray objectAtIndex:6],[self.mainMapView.solarHoursArray objectAtIndex:7],[self.mainMapView.solarHoursArray objectAtIndex:8],[self.mainMapView.solarHoursArray objectAtIndex:9],[self.mainMapView.solarHoursArray objectAtIndex:10],[self.mainMapView.solarHoursArray objectAtIndex:11]];
+    
     NSLog(@"%@",chartURL);
     NSURL *appleURL; appleURL =[ NSURL URLWithString:chartURL];
-    
+    NSURL *shURL; shURL =[ NSURL URLWithString:monthlyHrsURL];
     [self.monthInsWV loadRequest:[ NSURLRequest requestWithURL: appleURL]];
     
-    [self.monthSunHrsWV loadRequest:[ NSURLRequest requestWithURL: appleURL]];
+    [self.monthSunHrsWV loadRequest:[ NSURLRequest requestWithURL: shURL]];
     
     self.monthInsWV.hidden = NO;
     
