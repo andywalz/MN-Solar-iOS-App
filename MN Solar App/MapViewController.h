@@ -12,6 +12,7 @@
 #import "GCGeocodingService.h"
 #import "Reachability.h"
 
+#import "ReportViewController.h"
 
 @interface MapViewController : UIViewController <AGSMapViewTouchDelegate, UITextFieldDelegate>
 
@@ -23,7 +24,6 @@
 - (IBAction)solarSwitchToggle:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIView *loadingIconView;
-
 
 @property (weak, nonatomic) IBOutlet UILabel *statusMsgLabel;
 @property (nonatomic, strong) AGSGraphicsLayer *graphicsLayer;

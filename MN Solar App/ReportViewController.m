@@ -7,6 +7,7 @@
 //
 
 #import "ReportViewController.h"
+#import "MapViewController.h"
 
 @interface ReportViewController ()
 
@@ -21,7 +22,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSURL *appleURL; appleURL =[ NSURL URLWithString:@"http://solar.maps.umn.edu/report.php"]; [_reportView loadRequest:[ NSURLRequest requestWithURL: appleURL]];
+    NSLog(@"%@",self.mainMapView);
+    
+    NSString *rptURL = [ NSString stringWithFormat:@"http://solar.maps.umn.edu/report.php?lat=%f&long=%f",self.mainMapView.wgsPoint.y,self.mainMapView.wgsPoint.x];
+    NSLog(@"%@",rptURL);
+    
+    NSURL *appleURL; appleURL =[ NSURL URLWithString:rptURL]; [self.reportView loadRequest:[ NSURLRequest requestWithURL: appleURL]];
     
     self.reportView.hidden = NO;
   

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class MapViewController;
 
 @interface ReportViewController : UIViewController
+
+@property (strong, nonatomic) MapViewController *mainMapView;
 
 @end

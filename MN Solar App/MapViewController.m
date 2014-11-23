@@ -7,7 +7,7 @@
 //
 
 #import "MapViewController.h"
-
+@class ReportViewController;
 @class GCGeocodingService;
 //@synthesize gs;
 
@@ -537,9 +537,9 @@ GCGeocodingService * myGC;
             if(self.totalInsVal.doubleValue / 365.0 >= 2.7){
                 self.solPotential.text = @"[ Optimal ]";
             }else if (self.totalInsVal.doubleValue / 365.0 >= 1.6){
-                self.solPotential.text = @"(Good)";
+                self.solPotential.text = @"[ Good ]";
             }else{
-                self.solPotential.text = @"[Poor]";
+                self.solPotential.text = @"[ Poor ]";
             }
             
             
@@ -654,6 +654,18 @@ GCGeocodingService * myGC;
 - (IBAction)exitHere:(UIStoryboardSegue *)sender {
     //Excute this code upon unwinding
     
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    MapViewController *startVC;
+    ReportViewController *destVC;
+    
+    startVC = (MapViewController *)segue.sourceViewController;
+    destVC = (ReportViewController *)segue.destinationViewController;
+    
+    destVC.mainMapView = startVC;
+    
+    NSLog(@"%@",self.solPotential.text);
 }
 
 
