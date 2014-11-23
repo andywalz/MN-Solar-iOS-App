@@ -21,7 +21,8 @@
 @property (strong, nonatomic) IBOutlet AGSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UISwitch *solarSwitch;
 - (IBAction)solarSwitchToggle:(id)sender;
-@property (weak, nonatomic) IBOutlet UILabel *loadingIcon;
+
+@property (weak, nonatomic) IBOutlet UIView *loadingIconView;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *statusMsgLabel;
@@ -36,6 +37,7 @@
 @property (nonatomic, strong) AGSJSONRequestOperation* currentJsonOp;
 @property (nonatomic, strong) NSOperationQueue *queue;
 @property (nonatomic, strong) UIView* loadingView;
+
 @property(nonatomic, strong)AGSQueryTask* queryTask;
 @property(nonatomic,strong)AGSQuery* query;
 @property(nonatomic,strong) AGSPoint *utm15Point;
@@ -99,11 +101,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *maxHrs;
 @property (weak, nonatomic) IBOutlet UILabel *totalIns;
 @property (weak, nonatomic) IBOutlet UILabel *totalHrs;
+@property (weak, nonatomic) IBOutlet UILabel *dailyHrs;
+@property (weak, nonatomic) IBOutlet UILabel *daillyIns;
 
 @property (strong, nonatomic) NSNumber *maxInsVal;
 @property (strong, nonatomic) NSNumber *maxHrsVal;
 @property (strong, nonatomic) NSNumber *totalInsVal;
 @property (strong, nonatomic) NSNumber *totalHrsVal;
+@property (weak, nonatomic) IBOutlet UILabel *solPotential;
 
 @property (weak, nonatomic) IBOutlet UIButton *solarToggle;
 - (IBAction)solarToggle:(id)sender;

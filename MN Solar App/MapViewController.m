@@ -13,6 +13,8 @@
 
 @interface MapViewController () <AGSMapViewLayerDelegate, AGSQueryTaskDelegate, AGSGeoprocessorDelegate>
 
+@property (strong, nonatomic) IBOutlet UIWebView *chartViewer;
+
 - (IBAction)exitHere:(UIStoryboardSegue *)sender;
 
 @end
@@ -26,7 +28,7 @@ GCGeocodingService * myGC;
     [super viewDidLoad];
     
     self.resultsDrawer.hidden=isHidden;
-    self.loadingIcon.hidden=YES;
+    self.loadingIconView.hidden=YES;
     
     // Check for internet connection
     [self internetReachableFoo];
@@ -98,8 +100,8 @@ GCGeocodingService * myGC;
     [self.mapView enableWrapAround];
     
     // Enable location display on the map
-    [self.mapView.locationDisplay startDataSource];
-    self.mapView.locationDisplay.autoPanMode = AGSLocationDisplayAutoPanModeDefault;
+    //[self.mapView.locationDisplay startDataSource];
+    //self.mapView.locationDisplay.autoPanMode = AGSLocationDisplayAutoPanModeDefault;
 
     // Enable user location
     //[self.mapView.locationDisplay startDataSource];
@@ -434,7 +436,8 @@ GCGeocodingService * myGC;
     
     //NSLog(@"DSM Name ===== %@", self.dsmname);
     
-    self.loadingIcon.hidden=NO;
+    self.loadingIconView.hidden=NO;
+    //self.loadingView.hidden=NO;
     
     NSString *fullTileName = [NSString stringWithFormat:@"%@.img", self.dsmname];
     
@@ -528,6 +531,17 @@ GCGeocodingService * myGC;
             self.totalInsVal = [NSNumber numberWithFloat:totalInsValue];
             self.maxIns.text = [self.maxInsVal stringValue];
             self.totalIns.text = [self.totalInsVal stringValue];
+           // self.daillyIns.text = [[NSNumber numberWithDouble:(self.totalInsVal.doubleValue / 365.0)] stringValue];
+            self.daillyIns.text = [NSString stringWithFormat:@"%0.3f", (self.totalInsVal.doubleValue / 365.0)];
+            
+            if(self.totalInsVal.doubleValue / 365.0 >= 2.7){
+                self.solPotential.text = @"[ Optimal ]";
+            }else if (self.totalInsVal.doubleValue / 365.0 >= 1.6){
+                self.solPotential.text = @"(Good)";
+            }else{
+                self.solPotential.text = @"[Poor]";
+            }
+            
             
         }
         else if ([param.name isEqualToString: @"Solar_Hours"]){
@@ -576,6 +590,7 @@ GCGeocodingService * myGC;
             self.totalHrsVal = [NSNumber numberWithFloat:totalSunHrValue];
             self.maxHrs.text = [self.maxHrsVal stringValue];
             self.totalHrs.text = [self.totalHrsVal stringValue];
+            self.dailyHrs.text = [NSString stringWithFormat:@"%0.3f", (self.totalHrsVal.doubleValue / 365.0)];
         };
         
         // Change value label using kwh array (float) as string value
@@ -604,8 +619,15 @@ GCGeocodingService * myGC;
         self.octHr.text = [self.solarHoursArray objectAtIndex:9];
         self.novHr.text = [self.solarHoursArray objectAtIndex:10];
         self.decHr.text = [self.solarHoursArray objectAtIndex:11];
+        
+        NSString *chartURL = [NSString stringWithFormat:@"http://solar.maps.umn.edu/ios/chart2.php?1=%@&2=%@&3=%@&4=%@&5=%@&6=%@&7=%@&8=%@&9=%@&10=%@&11=%@&12=%@",[self.solarValueArrayNumkwh objectAtIndex:0],[self.solarValueArrayNumkwh objectAtIndex:1],[self.solarValueArrayNumkwh objectAtIndex:2],[self.solarValueArrayNumkwh objectAtIndex:3],[self.solarValueArrayNumkwh objectAtIndex:4],[self.solarValueArrayNumkwh objectAtIndex:5],[self.solarValueArrayNumkwh objectAtIndex:6],[self.solarValueArrayNumkwh objectAtIndex:7],[self.solarValueArrayNumkwh objectAtIndex:8],[self.solarValueArrayNumkwh objectAtIndex:9],[self.solarValueArrayNumkwh objectAtIndex:10],[self.solarValueArrayNumkwh objectAtIndex:11]];
+        
+        NSLog(@"%@",chartURL);
+        NSURL *appleURL; appleURL =[ NSURL URLWithString:chartURL]; [self.chartViewer loadRequest:[ NSURLRequest requestWithURL: appleURL]];
+        
+        self.chartViewer.hidden = NO;
 
-        self.loadingIcon.hidden=YES;
+        self.loadingIconView.hidden=YES;
         self.resultsDrawer.hidden = NO;
         
     }
@@ -631,6 +653,7 @@ GCGeocodingService * myGC;
 
 - (IBAction)exitHere:(UIStoryboardSegue *)sender {
     //Excute this code upon unwinding
+    
 }
 
 
