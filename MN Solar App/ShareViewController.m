@@ -30,13 +30,13 @@
     // Email Content
     NSString *messageBody = @"http://solar.maps.umn.edu/report.php?lat=44.97416308302058&long=-93.22744332263028";
     // To address
-    NSArray *toRecipents = [NSArray arrayWithObject:@"support@appcoda.com"];
+    //NSArray *toRecipents = [NSArray arrayWithObject:@"support@appcoda.com"];
     
     MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
     mc.mailComposeDelegate = self;
     [mc setSubject:emailTitle];
     [mc setMessageBody:messageBody isHTML:NO];
-    [mc setToRecipients:toRecipents];
+    //[mc setToRecipients:toRecipents];
     
     // Present mail view controller on screen
     [self presentViewController:mc animated:YES completion:NULL];
