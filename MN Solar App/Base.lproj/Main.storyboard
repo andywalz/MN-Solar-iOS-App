@@ -720,7 +720,7 @@
         <!--Take Action-->
         <scene sceneID="66k-vr-7Gc">
             <objects>
-                <viewController title="Take Action" id="DRe-T1-5WS" customClass="ReportViewController" sceneMemberID="viewController">
+                <viewController title="Take Action" id="DRe-T1-5WS" customClass="ShareViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cqa-Fd-8XR"/>
                         <viewControllerLayoutGuide type="bottom" id="WIa-nM-HFF"/>
@@ -734,6 +734,9 @@
                                 <state key="normal" title="Share" image="mail_ios7_ios_7.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="mailReport:" destination="DRe-T1-5WS" eventType="touchUpInside" id="6pM-Qd-vtv"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mail Report" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3XR-dG-MEB">
                                 <rect key="frame" x="16" y="90" width="89" height="21"/>
