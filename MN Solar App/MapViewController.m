@@ -793,4 +793,9 @@ GCGeocodingService * myGC;
     
     self.resultsDrawer.hidden = YES;
 }
+- (IBAction)findLocation:(id)sender {
+    // Enable user location
+    [self.mapView.locationDisplay startDataSource];
+
+}
 @end

@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *solarOn;
 @property (weak, nonatomic) IBOutlet UILabel *solarOff;
 
+- (IBAction)findLocation:(id)sender;
 
 
 @property (weak, nonatomic) IBOutlet UIView *loadingIconView;

@@ -42,6 +42,7 @@
 		CA8ED96F1A06DCFC009728AE /* BookmarksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED96E1A06DCFC009728AE /* BookmarksTableViewController.m */; };
 		CA8ED9721A0729BB009728AE /* ReportSaveFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED9711A0729BB009728AE /* ReportSaveFormViewController.m */; };
 		CA8ED9751A073141009728AE /* ReportCustomizedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED9741A073141009728AE /* ReportCustomizedViewController.m */; };
+		CADC41E81A23A6EE0075F750 /* Under_construction.png in Resources */ = {isa = PBXBuildFile; fileRef = CADC41E71A23A6EE0075F750 /* Under_construction.png */; };
 		CAEC98581A0D600200E271F4 /* LocationArrowWht-22.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEC98541A0D600200E271F4 /* LocationArrowWht-22.png */; };
 		CAEC98591A0D600200E271F4 /* LocationArrowWht-44.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEC98551A0D600200E271F4 /* LocationArrowWht-44.png */; };
 		CAEC985A1A0D600200E271F4 /* menu-22.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEC98561A0D600200E271F4 /* menu-22.png */; };
@@ -116,6 +117,7 @@
 		CA8ED9711A0729BB009728AE /* ReportSaveFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportSaveFormViewController.m; sourceTree = "<group>"; };
 		CA8ED9731A073141009728AE /* ReportCustomizedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCustomizedViewController.h; sourceTree = "<group>"; };
 		CA8ED9741A073141009728AE /* ReportCustomizedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCustomizedViewController.m; sourceTree = "<group>"; };
+		CADC41E71A23A6EE0075F750 /* Under_construction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Under_construction.png; sourceTree = "<group>"; };
 		CAEC98541A0D600200E271F4 /* LocationArrowWht-22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LocationArrowWht-22.png"; path = "Assets/LocationArrowWht-22.png"; sourceTree = "<group>"; };
 		CAEC98551A0D600200E271F4 /* LocationArrowWht-44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LocationArrowWht-44.png"; path = "Assets/LocationArrowWht-44.png"; sourceTree = "<group>"; };
 		CAEC98561A0D600200E271F4 /* menu-22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-22.png"; path = "Assets/menu-22.png"; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				CA5328D61A22FD25000188F2 /* mail_ios7_ios_7.png */,
+				CADC41E71A23A6EE0075F750 /* Under_construction.png */,
 				CA45DF3D1A2142C2003A79E8 /* arrow_up_wht.png */,
 				CA47A8881A20FBB800ED8412 /* solar-app-transparent220x235.png */,
 				350DA94C1A1D528800B33723 /* default.gpx */,
@@ -394,6 +397,7 @@
 				CA45DF3E1A2142C2003A79E8 /* arrow_up_wht.png in Resources */,
 				CA8ED9161A058978009728AE /* Main.storyboard in Resources */,
 				CA8ED9561A069426009728AE /* WelcomeViewController.xib in Resources */,
+				CADC41E81A23A6EE0075F750 /* Under_construction.png in Resources */,
 				CAEC985B1A0D600200E271F4 /* solar-app-loading-768x1024.png in Resources */,
 				CAEC985A1A0D600200E271F4 /* menu-22.png in Resources */,
 				CA8ED91B1A058978009728AE /* LaunchScreen.xib in Resources */,

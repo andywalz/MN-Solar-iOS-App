@@ -73,7 +73,7 @@
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
       <PathRunnable
-         FilePath = "/Users/andywalz/Library/Developer/Xcode/DerivedData/MN_Solar_App-fnhoivzkelxkemdpkicdrcchbcfi/Build/Products/Debug-iphonesimulator/MN Solar App.app">
+         FilePath = "/Users/andywalz/Library/Developer/Xcode/DerivedData/MN_Solar_App-fnhoivzkelxkemdpkicdrcchbcfi/Build/Products/Debug-iphoneos/MN Solar App.app">
       </PathRunnable>
       <MacroExpansion>
          <BuildableReference
