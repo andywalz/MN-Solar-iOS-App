@@ -67,7 +67,7 @@
    // [self.satLocMap insertMapLayer:newBasemapLayerR withName:@"Basemap Tiled Layer" atIndex:0];
    
     //zoom to an area
-    AGSEnvelope *envelopeR = [AGSEnvelope envelopeWithXmin:self.mainMapView.utm15Point.y - 200 ymin:self.mainMapView.utm15Point.y - 200 xmax:self.mainMapView.utm15Point.x + 200  ymax:self.mainMapView.utm15Point.y + 200  spatialReference:self.solarLocMap.spatialReference];
+    AGSEnvelope *envelopeR = [AGSEnvelope envelopeWithXmin:self.mainMapView.utm15Point.y - 300 ymin:self.mainMapView.utm15Point.y - 300 xmax:self.mainMapView.utm15Point.x + 300  ymax:self.mainMapView.utm15Point.y + 300  spatialReference:self.solarLocMap.spatialReference];
     
     //add solar layer
     NSURL* surl = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer"];
@@ -98,9 +98,9 @@
   */
     
     
-    NSString *chartURL = [NSString stringWithFormat:@"http://solar.maps.umn.edu/ios/chart2.php?1=%@&2=%@&3=%@&4=%@&5=%@&6=%@&7=%@&8=%@&9=%@&10=%@&11=%@&12=%@",[self.mainMapView.solarValueArrayNumkwh objectAtIndex:0],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:1],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:2],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:3],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:4],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:5],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:6],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:7],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:8],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:9],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:10],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:11]];
+    NSString *chartURL = [NSString stringWithFormat:@"http://solar.maps.umn.edu/ios/chart2.php?bg=FFFFFF&1=%@&2=%@&3=%@&4=%@&5=%@&6=%@&7=%@&8=%@&9=%@&10=%@&11=%@&12=%@",[self.mainMapView.solarValueArrayNumkwh objectAtIndex:0],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:1],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:2],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:3],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:4],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:5],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:6],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:7],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:8],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:9],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:10],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:11]];
     
-    NSString *monthlyHrsURL = [NSString stringWithFormat:@"http://solar.maps.umn.edu/ios/chart2.php?1=%@&2=%@&3=%@&4=%@&5=%@&6=%@&7=%@&8=%@&9=%@&10=%@&11=%@&12=%@",[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:0],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:1],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:2],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:3],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:4],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:5],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:6],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:7],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:8],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:9],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:10],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:11]];
+    NSString *monthlyHrsURL = [NSString stringWithFormat:@"http://solar.maps.umn.edu/ios/chart2.php?bg=FFFFFF&1=%@&2=%@&3=%@&4=%@&5=%@&6=%@&7=%@&8=%@&9=%@&10=%@&11=%@&12=%@",[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:0],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:1],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:2],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:3],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:4],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:5],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:6],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:7],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:8],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:9],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:10],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:11]];
     
     NSURL *appleURL; appleURL =[ NSURL URLWithString:chartURL];
     NSURL *shURL; shURL =[ NSURL URLWithString:monthlyHrsURL];
@@ -111,6 +111,7 @@
     self.monthInsWV.hidden = NO;
     
     self.insolTotal.text = [self.mainMapView.totalInsVal stringValue];
+    self.insolTotal2.text = [self.mainMapView.totalInsVal stringValue];
     self.insolDaily.text = [NSString stringWithFormat:@"%0.3f", (self.mainMapView.totalInsVal.doubleValue / 365.0)];
     if(self.mainMapView.totalInsVal.doubleValue / 365.0 >= 2.7){
         self.solPotential.text = @"[ Optimal ]";
@@ -121,13 +122,16 @@
     }
     
     self.sunHrTotal.text = [self.mainMapView.totalHrsVal stringValue];
-    
+    self.sunHrTotal2.text = [self.mainMapView.totalHrsVal stringValue];
+
     self.sunHrDaily.text = [NSString stringWithFormat:@"%0.3f", (self.mainMapView.totalHrsVal.doubleValue / 365.0)];
     
-    NSString *eusaContact = [NSString stringWithFormat:@"%@\n%@\n%@",self.mainMapView.eusaFULL_NAME,self.mainMapView.eusaPHONE,self.mainMapView.eusaWEBSITE];
+    NSString *eusaContact = [NSString stringWithFormat:@"%@\r%@\r%@",self.mainMapView.eusaFULL_NAME,self.mainMapView.eusaPHONE,self.mainMapView.eusaWEBSITE];
     
-    self.EUSA.text = self.mainMapView.eusaFULL_NAME;
+    self.EUSA.text = eusaContact;
     NSLog(@"%@",eusaContact);
+    
+    self.savedData.text = nil;
 }
 
 //3. Implement the layer delegate method
@@ -157,5 +161,12 @@
     
     [self dismissViewControllerAnimated:NO completion:nil];
     
+}
+- (IBAction)installers:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://thecleanenergybuilder.com/directory#resultsType=both&page=0&pageNum=25&order=alphaTitle&proximityNum=60&proximityInput=&textInput=&textSearchTitle=1&textSearchDescription=1&field_established=&field_employees=&field_year=&reload=false&mapSize=large&allResults=false&tids2=&tids3=568&tids4=&tids5=&tids6="]];
+}
+
+- (IBAction)rebates:(id)sender {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.dsireusa.org/solar/incentives/index.cfm?re=1&ee=1&spv=1&st=0&srp=0&state=MN"]];
 }
 @end

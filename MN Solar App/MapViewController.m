@@ -204,36 +204,42 @@ GCGeocodingService * myGC;
 // EUSA query successful
 - (void) queryTask:(AGSQueryTask*)queryTask operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet{
     
-    AGSGraphic *feature = [featureSet.features objectAtIndex:0];
+    self.myFeature = [featureSet.features objectAtIndex:0];
+    //AGSGraphic *feature = [featureSet.features objectAtIndex:0];
+    NSLog(@"TTEST%@",self.myFeature);
     
-    NSString *fn = [feature attributeAsStringForKey:@"FULL_NAME"];
-    self.eusaFULL_NAME = fn;
-    NSString *fs = [feature attributeAsStringForKey:@"STREET"];
-    self.eusaSTREET = fs;
-    NSString *fc = [feature attributeAsStringForKey:@"CITY"];
-    self.eusaCITY = fc;
-    NSString *fz = [feature attributeAsStringForKey:@"ZIP"];
-    self.eusaZIP = fz;
-    NSString *fw =[feature attributeAsStringForKey:@"WEBSITE"];
-    self.eusaWEBSITE = fw;
-    NSString *fp = [feature attributeAsStringForKey:@"PHONE"];
-    self.eusaPHONE = fp;
-    NSString *temp = [feature attributeAsStringForKey:@"Name"];
-    self.dsmname = temp;
+    NSString *temp = [self.myFeature attributeAsStringForKey:@"Name"];
+
+    NSString *uTemp = [self.myFeature attributeAsStringForKey:@"FULL_NAME"];
     
-    
-    if (!self.eusaFULL_NAME && !self.dsmname){
+    if (!temp && !uTemp){
         NSLog(@"No Data!");
         
     }else{
         
-        if (!self.eusaFULL_NAME){
+        if (!uTemp){
+            self.dsmname = temp;
+            
             // Error checking doesn't work, currently crashes outside MN
             NSLog(@"DSMName: %@",self.dsmname);
             //[self gpTool];
         }
         else {
+            
+            self.eusaFULL_NAME = uTemp;
+            NSString *fs = [self.myFeature attributeAsStringForKey:@"STREET"];
+            self.eusaSTREET = fs;
+            NSString *fc = [self.myFeature attributeAsStringForKey:@"CITY"];
+            self.eusaCITY = fc;
+            NSString *fz = [self.myFeature attributeAsStringForKey:@"ZIP"];
+            self.eusaZIP = fz;
+            NSString *fw =[self.myFeature attributeAsStringForKey:@"WEBSITE"];
+            self.eusaWEBSITE = fw;
+            NSString *fp = [self.myFeature attributeAsStringForKey:@"PHONE"];
+            self.eusaPHONE = fp;
+            
             NSLog(@"Name: %@, Phone: %@",self.eusaFULL_NAME, self.eusaPHONE);
+            
         };
     
         
@@ -457,8 +463,9 @@ GCGeocodingService * myGC;
 
 -(void) gpTool{
     
-    //NSLog(@"DSM Name ===== %@", self.dsmname);
-    
+    NSLog(@"DSM Name ===== %@", self.dsmname);
+    NSLog(@"IngpToolName: %@, Phone: %@",self.eusaFULL_NAME, self.eusaPHONE);
+
     self.loadingIconView.hidden=NO;
     //self.loadingView.hidden=NO;
     
@@ -691,7 +698,7 @@ GCGeocodingService * myGC;
     
         destVC.mainMapView = startVC;
     
-        NSLog(@"%@",self.eusaFULL_NAME);
+        NSLog(@"LeavingSegueEUSA:%@",self.eusaFULL_NAME);
     }
      
 }

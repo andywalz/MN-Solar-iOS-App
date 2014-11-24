@@ -26,6 +26,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *savedData;
 @property (weak, nonatomic) IBOutlet UILabel *insolTotal;
 @property (weak, nonatomic) IBOutlet UILabel *insolDaily;
+@property (weak, nonatomic) IBOutlet UILabel *insolTotal2;
+@property (weak, nonatomic) IBOutlet UILabel *sunHrTotal2;
+
 @property (weak, nonatomic) IBOutlet UILabel *solPotential;
 @property (weak, nonatomic) IBOutlet UILabel *sunHrTotal;
 @property (weak, nonatomic) IBOutlet UILabel *sunHrDaily;
@@ -57,5 +60,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *decHr;
 @property (weak, nonatomic) IBOutlet UILabel *octHr;
 
+- (IBAction)installers:(id)sender;
+- (IBAction)rebates:(id)sender;
 
 @end
