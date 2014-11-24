@@ -20,26 +20,6 @@
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8DM-Dg-3ZE" customClass="AGSMapView">
                                 <rect key="frame" x="0.0" y="64" width="769" height="960"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="H0w-3B-G2t">
-                                        <rect key="frame" x="190" y="883" width="388" height="29"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <segments>
-                                            <segment title="Gray"/>
-                                            <segment title="Aerial"/>
-                                            <segment title="Roads"/>
-                                        </segments>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <action selector="basemapChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="uKC-BJ-9X1"/>
-                                        </connections>
-                                    </segmentedControl>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TMA-fh-6PD">
-                                        <rect key="frame" x="633" y="883" width="51" height="31"/>
-                                        <color key="onTintColor" red="0.88235294117647056" green="0.5725490196078431" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <action selector="solarSwitchToggle:" destination="BYZ-38-t0r" eventType="valueChanged" id="Cj5-07-s3f"/>
-                                        </connections>
-                                    </switch>
                                     <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u9I-0L-HrG" userLabel="Results Drawer">
                                         <rect key="frame" x="0.0" y="741" width="769" height="219"/>
                                         <subviews>
@@ -210,14 +190,17 @@
                                             <action selector="zoomOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nbD-dW-ebZ"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2YW-kc-ite">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2YW-kc-ite">
                                         <rect key="frame" x="275" y="13" width="101" height="30"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="e4q-mG-iMv"/>
+                                        </constraints>
                                         <state key="normal" title="Log Geocode">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="logGeocodeValue:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AbE-SX-pxb"/>
+                                            <action selector="logGeocodeValue:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r8O-mf-T4q"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kB5-fk-PDT">
@@ -235,6 +218,38 @@
                                         <color key="backgroundColor" red="0.76302222200000003" green="0.8247089782" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TMA-fh-6PD">
+                                        <rect key="frame" x="633" y="883" width="51" height="31"/>
+                                        <color key="onTintColor" red="0.88235294117647056" green="0.5725490196078431" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="solarSwitchToggle:" destination="BYZ-38-t0r" eventType="valueChanged" id="Cj5-07-s3f"/>
+                                        </connections>
+                                    </switch>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="H0w-3B-G2t">
+                                        <rect key="frame" x="190" y="896" width="388" height="29"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <segments>
+                                            <segment title="Gray"/>
+                                            <segment title="Aerial"/>
+                                            <segment title="Roads"/>
+                                        </segments>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="basemapChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="uKC-BJ-9X1"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Solar Off" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VtX-o3-GaP">
+                                        <rect key="frame" x="633" y="920" width="70" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Solar On" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jsm-E3-fgO">
+                                        <rect key="frame" x="633" y="920" width="67" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.88235294119999996" green="0.57254901960000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -338,11 +353,17 @@
                         <outlet property="chartViewer" destination="WkA-0a-cEd" id="JWA-5F-TdI"/>
                         <outlet property="daillyIns" destination="g7B-By-yYL" id="43k-mJ-OFi"/>
                         <outlet property="dailyHrs" destination="rZY-3Q-M1E" id="nao-Ot-Srk"/>
+                        <outlet property="debugBackground" destination="5aU-i7-dVl" id="HkG-I2-GI4"/>
+                        <outlet property="debugLabel" destination="FQT-BO-rm6" id="gpi-MU-2Ad"/>
                         <outlet property="loadingIconView" destination="egQ-6h-uBk" id="jrx-yt-Wy9"/>
+                        <outlet property="logGeocode" destination="2YW-kc-ite" id="jnH-MO-yJd"/>
                         <outlet property="mapView" destination="8DM-Dg-3ZE" id="RS2-AV-y2a"/>
                         <outlet property="resultsDrawer" destination="u9I-0L-HrG" id="vXg-4l-rjy"/>
                         <outlet property="searchBar" destination="QeM-Sy-cNG" id="jsc-KG-NiA"/>
+                        <outlet property="showResults" destination="kB5-fk-PDT" id="6lR-Wb-Ikb"/>
                         <outlet property="solPotential" destination="bGU-Hz-kgf" id="yDs-OF-oea"/>
+                        <outlet property="solarOff" destination="VtX-o3-GaP" id="kob-9U-4xL"/>
+                        <outlet property="solarOn" destination="jsm-E3-fgO" id="h3d-Oh-yfl"/>
                         <outlet property="solarSwitch" destination="TMA-fh-6PD" id="k3C-7j-ffN"/>
                         <outlet property="totalHrs" destination="sMj-A2-Nje" id="Pah-VS-X4R"/>
                         <outlet property="totalIns" destination="IaN-vC-4R3" id="6ih-bP-mJO"/>
@@ -430,6 +451,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Tm4-XV-uDm">
                                 <autoresizingMask key="autoresizingMask"/>

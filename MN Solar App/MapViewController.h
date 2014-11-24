@@ -22,6 +22,10 @@
 @property (strong, nonatomic) IBOutlet AGSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UISwitch *solarSwitch;
 - (IBAction)solarSwitchToggle:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *solarOn;
+@property (weak, nonatomic) IBOutlet UILabel *solarOff;
+
+
 
 @property (weak, nonatomic) IBOutlet UIView *loadingIconView;
 
@@ -65,14 +69,6 @@
 @property(nonatomic,weak)NSString* dsmname;
 @property (weak, nonatomic) IBOutlet UITextField *searchBar;
 
-
-@property (weak, nonatomic) IBOutlet UIButton *zoomIn;
-- (IBAction)zoomIn:(id)sender;
-
-@property (weak, nonatomic) IBOutlet UIButton *zoomOut;
-- (IBAction)zoomOut:(id)sender;
-
-
 @property (weak, nonatomic) IBOutlet UILabel *maxIns;
 @property (weak, nonatomic) IBOutlet UILabel *maxHrs;
 @property (weak, nonatomic) IBOutlet UILabel *totalIns;
@@ -96,7 +92,21 @@
 
 - (IBAction)basemapChanged:(id)sender;
 
+
+
+// DEBUG
+
+@property (weak, nonatomic) IBOutlet UIButton *zoomIn;
+- (IBAction)zoomIn:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *zoomOut;
+- (IBAction)zoomOut:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *logGeocode;
+
 - (IBAction)logGeocodeValue:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *debugLabel;
+@property (weak, nonatomic) IBOutlet UILabel *debugBackground;
+@property (weak, nonatomic) IBOutlet UIButton *showResults;
 
 
 @end

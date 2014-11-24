@@ -15,7 +15,7 @@
 
 
 #import "BookmarksTableViewController.h"
-
+#import "DBManager.h"
 
 @interface BookmarksTableViewController ()
 
@@ -33,13 +33,11 @@
     
     [super viewDidLoad];
     
-    tableData = [NSArray arrayWithObjects:@"Andy Walz", @"Chris Martin", @"Katie Menk", @"Yuanyuan Luo", nil];
+    tableData = [NSArray arrayWithObjects:@"Andy Walz", @"Chris Martin", @"Katie Menk", @"Yuanyuan Luo", @"Devon Piernot", @"Len Kne", @"Chris Brink", @"Dan Thiede", @"Jack Kluempke", @"Ian Xie", nil];
     
+    //NSString *selectSQL = @"SELECT * FROM student";
     
-    
-    NSString *selectSQL = @"SELECT * FROM student";
-    
-    const char *insert_stmt = [selectSQL UTF8String];
+    /*const char *insert_stmt = [selectSQL UTF8String];
     if(sqlite3_prepare_v2(studentData, insert_stmt,  -1, &statement, NULL) == SQLITE_OK)
     {
         while(sqlite3_step(statement) == SQLITE_ROW)
@@ -56,8 +54,8 @@
         }
         
     }
-    [tblStudent reloadData];
-}
+    [tblStudent reloadData];*/
+
     
     // Uncomment the following line to preserve selection between presentations.
     
@@ -108,7 +106,8 @@
      }*/
     
     self.cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
-    self.cell.detailTextLabel.text = @"Test description";
+    self.cell.detailTextLabel.text = @"User's Address Here";
+    self.cell.imageView.image = [UIImage imageNamed:@"solar-app-transparent220x235.png"];
     
     //cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
     return self.cell;
@@ -123,7 +122,7 @@
     //[messageAlert show];
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType =UITableViewCellAccessoryDetailButton;
+    cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
     
 }
 

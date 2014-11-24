@@ -24,6 +24,7 @@
 
 @property (strong, nonatomic) UITableViewCell *cell;
 @property (strong, nonatomic) NSArray *firstname;
+//@property (nonatomic, strong) DBManager *dbManager;
 
 
 @end

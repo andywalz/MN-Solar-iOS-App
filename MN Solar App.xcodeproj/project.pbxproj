@@ -16,6 +16,10 @@
 		35A59BCE1A14194D008BEC96 /* zoomIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 35A59BCC1A14194D008BEC96 /* zoomIn.png */; };
 		35A59BCF1A14194D008BEC96 /* zoomOut.png in Resources */ = {isa = PBXBuildFile; fileRef = 35A59BCD1A14194D008BEC96 /* zoomOut.png */; };
 		35C0E0EC1A0AF41100B32B68 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 35C0E0EB1A0AF41100B32B68 /* ArcGIS.bundle */; };
+		35C6F2631A22E87E005265C2 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C6F2621A22E87E005265C2 /* DBManager.m */; };
+		35C6F2681A22EB9B005265C2 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C6F2651A22EB9B005265C2 /* FMDatabase.m */; };
+		35C6F2691A22EB9B005265C2 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C6F2671A22EB9B005265C2 /* FMResultSet.m */; };
+		35C6F26B1A22EBF4005265C2 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C6F26A1A22EBF4005265C2 /* libsqlite3.dylib */; };
 		CA1E55A51A22AFCC009C0D88 /* DismissSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1E55A41A22AFCC009C0D88 /* DismissSegue.m */; };
 		CA45DF3E1A2142C2003A79E8 /* arrow_up_wht.png in Resources */ = {isa = PBXBuildFile; fileRef = CA45DF3D1A2142C2003A79E8 /* arrow_up_wht.png */; };
 		CA47A8891A20FBB800ED8412 /* solar-app-transparent220x235.png in Resources */ = {isa = PBXBuildFile; fileRef = CA47A8881A20FBB800ED8412 /* solar-app-transparent220x235.png */; };
@@ -65,6 +69,13 @@
 		35A59BCC1A14194D008BEC96 /* zoomIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zoomIn.png; sourceTree = "<group>"; };
 		35A59BCD1A14194D008BEC96 /* zoomOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zoomOut.png; sourceTree = "<group>"; };
 		35C0E0EB1A0AF41100B32B68 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ArcGIS.bundle; sourceTree = "<group>"; };
+		35C6F2611A22E87E005265C2 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		35C6F2621A22E87E005265C2 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		35C6F2641A22EB9B005265C2 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		35C6F2651A22EB9B005265C2 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		35C6F2661A22EB9B005265C2 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		35C6F2671A22EB9B005265C2 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		35C6F26A1A22EBF4005265C2 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		CA1E55A31A22AFCC009C0D88 /* DismissSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissSegue.h; sourceTree = "<group>"; };
 		CA1E55A41A22AFCC009C0D88 /* DismissSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissSegue.m; sourceTree = "<group>"; };
 		CA45DF3D1A2142C2003A79E8 /* arrow_up_wht.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_up_wht.png; sourceTree = "<group>"; };
@@ -110,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35C6F26B1A22EBF4005265C2 /* libsqlite3.dylib in Frameworks */,
 				3547C4CB1A1F88A30023232F /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,6 +139,7 @@
 		CA8ED8FE1A058978009728AE = {
 			isa = PBXGroup;
 			children = (
+				35C6F26A1A22EBF4005265C2 /* libsqlite3.dylib */,
 				3547C4CA1A1F88A30023232F /* SystemConfiguration.framework */,
 				CAEC984B1A0D5EB400E271F4 /* Assets */,
 				35C0E0EB1A0AF41100B32B68 /* ArcGIS.bundle */,
@@ -148,6 +161,10 @@
 		CA8ED9091A058978009728AE /* MN Solar App */ = {
 			isa = PBXGroup;
 			children = (
+				35C6F2641A22EB9B005265C2 /* FMDatabase.h */,
+				35C6F2651A22EB9B005265C2 /* FMDatabase.m */,
+				35C6F2661A22EB9B005265C2 /* FMResultSet.h */,
+				35C6F2671A22EB9B005265C2 /* FMResultSet.m */,
 				CA1E55A31A22AFCC009C0D88 /* DismissSegue.h */,
 				CA1E55A41A22AFCC009C0D88 /* DismissSegue.m */,
 				CA8ED90E1A058978009728AE /* AppDelegate.h */,
@@ -164,6 +181,8 @@
 				CA8ED9711A0729BB009728AE /* ReportSaveFormViewController.m */,
 				CA8ED96D1A06DCFC009728AE /* BookmarksTableViewController.h */,
 				CA8ED96E1A06DCFC009728AE /* BookmarksTableViewController.m */,
+				35C6F2611A22E87E005265C2 /* DBManager.h */,
+				35C6F2621A22E87E005265C2 /* DBManager.m */,
 				CA8ED95D1A06A514009728AE /* MenuTableViewController.h */,
 				CA8ED95E1A06A514009728AE /* MenuTableViewController.m */,
 				CA8ED9571A069536009728AE /* CameraViewController.h */,
@@ -393,9 +412,12 @@
 				3547C4D11A1F8F5C0023232F /* resultsDrawer.m in Sources */,
 				CA6E55D51A0C865A00D60677 /* TakeActionViewController.m in Sources */,
 				35A2544D1A1BF4A200BFBCBC /* GCGeocodingService.m in Sources */,
+				35C6F2681A22EB9B005265C2 /* FMDatabase.m in Sources */,
 				CA8ED9751A073141009728AE /* ReportCustomizedViewController.m in Sources */,
+				35C6F2691A22EB9B005265C2 /* FMResultSet.m in Sources */,
 				CA8ED9551A069426009728AE /* WelcomeViewController.m in Sources */,
 				CA8ED96F1A06DCFC009728AE /* BookmarksTableViewController.m in Sources */,
+				35C6F2631A22E87E005265C2 /* DBManager.m in Sources */,
 				CA1E55A51A22AFCC009C0D88 /* DismissSegue.m in Sources */,
 				CA8ED9591A069536009728AE /* CameraViewController.m in Sources */,
 				CA8ED9721A0729BB009728AE /* ReportSaveFormViewController.m in Sources */,

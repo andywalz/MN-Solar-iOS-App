@@ -29,6 +29,16 @@ GCGeocodingService * myGC;
     
     self.resultsDrawer.hidden=isHidden;
     self.loadingIconView.hidden=YES;
+    self.solarOff.hidden = YES;
+    
+    // HIDE DEBUG
+    self.zoomIn.hidden = YES;
+    self.zoomOut.hidden = YES;
+    self.debugBackground.hidden = YES;
+    self.debugLabel.hidden = YES;
+    self.showResults.hidden = YES;
+    self.logGeocode.hidden = YES;
+    
     
     // Check for internet connection
     [self internetReachableFoo];
@@ -332,10 +342,13 @@ GCGeocodingService * myGC;
 
 - (IBAction)solarSwitchToggle:(id)sender {
     if ([self.solarSwitch isOn]){
-        NSLog(@"Switch is on");
         self.solarLayer.visible = YES;
+        self.solarOff.hidden = YES;
+        self.solarOn.hidden = NO;
     }else{
         self.solarLayer.visible = NO;
+        self.solarOn.hidden = YES;
+        self.solarOff.hidden = NO;
     }
 }
 
