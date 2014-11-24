@@ -60,5 +60,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *decHr;
 @property (weak, nonatomic) IBOutlet UILabel *octHr;
 
+- (IBAction)installers:(id)sender;
+- (IBAction)rebates:(id)sender;
 
 @end

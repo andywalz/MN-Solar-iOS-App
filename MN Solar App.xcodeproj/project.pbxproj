@@ -19,6 +19,7 @@
 		CA1E55A51A22AFCC009C0D88 /* DismissSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1E55A41A22AFCC009C0D88 /* DismissSegue.m */; };
 		CA45DF3E1A2142C2003A79E8 /* arrow_up_wht.png in Resources */ = {isa = PBXBuildFile; fileRef = CA45DF3D1A2142C2003A79E8 /* arrow_up_wht.png */; };
 		CA47A8891A20FBB800ED8412 /* solar-app-transparent220x235.png in Resources */ = {isa = PBXBuildFile; fileRef = CA47A8881A20FBB800ED8412 /* solar-app-transparent220x235.png */; };
+		CA5328D71A22FD25000188F2 /* mail_ios7_ios_7.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5328D61A22FD25000188F2 /* mail_ios7_ios_7.png */; };
 		CA6E55D51A0C865A00D60677 /* TakeActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6E55D41A0C865A00D60677 /* TakeActionViewController.m */; };
 		CA8ED90D1A058978009728AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED90C1A058978009728AE /* main.m */; };
 		CA8ED9101A058978009728AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED90F1A058978009728AE /* AppDelegate.m */; };
@@ -69,6 +70,7 @@
 		CA1E55A41A22AFCC009C0D88 /* DismissSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissSegue.m; sourceTree = "<group>"; };
 		CA45DF3D1A2142C2003A79E8 /* arrow_up_wht.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_up_wht.png; sourceTree = "<group>"; };
 		CA47A8881A20FBB800ED8412 /* solar-app-transparent220x235.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "solar-app-transparent220x235.png"; sourceTree = "<group>"; };
+		CA5328D61A22FD25000188F2 /* mail_ios7_ios_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_ios7_ios_7.png; sourceTree = "<group>"; };
 		CA6E55D31A0C865A00D60677 /* TakeActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeActionViewController.h; sourceTree = "<group>"; };
 		CA6E55D41A0C865A00D60677 /* TakeActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeActionViewController.m; sourceTree = "<group>"; };
 		CA8ED90B1A058978009728AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 		CAEC984B1A0D5EB400E271F4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				CA5328D61A22FD25000188F2 /* mail_ios7_ios_7.png */,
 				CA45DF3D1A2142C2003A79E8 /* arrow_up_wht.png */,
 				CA47A8881A20FBB800ED8412 /* solar-app-transparent220x235.png */,
 				350DA94C1A1D528800B33723 /* default.gpx */,
@@ -367,6 +370,7 @@
 				CAEC985A1A0D600200E271F4 /* menu-22.png in Resources */,
 				CA8ED91B1A058978009728AE /* LaunchScreen.xib in Resources */,
 				35A59BCF1A14194D008BEC96 /* zoomOut.png in Resources */,
+				CA5328D71A22FD25000188F2 /* mail_ios7_ios_7.png in Resources */,
 				35A59BCE1A14194D008BEC96 /* zoomIn.png in Resources */,
 				CA8ED9181A058978009728AE /* Images.xcassets in Resources */,
 				35C0E0EC1A0AF41100B32B68 /* ArcGIS.bundle in Resources */,

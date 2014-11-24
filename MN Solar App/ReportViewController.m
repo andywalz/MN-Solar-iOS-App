@@ -67,7 +67,7 @@
    // [self.satLocMap insertMapLayer:newBasemapLayerR withName:@"Basemap Tiled Layer" atIndex:0];
    
     //zoom to an area
-    AGSEnvelope *envelopeR = [AGSEnvelope envelopeWithXmin:self.mainMapView.utm15Point.y - 200 ymin:self.mainMapView.utm15Point.y - 200 xmax:self.mainMapView.utm15Point.x + 200  ymax:self.mainMapView.utm15Point.y + 200  spatialReference:self.solarLocMap.spatialReference];
+    AGSEnvelope *envelopeR = [AGSEnvelope envelopeWithXmin:self.mainMapView.utm15Point.y - 300 ymin:self.mainMapView.utm15Point.y - 300 xmax:self.mainMapView.utm15Point.x + 300  ymax:self.mainMapView.utm15Point.y + 300  spatialReference:self.solarLocMap.spatialReference];
     
     //add solar layer
     NSURL* surl = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer"];
@@ -161,5 +161,12 @@
     
     [self dismissViewControllerAnimated:NO completion:nil];
     
+}
+- (IBAction)installers:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://thecleanenergybuilder.com/directory#resultsType=both&page=0&pageNum=25&order=alphaTitle&proximityNum=60&proximityInput=&textInput=&textSearchTitle=1&textSearchDescription=1&field_established=&field_employees=&field_year=&reload=false&mapSize=large&allResults=false&tids2=&tids3=568&tids4=&tids5=&tids6="]];
+}
+
+- (IBAction)rebates:(id)sender {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.dsireusa.org/solar/incentives/index.cfm?re=1&ee=1&spv=1&st=0&srp=0&state=MN"]];
 }
 @end
