@@ -195,25 +195,35 @@ GCGeocodingService * myGC;
 - (void) queryTask:(AGSQueryTask*)queryTask operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet{
     
     AGSGraphic *feature = [featureSet.features objectAtIndex:0];
-    NSString *fullName = [feature attributeAsStringForKey:@"FULL_NAME"];
-    NSString *phone = [feature attributeAsStringForKey:@"PHONE"];
-    NSString *temp = [feature attributeAsStringForKey:@"Name"];
     
+    NSString *fn = [feature attributeAsStringForKey:@"FULL_NAME"];
+    self.eusaFULL_NAME = fn;
+    NSString *fs = [feature attributeAsStringForKey:@"STREET"];
+    self.eusaSTREET = fs;
+    NSString *fc = [feature attributeAsStringForKey:@"CITY"];
+    self.eusaCITY = fc;
+    NSString *fz = [feature attributeAsStringForKey:@"ZIP"];
+    self.eusaZIP = fz;
+    NSString *fw =[feature attributeAsStringForKey:@"WEBSITE"];
+    self.eusaWEBSITE = fw;
+    NSString *fp = [feature attributeAsStringForKey:@"PHONE"];
+    self.eusaPHONE = fp;
+    NSString *temp = [feature attributeAsStringForKey:@"Name"];
     self.dsmname = temp;
     
     
-    if (!fullName && !self.dsmname){
+    if (!self.eusaFULL_NAME && !self.dsmname){
         NSLog(@"No Data!");
         
     }else{
         
-        if (!fullName){
+        if (!self.eusaFULL_NAME){
             // Error checking doesn't work, currently crashes outside MN
             NSLog(@"DSMName: %@",self.dsmname);
             //[self gpTool];
         }
         else {
-            NSLog(@"Name: %@, Phone: %@",fullName, phone);
+            NSLog(@"Name: %@, Phone: %@",self.eusaFULL_NAME, self.eusaPHONE);
         };
     
         
@@ -668,7 +678,7 @@ GCGeocodingService * myGC;
     
         destVC.mainMapView = startVC;
     
-        NSLog(@"%@",self.solarHoursArrayNumFloat);
+        NSLog(@"%@",self.eusaFULL_NAME);
     }
      
 }

@@ -16,7 +16,8 @@
 @property (weak, nonatomic) IBOutlet UIView *mainReportView;
 
 @property (strong, nonatomic) IBOutlet AGSMapView *solarLocMap;
-@property (strong, nonatomic) IBOutlet AGSMapView *satLocMap;
+@property (weak, nonatomic) IBOutlet UIWebView *locWebMap;
+
 @property (strong, nonatomic) IBOutlet UIWebView *monthInsWV;
 @property (strong, nonatomic) IBOutlet UIWebView *monthSunHrsWV;
 
