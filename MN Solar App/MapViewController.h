@@ -40,11 +40,12 @@
 
 @property(nonatomic, strong)AGSQueryTask* queryTask;
 @property(nonatomic,strong)AGSQuery* query;
-@property(nonatomic,strong) NSString* eusaFULL_NAME;
+@property(nonatomic,strong) AGSGraphic *myFeature;
+@property(nonatomic,strong)NSString* eusaFULL_NAME;
 @property(nonatomic,strong) NSString* eusaSTREET;
 @property(nonatomic,strong) NSString* eusaCITY;
-@property(nonatomic,strong) NSString* eusaZIP;
-@property(nonatomic,strong) NSString* eusaPHONE;
+@property(nonatomic,strong)NSString* eusaZIP;
+@property(nonatomic,strong)NSString* eusaPHONE;
 @property(nonatomic,strong) NSString* eusaWEBSITE;
 @property(nonatomic,strong) NSString* eusaELEC_COMP;
 
