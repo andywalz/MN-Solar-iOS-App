@@ -13,6 +13,7 @@
 
 @interface ReportViewController : UIViewController
 @property (strong, nonatomic) MapViewController *mainMapView;
+@property (weak, nonatomic) IBOutlet UIView *mainReportView;
 
 @property (strong, nonatomic) IBOutlet AGSMapView *solarLocMap;
 @property (strong, nonatomic) IBOutlet AGSMapView *satLocMap;

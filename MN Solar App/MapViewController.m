@@ -593,7 +593,7 @@ GCGeocodingService * myGC;
             self.dailyHrs.text = [NSString stringWithFormat:@"%0.3f", (self.totalHrsVal.doubleValue / 365.0)];
         };
         
-        // Change value label using kwh array (float) as string value
+        /* Change value label using kwh array (float) as string value
         self.janVal.text = [[self.solarValueArrayNumkwh objectAtIndex:0] stringValue];
         self.febVal.text = [[self.solarValueArrayNumkwh objectAtIndex:1] stringValue];
         self.marVal.text = [[self.solarValueArrayNumkwh objectAtIndex:2] stringValue];
@@ -618,7 +618,7 @@ GCGeocodingService * myGC;
         self.sepHr.text = [self.solarHoursArray objectAtIndex:8];
         self.octHr.text = [self.solarHoursArray objectAtIndex:9];
         self.novHr.text = [self.solarHoursArray objectAtIndex:10];
-        self.decHr.text = [self.solarHoursArray objectAtIndex:11];
+        self.decHr.text = [self.solarHoursArray objectAtIndex:11]; */
         
         NSString *chartURL = [NSString stringWithFormat:@"http://solar.maps.umn.edu/ios/chart2.php?1=%@&2=%@&3=%@&4=%@&5=%@&6=%@&7=%@&8=%@&9=%@&10=%@&11=%@&12=%@",[self.solarValueArrayNumkwh objectAtIndex:0],[self.solarValueArrayNumkwh objectAtIndex:1],[self.solarValueArrayNumkwh objectAtIndex:2],[self.solarValueArrayNumkwh objectAtIndex:3],[self.solarValueArrayNumkwh objectAtIndex:4],[self.solarValueArrayNumkwh objectAtIndex:5],[self.solarValueArrayNumkwh objectAtIndex:6],[self.solarValueArrayNumkwh objectAtIndex:7],[self.solarValueArrayNumkwh objectAtIndex:8],[self.solarValueArrayNumkwh objectAtIndex:9],[self.solarValueArrayNumkwh objectAtIndex:10],[self.solarValueArrayNumkwh objectAtIndex:11]];
         
@@ -657,15 +657,20 @@ GCGeocodingService * myGC;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    MapViewController *startVC;
-    ReportViewController *destVC;
+   
+    if ([[segue identifier] isEqualToString:@"toReport"])
+    {
+        MapViewController *startVC;
+        ReportViewController *destVC;
     
-    startVC = (MapViewController *)segue.sourceViewController;
-    destVC = (ReportViewController *)segue.destinationViewController;
+        startVC = (MapViewController *)segue.sourceViewController;
+        destVC = (ReportViewController *)segue.destinationViewController;
     
-    destVC.mainMapView = startVC;
+        destVC.mainMapView = startVC;
     
-    NSLog(@"%@",self.solPotential.text);
+        NSLog(@"%@",self.solarHoursArrayNumFloat);
+    }
+     
 }
 
 

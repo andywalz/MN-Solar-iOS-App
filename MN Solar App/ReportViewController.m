@@ -21,11 +21,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     NSLog(@"%@",self.mainMapView);
     
     self.location.text = [NSString stringWithFormat:@"Lat: %f  Long: %f",self.mainMapView.wgsPoint.y, self.mainMapView.wgsPoint.x];
-    
     
     // Change value label using kwh array (float) as string value
     self.janVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:0] stringValue];
@@ -41,6 +41,8 @@
     self.novVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:10] stringValue];
     self.decVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:11] stringValue];
     
+    NSLog(@"%@",self.mainMapView.solarHoursArray);
+    
     self.janHr.text = [self.mainMapView.solarHoursArray objectAtIndex:0];
     self.febHr.text = [self.mainMapView.solarHoursArray objectAtIndex:1];
     self.marHr.text = [self.mainMapView.solarHoursArray objectAtIndex:2];
@@ -55,20 +57,21 @@
     self.decHr.text = [self.mainMapView.solarHoursArray objectAtIndex:11];
     
     
+
     // set the delegate for the map view
     self.solarLocMap.layerDelegate = self;
-    self.satLocMap.layerDelegate = self;
+    //self.satLocMap.layerDelegate = self;
     
     //add new layer
-    AGSTiledMapServiceLayer* newBasemapLayer = [AGSTiledMapServiceLayer tiledMapServiceLayerWithURL:[NSURL URLWithString:@"http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer"]];
-    [self.solarLocMap insertMapLayer:newBasemapLayer withName:@"Basemap Tiled Layer" atIndex:0];
-     [self.satLocMap insertMapLayer:newBasemapLayer withName:@"Basemap Tiled Layer" atIndex:0];
+    AGSTiledMapServiceLayer* newBasemapLayerR = [AGSTiledMapServiceLayer tiledMapServiceLayerWithURL:[NSURL URLWithString:@"http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer"]];
+    [self.solarLocMap insertMapLayer:newBasemapLayerR withName:@"Basemap Tiled Layer" atIndex:0];
+   // [self.satLocMap insertMapLayer:newBasemapLayerR withName:@"Basemap Tiled Layer" atIndex:0];
    
     //zoom to an area
-    AGSEnvelope *envelope = [AGSEnvelope envelopeWithXmin:-10874639 ymin:5330544 xmax:-9900890  ymax:6349425  spatialReference:self.solarLocMap.spatialReference];
+    AGSEnvelope *envelopeR = [AGSEnvelope envelopeWithXmin:-10874639 ymin:5330544 xmax:-9900890  ymax:6349425  spatialReference:self.solarLocMap.spatialReference];
     
-    [self.solarLocMap zoomToEnvelope:envelope animated:YES];
-    [self.satLocMap zoomToEnvelope:envelope animated:YES];
+    [self.solarLocMap zoomToEnvelope:envelopeR animated:YES];
+    //[self.satLocMap zoomToEnvelope:envelopeR animated:YES];
     
     
     /*
@@ -88,11 +91,11 @@
     
     self.reportView.hidden = NO;
   */
-    
+    /*
     
     NSString *chartURL = [NSString stringWithFormat:@"http://solar.maps.umn.edu/ios/chart2.php?1=%@&2=%@&3=%@&4=%@&5=%@&6=%@&7=%@&8=%@&9=%@&10=%@&11=%@&12=%@",[self.mainMapView.solarValueArrayNumkwh objectAtIndex:0],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:1],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:2],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:3],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:4],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:5],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:6],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:7],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:8],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:9],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:10],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:11]];
     
-        NSString *monthlyHrsURL = [NSString stringWithFormat:@"http://solar.maps.umn.edu/ios/chart2.php?1=%@&2=%@&3=%@&4=%@&5=%@&6=%@&7=%@&8=%@&9=%@&10=%@&11=%@&12=%@",[self.mainMapView.solarHoursArray objectAtIndex:0],[self.mainMapView.solarHoursArray objectAtIndex:1],[self.mainMapView.solarHoursArray objectAtIndex:2],[self.mainMapView.solarHoursArray objectAtIndex:3],[self.mainMapView.solarHoursArray objectAtIndex:4],[self.mainMapView.solarHoursArray objectAtIndex:5],[self.mainMapView.solarHoursArray objectAtIndex:6],[self.mainMapView.solarHoursArray objectAtIndex:7],[self.mainMapView.solarHoursArray objectAtIndex:8],[self.mainMapView.solarHoursArray objectAtIndex:9],[self.mainMapView.solarHoursArray objectAtIndex:10],[self.mainMapView.solarHoursArray objectAtIndex:11]];
+    NSString *monthlyHrsURL = [NSString stringWithFormat:@"http://solar.maps.umn.edu/ios/chart2.php?1=%@&2=%@&3=%@&4=%@&5=%@&6=%@&7=%@&8=%@&9=%@&10=%@&11=%@&12=%@",[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:0],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:1],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:2],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:3],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:4],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:5],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:6],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:7],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:8],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:9],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:10],[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:11]];
     
     NSLog(@"%@",chartURL);
     NSURL *appleURL; appleURL =[ NSURL URLWithString:chartURL];
@@ -102,7 +105,7 @@
     [self.monthSunHrsWV loadRequest:[ NSURLRequest requestWithURL: shURL]];
     
     self.monthInsWV.hidden = NO;
-    
+    */
 }
 
 //3. Implement the layer delegate method
@@ -129,7 +132,8 @@
 
 - (IBAction)backToMap:(id)sender {
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self dismissViewControllerAnimated:NO completion:nil];
     
 }
 @end

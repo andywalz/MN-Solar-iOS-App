@@ -122,7 +122,7 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="qPm-w7-ifY" kind="presentation" id="DnE-rH-FsP"/>
+                                                    <segue destination="qPm-w7-ifY" kind="presentation" identifier="toReport" id="DnE-rH-FsP"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Sun Hours" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFr-3Y-oj0">
@@ -691,7 +691,7 @@
                                 <items>
                                     <barButtonItem title="&lt; Map" id="mKz-bh-XCQ">
                                         <connections>
-                                            <action selector="backToMap:" destination="qPm-w7-ifY" id="OMZ-ud-5MQ"/>
+                                            <segue destination="BYZ-38-t0r" kind="custom" customClass="DismissSegue" id="58A-OL-oxN"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="84L-hg-HXv"/>
@@ -1386,6 +1386,7 @@
                         <outlet property="junHr" destination="GzP-Yy-Blu" id="18v-Hf-6G8"/>
                         <outlet property="junVal" destination="6s1-NU-eic" id="zBk-hH-7tJ"/>
                         <outlet property="location" destination="8Fi-yo-74o" id="NOe-K0-Nzi"/>
+                        <outlet property="mainReportView" destination="HGe-8c-NWT" id="NcH-8y-ZmF"/>
                         <outlet property="marHr" destination="dQE-77-IXD" id="hZP-fj-YDk"/>
                         <outlet property="marVal" destination="gM4-XC-vh6" id="Qd5-RY-xh1"/>
                         <outlet property="mayHr" destination="py4-IL-9po" id="rfh-p9-8eb"/>
