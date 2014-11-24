@@ -129,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35C6F26B1A22EBF4005265C2 /* libsqlite3.dylib in Frameworks */,
+				CA5328D91A22FF8B000188F2 /* MessageUI.framework in Frameworks */,
 				3547C4CB1A1F88A30023232F /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				35C6F26A1A22EBF4005265C2 /* libsqlite3.dylib */,
+				CA5328D81A22FF8B000188F2 /* MessageUI.framework */,
 				3547C4CA1A1F88A30023232F /* SystemConfiguration.framework */,
 				CAEC984B1A0D5EB400E271F4 /* Assets */,
 				35C0E0EB1A0AF41100B32B68 /* ArcGIS.bundle */,
