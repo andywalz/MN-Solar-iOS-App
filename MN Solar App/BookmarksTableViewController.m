@@ -16,6 +16,7 @@
 
 #import "BookmarksTableViewController.h"
 
+
 @interface BookmarksTableViewController ()
 
 @end
@@ -33,6 +34,30 @@
     [super viewDidLoad];
     
     tableData = [NSArray arrayWithObjects:@"Andy Walz", @"Chris Martin", @"Katie Menk", @"Yuanyuan Luo", nil];
+    
+    
+    
+    NSString *selectSQL = @"SELECT * FROM student";
+    
+    const char *insert_stmt = [selectSQL UTF8String];
+    if(sqlite3_prepare_v2(studentData, insert_stmt,  -1, &statement, NULL) == SQLITE_OK)
+    {
+        while(sqlite3_step(statement) == SQLITE_ROW)
+        {
+            
+            [arrFirstName addObject:[NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 0)]];
+            
+            [arrMiddleName addObject:[NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 1)]];
+            
+            [arrLastName addObject:[NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 2)]];
+            
+            [arrContactNo addObject:[NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 3)]];
+            
+        }
+        
+    }
+    [tblStudent reloadData];
+}
     
     // Uncomment the following line to preserve selection between presentations.
     
