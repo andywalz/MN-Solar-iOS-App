@@ -52,6 +52,37 @@
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egQ-6h-uBk" userLabel="Activity View">
+                                        <rect key="frame" x="0.0" y="741" width="775" height="219"/>
+                                        <subviews>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="1ro-p3-yaw">
+                                                <rect key="frame" x="369" y="91" width="37" height="37"/>
+                                                <color key="color" red="0.94729715589999997" green="0.77854084970000004" blue="0.1811680943" alpha="1" colorSpace="calibratedRGB"/>
+                                            </activityIndicatorView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calculating Solar..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsd-rg-U8M">
+                                                <rect key="frame" x="320" y="136" width="144" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.94729715589999997" green="0.77854084970000004" blue="0.1811680943" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="solar-app-transparent220x235.png" translatesAutoresizingMaskIntoConstraints="NO" id="SCF-kr-IVE">
+                                                <rect key="frame" x="8" y="21" width="176" height="183"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="176" id="2up-rr-7hj"/>
+                                                    <constraint firstAttribute="height" constant="183" id="Qma-d1-NZH"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="1ro-p3-yaw" firstAttribute="centerY" secondItem="egQ-6h-uBk" secondAttribute="centerY" id="7vM-TW-Tap"/>
+                                            <constraint firstItem="SCF-kr-IVE" firstAttribute="leading" secondItem="egQ-6h-uBk" secondAttribute="leadingMargin" id="8Oh-zF-Bj1"/>
+                                            <constraint firstItem="gsd-rg-U8M" firstAttribute="leading" secondItem="egQ-6h-uBk" secondAttribute="leading" constant="320" id="bIf-hH-1zm"/>
+                                            <constraint firstItem="1ro-p3-yaw" firstAttribute="centerX" secondItem="egQ-6h-uBk" secondAttribute="centerX" id="gPH-PB-NOs"/>
+                                            <constraint firstItem="gsd-rg-U8M" firstAttribute="top" secondItem="1ro-p3-yaw" secondAttribute="bottom" constant="8" symbolic="YES" id="rCd-Qk-RRo"/>
+                                            <constraint firstItem="SCF-kr-IVE" firstAttribute="top" secondItem="egQ-6h-uBk" secondAttribute="top" constant="21" id="reT-ge-ixk"/>
+                                        </constraints>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u9I-0L-HrG" userLabel="Results Drawer">
                                         <rect key="frame" x="0.0" y="741" width="769" height="219"/>
                                         <subviews>
@@ -169,6 +200,7 @@
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="WkA-0a-cEd" firstAttribute="top" secondItem="u9I-0L-HrG" secondAttribute="top" constant="50" id="0a6-Sg-GMs"/>
                                             <constraint firstItem="g7B-By-yYL" firstAttribute="baseline" secondItem="fPP-Cc-K0b" secondAttribute="baseline" id="0tI-gl-FaD"/>
@@ -211,37 +243,9 @@
                                             <constraint firstItem="zOX-aS-eNW" firstAttribute="top" secondItem="zCH-Ka-iOK" secondAttribute="bottom" constant="3" id="yIm-b9-eL8"/>
                                             <constraint firstItem="cDD-zL-Zyb" firstAttribute="leading" secondItem="GTi-2X-zyH" secondAttribute="trailing" constant="89" id="zFG-Wz-2Tl"/>
                                         </constraints>
-                                    </view>
-                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egQ-6h-uBk" userLabel="Activity View">
-                                        <rect key="frame" x="0.0" y="741" width="775" height="219"/>
-                                        <subviews>
-                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="1ro-p3-yaw">
-                                                <rect key="frame" x="369" y="91" width="37" height="37"/>
-                                                <color key="color" red="0.94729715589999997" green="0.77854084970000004" blue="0.1811680943" alpha="1" colorSpace="calibratedRGB"/>
-                                            </activityIndicatorView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calculating Solar..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsd-rg-U8M">
-                                                <rect key="frame" x="320" y="136" width="144" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.94729715589999997" green="0.77854084970000004" blue="0.1811680943" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="solar-app-transparent220x235.png" translatesAutoresizingMaskIntoConstraints="NO" id="SCF-kr-IVE">
-                                                <rect key="frame" x="8" y="21" width="176" height="183"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="176" id="2up-rr-7hj"/>
-                                                    <constraint firstAttribute="height" constant="183" id="Qma-d1-NZH"/>
-                                                </constraints>
-                                            </imageView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="1ro-p3-yaw" firstAttribute="centerY" secondItem="egQ-6h-uBk" secondAttribute="centerY" id="7vM-TW-Tap"/>
-                                            <constraint firstItem="SCF-kr-IVE" firstAttribute="leading" secondItem="egQ-6h-uBk" secondAttribute="leadingMargin" id="8Oh-zF-Bj1"/>
-                                            <constraint firstItem="gsd-rg-U8M" firstAttribute="leading" secondItem="egQ-6h-uBk" secondAttribute="leading" constant="320" id="bIf-hH-1zm"/>
-                                            <constraint firstItem="1ro-p3-yaw" firstAttribute="centerX" secondItem="egQ-6h-uBk" secondAttribute="centerX" id="gPH-PB-NOs"/>
-                                            <constraint firstItem="gsd-rg-U8M" firstAttribute="top" secondItem="1ro-p3-yaw" secondAttribute="bottom" constant="8" symbolic="YES" id="rCd-Qk-RRo"/>
-                                            <constraint firstItem="SCF-kr-IVE" firstAttribute="top" secondItem="egQ-6h-uBk" secondAttribute="top" constant="21" id="reT-ge-ixk"/>
-                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="7yk-87-sl2" appends="YES" id="JPE-ET-xHa"/>
+                                        </connections>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aU-i7-dVl" userLabel="Debug background">
                                         <rect key="frame" x="8" y="8" width="618" height="43"/>
@@ -465,6 +469,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="K3F-uP-sYx" userLabel="Exit" sceneMemberID="exit"/>
                 <searchDisplayController id="emg-03-EBK"/>
+                <swipeGestureRecognizer direction="up" id="7yk-87-sl2" userLabel="drawerSwipeUp">
+                    <connections>
+                        <action selector="swipeUpToReport:" destination="BYZ-38-t0r" id="aOi-yG-TPg"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-452" y="47"/>
         </scene>

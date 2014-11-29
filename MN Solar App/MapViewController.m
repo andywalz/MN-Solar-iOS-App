@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UIWebView *chartViewer;
 
 - (IBAction)exitHere:(UIStoryboardSegue *)sender;
+- (IBAction)swipeUpToReport:(id)sender;
 
 @end
 
@@ -684,6 +685,10 @@ GCGeocodingService * myGC;
 - (IBAction)exitHere:(UIStoryboardSegue *)sender {
     //Excute this code upon unwinding
     
+}
+
+- (IBAction)swipeUpToReport:(id)sender {
+    [self performSegueWithIdentifier:@"toReport" sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
