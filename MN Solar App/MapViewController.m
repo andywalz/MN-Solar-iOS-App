@@ -17,6 +17,7 @@
 
 - (IBAction)exitHere:(UIStoryboardSegue *)sender;
 - (IBAction)swipeUpToReport:(id)sender;
+- (IBAction)swipeDownCloseResults:(id)sender;
 
 @end
 
@@ -689,6 +690,10 @@ GCGeocodingService * myGC;
 
 - (IBAction)swipeUpToReport:(id)sender {
     [self performSegueWithIdentifier:@"toReport" sender:self];
+}
+
+- (IBAction)swipeDownCloseResults:(id)sender {
+    self.resultsDrawer.hidden = YES;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
