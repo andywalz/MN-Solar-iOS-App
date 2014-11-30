@@ -428,8 +428,8 @@ GCGeocodingService * myGC;
     
     NSLog(@"Trying to zoom!");
     
-    AGSEnvelope *envelope = [AGSEnvelope envelopeWithXmin:self.geocodePointWeb.x - 200 ymin:self.geocodePointWeb.y - 200 xmax:self.geocodePointWeb.x + 200  ymax:self.geocodePointWeb.y + 200 spatialReference:self.mapView.spatialReference];
-    [self.mapView zoomToEnvelope:envelope animated:YES];
+    self.zoomToEnvelop = [AGSEnvelope envelopeWithXmin:self.geocodePointWeb.x - 200 ymin:self.geocodePointWeb.y - 200 xmax:self.geocodePointWeb.x + 200  ymax:self.geocodePointWeb.y + 200 spatialReference:self.mapView.spatialReference];
+    [self.mapView zoomToEnvelope:self.zoomToEnvelop animated:YES];
     
     [self addPoint:self.geocodePointWeb];
     
@@ -517,10 +517,6 @@ GCGeocodingService * myGC;
         //NSLog(@"About to fire GP tool");
         [self.geoprocessor executeWithParameters:params];
     //};
-    
-    
-    
-    
     
 }
 
@@ -809,6 +805,17 @@ GCGeocodingService * myGC;
 - (IBAction)findLocation:(id)sender {
     // Enable user location
     [self.mapView.locationDisplay startDataSource];
+    NSLog(@"%@",self.mapView.locationDisplay.mapLocation);
+    self.zoomToEnvelop = [AGSEnvelope envelopeWithXmin:self.mapView.locationDisplay.mapLocation.x - 200 ymin:self.mapView.locationDisplay.mapLocation.y - 200 xmax:self.mapView.locationDisplay.mapLocation.x + 200  ymax:self.mapView.locationDisplay.mapLocation.y + 200 spatialReference:self.mapView.spatialReference];
+    [self.mapView zoomToEnvelope:self.zoomToEnvelop animated:YES];
+    
+    [self addPoint:self.geocodePointWeb];
 
+}
+
+-(void)zoomToLocation:(AGSPoint *)point{
+    self.zoomToEnvelop = [AGSEnvelope envelopeWithXmin:point.x- 200 ymin:point.y - 200 xmax:point.x + 200  ymax:point.y + 200 spatialReference:self.mapView.spatialReference];
+    [self.mapView zoomToEnvelope:self.zoomToEnvelop animated:YES];
+    [self addPoint:point];
 }
 @end

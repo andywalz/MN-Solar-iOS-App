@@ -15,6 +15,7 @@
 
 
 #import <UIKit/UIKit.h>
+#import <ArcGIS/ArcGIS.h>
 
 
 
@@ -30,6 +31,7 @@
 
 @property (strong, nonatomic) NSMutableArray *filteredRecords;
 @property (strong, nonatomic) IBOutlet UISearchBar *recordSearchBar;
+@property(nonatomic,strong) AGSPoint *generalPoint;
 
 @end
 

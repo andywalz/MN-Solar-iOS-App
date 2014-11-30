@@ -187,7 +187,15 @@ recordObjectConstructor *recordToPrint = nil;
     
     recordToPrint = [self.tableData objectAtIndex:indexPath.row];
     NSLog(@"You pressed the arrow!");
-    NSLog(@"Address: %@, Lat: %@, Long: %@", recordToPrint.name, recordRow.lat, recordRow.lng);
+    NSLog(@"Address: %@, Lat: %@, Long: %@", recordToPrint.name, recordToPrint.lat, recordToPrint.lng);
+    
+    double doublelat = [recordToPrint.lat doubleValue];
+    double doublelng = [recordToPrint.lng doubleValue];
+    
+    self.generalPoint = [AGSPoint pointWithX:doublelng y:doublelat spatialReference:[AGSSpatialReference wgs84SpatialReference]];
+    
+    NSLog(@"%@", self.generalPoint);
+    
 }
 
 #pragma mark Content Filtering

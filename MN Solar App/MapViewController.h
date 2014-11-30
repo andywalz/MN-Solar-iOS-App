@@ -56,9 +56,10 @@
 
 
 @property(nonatomic,strong) AGSPoint *utm15Point;
-@property(nonatomic,strong)AGSPoint *wgsPoint;
-@property(nonatomic,strong)AGSPoint *geocodePoint;
-@property(nonatomic,strong)AGSPoint *geocodePointWeb;
+@property(nonatomic,strong) AGSPoint *wgsPoint;
+@property(nonatomic,strong) AGSPoint *geocodePoint;
+@property(nonatomic,strong) AGSPoint *geocodePointWeb;
+
 
 @property (nonatomic, strong) AGSGeoprocessor *geoprocessor;
 @property (nonatomic,weak) NSString * solarValue;
@@ -97,6 +98,8 @@
 - (IBAction)solarToggle:(id)sender;
 
 @property (weak,nonatomic) NSString *geocodeAddress;
+
+@property AGSEnvelope *zoomToEnvelop;
 
 
 - (IBAction)geocodeSearch:(id)sender;
