@@ -200,8 +200,9 @@ int warningMsgCount = 0;
     
     //NSLog(@"Query successful");
     
+    // Handle clicks outside of the state - Alert error and exit the method
     if ([featureSet.features count] == NULL){
-        NSLog(@"No features");
+        //NSLog(@"No features");
         if (warningMsgCount == 0){
             UIAlertView *noFeaturesError = [[UIAlertView alloc] initWithTitle:@"Selected outside of Minnesota" message:@"You must select a point within Minnesota" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [noFeaturesError show];
@@ -213,7 +214,6 @@ int warningMsgCount = 0;
     }
     
     self.myFeature = [featureSet.features objectAtIndex:0];
-    //AGSGraphic *feature = [featureSet.features objectAtIndex:0];
     NSLog(@"TTEST%@",self.myFeature);
     
     NSString *temp = [self.myFeature attributeAsStringForKey:@"Name"];
@@ -709,6 +709,18 @@ int warningMsgCount = 0;
         destVC.mainMapView = startVC;
     
         NSLog(@"LeavingSegueEUSA:%@",self.eusaFULL_NAME);
+    }
+    
+    if ([[segue identifier] isEqualToString:@"toMenuPopover"])
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        NSLog(@"To menu");
+    }
+    
+    if ([[segue identifier] isEqualToString:@"toBookmarksPopover"])
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        NSLog(@"To bookmarks");
     }
      
 }

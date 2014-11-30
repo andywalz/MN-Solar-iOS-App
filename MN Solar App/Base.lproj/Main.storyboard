@@ -412,7 +412,7 @@
                                     </barButtonItem>
                                     <barButtonItem systemItem="bookmarks" id="wYQ-5e-UK1">
                                         <connections>
-                                            <segue destination="amK-x6-eai" kind="popoverPresentation" popoverAnchorBarButtonItem="wYQ-5e-UK1" id="20l-b8-Zor">
+                                            <segue destination="amK-x6-eai" kind="popoverPresentation" identifier="toBookmarksPopover" popoverAnchorBarButtonItem="wYQ-5e-UK1" id="20l-b8-Zor">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
@@ -583,7 +583,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-145" y="-899"/>
+            <point key="canvasLocation" x="223" y="-1467"/>
         </scene>
         <!--Menu-->
         <scene sceneID="o5Q-nf-3Fw">
