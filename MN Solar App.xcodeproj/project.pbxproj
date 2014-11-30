@@ -12,6 +12,7 @@
 		3547C4CB1A1F88A30023232F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3547C4CA1A1F88A30023232F /* SystemConfiguration.framework */; };
 		3547C4CE1A1F89660023232F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547C4CD1A1F89660023232F /* Reachability.m */; };
 		3547C4D11A1F8F5C0023232F /* resultsDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547C4D01A1F8F5C0023232F /* resultsDrawer.m */; };
+		3595439E1A2BB5C10008828E /* home_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3595439D1A2BB5C10008828E /* home_icon.png */; };
 		35A2544A1A1BEC9A00BFBCBC /* bluepushpin.png in Resources */ = {isa = PBXBuildFile; fileRef = 35A254491A1BEC9A00BFBCBC /* bluepushpin.png */; };
 		35A2544D1A1BF4A200BFBCBC /* GCGeocodingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A2544C1A1BF4A200BFBCBC /* GCGeocodingService.m */; };
 		35A59BCE1A14194D008BEC96 /* zoomIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 35A59BCC1A14194D008BEC96 /* zoomIn.png */; };
@@ -70,6 +71,7 @@
 		3547C4CD1A1F89660023232F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		3547C4CF1A1F8F5C0023232F /* resultsDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resultsDrawer.h; sourceTree = "<group>"; };
 		3547C4D01A1F8F5C0023232F /* resultsDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = resultsDrawer.m; sourceTree = "<group>"; };
+		3595439D1A2BB5C10008828E /* home_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_icon.png; sourceTree = "<group>"; };
 		35A254491A1BEC9A00BFBCBC /* bluepushpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluepushpin.png; sourceTree = "<group>"; };
 		35A2544B1A1BF4A200BFBCBC /* GCGeocodingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCGeocodingService.h; sourceTree = "<group>"; };
 		35A2544C1A1BF4A200BFBCBC /* GCGeocodingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCGeocodingService.m; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 		CAEC984B1A0D5EB400E271F4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				3595439D1A2BB5C10008828E /* home_icon.png */,
 				CA5328D61A22FD25000188F2 /* mail_ios7_ios_7.png */,
 				CADC41E71A23A6EE0075F750 /* Under_construction.png */,
 				CA45DF3D1A2142C2003A79E8 /* arrow_up_wht.png */,
@@ -407,6 +410,7 @@
 				CAEC985A1A0D600200E271F4 /* menu-22.png in Resources */,
 				CA8ED91B1A058978009728AE /* LaunchScreen.xib in Resources */,
 				35A59BCF1A14194D008BEC96 /* zoomOut.png in Resources */,
+				3595439E1A2BB5C10008828E /* home_icon.png in Resources */,
 				CA5328D71A22FD25000188F2 /* mail_ios7_ios_7.png in Resources */,
 				35A59BCE1A14194D008BEC96 /* zoomIn.png in Resources */,
 				CA8ED9181A058978009728AE /* Images.xcassets in Resources */,

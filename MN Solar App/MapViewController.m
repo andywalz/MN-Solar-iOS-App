@@ -162,28 +162,7 @@ GCGeocodingService * myGC;
     
     // Run query
     [self runQueries];
-    
-    // Run GP tool
-    //[self gpTool];
 
-    
-    /*//Set up the parameters to send the webservice
-    NSMutableDictionary* params = [NSMutableDictionary dictionary];
-    [params setObject:[NSNumber numberWithDouble:utm15Point.x] forKey:@"x"];
-    [params setObject:[NSNumber numberWithDouble:utm15Point.y] forKey:@"y"];
-    //[params setObject:[NSNumber numberWithDouble:mappoint.y] forKey:@"y"];
-    
-    //Set up an operation for the current request
-    NSURL* url = [NSURL URLWithString:@"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer/query"];
-    self.currentJsonOp = [[AGSJSONRequestOperation alloc]initWithURL:url queryParameters:params];
-    self.currentJsonOp.target = self;
-    self.currentJsonOp.action = @selector(operation:didSucceedWithResponse:);
-    self.currentJsonOp.errorAction = @selector(operation:didFailWithError:);
-    
-    //Add operation to the queue to execute in the background
-    [self.queue addOperation:self.currentJsonOp];*/
-    
-    
 }
 
 - (void) runQueries {
@@ -214,8 +193,24 @@ GCGeocodingService * myGC;
     [self.dsmqueryTask executeWithQuery:self.dsmquery];
 }
 
+int warningMsgCount = 0;
+
 // EUSA query successful
 - (void) queryTask:(AGSQueryTask*)queryTask operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet{
+    
+    //NSLog(@"Query successful");
+    
+    if ([featureSet.features count] == NULL){
+        NSLog(@"No features");
+        if (warningMsgCount == 0){
+            UIAlertView *noFeaturesError = [[UIAlertView alloc] initWithTitle:@"Selected outside of Minnesota" message:@"You must select a point within Minnesota" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [noFeaturesError show];
+            warningMsgCount += 1;
+        }else{
+            warningMsgCount = 0;
+        }
+        return;
+    }
     
     self.myFeature = [featureSet.features objectAtIndex:0];
     //AGSGraphic *feature = [featureSet.features objectAtIndex:0];
@@ -254,11 +249,12 @@ GCGeocodingService * myGC;
             NSLog(@"Name: %@, Phone: %@",self.eusaFULL_NAME, self.eusaPHONE);
             
         };
-    
         
     }
+    
     // NEEDS ERROR CHECKING - set variable in GCGeocoding
     [self gpTool];
+    
 }
 
 // EUSA query fails
@@ -347,7 +343,7 @@ GCGeocodingService * myGC;
                        y:mappoint.y
         spatialReference:[AGSSpatialReference wgs84SpatialReference]];
     
-    NSLog(@"%@", myMarkerPoint);
+    //NSLog(@"%@", myMarkerPoint);
     
     //Create the Graphic, using the symbol and
     //geometry created earlier
