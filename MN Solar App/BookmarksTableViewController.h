@@ -18,7 +18,7 @@
 
 
 
-@interface BookmarksTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
+@interface BookmarksTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
 
 
 
@@ -26,6 +26,10 @@
 @property (strong, nonatomic) NSArray *firstname;
 //@property (nonatomic, strong) DBManager *dbManager;
 
+@property (strong, nonatomic) NSArray *tableData;
+
+@property (strong, nonatomic) NSMutableArray *filteredRecords;
+@property (strong, nonatomic) IBOutlet UISearchBar *recordSearchBar;
 
 @end
 

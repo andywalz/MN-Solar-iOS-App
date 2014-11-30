@@ -74,6 +74,19 @@ GCGeocodingService * myGC;
     //NSString *address = @"1217 matilda st 55117";
     //[myGC geocodeAddress:address];
     
+    // Create gesture recognizition
+    UISwipeGestureRecognizer *oneFingerSwipeUp = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(oneFingerSwipeUp:)];
+    
+    [oneFingerSwipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
+    [[self view] addGestureRecognizer:oneFingerSwipeUp];
+    
+}
+
+-(void)oneFingerSwipeUp:(UITapGestureRecognizer *)recognizer
+{
+    NSLog(@"Swiped up");
+    
+    // ADD SEQUE HERE
 }
 
 // Checks if we have an internet connection or not

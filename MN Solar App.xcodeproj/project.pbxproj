@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		350DA94D1A1D528800B33723 /* default.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 350DA94C1A1D528800B33723 /* default.gpx */; };
+		3530B6D51A2974E30063F256 /* recordObjectConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3530B6D41A2974E30063F256 /* recordObjectConstructor.m */; };
 		3547C4CB1A1F88A30023232F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3547C4CA1A1F88A30023232F /* SystemConfiguration.framework */; };
 		3547C4CE1A1F89660023232F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547C4CD1A1F89660023232F /* Reachability.m */; };
 		3547C4D11A1F8F5C0023232F /* resultsDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547C4D01A1F8F5C0023232F /* resultsDrawer.m */; };
@@ -62,6 +63,8 @@
 
 /* Begin PBXFileReference section */
 		350DA94C1A1D528800B33723 /* default.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = default.gpx; sourceTree = "<group>"; };
+		3530B6D31A2974E30063F256 /* recordObjectConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = recordObjectConstructor.h; path = "MN Solar App/recordObjectConstructor.h"; sourceTree = "<group>"; };
+		3530B6D41A2974E30063F256 /* recordObjectConstructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = recordObjectConstructor.m; path = "MN Solar App/recordObjectConstructor.m"; sourceTree = "<group>"; };
 		3547C4CA1A1F88A30023232F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3547C4CC1A1F89660023232F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		3547C4CD1A1F89660023232F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 		CA8ED8FE1A058978009728AE = {
 			isa = PBXGroup;
 			children = (
+				3530B6D31A2974E30063F256 /* recordObjectConstructor.h */,
+				3530B6D41A2974E30063F256 /* recordObjectConstructor.m */,
 				35C6F26A1A22EBF4005265C2 /* libsqlite3.dylib */,
 				CA5328D81A22FF8B000188F2 /* MessageUI.framework */,
 				3547C4CA1A1F88A30023232F /* SystemConfiguration.framework */,
@@ -429,6 +434,7 @@
 				3547C4D11A1F8F5C0023232F /* resultsDrawer.m in Sources */,
 				CA5328DC1A22FFFC000188F2 /* ShareViewController.m in Sources */,
 				CA6E55D51A0C865A00D60677 /* TakeActionViewController.m in Sources */,
+				3530B6D51A2974E30063F256 /* recordObjectConstructor.m in Sources */,
 				35A2544D1A1BF4A200BFBCBC /* GCGeocodingService.m in Sources */,
 				35C6F2681A22EB9B005265C2 /* FMDatabase.m in Sources */,
 				CA8ED9751A073141009728AE /* ReportCustomizedViewController.m in Sources */,

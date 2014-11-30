@@ -16,6 +16,7 @@
 
 #import "BookmarksTableViewController.h"
 #import "DBManager.h"
+#import "recordObjectConstructor.h"
 
 @interface BookmarksTableViewController ()
 
@@ -23,17 +24,46 @@
 
 @implementation BookmarksTableViewController
 
-{
+/*{
     
     NSArray *tableData;
     
-}
+}*/
+
+@synthesize filteredRecords;
+@synthesize recordSearchBar;
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     
-    tableData = [NSArray arrayWithObjects:@"Andy Walz", @"Chris Martin", @"Katie Menk", @"Yuanyuan Luo", @"Devon Piernot", @"Len Kne", @"Chris Brink", @"Dan Thiede", @"Jack Kluempke", @"Ian Xie", nil];
+    //tableData = [NSArray arrayWithObjects:@"Andy Walz", @"Chris Martin", @"Katie Menk", @"Yuanyuan Luo", @"Devon Piernot", @"Len Kne", @"Chris Brink", @"Dan Thiede", @"Jack Kluempke", @"Ian Xie", nil];
+    
+    self.tableData = [NSArray arrayWithObjects:
+                      [recordObjectConstructor nameOfCategory:@"student" name:@"Andy Walz" address:@"1217 Matilda St, Saint Paul, MN 55117" lat:@"44.977928" lng:@"-93.112542"],
+                 [recordObjectConstructor nameOfCategory:@"student" name:@"Chris Martin" address:@"730 Mercer St, Saint Paul, MN" lat:@"44.919174" lng:@"-93.136038"],
+                 [recordObjectConstructor nameOfCategory:@"student" name:@"Katie Menk" address:@"125 Help St" lat:@"44.971" lng:@"-93.243"],
+                 [recordObjectConstructor nameOfCategory:@"student" name:@"Yuanyuan Luo" address:@"Blegen Hall" lat:@"44.971" lng:@"-93.243"],
+                 [recordObjectConstructor nameOfCategory:@"student" name:@"Devon Piernot" address:@"127 Help St" lat:@"44.971" lng:@"-93.243"],
+                 [recordObjectConstructor nameOfCategory:@"student" name:@"Chris Brink" address:@"128 Help St" lat:@"44.971" lng:@"-93.243"],
+                 [recordObjectConstructor nameOfCategory:@"student" name:@"Ian Xie" address:@"123 Help St" lat:@"44.971" lng:@"-93.243"],
+                 [recordObjectConstructor nameOfCategory:@"student" name:@"Chris Anderson" address:@"123 Help St" lat:@"44.971" lng:@"-93.243"],
+                 [recordObjectConstructor nameOfCategory:@"student" name:@"Andy Munsch" address:@"123 Help St" lat:@"44.971" lng:@"-93.243"],
+                 [recordObjectConstructor nameOfCategory:@"advisor" name:@"Len Kne" address:@"123 Help St" lat:@"44.971" lng:@"-93.243"],
+                 [recordObjectConstructor nameOfCategory:@"advisor" name:@"Dan Thiede" address:@"123 Help St" lat:@"44.971" lng:@"-93.243"],
+                 [recordObjectConstructor nameOfCategory:@"installer" name:@"Jack Kluempke" address:@"123 Help St" lat:@"44.971" lng:@"-93.243"],
+                 [recordObjectConstructor nameOfCategory:@"installer" name:@"Marty Morud" address:@"12345 Helping Rd" lat:@"44.971" lng:@"-93.243"],
+                 nil];
+    
+    self.filteredRecords = [NSMutableArray arrayWithCapacity:[self.tableData count]];
+    
+    // Hide the search bar until user scrolls up
+    /*CGRect newBounds = self.tableView.bounds;
+    newBounds.origin.y = newBounds.origin.y + recordSearchBar.bounds.size.height;
+    self.tableView.bounds = newBounds;
+    
+    //NSLog(@"%@", self.tableData);*/
+    
     
     //NSString *selectSQL = @"SELECT * FROM student";
     
@@ -84,11 +114,23 @@
     
 }
 
+recordObjectConstructor *recordRow = nil;
+recordObjectConstructor *recordToPrint = nil;
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [tableData count];
+    
+    // Check to see whether the normal table or search results table is being displayed and return the count from the appropriate array
+    if (tableView == self.searchDisplayController.searchResultsTableView){
+        return [filteredRecords count];
+    } else {
+        return [self.tableData count];
+    }
+    
+    //NSLog(@"Made it to creating table count");
+    //return [self.tableData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -105,9 +147,24 @@
      
      }*/
     
-    self.cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
-    self.cell.detailTextLabel.text = @"User's Address Here";
+    // Check to see whether the normal table or search results table is being displayed and set the record object from the appropriate array.
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView){
+        recordRow = [filteredRecords objectAtIndex:indexPath.row];
+    } else {
+        recordRow = [self.tableData objectAtIndex:indexPath.row];
+    }
+    
+    //self.cell.textLabel.text = [self.tableData objectAtIndex:indexPath.row];
+    
+    
+    //recordRow = [self.tableData objectAtIndex:indexPath.row];
+    self.cell.textLabel.text = recordRow.name;
+    
+    self.cell.detailTextLabel.text = recordRow.address;
     self.cell.imageView.image = [UIImage imageNamed:@"solar-app-transparent220x235.png"];
+    
+    self.cell.accessoryType =UITableViewCellAccessoryDetailDisclosureButton;
     
     //cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
     return self.cell;
@@ -121,17 +178,43 @@
     // Display alert
     //[messageAlert show];
     
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
+    //UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    //cell.accessoryType =UITableViewCellAccessoryDetailDisclosureButton;
     
 }
 
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+    
+    recordToPrint = [self.tableData objectAtIndex:indexPath.row];
     NSLog(@"You pressed the arrow!");
+    NSLog(@"Address: %@, Lat: %@, Long: %@", recordToPrint.name, recordRow.lat, recordRow.lng);
 }
 
+#pragma mark Content Filtering
+-(void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
+    // Update the filtered array based on the search text and scope.
+    // Remove all objects from the filtered search array
+    [self.filteredRecords removeAllObjects];
+    // Filter the array using NSPredicate
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@",searchText];
+    filteredRecords = [NSMutableArray arrayWithArray:[self.tableData filteredArrayUsingPredicate:predicate]];
+    
+}
 
+#pragma mark - UISearchDisplayController Delegate Methods
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{
+    // Tells the table data source to reload when text changes
+    [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
 
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption{
+    // Tells the table data source to reload when scope bar selection changes.
+    [self filterContentForSearchText:self.searchDisplayController.searchBar.text scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
+    //Return YES to cause the search result table view to be reloaded
+    return YES;
+}
 /*
  
  // Override to support conditional editing of the table view.
