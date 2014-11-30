@@ -405,6 +405,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="zlF-Cy-DBL"/>
+                                    <barButtonItem title="Home" id="sei-4u-12S">
+                                        <connections>
+                                            <action selector="goHomeButton:" destination="BYZ-38-t0r" id="2OL-Nc-ifi"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem systemItem="bookmarks" id="wYQ-5e-UK1">
                                         <connections>
                                             <segue destination="amK-x6-eai" kind="popoverPresentation" popoverAnchorBarButtonItem="wYQ-5e-UK1" id="20l-b8-Zor">

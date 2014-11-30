@@ -27,6 +27,8 @@
 
 - (IBAction)findLocation:(id)sender;
 
+@property AGSEnvelope *defaultEnvelope;
+
 
 @property (weak, nonatomic) IBOutlet UIView *loadingIconView;
 
@@ -105,6 +107,8 @@
 - (IBAction)geocodeSearch:(id)sender;
 
 - (IBAction)basemapChanged:(id)sender;
+
+- (IBAction)goHomeButton:(id)sender;
 
 
 
