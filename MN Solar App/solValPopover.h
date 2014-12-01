@@ -12,6 +12,7 @@
 
 
 @interface solValPopover : UIViewController
+
 @property (strong, nonatomic) IBOutlet UILabel *optLabel;
 @property (strong, nonatomic) IBOutlet UILabel *optDesc;
 @property (strong, nonatomic) IBOutlet UILabel *goodLabel;
@@ -19,10 +20,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *poorLabel;
 @property (strong, nonatomic) IBOutlet UILabel *poorDesc;
 
-
 @property (strong, nonatomic) NSString *solPotentialPopover;
-
-@property (strong,nonatomic) UIColor *solarOrange;
+@property (strong, nonatomic) UIColor *solarOrange;
 
 
 @end
