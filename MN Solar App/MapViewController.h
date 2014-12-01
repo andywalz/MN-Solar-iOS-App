@@ -12,9 +12,10 @@
 #import "GCGeocodingService.h"
 #import "Reachability.h"
 
+#import "BookmarksTableViewController.h"
 #import "ReportViewController.h"
 
-@interface MapViewController : UIViewController <AGSMapViewTouchDelegate, UITextFieldDelegate>
+@interface MapViewController : UIViewController <AGSMapViewTouchDelegate, UITextFieldDelegate, UIPopoverControllerDelegate>
 
 // Internet connection check
 @property(weak,nonatomic) Reachability *internetReachableFoo;
@@ -108,8 +109,10 @@
 
 - (IBAction)basemapChanged:(id)sender;
 
+@property (strong,nonatomic) BookmarksTableViewController *bm;
 - (IBAction)goHomeButton:(id)sender;
 
+-(void)zoomToLocation:(AGSPoint *)point;
 
 
 // DEBUG

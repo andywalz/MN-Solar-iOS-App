@@ -17,6 +17,7 @@
 #import "BookmarksTableViewController.h"
 #import "DBManager.h"
 #import "recordObjectConstructor.h"
+#import "MapViewController.h"
 
 @interface BookmarksTableViewController ()
 
@@ -195,6 +196,14 @@ recordObjectConstructor *recordToPrint = nil;
     self.generalPoint = [AGSPoint pointWithX:doublelng y:doublelat spatialReference:[AGSSpatialReference wgs84SpatialReference]];
     
     NSLog(@"%@", self.generalPoint);
+    
+   // [self.mainMapVC zo]
+    
+ //   [self.mapVC zoomToLocation:self.generalPoint];
+    
+    [self.mvc zoomToLocation:self.generalPoint];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 

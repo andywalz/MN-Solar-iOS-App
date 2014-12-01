@@ -7,6 +7,7 @@
 //
 
 #import "MapViewController.h"
+
 @class ReportViewController;
 @class GCGeocodingService;
 //@synthesize gs;
@@ -15,7 +16,11 @@
 
 @property (strong, nonatomic) IBOutlet UIWebView *chartViewer;
 
+@property (strong, nonatomic) UIPopoverController *bmPopoverController;
+
 - (IBAction)exitHere:(UIStoryboardSegue *)sender;
+- (IBAction)swipeUpToReport:(id)sender;
+- (IBAction)swipeDownCloseResults:(id)sender;
 
 @end
 
@@ -694,6 +699,16 @@ int warningMsgCount = 0;
 - (IBAction)exitHere:(UIStoryboardSegue *)sender {
     //Excute this code upon unwinding
     
+    NSLog(@"%@",@"uwind function called");
+    
+}
+
+- (IBAction)swipeUpToReport:(id)sender {
+    [self performSegueWithIdentifier:@"toReport" sender:self];
+}
+
+- (IBAction)swipeDownCloseResults:(id)sender {
+    self.resultsDrawer.hidden = YES;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -711,20 +726,65 @@ int warningMsgCount = 0;
         NSLog(@"LeavingSegueEUSA:%@",self.eusaFULL_NAME);
     }
     
+    if ([[segue identifier] isEqualToString:@"toBookmarksPopover"])
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+            NSLog(@"To bookmarks");
+         NSLog(@"LeavingSegueFor BM Popover");
+        
+        self.bm = segue.destinationViewController;
+       
+        NSLog(@"LeavingSegueForBMPopover:%@",self.bm);
+        /*
+        UIStoryboardPopoverSegue *popoverSegue;
+        popoverSegue=(UIStoryboardPopoverSegue *)segue;
+        
+        
+         NSLog(@"LeavingSegueForBMPopover:%@",popoverSegue);
+        
+        UIPopoverController *popoverController;
+        popoverController= popoverSegue.popoverController;
+        
+       NSLog(@"LeavingSegueFor BMMMM Popover");
+
+        
+        popoverController.delegate=self;
+         */
+        /*
+        EditorViewController *editorVC;
+        editorVC=(EditorViewController *)popoverController.contentViewController;
+        editorVC.emailField.text=self.emailLabel.text;
+
+        BookmarksTableViewController *bmVC;
+        bmVC = (BookmarksTableViewController *)popoverController.contentViewController;
+         */
+        
+        //((UIStoryboardPopoverSegue *)segue).popoverController.delegate = self;
+        
+        MapViewController *startVC;
+        BookmarksTableViewController *destVC;
+        
+        startVC = (MapViewController *)segue.sourceViewController;
+        destVC = (BookmarksTableViewController *)segue.destinationViewController;
+        
+        destVC.mvc = startVC;
+    
+
+    }
+    
     if ([[segue identifier] isEqualToString:@"toMenuPopover"])
     {
         [self dismissViewControllerAnimated:YES completion:nil];
         NSLog(@"To menu");
     }
     
-    if ([[segue identifier] isEqualToString:@"toBookmarksPopover"])
-    {
-        [self dismissViewControllerAnimated:YES completion:nil];
-        NSLog(@"To bookmarks");
-    }
-     
 }
 
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+   /* AGSPoint *bmPoint;
+    bmPoint = ((BookmarksTableViewController *) popoverController.contentViewController).generalPoint; */
+    NSLog(@"were back---%@",self.bm);
+}
 
 // ---------------------------------
 //  SAVED CODE
@@ -814,6 +874,7 @@ int warningMsgCount = 0;
 - (IBAction)hideResultsDrawer:(id)sender {
     
     self.resultsDrawer.hidden = YES;
+    
 }
 - (IBAction)findLocation:(id)sender {
     // Enable user location
@@ -827,8 +888,11 @@ int warningMsgCount = 0;
 }
 
 -(void)zoomToLocation:(AGSPoint *)point{
-    self.zoomToEnvelop = [AGSEnvelope envelopeWithXmin:point.x- 200 ymin:point.y - 200 xmax:point.x + 200  ymax:point.y + 200 spatialReference:self.mapView.spatialReference];
+    
+    AGSPoint *myPoint = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:point toSpatialReference:[AGSSpatialReference webMercatorSpatialReference]];
+    
+    self.zoomToEnvelop = [AGSEnvelope envelopeWithXmin:myPoint.x- 200 ymin:myPoint.y - 200 xmax:myPoint.x + 200  ymax:myPoint.y + 200 spatialReference:self.mapView.spatialReference];
     [self.mapView zoomToEnvelope:self.zoomToEnvelop animated:YES];
-    [self addPoint:point];
+    [self addPoint:myPoint];
 }
 @end

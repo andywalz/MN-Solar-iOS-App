@@ -112,14 +112,20 @@
     
     self.insolTotal.text = [self.mainMapView.totalInsVal stringValue];
     self.insolTotal2.text = [self.mainMapView.totalInsVal stringValue];
-    self.insolDaily.text = [NSString stringWithFormat:@"%0.3f", (self.mainMapView.totalInsVal.doubleValue / 365.0)];
+    
+    NSString *solPot;
+    
     if(self.mainMapView.totalInsVal.doubleValue / 365.0 >= 2.7){
-        self.solPotential.text = @"[ Optimal ]";
+        solPot = @" (Optimal)";
     }else if (self.mainMapView.totalInsVal.doubleValue / 365.0 >= 1.6){
-        self.solPotential.text = @"[ Good ]";
+        solPot = @" (Good)";
     }else{
-        self.solPotential.text = @"[ Poor ]";
+        solPot = @" (Poor)";
     }
+    
+    self.solPotential.text = @"";
+    
+    self.insolDaily.text = [NSString stringWithFormat:@"%0.3f%@", (self.mainMapView.totalInsVal.doubleValue / 365.0),solPot];
     
     self.sunHrTotal.text = [self.mainMapView.totalHrsVal stringValue];
     self.sunHrTotal2.text = [self.mainMapView.totalHrsVal stringValue];
