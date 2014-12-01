@@ -17,21 +17,23 @@
 #import <UIKit/UIKit.h>
 #import <ArcGIS/ArcGIS.h>
 
-
+@class MapViewController;
 
 @interface BookmarksTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
 
-
+@property (strong, nonatomic) MapViewController *mvc;
 
 @property (strong, nonatomic) UITableViewCell *cell;
 @property (strong, nonatomic) NSArray *firstname;
-//@property (nonatomic, strong) DBManager *dbManager;
+//@property (nonatomic, strong) DBManager *dbMana bnvger;
 
 @property (strong, nonatomic) NSArray *tableData;
 
 @property (strong, nonatomic) NSMutableArray *filteredRecords;
 @property (strong, nonatomic) IBOutlet UISearchBar *recordSearchBar;
 @property(nonatomic,strong) AGSPoint *generalPoint;
+
+//@property (weak, nonatomic) UIPopoverController* popoverController;
 
 @end
 
