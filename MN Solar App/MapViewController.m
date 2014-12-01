@@ -892,7 +892,11 @@ int warningMsgCount = 0;
     AGSPoint *myPoint = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:point toSpatialReference:[AGSSpatialReference webMercatorSpatialReference]];
     
     self.zoomToEnvelop = [AGSEnvelope envelopeWithXmin:myPoint.x- 200 ymin:myPoint.y - 200 xmax:myPoint.x + 200  ymax:myPoint.y + 200 spatialReference:self.mapView.spatialReference];
+    
+    [self convertToUTM15:myPoint];
+    [self convertToWGS:myPoint];
     [self.mapView zoomToEnvelope:self.zoomToEnvelop animated:YES];
     [self addPoint:myPoint];
+    [self runQueries];
 }
 @end

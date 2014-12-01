@@ -61,7 +61,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "138"
             endingLineNumber = "138"
-            landmarkName = "-convertToUTM15:"
+            landmarkName = "-convertToWGS:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -77,8 +77,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "368"
             endingLineNumber = "368"
-            landmarkName = "-solarSwitchToggle:"
-            landmarkType = "5">
+            landmarkName = "@implementation MapViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -141,8 +141,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
             endingLineNumber = "22"
-            landmarkName = "@implementation MapViewController"
-            landmarkType = "3">
+            landmarkName = "-swipeUpToReport:"
+            landmarkType = "4">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -189,8 +189,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "389"
             endingLineNumber = "389"
-            landmarkName = "@implementation MapViewController"
-            landmarkType = "3">
+            landmarkName = "-textFieldShouldReturn:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

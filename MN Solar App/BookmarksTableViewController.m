@@ -43,17 +43,17 @@
     self.tableData = [NSArray arrayWithObjects:
                       [recordObjectConstructor nameOfCategory:@"student" name:@"Andy Walz" address:@"1217 Matilda St, Saint Paul, MN 55117" lat:@"44.977928" lng:@"-93.112542"],
                  [recordObjectConstructor nameOfCategory:@"student" name:@"Chris Martin" address:@"730 Mercer St, Saint Paul, MN" lat:@"44.919174" lng:@"-93.136038"],
-                 [recordObjectConstructor nameOfCategory:@"student" name:@"Katie Menk" address:@"125 Help St" lat:@"44.971" lng:@"-93.243"],
-                 [recordObjectConstructor nameOfCategory:@"student" name:@"Yuanyuan Luo" address:@"Blegen Hall" lat:@"44.971" lng:@"-93.243"],
-                 [recordObjectConstructor nameOfCategory:@"student" name:@"Devon Piernot" address:@"127 Help St" lat:@"44.971" lng:@"-93.243"],
-                 [recordObjectConstructor nameOfCategory:@"student" name:@"Chris Brink" address:@"128 Help St" lat:@"44.971" lng:@"-93.243"],
-                 [recordObjectConstructor nameOfCategory:@"student" name:@"Ian Xie" address:@"123 Help St" lat:@"44.971" lng:@"-93.243"],
-                 [recordObjectConstructor nameOfCategory:@"student" name:@"Chris Anderson" address:@"123 Help St" lat:@"44.971" lng:@"-93.243"],
-                 [recordObjectConstructor nameOfCategory:@"student" name:@"Andy Munsch" address:@"123 Help St" lat:@"44.971" lng:@"-93.243"],
-                 [recordObjectConstructor nameOfCategory:@"advisor" name:@"Len Kne" address:@"123 Help St" lat:@"44.971" lng:@"-93.243"],
-                 [recordObjectConstructor nameOfCategory:@"advisor" name:@"Dan Thiede" address:@"123 Help St" lat:@"44.971" lng:@"-93.243"],
-                 [recordObjectConstructor nameOfCategory:@"installer" name:@"Jack Kluempke" address:@"123 Help St" lat:@"44.971" lng:@"-93.243"],
-                 [recordObjectConstructor nameOfCategory:@"installer" name:@"Marty Morud" address:@"12345 Helping Rd" lat:@"44.971" lng:@"-93.243"],
+                 [recordObjectConstructor nameOfCategory:@"student" name:@"Katie Menk" address:@"2530 Cole Ave S, Minneapolis, MN" lat:@"44.985227" lng:@"-93.217008"],
+                 [recordObjectConstructor nameOfCategory:@"student" name:@"Yuanyuan Luo" address:@"4631 Cedar Ave S, Minneapolis, MN" lat:@"44.918548" lng:@"-93.246990"],
+                 [recordObjectConstructor nameOfCategory:@"student" name:@"Devon Piernot" address:@"5627 Louisiana Ave S, Minneapolis, MN" lat:@"44.928527" lng:@"-93.364558"],
+                 [recordObjectConstructor nameOfCategory:@"student" name:@"Chris Brink" address:@"718 8th Ave SW, Rochester, MN" lat:@"44.015290" lng:@"-92.474415"],
+                 [recordObjectConstructor nameOfCategory:@"student" name:@"Ian Xie" address:@"2320 W 5th St, Duluth, MN" lat:@"46.767713" lng:@"-92.132726"],
+                 [recordObjectConstructor nameOfCategory:@"student" name:@"Chris Anderson" address:@"213 Lincoln Ave E, Karlstad, MN" lat:@"48.575961" lng:@"-96.516609"],
+                 [recordObjectConstructor nameOfCategory:@"student" name:@"Andy Munsch" address:@"4035 W Broadway Ave, Robbinsdale, MN" lat:@"45.028230" lng:@"-93.336315"],
+                 [recordObjectConstructor nameOfCategory:@"advisor" name:@"Len Kne" address:@"Blegen Hall" lat:@"44.971" lng:@"-93.243"],
+                 [recordObjectConstructor nameOfCategory:@"advisor" name:@"Dan Thiede" address:@"3657 Whitetail Dr, Shakopee, MN" lat:@"44.764242" lng:@"-93.473607"],
+                 [recordObjectConstructor nameOfCategory:@"installer" name:@"Jack Kluempke" address:@"119 Washington St NE, Brainerd, MN" lat:@"46.360089" lng:@"-94.187666"],
+                 [recordObjectConstructor nameOfCategory:@"installer" name:@"Marty Morud" address:@"15719 Fox Cir, Apple Valley, MN" lat:@"44.722426" lng:@"-93.203853"],
                  nil];
     
     self.filteredRecords = [NSMutableArray arrayWithCapacity:[self.tableData count]];
