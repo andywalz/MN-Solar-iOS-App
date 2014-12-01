@@ -28,6 +28,8 @@
 
 - (IBAction)findLocation:(id)sender;
 
+@property AGSEnvelope *defaultEnvelope;
+
 
 @property (weak, nonatomic) IBOutlet UIView *loadingIconView;
 
