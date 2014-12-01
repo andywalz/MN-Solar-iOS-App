@@ -58,7 +58,7 @@
 @property(nonatomic,strong) NSString* eusaWEBSITE;
 @property(nonatomic,strong) NSString* eusaELEC_COMP;
 
-
+@property (nonatomic, strong) AGSPoint* pin;
 @property(nonatomic,strong) AGSPoint *utm15Point;
 @property(nonatomic,strong) AGSPoint *wgsPoint;
 @property(nonatomic,strong) AGSPoint *geocodePoint;

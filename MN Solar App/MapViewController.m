@@ -154,6 +154,8 @@ GCGeocodingService * myGC;
     //self.mapView.callout.customView = self.loadingView;
     //[self.mapView.callout showCalloutAt:mappoint screenOffset:CGPointZero animated:YES];
     
+    self.pin = mappoint;
+    
     //Convert Web Mercator to UTM15
     
     [self convertToUTM15:mappoint];
@@ -723,6 +725,7 @@ int warningMsgCount = 0;
         destVC = (ReportViewController *)segue.destinationViewController;
     
         destVC.mainMapView = startVC;
+        destVC.thePin = self.pin;
     
         NSLog(@"LeavingSegueEUSA:%@",self.eusaFULL_NAME);
     }

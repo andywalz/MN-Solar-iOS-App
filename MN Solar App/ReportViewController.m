@@ -29,52 +29,61 @@
     self.location.text = [NSString stringWithFormat:@"Lat: %f  Long: %f",self.mainMapView.wgsPoint.y, self.mainMapView.wgsPoint.x];
     
     NSLog(@"Lat: %f,%f",self.mainMapView.wgsPoint.y, self.mainMapView.wgsPoint.x);
+   
+    
+    
     //Setup locator maps
-    
+
     self.solarLocMap.hidden = NO;
-    
-         // set the delegate for the map view
-    self.solarLocMap.layerDelegate = self;
-    
-
-    //zoom to an area
-AGSEnvelope *envelopeR = [AGSEnvelope envelopeWithXmin:self.mainMapView.utm15Point.y - 300 ymin:self.mainMapView.utm15Point.y - 300 xmax:self.mainMapView.utm15Point.x + 300  ymax:self.mainMapView.utm15Point.y + 300  spatialReference:self.solarLocMap.spatialReference];
-    [self.solarLocMap zoomToEnvelope:envelopeR animated:NO];
-   
-    //add new layer
-    AGSTiledMapServiceLayer* newBasemapLayer = [AGSTiledMapServiceLayer tiledMapServiceLayerWithURL:[NSURL URLWithString:@"http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/"]];
-    
-    [self.solarLocMap insertMapLayer:newBasemapLayer withName:@"Basemap Tiled Layer" atIndex:0];
-   
-    //add solar layer
-    AGSImageServiceLayer* solarLayer = [AGSImageServiceLayer imageServiceLayerWithURL: [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer"]];
-    
-    [self.solarLocMap insertMapLayer:solarLayer withName:@"Solar Tiled Layer" atIndex:1];
-
-     
-/*
-    
+ 
     // set the delegate for the map view
     self.solarLocMap.layerDelegate = self;
-    //self.satLocMap.layerDelegate = self;
-    
-    //add new layer
-    AGSTiledMapServiceLayer* newBasemapLayerR = [AGSTiledMapServiceLayer tiledMapServiceLayerWithURL:[NSURL URLWithString:@"http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer"]];
-    [self.solarLocMap insertMapLayer:newBasemapLayerR withName:@"Basemap Tiled Layer" atIndex:0];
-   // [self.satLocMap insertMapLayer:newBasemapLayerR withName:@"Basemap Tiled Layer" atIndex:0];
-   
+ 
     //zoom to an area
-    AGSEnvelope *envelopeR = [AGSEnvelope envelopeWithXmin:self.mainMapView.utm15Point.y - 300 ymin:self.mainMapView.utm15Point.y - 300 xmax:self.mainMapView.utm15Point.x + 300  ymax:self.mainMapView.utm15Point.y + 300  spatialReference:self.solarLocMap.spatialReference];
-    
+    AGSEnvelope *envelope = [AGSEnvelope envelopeWithXmin:(self.thePin.x - 200) ymin:(self.thePin.y - 200) xmax:(self.thePin.x + 200)  ymax:(self.thePin.y + 200)  spatialReference:self.solarLocMap.spatialReference];
+    [self.solarLocMap zoomToEnvelope:envelope animated:NO];
+   
+
+    //add new layer
+    AGSTiledMapServiceLayer* newBasemapLayer = [AGSTiledMapServiceLayer tiledMapServiceLayerWithURL:[NSURL URLWithString:@"http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/"]];
+ 
+    [self.solarLocMap insertMapLayer:newBasemapLayer withName:@"Basemap Tiled Layer" atIndex:0];
+
     //add solar layer
-    NSURL* surl = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer"];
-    AGSImageServiceLayer *stemp = [AGSImageServiceLayer imageServiceLayerWithURL: surl];
+    AGSImageServiceLayer* solarLayer = [AGSImageServiceLayer imageServiceLayerWithURL: [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer"]];
+ 
+    [self.solarLocMap insertMapLayer:solarLayer withName:@"Solar Tiled Layer" atIndex:1];
+ 
     
-    [self.solarLocMap insertMapLayer:stemp withName:@"Solar Tiled Layer" atIndex:1];
+    //add pin graphic
     
-    [self.solarLocMap zoomToEnvelope:envelopeR animated:YES];
-    //[self.satLocMap zoomToEnvelope:envelopeR animated:YES];
+    [self.graphicsLayer removeAllGraphics];
     
+    self.graphicsLayer = [AGSGraphicsLayer graphicsLayer];
+    [self.solarLocMap addMapLayer:self.graphicsLayer withName:@"Graphics Layer"];
+    
+    AGSPictureMarkerSymbol* pushpin = [AGSPictureMarkerSymbol pictureMarkerSymbolWithImageNamed:@"bluepushpin"];
+    pushpin.offset = CGPointMake(0,15);
+    [pushpin setSize:CGSizeMake(20,30)];
+    AGSSimpleRenderer* renderer = [AGSSimpleRenderer simpleRendererWithSymbol:pushpin];
+    self.graphicsLayer.renderer = renderer;
+    
+    AGSPoint* myMarkerPoint =
+    [AGSPoint pointWithX:self.thePin.x
+                       y:self.thePin.y
+        spatialReference:self.solarLocMap.spatialReference];
+   
+    //Create the Graphic, using the symbol and
+    //geometry created earlier
+    AGSGraphic* myGraphic =
+    [AGSGraphic graphicWithGeometry:myMarkerPoint
+                             symbol:pushpin
+                         attributes:nil];
+    
+    //Add the graphic to the Graphics layer
+    [self.graphicsLayer addGraphic:myGraphic];
+    
+   
     NSString *mapURL = [ NSString stringWithFormat:@"http://solar.maps.umn.edu/ios/locatormap.php?lat=%f&long=%f",self.mainMapView.wgsPoint.y,self.mainMapView.wgsPoint.x];
     
     
@@ -82,7 +91,6 @@ AGSEnvelope *envelopeR = [AGSEnvelope envelopeWithXmin:self.mainMapView.utm15Poi
     
     self.locWebMap.hidden = NO;
     
-*/
     
     /*
     //Show report in webview
