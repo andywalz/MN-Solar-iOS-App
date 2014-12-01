@@ -2,7 +2,7 @@
 //  ViewController.m
 //  MN Solar App
 //
-//  Created by Andy Walz on 11/1/14.
+//  Created by Andy Walz and Chris Martin on 11/1/14.
 //  Copyright (c) 2014 MN Solar Suitability Team. All rights reserved.
 //
 
@@ -11,14 +11,14 @@
 @class ReportViewController;
 @class GCGeocodingService;
 @class solValPopover;
-//@synthesize gs;
 
 @interface MapViewController () <AGSMapViewLayerDelegate, AGSQueryTaskDelegate, AGSGeoprocessorDelegate>
 
+// Private properties
 @property (strong, nonatomic) IBOutlet UIWebView *chartViewer;
-
 @property (strong, nonatomic) UIPopoverController *bmPopoverController;
 
+// Private actions
 - (IBAction)exitHere:(UIStoryboardSegue *)sender;
 - (IBAction)swipeUpToReport:(id)sender;
 - (IBAction)swipeDownCloseResults:(id)sender;
@@ -27,6 +27,7 @@
 
 @implementation MapViewController
 
+// Variables
 bool isHidden = YES;
 GCGeocodingService * myGC;
 
@@ -37,7 +38,7 @@ GCGeocodingService * myGC;
     self.loadingIconView.hidden=YES;
     self.solarOff.hidden = YES;
     
-    // HIDE DEBUG
+    // SHOW/HIDE DEBUG PANEL
     self.zoomIn.hidden = YES;
     self.zoomOut.hidden = YES;
     self.debugBackground.hidden = YES;
@@ -77,9 +78,8 @@ GCGeocodingService * myGC;
     
     // Create reference to GCGeocodingService class
     myGC = [[GCGeocodingService alloc] init];
-    //NSString *address = @"1217 matilda st 55117";
-    //[myGC geocodeAddress:address];
     
+    //Chris: do we need this?
     // Create gesture recognizition
     UISwipeGestureRecognizer *oneFingerSwipeUp = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(oneFingerSwipeUp:)];
     
@@ -92,7 +92,7 @@ GCGeocodingService * myGC;
 {
     NSLog(@"Swiped up");
     
-    // ADD SEQUE HERE
+    //Chris: I may have implemented this in swipeUptoReport below, please delete if you agree
 }
 
 // Checks if we have an internet connection or not
@@ -105,7 +105,7 @@ GCGeocodingService * myGC;
     {
         // Update the UI on the main thread
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"Yayyy, we have the interwebs!");
+            //NSLog(@"Yayyy, we have the interwebs!");
         });
     };
     
@@ -114,7 +114,7 @@ GCGeocodingService * myGC;
     {
         // Update the UI on the main thread
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"Someone broke the internet :(");
+            NSLog(@"ERROR: Network connection not available");
         });
     };
     
@@ -150,20 +150,12 @@ GCGeocodingService * myGC;
     //Cancel any outstanding operations for previous webservice requests
     [self.queue cancelAllOperations];
     
-    //Show an activity indicator while we initiate a new request
-    //self.mapView.callout.customView = self.loadingView;
-    //[self.mapView.callout showCalloutAt:mappoint screenOffset:CGPointZero animated:YES];
-    
+    //Store original mappoint for subclasses to access
     self.pin = mappoint;
     
-    //Convert Web Mercator to UTM15
-    
+    //Convert Web Mercator to UTM15 and WGS
     [self convertToUTM15:mappoint];
-    
     [self convertToWGS:self.utm15Point];
-    
-    
-    //self.wgsPoint = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:mappoint toSpatialReference:[AGSSpatialReference wgs84SpatialReference]];
     
     // Add graphics layer
     [self addPoint:mappoint];
@@ -174,6 +166,7 @@ GCGeocodingService * myGC;
 }
 
 - (void) runQueries {
+    
     //EUSA query test
     NSURL* EUSAURL = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/solar_fgdb/MapServer/0"];
     
@@ -187,7 +180,7 @@ GCGeocodingService * myGC;
     
     [self.queryTask executeWithQuery:self.query];
     
-    //dsm query test
+    //DSM Tile Name Query
     NSURL* dsmURL = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/MN_DSM/ImageServer"];
     
     self.dsmqueryTask = [AGSQueryTask queryTaskWithURL:dsmURL];
@@ -199,7 +192,7 @@ GCGeocodingService * myGC;
     self.dsmquery.whereClause = @"1=1";
     
     [self.dsmqueryTask executeWithQuery:self.dsmquery];
-}
+} //END runQueries
 
 int warningMsgCount = 0;
 
@@ -263,7 +256,7 @@ int warningMsgCount = 0;
     // NEEDS ERROR CHECKING - set variable in GCGeocoding
     [self gpTool];
     
-}
+} //END EUSA query success handler
 
 // EUSA query fails
 - (void) queryTask:(AGSQueryTask*)queryTask operation:(NSOperation*)	op didFailWithError:(NSError *)error{
@@ -288,8 +281,18 @@ int warningMsgCount = 0;
     NSLog(@"dsmerror");
 }
 
-#pragma mark Locator Methods #pragma mark -
+- (void)operation:(NSOperation*)op didFailWithError:(NSError *)error {
+    //Error encountered while invoking webservice. Alert user
+    self.mapView.callout.hidden = YES;
+    UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"Sorry"
+                                                 message:[error localizedDescription]
+                                                delegate:nil cancelButtonTitle:@"OK"
+                                       otherButtonTitles:nil];
+    [av show];
+}
 
+
+#pragma mark Geocoder and Locator Methods #pragma mark -
 
 - (void)locator:(AGSLocator *)locator operation:(NSOperation *)op didFind:(NSArray *)results {
     if (results == nil || [results count] == 0)
@@ -318,6 +321,173 @@ int warningMsgCount = 0;
     }
 }
 
+-(void) gpTool{
+    
+    //NSLog(@"DSM Name ===== %@", self.dsmname);
+    //NSLog(@"IngpToolName: %@, Phone: %@",self.eusaFULL_NAME, self.eusaPHONE);
+    
+    self.loadingIconView.hidden=NO;
+    
+    NSString *fullTileName = [NSString stringWithFormat:@"%@.img", self.dsmname];
+    
+    NSURL* gpURL = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/SolarPointQuery_fast/GPServer/Script"];
+    
+    // Build geoprocessor
+    self.geoprocessor = [AGSGeoprocessor geoprocessorWithURL:gpURL];
+    self.geoprocessor.delegate = self;
+    
+    // Geoprocessor build parameters
+    AGSGPParameterValue *pointX = [AGSGPParameterValue parameterWithName:@"PointX" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.x]];
+    AGSGPParameterValue *pointY = [AGSGPParameterValue parameterWithName:@"PointY" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.y]];
+    AGSGPParameterValue *tile = [AGSGPParameterValue parameterWithName:@"File_Name" type:AGSGPParameterTypeString value:fullTileName];
+    
+    // GP Parameters to array
+    NSArray *params = [NSArray arrayWithObjects:pointX, pointY,tile, nil];
+    
+    // Run GP tool as synch
+    //NSLog(@"About to fire GP tool");
+    [self.geoprocessor executeWithParameters:params];
+    
+} //END gpTool
+
+
+//this is the delegate method that gets called when GP completes successfully
+- (void) geoprocessor:(AGSGeoprocessor*) geoprocessor   operation:(NSOperation*) op didExecuteWithResults:(NSArray*) results  messages:(NSArray*) messages {
+    
+    for (AGSGPParameterValue* param in results) {
+        //NSLog(@"Parameter: %@", param.name);
+        
+        if ([param.name isEqualToString: @"Solar_Value"]){
+            self.solarValue = param.value;
+            NSNumber *sunInsolMax = 0;
+            // Split string into array
+            self.solarValueArray = [self.solarValue componentsSeparatedByString: @"\n"];
+            
+            // Remove blank item from end of array
+            [self.solarValueArray removeObjectAtIndex:12];
+            
+            self.solarValueArrayNum = [[NSMutableArray alloc]init];
+            self.solarValueArrayNumkwh = [[NSMutableArray alloc] init];
+            
+            // Convert string array to NSDecimalNumber array
+            for (NSInteger i = 0, count = [self.solarValueArray count]; i < count; i++){
+                
+                NSNumber *convertToNum = [NSDecimalNumber decimalNumberWithString:self.solarValueArray[i]];
+                
+                [self.solarValueArrayNum addObject:convertToNum];
+                
+                float convertToNumFloat= [convertToNum floatValue];
+                float kwh = convertToNumFloat/1000;
+                NSNumber *kwhtoArray = [NSNumber numberWithFloat:kwh];
+                [self.solarValueArrayNumkwh addObject:kwhtoArray];
+            };
+            
+            float totalInsValue;
+            
+            // Iterate kwh array, find sum, and find largest value
+            for (NSInteger i = 0, count = [self.solarValueArrayNumkwh count]; i < count; i++){
+                
+                if (self.solarValueArrayNumkwh[i]>sunInsolMax){
+                    sunInsolMax = self.solarValueArrayNumkwh[i];
+                    self.maxInsVal = self.solarValueArrayNumkwh[i];
+                };
+                
+                totalInsValue += [self.solarValueArrayNumkwh[i] floatValue];
+                
+            };
+            
+            self.totalInsVal = [NSNumber numberWithFloat:totalInsValue];
+            self.maxIns.text = [self.maxInsVal stringValue];
+            self.totalIns.text = [self.totalInsVal stringValue];
+            
+            self.daillyIns.text = [NSString stringWithFormat:@"%0.3f", (self.totalInsVal.doubleValue / 365.0)];
+            
+            if(self.totalInsVal.doubleValue / 365.0 >= 2.7){
+                self.solPotential.text = @"[ Optimal ]";
+            }else if (self.totalInsVal.doubleValue / 365.0 >= 1.6){
+                self.solPotential.text = @"[ Good ]";
+            }else{
+                self.solPotential.text = @"[ Poor ]";
+            }
+            
+            
+        }
+        else if ([param.name isEqualToString: @"Solar_Hours"]){
+            self.solarHours = param.value;
+            NSNumber *sunHrMax = 0;
+            
+            // Split string into array
+            self.solarHoursArray = [self.solarHours componentsSeparatedByString: @"\n"];
+            
+            // Remove blank item from end of array
+            [self.solarHoursArray removeObjectAtIndex:12];
+            
+            self.solarHoursArrayNum = [[NSMutableArray alloc]init];
+            self.solarHoursArrayNumFloat = [[NSMutableArray alloc]init];
+            
+            // Convert string array to NSDecimalNumber array
+            for (NSInteger i = 0, count = [self.solarHoursArray count]; i < count; i++){
+                NSNumber *convertToNum = [NSDecimalNumber decimalNumberWithString:self.solarHoursArray[i]];
+                float convertToNumFloat = [convertToNum floatValue];
+                NSNumber *sunHrs = [NSNumber numberWithFloat:convertToNumFloat];
+                [self.solarHoursArrayNum addObject:convertToNum];
+                [self.solarHoursArrayNumFloat addObject:sunHrs];
+            };
+            
+            float totalSunHrValue;
+            
+            // Iterate kwh array, find sum, and find largest value
+            for (NSInteger i = 0, count = [self.solarHoursArrayNumFloat count]; i < count; i++){
+                
+                if (self.solarHoursArrayNumFloat[i]>sunHrMax){
+                    sunHrMax = self.solarHoursArrayNumFloat[i];
+                    self.maxHrsVal = self.solarHoursArrayNumFloat[i];
+                };
+                
+                totalSunHrValue += [self.solarHoursArrayNumFloat[i] floatValue];
+                
+            };
+            
+            self.totalHrsVal = [NSNumber numberWithFloat:totalSunHrValue];
+            self.maxHrs.text = [self.maxHrsVal stringValue];
+            self.totalHrs.text = [self.totalHrsVal stringValue];
+            self.dailyHrs.text = [NSString stringWithFormat:@"%0.3f", (self.totalHrsVal.doubleValue / 365.0)];
+        };
+        
+        NSString *chartURL = [NSString stringWithFormat:@"http://solar.maps.umn.edu/ios/chart2.php?1=%@&2=%@&3=%@&4=%@&5=%@&6=%@&7=%@&8=%@&9=%@&10=%@&11=%@&12=%@",[self.solarValueArrayNumkwh objectAtIndex:0],[self.solarValueArrayNumkwh objectAtIndex:1],[self.solarValueArrayNumkwh objectAtIndex:2],[self.solarValueArrayNumkwh objectAtIndex:3],[self.solarValueArrayNumkwh objectAtIndex:4],[self.solarValueArrayNumkwh objectAtIndex:5],[self.solarValueArrayNumkwh objectAtIndex:6],[self.solarValueArrayNumkwh objectAtIndex:7],[self.solarValueArrayNumkwh objectAtIndex:8],[self.solarValueArrayNumkwh objectAtIndex:9],[self.solarValueArrayNumkwh objectAtIndex:10],[self.solarValueArrayNumkwh objectAtIndex:11]];
+        
+        NSLog(@"%@",chartURL);
+        NSURL *appleURL; appleURL =[ NSURL URLWithString:chartURL]; [self.chartViewer loadRequest:[ NSURLRequest requestWithURL: appleURL]];
+        
+        self.chartViewer.hidden = NO;
+        
+        self.loadingIconView.hidden=YES;
+        self.resultsDrawer.hidden = NO;
+        
+    }
+    
+}
+
+//this is the delegate method that gets called when GP fails
+- (void) geoprocessor:(AGSGeoprocessor*) geoprocessor   operation:(NSOperation*) op didFailExecuteWithError:(NSError *)error{
+    NSLog(@"Error: %@",error);
+}
+
+
+-(void)zoomToLocation:(AGSPoint *)point{
+    
+    AGSPoint *myPoint = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:point toSpatialReference:[AGSSpatialReference webMercatorSpatialReference]];
+    
+    self.zoomToEnvelop = [AGSEnvelope envelopeWithXmin:myPoint.x- 200 ymin:myPoint.y - 200 xmax:myPoint.x + 200  ymax:myPoint.y + 200 spatialReference:self.mapView.spatialReference];
+    
+    [self convertToUTM15:myPoint];
+    [self convertToWGS:myPoint];
+    [self.mapView zoomToEnvelope:self.zoomToEnvelop animated:YES];
+    [self addPoint:myPoint];
+    [self runQueries];
+}
+
+
 #pragma mark Create Point #pragma mark -
 
 -(void)addPoint:(AGSPoint*) mappoint{
@@ -328,23 +498,11 @@ int warningMsgCount = 0;
     [self.mapView addMapLayer:self.myGraphicsLayer withName:@"Graphics Layer"];
     
     AGSPictureMarkerSymbol* pushpin = [AGSPictureMarkerSymbol pictureMarkerSymbolWithImageNamed:@"bluepushpin"];
-    //pushpin = [AGSPictureMarkerSymbol pictureMarkerSymbolWithImageNamed:@"zoomIn.png"];
+    
     pushpin.offset = CGPointMake(0,15);
-    //pushpin.leaderPoint = CGPointMake(-9,11);
     [pushpin setSize:CGSizeMake(20,30)];
     AGSSimpleRenderer* renderer = [AGSSimpleRenderer simpleRendererWithSymbol:pushpin];
     self.myGraphicsLayer.renderer = renderer;
-    
-    //create a marker symbol to be used by our Graphic
-    /*AGSSimpleMarkerSymbol *myMarkerSymbol =
-    [AGSSimpleMarkerSymbol simpleMarkerSymbol];
-    myMarkerSymbol.color = [UIColor blueColor];
-    
-    [myMarkerSymbol setSize:CGSizeMake(10,10)];
-    [myMarkerSymbol setOutline:[AGSSimpleLineSymbol simpleLineSymbolWithColor:[UIColor redColor] width:1]];*/
-    
-    //Create an AGSPoint (which inherits from AGSGeometry) that
-    //defines where the Graphic will be drawn
     
     AGSPoint* myMarkerPoint =
     [AGSPoint pointWithX:mappoint.x
@@ -353,8 +511,7 @@ int warningMsgCount = 0;
     
     //NSLog(@"%@", myMarkerPoint);
     
-    //Create the Graphic, using the symbol and
-    //geometry created earlier
+    //Create the Graphic, using the symbol and geometry created earlier
     AGSGraphic* myGraphic =
     [AGSGraphic graphicWithGeometry:myMarkerPoint
                              symbol:pushpin
@@ -365,13 +522,12 @@ int warningMsgCount = 0;
     
 }
 
-/*- (IBAction)solarSwitch:(id)sender {
-    isHidden = !isHidden;
-    self.solarLayer.visible = isHidden;
-}
 
-//[self.solarSwitch addTarget:self
-                  action:@selector(stateChanged:) forControlEvents:UIControlEventValueChanged];*/
+#pragma mark Action and UI Methods #pragma mark -
+
+// ---------------------------------
+//  Action ano UI Methods
+// ---------------------------------
 
 - (IBAction)solarSwitchToggle:(id)sender {
     if ([self.solarSwitch isOn]){
@@ -391,12 +547,6 @@ int warningMsgCount = 0;
     
     return YES;
 }
-
-#pragma mark Complete Methods #pragma mark -
-
-// ---------------------------------
-//  COMPLETE FUNCTIONS
-// ---------------------------------
 
 // Zoom in button
 - (IBAction)zoomIn:(id)sender {
@@ -420,9 +570,8 @@ int warningMsgCount = 0;
     NSLog(@"%@", address);
     [myGC geocodeAddress:address];
     
-    NSLog(@"Address: %@", myGC.geocodeResults[@"address"]);
+    //NSLog(@"Address: %@", myGC.geocodeResults[@"address"]);
     
-    NSLog(@"Trying to add pin");
     float x = [myGC.geocodeResults[@"lng"] floatValue];
     float y = [myGC.geocodeResults[@"lat"] floatValue];
     self.geocodePoint = [AGSPoint pointWithX:x
@@ -430,7 +579,7 @@ int warningMsgCount = 0;
                            spatialReference:[AGSSpatialReference wgs84SpatialReference]];
     self.geocodePointWeb = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:self.geocodePoint toSpatialReference:[AGSSpatialReference webMercatorSpatialReference]];
     
-    NSLog(@"Trying to zoom!");
+    //NSLog(@"Trying to zoom!");
     
     self.zoomToEnvelop = [AGSEnvelope envelopeWithXmin:self.geocodePointWeb.x - 200 ymin:self.geocodePointWeb.y - 200 xmax:self.geocodePointWeb.x + 200  ymax:self.geocodePointWeb.y + 200 spatialReference:self.mapView.spatialReference];
     [self.mapView zoomToEnvelope:self.zoomToEnvelop animated:YES];
@@ -443,8 +592,6 @@ int warningMsgCount = 0;
     [self runQueries];
     
 }
-
-// change basemaps
 
 - (IBAction)basemapChanged:(id)sender {
     
@@ -480,217 +627,37 @@ int warningMsgCount = 0;
 
 - (IBAction)logGeocodeValue:(id)sender {
     //NSLog(@"%@", myGC.geocodeResults );
-    NSLog(@"Address: %@", myGC.geocodeResults[@"address"]);
+    //NSLog(@"Address: %@", myGC.geocodeResults[@"address"]);
 }
 
--(void) gpTool{
+- (IBAction)hideResultsDrawer:(id)sender {
     
-    NSLog(@"DSM Name ===== %@", self.dsmname);
-    NSLog(@"IngpToolName: %@, Phone: %@",self.eusaFULL_NAME, self.eusaPHONE);
-
-    self.loadingIconView.hidden=NO;
-    //self.loadingView.hidden=NO;
+    self.resultsDrawer.hidden = YES;
     
-    NSString *fullTileName = [NSString stringWithFormat:@"%@.img", self.dsmname];
+}
+- (IBAction)findLocation:(id)sender {
+    // Enable user location
+    [self.mapView.locationDisplay startDataSource];
+    //NSLog(@"%@",self.mapView.locationDisplay.mapLocation);
+    self.zoomToEnvelop = [AGSEnvelope envelopeWithXmin:self.mapView.locationDisplay.mapLocation.x - 200 ymin:self.mapView.locationDisplay.mapLocation.y - 200 xmax:self.mapView.locationDisplay.mapLocation.x + 200  ymax:self.mapView.locationDisplay.mapLocation.y + 200 spatialReference:self.mapView.spatialReference];
+    [self.mapView zoomToEnvelope:self.zoomToEnvelop animated:YES];
     
-    NSURL* gpURL = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/SolarPointQuery_fast/GPServer/Script"];
-
-    // Build geoprocessor
-    self.geoprocessor = [AGSGeoprocessor geoprocessorWithURL:gpURL];
-    
-    self.geoprocessor.delegate = self;
-    
-    /*if (!self.wgsPoint.x){
-        // Geoprocessor build parameters
-        AGSGPParameterValue *pointX = [AGSGPParameterValue parameterWithName:@"PointX" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.geocodePointWeb.x]];
-        AGSGPParameterValue *pointY = [AGSGPParameterValue parameterWithName:@"PointY" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.y]];
-        AGSGPParameterValue *tile = [AGSGPParameterValue parameterWithName:@"File_Name" type:AGSGPParameterTypeString value:fullTileName];
-        
-        // GP Parameters to array
-        NSArray *params = [NSArray arrayWithObjects:pointX, pointY,tile, nil];
-        // Run GP tool as synch
-        //NSLog(@"About to fire GP tool");
-        [self.geoprocessor executeWithParameters:params];
-        
-    }
-    else{*/
-    
-    // Geoprocessor build parameters
-    AGSGPParameterValue *pointX = [AGSGPParameterValue parameterWithName:@"PointX" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.x]];
-    AGSGPParameterValue *pointY = [AGSGPParameterValue parameterWithName:@"PointY" type:AGSGPParameterTypeDouble value:[NSNumber numberWithDouble:self.wgsPoint.y]];
-    AGSGPParameterValue *tile = [AGSGPParameterValue parameterWithName:@"File_Name" type:AGSGPParameterTypeString value:fullTileName];
-        
-        // GP Parameters to array
-        NSArray *params = [NSArray arrayWithObjects:pointX, pointY,tile, nil];
-        // Run GP tool as synch
-        //NSLog(@"About to fire GP tool");
-        [self.geoprocessor executeWithParameters:params];
-    //};
+    [self addPoint:self.geocodePointWeb];
     
 }
 
-//this is the delegate method that gets called when GP completes successfully
-- (void) geoprocessor:(AGSGeoprocessor*) geoprocessor   operation:(NSOperation*) op didExecuteWithResults:(NSArray*) results  messages:(NSArray*) messages {
-    
-    
-    
-    for (AGSGPParameterValue* param in results) {
-        //NSLog(@"Parameter: %@", param.name);
-        
-        if ([param.name isEqualToString: @"Solar_Value"]){
-            self.solarValue = param.value;
-            NSNumber *sunInsolMax = 0;
-            // Split string into array
-            self.solarValueArray = [self.solarValue componentsSeparatedByString: @"\n"];
-            
-            // Remove blank item from end of array
-            [self.solarValueArray removeObjectAtIndex:12];
-            
-            self.solarValueArrayNum = [[NSMutableArray alloc]init];
-            self.solarValueArrayNumkwh = [[NSMutableArray alloc] init];
-            
-            // Convert string array to NSDecimalNumber array
-            for (NSInteger i = 0, count = [self.solarValueArray count]; i < count; i++){
-
-                NSNumber *convertToNum = [NSDecimalNumber decimalNumberWithString:self.solarValueArray[i]];
-                
-                [self.solarValueArrayNum addObject:convertToNum];
-                
-                float convertToNumFloat= [convertToNum floatValue];
-                float kwh = convertToNumFloat/1000;
-                NSNumber *kwhtoArray = [NSNumber numberWithFloat:kwh];
-                [self.solarValueArrayNumkwh addObject:kwhtoArray];
-                 };
-            
-            float totalInsValue;
-            
-            // Iterate kwh array, find sum, and find largest value
-            for (NSInteger i = 0, count = [self.solarValueArrayNumkwh count]; i < count; i++){
-      
-                if (self.solarValueArrayNumkwh[i]>sunInsolMax){
-                    sunInsolMax = self.solarValueArrayNumkwh[i];
-                    self.maxInsVal = self.solarValueArrayNumkwh[i];
-                };
-                
-                totalInsValue += [self.solarValueArrayNumkwh[i] floatValue];
-                
-            };
-            
-            self.totalInsVal = [NSNumber numberWithFloat:totalInsValue];
-            self.maxIns.text = [self.maxInsVal stringValue];
-            self.totalIns.text = [self.totalInsVal stringValue];
-           // self.daillyIns.text = [[NSNumber numberWithDouble:(self.totalInsVal.doubleValue / 365.0)] stringValue];
-            self.daillyIns.text = [NSString stringWithFormat:@"%0.3f", (self.totalInsVal.doubleValue / 365.0)];
-            
-            if(self.totalInsVal.doubleValue / 365.0 >= 2.7){
-                self.solPotential.text = @"[ Optimal ]";
-            }else if (self.totalInsVal.doubleValue / 365.0 >= 1.6){
-                self.solPotential.text = @"[ Good ]";
-            }else{
-                self.solPotential.text = @"[ Poor ]";
-            }
-            
-            
-        }
-        else if ([param.name isEqualToString: @"Solar_Hours"]){
-            self.solarHours = param.value;
-            NSNumber *sunHrMax = 0;
-            // Split string into array
-            self.solarHoursArray = [self.solarHours componentsSeparatedByString: @"\n"];
-            
-            // Remove blank item from end of array
-            [self.solarHoursArray removeObjectAtIndex:12];
-            
-            self.solarHoursArrayNum = [[NSMutableArray alloc]init];
-            self.solarHoursArrayNumFloat = [[NSMutableArray alloc]init];
-            
-            // Convert string array to NSDecimalNumber array
-            for (NSInteger i = 0, count = [self.solarHoursArray count]; i < count; i++){
-                NSNumber *convertToNum = [NSDecimalNumber decimalNumberWithString:self.solarHoursArray[i]];
-                float convertToNumFloat = [convertToNum floatValue];
-                NSNumber *sunHrs = [NSNumber numberWithFloat:convertToNumFloat];
-                [self.solarHoursArrayNum addObject:convertToNum];
-                [self.solarHoursArrayNumFloat addObject:sunHrs];
-            };
-            
-            float totalSunHrValue;
-            
-            // Iterate kwh array, find sum, and find largest value
-            for (NSInteger i = 0, count = [self.solarHoursArrayNumFloat count]; i < count; i++){
-                
-                if (self.solarHoursArrayNumFloat[i]>sunHrMax){
-                    sunHrMax = self.solarHoursArrayNumFloat[i];
-                    self.maxHrsVal = self.solarHoursArrayNumFloat[i];
-                };
-                
-                totalSunHrValue += [self.solarHoursArrayNumFloat[i] floatValue];
-                
-            };
-            
-            /*// Iterate NSDecimalNumber array and find largest value
-            for (NSInteger i = 0, count = [self.solarHoursArrayNum count]; i < count; i++){
-                if ([self.solarHoursArrayNum[i] compare:sunHrMax]== NSOrderedDescending){
-                    self.maxHrsVal = self.solarHoursArrayNum[i];
-                    sunHrMax = self.solarHoursArrayNum[i];
-                };
-            };*/
-            
-            self.totalHrsVal = [NSNumber numberWithFloat:totalSunHrValue];
-            self.maxHrs.text = [self.maxHrsVal stringValue];
-            self.totalHrs.text = [self.totalHrsVal stringValue];
-            self.dailyHrs.text = [NSString stringWithFormat:@"%0.3f", (self.totalHrsVal.doubleValue / 365.0)];
-        };
-        
-        /* Change value label using kwh array (float) as string value
-        self.janVal.text = [[self.solarValueArrayNumkwh objectAtIndex:0] stringValue];
-        self.febVal.text = [[self.solarValueArrayNumkwh objectAtIndex:1] stringValue];
-        self.marVal.text = [[self.solarValueArrayNumkwh objectAtIndex:2] stringValue];
-        self.aprVal.text = [[self.solarValueArrayNumkwh objectAtIndex:3] stringValue];
-        self.mayVal.text = [[self.solarValueArrayNumkwh objectAtIndex:4] stringValue];
-        self.junVal.text = [[self.solarValueArrayNumkwh objectAtIndex:5] stringValue];
-        self.julVal.text = [[self.solarValueArrayNumkwh objectAtIndex:6] stringValue];
-        self.augVal.text = [[self.solarValueArrayNumkwh objectAtIndex:7] stringValue];
-        self.sepVal.text = [[self.solarValueArrayNumkwh objectAtIndex:8] stringValue];
-        self.octVal.text = [[self.solarValueArrayNumkwh objectAtIndex:9] stringValue];
-        self.novVal.text = [[self.solarValueArrayNumkwh objectAtIndex:10] stringValue];
-        self.decVal.text = [[self.solarValueArrayNumkwh objectAtIndex:11] stringValue];
-        
-        self.janHr.text = [self.solarHoursArray objectAtIndex:0];
-        self.febHr.text = [self.solarHoursArray objectAtIndex:1];
-        self.marHr.text = [self.solarHoursArray objectAtIndex:2];
-        self.aprHr.text = [self.solarHoursArray objectAtIndex:3];
-        self.mayHr.text = [self.solarHoursArray objectAtIndex:4];
-        self.junHr.text = [self.solarHoursArray objectAtIndex:5];
-        self.julHr.text = [self.solarHoursArray objectAtIndex:6];
-        self.augHr.text = [self.solarHoursArray objectAtIndex:7];
-        self.sepHr.text = [self.solarHoursArray objectAtIndex:8];
-        self.octHr.text = [self.solarHoursArray objectAtIndex:9];
-        self.novHr.text = [self.solarHoursArray objectAtIndex:10];
-        self.decHr.text = [self.solarHoursArray objectAtIndex:11]; */
-        
-        NSString *chartURL = [NSString stringWithFormat:@"http://solar.maps.umn.edu/ios/chart2.php?1=%@&2=%@&3=%@&4=%@&5=%@&6=%@&7=%@&8=%@&9=%@&10=%@&11=%@&12=%@",[self.solarValueArrayNumkwh objectAtIndex:0],[self.solarValueArrayNumkwh objectAtIndex:1],[self.solarValueArrayNumkwh objectAtIndex:2],[self.solarValueArrayNumkwh objectAtIndex:3],[self.solarValueArrayNumkwh objectAtIndex:4],[self.solarValueArrayNumkwh objectAtIndex:5],[self.solarValueArrayNumkwh objectAtIndex:6],[self.solarValueArrayNumkwh objectAtIndex:7],[self.solarValueArrayNumkwh objectAtIndex:8],[self.solarValueArrayNumkwh objectAtIndex:9],[self.solarValueArrayNumkwh objectAtIndex:10],[self.solarValueArrayNumkwh objectAtIndex:11]];
-        
-        NSLog(@"%@",chartURL);
-        NSURL *appleURL; appleURL =[ NSURL URLWithString:chartURL]; [self.chartViewer loadRequest:[ NSURLRequest requestWithURL: appleURL]];
-        
-        self.chartViewer.hidden = NO;
-
-        self.loadingIconView.hidden=YES;
-        self.resultsDrawer.hidden = NO;
-        
-    }
-    
+- (IBAction)swipeUpToReport:(id)sender {
+    [self performSegueWithIdentifier:@"toReport" sender:self];
 }
 
-//this is the delegate method that gets called when GP fails
-- (void) geoprocessor:(AGSGeoprocessor*) geoprocessor   operation:(NSOperation*) op didFailExecuteWithError:(NSError *)error{
-    NSLog(@"Error: %@",error);
+- (IBAction)swipeDownCloseResults:(id)sender {
+    self.resultsDrawer.hidden = YES;
 }
 
 
 #pragma mark Default iOS Methods #pragma mark -
 // ---------------------------------
-//  DEFAULT IOS FUNCTIONS
+//  DEFAULT FUNCTIONS
 // ---------------------------------
 
 
@@ -706,14 +673,6 @@ int warningMsgCount = 0;
     
 }
 
-- (IBAction)swipeUpToReport:(id)sender {
-    [self performSegueWithIdentifier:@"toReport" sender:self];
-}
-
-- (IBAction)swipeDownCloseResults:(id)sender {
-    self.resultsDrawer.hidden = YES;
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
    
     if ([[segue identifier] isEqualToString:@"toReport"])
@@ -726,44 +685,13 @@ int warningMsgCount = 0;
     
         destVC.mainMapView = startVC;
         destVC.thePin = self.pin;
-    
-        NSLog(@"LeavingSegueEUSA:%@",self.eusaFULL_NAME);
     }
     
     if ([[segue identifier] isEqualToString:@"toBookmarksPopover"])
     {
         [self dismissViewControllerAnimated:YES completion:nil];
-            //NSLog(@"To bookmarks");
-         NSLog(@"LeavingSegueFor BM Popover");
         
         self.bm = segue.destinationViewController;
-       
-        NSLog(@"LeavingSegueForBMPopover:%@",self.bm);
-        /*
-        UIStoryboardPopoverSegue *popoverSegue;
-        popoverSegue=(UIStoryboardPopoverSegue *)segue;
-        
-        
-         NSLog(@"LeavingSegueForBMPopover:%@",popoverSegue);
-        
-        UIPopoverController *popoverController;
-        popoverController= popoverSegue.popoverController;
-        
-       NSLog(@"LeavingSegueFor BMMMM Popover");
-
-        
-        popoverController.delegate=self;
-         */
-        /*
-        EditorViewController *editorVC;
-        editorVC=(EditorViewController *)popoverController.contentViewController;
-        editorVC.emailField.text=self.emailLabel.text;
-
-        BookmarksTableViewController *bmVC;
-        bmVC = (BookmarksTableViewController *)popoverController.contentViewController;
-         */
-        
-        //((UIStoryboardPopoverSegue *)segue).popoverController.delegate = self;
         
         MapViewController *startVC;
         BookmarksTableViewController *destVC;
@@ -772,14 +700,11 @@ int warningMsgCount = 0;
         destVC = (BookmarksTableViewController *)segue.destinationViewController;
         
         destVC.mvc = startVC;
-    
-
     }
     
     if ([[segue identifier] isEqualToString:@"toMenuPopover"])
     {
         [self dismissViewControllerAnimated:YES completion:nil];
-        //NSLog(@"To menu");
     }
     
     if ([[segue identifier] isEqualToString:@"toSolValuePopover"])
@@ -791,8 +716,6 @@ int warningMsgCount = 0;
         destVC = (solValPopover *)segue.destinationViewController;
         
         destVC.solPotentialPopover = self.solPotential.text;
-        
-        //NSLog(@"Opening Popover");
     }
     
 }
@@ -807,6 +730,7 @@ int warningMsgCount = 0;
 //  SAVED CODE
 // ---------------------------------
 
+//Chris: Do we need this? Does not appear to be called
 - (void)operation:(NSOperation*)op didSucceedWithResponse:(NSDictionary *)solarInfo {
     //The webservice was invoked successfully.
     //Print the response to see what the JSON payload looks like.
@@ -830,90 +754,17 @@ int warningMsgCount = 0;
      } */
 }
 
-- (void)operation:(NSOperation*)op didFailWithError:(NSError *)error {
-    //Error encountered while invoking webservice. Alert user
-    self.mapView.callout.hidden = YES;
-    UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"Sorry"
-                                                 message:[error localizedDescription]
-                                                delegate:nil cancelButtonTitle:@"OK"
-                                       otherButtonTitles:nil];
-    [av show];
-}
 
-
-
+//Chris: Do we need this? Does not appear to be called
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     
     //gs = [[GCGeocodingService alloc] init];
     GCGeocodingService * myGC = [[GCGeocodingService alloc] init];
     NSString *address = searchBar.text;
     [myGC geocodeAddress:address];
+    
     //Hide the keyboard
-    /*[searchBar resignFirstResponder];
-     
-     if(!self.graphicsLayer){
-     //Add a graphics layer to the map. This layer will hold geocoding results
-     self.graphicsLayer = [AGSGraphicsLayer graphicsLayer];
-     [self.mapView addMapLayer:self.graphicsLayer withName:@"Results"];
-     
-     //Assign a simple renderer to the layer to display results as pushpins
-     AGSPictureMarkerSymbol* pushpin = [AGSPictureMarkerSymbol pictureMarkerSymbolWithImageNamed:@"BluePushpin.png"];
-     pushpin.offset = CGPointMake(9,16);
-     pushpin.leaderPoint = CGPointMake(-9,11);
-     AGSSimpleRenderer* renderer = [AGSSimpleRenderer simpleRendererWithSymbol:pushpin];
-     self.graphicsLayer.renderer = renderer;
-     }else{
-     //Clear out previous results if we already have a graphics layer
-     [self.graphicsLayer removeAllGraphics];
-     }
-     
-     
-     if(!self.locator){
-     //Create the AGSLocator pointing to the geocode service on ArcGIS Online
-     //Set the delegate so that we are informed through AGSLocatorDelegate methods
-     self.locator = [AGSLocator locatorWithURL:[NSURL URLWithString:@"http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"]];
-     //self.locator.delegate = self;   //Chris I had to comment this out to make it work
-     }
-     
-     //Set the parameters
-     AGSLocatorFindParameters* params = [[AGSLocatorFindParameters alloc]init];
-     params.text = searchBar.text;
-     params.outFields = @[@"*"];
-     params.outSpatialReference = self.mapView.spatialReference;
-     
-     //Kick off the geocoding operation.
-     //This will invoke the geocode service on a background thread.
-     [self.locator findWithParameters:params];
-     */
-    
+    //[searchBar resignFirstResponder];
 }
 
-- (IBAction)hideResultsDrawer:(id)sender {
-    
-    self.resultsDrawer.hidden = YES;
-    
-}
-- (IBAction)findLocation:(id)sender {
-    // Enable user location
-    [self.mapView.locationDisplay startDataSource];
-    NSLog(@"%@",self.mapView.locationDisplay.mapLocation);
-    self.zoomToEnvelop = [AGSEnvelope envelopeWithXmin:self.mapView.locationDisplay.mapLocation.x - 200 ymin:self.mapView.locationDisplay.mapLocation.y - 200 xmax:self.mapView.locationDisplay.mapLocation.x + 200  ymax:self.mapView.locationDisplay.mapLocation.y + 200 spatialReference:self.mapView.spatialReference];
-    [self.mapView zoomToEnvelope:self.zoomToEnvelop animated:YES];
-    
-    [self addPoint:self.geocodePointWeb];
-
-}
-
--(void)zoomToLocation:(AGSPoint *)point{
-    
-    AGSPoint *myPoint = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:point toSpatialReference:[AGSSpatialReference webMercatorSpatialReference]];
-    
-    self.zoomToEnvelop = [AGSEnvelope envelopeWithXmin:myPoint.x- 200 ymin:myPoint.y - 200 xmax:myPoint.x + 200  ymax:myPoint.y + 200 spatialReference:self.mapView.spatialReference];
-    
-    [self convertToUTM15:myPoint];
-    [self convertToWGS:myPoint];
-    [self.mapView zoomToEnvelope:self.zoomToEnvelop animated:YES];
-    [self addPoint:myPoint];
-    [self runQueries];
-}
 @end
