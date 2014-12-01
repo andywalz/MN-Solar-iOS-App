@@ -23,40 +23,37 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
-    NSLog(@"%@",self.mainMapView);
-    
-    self.location.text = [NSString stringWithFormat:@"Lat: %f  Long: %f",self.mainMapView.wgsPoint.y, self.mainMapView.wgsPoint.x];
-    
-    // Change value label using kwh array (float) as string value
-    self.janVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:0] stringValue];
-    self.febVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:1] stringValue];
-    self.marVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:2] stringValue];
-    self.aprVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:3] stringValue];
-    self.mayVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:4] stringValue];
-    self.junVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:5] stringValue];
-    self.julVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:6] stringValue];
-    self.augVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:7] stringValue];
-    self.sepVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:8] stringValue];
-    self.octVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:9] stringValue];
-    self.novVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:10] stringValue];
-    self.decVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:11] stringValue];
-    
-    
-    self.janHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:0] stringValue];
-    self.febHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:1] stringValue];
-    self.marHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:2] stringValue];
-    self.aprHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:3] stringValue];
-    self.mayHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:4] stringValue];
-    self.junHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:5] stringValue];
-    self.julHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:6] stringValue];
-    self.augHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:7] stringValue];
-    self.sepHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:8] stringValue];
-    self.octHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:9] stringValue];
-    self.novHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:10] stringValue];
-    self.decHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:11] stringValue];
-    
+    NSLog(@"%f",self.mainMapView.utm15Point.y);
     
 
+    self.location.text = [NSString stringWithFormat:@"Lat: %f  Long: %f",self.mainMapView.wgsPoint.y, self.mainMapView.wgsPoint.x];
+    
+    NSLog(@"Lat: %f,%f",self.mainMapView.wgsPoint.y, self.mainMapView.wgsPoint.x);
+    //Setup locator maps
+    
+    self.solarLocMap.hidden = NO;
+    
+         // set the delegate for the map view
+    self.solarLocMap.layerDelegate = self;
+    
+
+    //zoom to an area
+AGSEnvelope *envelopeR = [AGSEnvelope envelopeWithXmin:self.mainMapView.utm15Point.y - 300 ymin:self.mainMapView.utm15Point.y - 300 xmax:self.mainMapView.utm15Point.x + 300  ymax:self.mainMapView.utm15Point.y + 300  spatialReference:self.solarLocMap.spatialReference];
+    [self.solarLocMap zoomToEnvelope:envelopeR animated:NO];
+   
+    //add new layer
+    AGSTiledMapServiceLayer* newBasemapLayer = [AGSTiledMapServiceLayer tiledMapServiceLayerWithURL:[NSURL URLWithString:@"http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/"]];
+    
+    [self.solarLocMap insertMapLayer:newBasemapLayer withName:@"Basemap Tiled Layer" atIndex:0];
+   
+    //add solar layer
+    AGSImageServiceLayer* solarLayer = [AGSImageServiceLayer imageServiceLayerWithURL: [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer"]];
+    
+    [self.solarLocMap insertMapLayer:solarLayer withName:@"Solar Tiled Layer" atIndex:1];
+
+     
+/*
+    
     // set the delegate for the map view
     self.solarLocMap.layerDelegate = self;
     //self.satLocMap.layerDelegate = self;
@@ -85,10 +82,10 @@
     
     self.locWebMap.hidden = NO;
     
-
+*/
     
     /*
-     
+    //Show report in webview
     NSString *rptURL = [ NSString stringWithFormat:@"http://solar.maps.umn.edu/report.php?lat=%f&long=%f",self.mainMapView.wgsPoint.y,self.mainMapView.wgsPoint.x];
     NSLog(@"%@",rptURL);
     
@@ -96,6 +93,34 @@
     
     self.reportView.hidden = NO;
   */
+    
+    // Change value label using kwh array (float) as string value
+    self.janVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:0] stringValue];
+    self.febVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:1] stringValue];
+    self.marVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:2] stringValue];
+    self.aprVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:3] stringValue];
+    self.mayVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:4] stringValue];
+    self.junVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:5] stringValue];
+    self.julVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:6] stringValue];
+    self.augVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:7] stringValue];
+    self.sepVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:8] stringValue];
+    self.octVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:9] stringValue];
+    self.novVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:10] stringValue];
+    self.decVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:11] stringValue];
+    
+    
+    self.janHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:0] stringValue];
+    self.febHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:1] stringValue];
+    self.marHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:2] stringValue];
+    self.aprHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:3] stringValue];
+    self.mayHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:4] stringValue];
+    self.junHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:5] stringValue];
+    self.julHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:6] stringValue];
+    self.augHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:7] stringValue];
+    self.sepHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:8] stringValue];
+    self.octHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:9] stringValue];
+    self.novHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:10] stringValue];
+    self.decHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:11] stringValue];
     
     
     NSString *chartURL = [NSString stringWithFormat:@"http://solar.maps.umn.edu/ios/chart2.php?bg=FFFFFF&1=%@&2=%@&3=%@&4=%@&5=%@&6=%@&7=%@&8=%@&9=%@&10=%@&11=%@&12=%@",[self.mainMapView.solarValueArrayNumkwh objectAtIndex:0],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:1],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:2],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:3],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:4],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:5],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:6],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:7],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:8],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:9],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:10],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:11]];

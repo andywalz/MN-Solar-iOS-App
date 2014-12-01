@@ -18,6 +18,10 @@
 @property (strong, nonatomic) IBOutlet AGSMapView *solarLocMap;
 @property (weak, nonatomic) IBOutlet UIWebView *locWebMap;
 
+@property (nonatomic, strong) AGSGraphicsLayer *graphicsLayer;
+@property (nonatomic, strong) AGSPoint *thePin;
+//@property (weak, nonatomic) IBOutlet UIWebView *reportWeb;
+
 @property (strong, nonatomic) IBOutlet UIWebView *monthInsWV;
 @property (strong, nonatomic) IBOutlet UIWebView *monthSunHrsWV;
 
