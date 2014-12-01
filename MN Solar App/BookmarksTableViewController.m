@@ -1,18 +1,10 @@
 //
-
 //  BookmarksTableViewController.m
-
 //  MN Solar App
-
 //
-
-//  Created by Andy Walz on 11/2/14.
-
+//  Created by Andy Walz and Chris Martin on 11/2/14.
 //  Copyright (c) 2014 MN Solar Suitability Team. All rights reserved.
-
 //
-
-
 
 #import "BookmarksTableViewController.h"
 #import "DBManager.h"
@@ -25,11 +17,6 @@
 
 @implementation BookmarksTableViewController
 
-/*{
-    
-    NSArray *tableData;
-    
-}*/
 
 @synthesize filteredRecords;
 @synthesize recordSearchBar;
@@ -38,8 +25,7 @@
     
     [super viewDidLoad];
     
-    //tableData = [NSArray arrayWithObjects:@"Andy Walz", @"Chris Martin", @"Katie Menk", @"Yuanyuan Luo", @"Devon Piernot", @"Len Kne", @"Chris Brink", @"Dan Thiede", @"Jack Kluempke", @"Ian Xie", nil];
-    
+    // Starting Data to populate bookmarks list
     self.tableData = [NSArray arrayWithObjects:
                       [recordObjectConstructor nameOfCategory:@"student" name:@"Andy Walz" address:@"1217 Matilda St, Saint Paul, MN 55117" lat:@"44.977928" lng:@"-93.112542"],
                  [recordObjectConstructor nameOfCategory:@"student" name:@"Chris Martin" address:@"730 Mercer St, Saint Paul, MN" lat:@"44.919174" lng:@"-93.136038"],
@@ -57,44 +43,6 @@
                  nil];
     
     self.filteredRecords = [NSMutableArray arrayWithCapacity:[self.tableData count]];
-    
-    // Hide the search bar until user scrolls up
-    /*CGRect newBounds = self.tableView.bounds;
-    newBounds.origin.y = newBounds.origin.y + recordSearchBar.bounds.size.height;
-    self.tableView.bounds = newBounds;
-    
-    //NSLog(@"%@", self.tableData);*/
-    
-    
-    //NSString *selectSQL = @"SELECT * FROM student";
-    
-    /*const char *insert_stmt = [selectSQL UTF8String];
-    if(sqlite3_prepare_v2(studentData, insert_stmt,  -1, &statement, NULL) == SQLITE_OK)
-    {
-        while(sqlite3_step(statement) == SQLITE_ROW)
-        {
-            
-            [arrFirstName addObject:[NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 0)]];
-            
-            [arrMiddleName addObject:[NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 1)]];
-            
-            [arrLastName addObject:[NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 2)]];
-            
-            [arrContactNo addObject:[NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 3)]];
-            
-        }
-        
-    }
-    [tblStudent reloadData];*/
-
-    
-    // Uncomment the following line to preserve selection between presentations.
-    
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
 }
 
@@ -141,12 +89,7 @@ recordObjectConstructor *recordToPrint = nil;
     //UITableView *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     self.cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
-    
-    /*if (self.cell == nil){
-     
-     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-     
-     }*/
+
     
     // Check to see whether the normal table or search results table is being displayed and set the record object from the appropriate array.
     
@@ -156,10 +99,6 @@ recordObjectConstructor *recordToPrint = nil;
         recordRow = [self.tableData objectAtIndex:indexPath.row];
     }
     
-    //self.cell.textLabel.text = [self.tableData objectAtIndex:indexPath.row];
-    
-    
-    //recordRow = [self.tableData objectAtIndex:indexPath.row];
     self.cell.textLabel.text = recordRow.name;
     
     self.cell.detailTextLabel.text = recordRow.address;
@@ -167,7 +106,6 @@ recordObjectConstructor *recordToPrint = nil;
     
     self.cell.accessoryType =UITableViewCellAccessoryDetailDisclosureButton;
     
-    //cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
     return self.cell;
     
 }
@@ -184,22 +122,22 @@ recordObjectConstructor *recordToPrint = nil;
     
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //Use this function instead of i icon
+}
+
 -(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     
     recordToPrint = [self.tableData objectAtIndex:indexPath.row];
-    NSLog(@"You pressed the arrow!");
-    NSLog(@"Address: %@, Lat: %@, Long: %@", recordToPrint.name, recordToPrint.lat, recordToPrint.lng);
+
+    //NSLog(@"Address: %@, Lat: %@, Long: %@", recordToPrint.name, recordToPrint.lat, recordToPrint.lng);
     
     double doublelat = [recordToPrint.lat doubleValue];
     double doublelng = [recordToPrint.lng doubleValue];
     
     self.generalPoint = [AGSPoint pointWithX:doublelng y:doublelat spatialReference:[AGSSpatialReference wgs84SpatialReference]];
     
-    NSLog(@"%@", self.generalPoint);
-    
-   // [self.mainMapVC zo]
-    
- //   [self.mapVC zoomToLocation:self.generalPoint];
+    //NSLog(@"%@", self.generalPoint);
     
     [self.mvc zoomToLocation:self.generalPoint];
     
@@ -232,92 +170,5 @@ recordObjectConstructor *recordToPrint = nil;
     //Return YES to cause the search result table view to be reloaded
     return YES;
 }
-/*
- 
- // Override to support conditional editing of the table view.
- 
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- 
- // Return NO if you do not want the specified item to be editable.
- 
- return YES;
- 
- }
- 
- */
-
-
-
-/*
- 
- // Override to support editing the table view.
- 
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- 
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- 
- // Delete the row from the data source
- 
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- 
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- 
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- 
- }
- 
- }
- 
- */
-
-
-
-/*
- 
- // Override to support rearranging the table view.
- 
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- 
- }
- 
- */
-
-
-
-/*
- 
- // Override to support conditional rearranging of the table view.
- 
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- 
- // Return NO if you do not want the item to be re-orderable.
- 
- return YES;
- 
- }
- 
- */
-
-
-
-/*
- 
- #pragma mark - Navigation
- 
- 
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- 
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- 
- // Get the new view controller using [segue destinationViewController].
- 
- // Pass the selected object to the new view controller.
- 
- }
- 
- */
-
-
 
 @end

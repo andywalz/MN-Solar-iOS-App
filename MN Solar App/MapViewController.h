@@ -2,7 +2,7 @@
 //  ViewController.h
 //  MN Solar App
 //
-//  Created by Andy Walz on 11/1/14.
+//  Created by Andy Walz and Chris Martin on 11/1/14.
 //  Copyright (c) 2014 MN Solar Suitability Team. All rights reserved.
 //
 
@@ -18,45 +18,38 @@
 
 @interface MapViewController : UIViewController <AGSMapViewTouchDelegate, UITextFieldDelegate, UIPopoverControllerDelegate>
 
-// Internet connection check
-@property(weak,nonatomic) Reachability *internetReachableFoo;
-
+//Map related properties
 @property (strong, nonatomic) IBOutlet AGSMapView *mapView;
-@property (weak, nonatomic) IBOutlet UISwitch *solarSwitch;
-- (IBAction)solarSwitchToggle:(id)sender;
-@property (weak, nonatomic) IBOutlet UILabel *solarOn;
-@property (weak, nonatomic) IBOutlet UILabel *solarOff;
-
-- (IBAction)findLocation:(id)sender;
-
 @property AGSEnvelope *defaultEnvelope;
-
-
-@property (weak, nonatomic) IBOutlet UIView *loadingIconView;
-
-@property (weak, nonatomic) IBOutlet UILabel *statusMsgLabel;
 @property (nonatomic, strong) AGSGraphicsLayer *graphicsLayer;
 @property (nonatomic, strong) AGSGraphicsLayer *myGraphicsLayer;
 @property (nonatomic, weak) AGSGraphic *pushpin;
+@property (nonatomic, weak) AGSImageServiceLayer *solarLayer;
+
+@property (weak, nonatomic) IBOutlet UISwitch *solarSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *solarOn;
+@property (weak, nonatomic) IBOutlet UILabel *solarOff;
+@property (weak, nonatomic) IBOutlet UIView *loadingIconView;
+@property (weak, nonatomic) IBOutlet UILabel *statusMsgLabel;
+
 @property (nonatomic,weak) UIImage *pushpinImg;
-
-
-@property (nonatomic, strong) AGSLocator *locator;
-@property (nonatomic, strong) AGSCalloutTemplate *calloutTemplate;
-@property (nonatomic, strong) AGSJSONRequestOperation* currentJsonOp;
-@property (nonatomic, strong) NSOperationQueue *queue;
 @property (nonatomic, strong) UIView* loadingView;
+@property (weak, nonatomic) IBOutlet UIView *resultsDrawer;
+@property (weak, nonatomic) IBOutlet UITextField *searchBar;
+@property (weak, nonatomic) IBOutlet UILabel *solPotential;
+@property (weak, nonatomic) IBOutlet UIButton *solarToggle;
 
-@property(nonatomic, strong)AGSQueryTask* queryTask;
-@property(nonatomic,strong)AGSQuery* query;
-@property(nonatomic,strong) AGSGraphic *myFeature;
-@property(nonatomic,strong)NSString* eusaFULL_NAME;
-@property(nonatomic,strong) NSString* eusaSTREET;
-@property(nonatomic,strong) NSString* eusaCITY;
-@property(nonatomic,strong)NSString* eusaZIP;
-@property(nonatomic,strong)NSString* eusaPHONE;
-@property(nonatomic,strong) NSString* eusaWEBSITE;
-@property(nonatomic,strong) NSString* eusaELEC_COMP;
+
+// Class and method properties
+@property (weak,nonatomic) Reachability *internetReachableFoo;   // Internet connection check
+
+@property (weak, nonatomic) NSString *geocodeAddress;
+@property AGSEnvelope *zoomToEnvelop;
+
+@property (nonatomic, strong) NSString* dsmTile;
+@property (nonatomic, strong) AGSQueryTask* dsmqueryTask;
+@property (nonatomic, strong) AGSQuery* dsmquery;
+@property (nonatomic, weak) NSString* dsmname;
 
 @property (nonatomic, strong) AGSPoint* pin;
 @property(nonatomic,strong) AGSPoint *utm15Point;
@@ -64,26 +57,37 @@
 @property(nonatomic,strong) AGSPoint *geocodePoint;
 @property(nonatomic,strong) AGSPoint *geocodePointWeb;
 
+@property (nonatomic, strong) AGSLocator *locator;
+@property (nonatomic, strong) AGSCalloutTemplate *calloutTemplate;
+@property (nonatomic, strong) AGSJSONRequestOperation* currentJsonOp;
+@property (nonatomic, strong) NSOperationQueue *queue;
+
+@property (nonatomic, strong) AGSQueryTask* queryTask;
+@property (nonatomic, strong) AGSQuery* query;
+@property (nonatomic, strong) AGSGraphic *myFeature;
+@property (nonatomic, strong) NSString* eusaFULL_NAME;
+@property (nonatomic, strong) NSString* eusaSTREET;
+@property (nonatomic, strong) NSString* eusaCITY;
+@property (nonatomic, strong) NSString* eusaZIP;
+@property (nonatomic, strong) NSString* eusaPHONE;
+@property (nonatomic, strong) NSString* eusaWEBSITE;
+@property (nonatomic, strong) NSString* eusaELEC_COMP;
 
 @property (nonatomic, strong) AGSGeoprocessor *geoprocessor;
-@property (nonatomic,weak) NSString * solarValue;
-@property (nonatomic,weak) NSString * solarHours;
-@property (nonatomic,weak) NSMutableArray * solarValueArray;
-@property (nonatomic,strong) NSMutableArray * solarValueArrayNum;
-@property (nonatomic,strong) NSMutableArray * solarValueArrayNumkwh;
+@property (nonatomic, weak) NSString * solarValue;
+@property (nonatomic, weak) NSString * solarHours;
+@property (nonatomic, weak) NSMutableArray * solarValueArray;
+@property (nonatomic, strong) NSMutableArray * solarValueArrayNum;
+@property (nonatomic, strong) NSMutableArray * solarValueArrayNumkwh;
 @property (nonatomic, weak) NSMutableArray * solarHoursArray;
 @property (nonatomic, strong) NSMutableArray * solarHoursArrayNum;
 @property (nonatomic, strong) NSMutableArray * solarHoursArrayNumFloat;
 
-@property(nonatomic,weak)AGSImageServiceLayer *solarLayer;
-
-@property (weak, nonatomic) IBOutlet UIView *resultsDrawer;
-- (IBAction)hideResultsDrawer:(id)sender;
-@property(nonatomic,strong)NSString* dsmTile;
-@property(nonatomic, strong)AGSQueryTask* dsmqueryTask;
-@property(nonatomic,strong)AGSQuery* dsmquery;
-@property(nonatomic,weak)NSString* dsmname;
-@property (weak, nonatomic) IBOutlet UITextField *searchBar;
+// Results Drawer elements
+@property (strong, nonatomic) NSNumber *maxInsVal;
+@property (strong, nonatomic) NSNumber *maxHrsVal;
+@property (strong, nonatomic) NSNumber *totalInsVal;
+@property (strong, nonatomic) NSNumber *totalHrsVal;
 
 @property (weak, nonatomic) IBOutlet UILabel *maxIns;
 @property (weak, nonatomic) IBOutlet UILabel *maxHrs;
@@ -92,44 +96,30 @@
 @property (weak, nonatomic) IBOutlet UILabel *dailyHrs;
 @property (weak, nonatomic) IBOutlet UILabel *daillyIns;
 
-@property (strong, nonatomic) NSNumber *maxInsVal;
-@property (strong, nonatomic) NSNumber *maxHrsVal;
-@property (strong, nonatomic) NSNumber *totalInsVal;
-@property (strong, nonatomic) NSNumber *totalHrsVal;
-@property (weak, nonatomic) IBOutlet UILabel *solPotential;
-
-@property (weak, nonatomic) IBOutlet UIButton *solarToggle;
-- (IBAction)solarToggle:(id)sender;
-
-@property (weak,nonatomic) NSString *geocodeAddress;
-
-@property AGSEnvelope *zoomToEnvelop;
-
-
-- (IBAction)geocodeSearch:(id)sender;
-
-- (IBAction)basemapChanged:(id)sender;
-
+// Pointers to other classes
 @property (strong,nonatomic) BookmarksTableViewController *bm;
-- (IBAction)goHomeButton:(id)sender;
-
--(void)zoomToLocation:(AGSPoint *)point;
 
 
-// DEBUG
-
+// DEBUG Panel
 @property (weak, nonatomic) IBOutlet UIButton *zoomIn;
-- (IBAction)zoomIn:(id)sender;
-
 @property (weak, nonatomic) IBOutlet UIButton *zoomOut;
-- (IBAction)zoomOut:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *logGeocode;
-
-- (IBAction)logGeocodeValue:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *debugLabel;
 @property (weak, nonatomic) IBOutlet UILabel *debugBackground;
 @property (weak, nonatomic) IBOutlet UIButton *showResults;
 
 
-@end
+- (void)zoomToLocation:(AGSPoint *)point;
 
+- (IBAction)findLocation:(id)sender;
+- (IBAction)hideResultsDrawer:(id)sender;
+- (IBAction)solarToggle:(id)sender;
+- (IBAction)goHomeButton:(id)sender;
+- (IBAction)geocodeSearch:(id)sender;
+- (IBAction)basemapChanged:(id)sender;
+- (IBAction)zoomIn:(id)sender;
+- (IBAction)zoomOut:(id)sender;
+- (IBAction)logGeocodeValue:(id)sender;
+- (IBAction)solarSwitchToggle:(id)sender;
+
+@end

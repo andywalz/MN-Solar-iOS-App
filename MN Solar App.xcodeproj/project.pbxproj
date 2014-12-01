@@ -221,18 +221,18 @@
 				CA8ED9501A068D43009728AE /* ReportViewController.m */,
 				3547C4CF1A1F8F5C0023232F /* resultsDrawer.h */,
 				3547C4D01A1F8F5C0023232F /* resultsDrawer.m */,
+				359543A21A2BD8BF0008828E /* settingsViewController.h */,
+				359543A31A2BD8BF0008828E /* settingsViewController.m */,
 				CA5328DA1A22FFFC000188F2 /* ShareViewController.h */,
 				CA5328DB1A22FFFC000188F2 /* ShareViewController.m */,
+				359543A71A2C0AEA0008828E /* solValPopover.h */,
+				359543A81A2C0AEA0008828E /* solValPopover.m */,
 				CA8ED90A1A058978009728AE /* Supporting Files */,
 				CA6E55D31A0C865A00D60677 /* TakeActionViewController.h */,
 				CA6E55D41A0C865A00D60677 /* TakeActionViewController.m */,
 				CA8ED9521A069426009728AE /* WelcomeViewController.h */,
 				CA8ED9531A069426009728AE /* WelcomeViewController.m */,
 				CA8ED9541A069426009728AE /* WelcomeViewController.xib */,
-				359543A21A2BD8BF0008828E /* settingsViewController.h */,
-				359543A31A2BD8BF0008828E /* settingsViewController.m */,
-				359543A71A2C0AEA0008828E /* solValPopover.h */,
-				359543A81A2C0AEA0008828E /* solValPopover.m */,
 			);
 			path = "MN Solar App";
 			sourceTree = "<group>";

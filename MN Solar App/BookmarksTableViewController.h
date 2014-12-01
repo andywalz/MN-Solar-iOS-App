@@ -6,7 +6,7 @@
 
 //
 
-//  Created by Andy Walz on 11/2/14.
+//  Created by Andy Walz and Chris Martin on 11/2/14.
 
 //  Copyright (c) 2014 MN Solar Suitability Team. All rights reserved.
 
@@ -22,18 +22,13 @@
 @interface BookmarksTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate>
 
 @property (strong, nonatomic) MapViewController *mvc;
-
 @property (strong, nonatomic) UITableViewCell *cell;
 @property (strong, nonatomic) NSArray *firstname;
-//@property (nonatomic, strong) DBManager *dbMana bnvger;
-
 @property (strong, nonatomic) NSArray *tableData;
-
 @property (strong, nonatomic) NSMutableArray *filteredRecords;
-@property (strong, nonatomic) IBOutlet UISearchBar *recordSearchBar;
-@property(nonatomic,strong) AGSPoint *generalPoint;
+@property (strong, nonatomic) AGSPoint *generalPoint;
 
-//@property (weak, nonatomic) UIPopoverController* popoverController;
+@property (strong, nonatomic) IBOutlet UISearchBar *recordSearchBar;
 
 @end
 

@@ -1,10 +1,11 @@
 //
 //  DismissSegue.m
-//  DismissSegueExample
+//  MN Solar App
 //
-//  Created by Jeffrey Sambells on 2/19/2014.
-//  Copyright (c) 2014 Jeffrey Sambells. All rights reserved.
+//  Created by Andy Walz and Chris Martin on 11/21/14.
+//  Copyright (c) 2014 MN Solar Suitability Team. All rights reserved.
 //
+
 
 #import "DismissSegue.h"
 
