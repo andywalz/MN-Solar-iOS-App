@@ -14,6 +14,7 @@
 
 #import "BookmarksTableViewController.h"
 #import "ReportViewController.h"
+#import "solValPopover.h"
 
 @interface MapViewController : UIViewController <AGSMapViewTouchDelegate, UITextFieldDelegate, UIPopoverControllerDelegate>
 

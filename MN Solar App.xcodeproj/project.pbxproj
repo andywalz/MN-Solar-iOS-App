@@ -14,6 +14,8 @@
 		3547C4D11A1F8F5C0023232F /* resultsDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547C4D01A1F8F5C0023232F /* resultsDrawer.m */; };
 		3595439E1A2BB5C10008828E /* home_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3595439D1A2BB5C10008828E /* home_icon.png */; };
 		359543A41A2BD8BF0008828E /* settingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 359543A31A2BD8BF0008828E /* settingsViewController.m */; };
+		359543A61A2C08460008828E /* color ramp_white text.png in Resources */ = {isa = PBXBuildFile; fileRef = 359543A51A2C08460008828E /* color ramp_white text.png */; };
+		359543A91A2C0AEA0008828E /* solValPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 359543A81A2C0AEA0008828E /* solValPopover.m */; };
 		35A2544A1A1BEC9A00BFBCBC /* bluepushpin.png in Resources */ = {isa = PBXBuildFile; fileRef = 35A254491A1BEC9A00BFBCBC /* bluepushpin.png */; };
 		35A2544D1A1BF4A200BFBCBC /* GCGeocodingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A2544C1A1BF4A200BFBCBC /* GCGeocodingService.m */; };
 		35A59BCE1A14194D008BEC96 /* zoomIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 35A59BCC1A14194D008BEC96 /* zoomIn.png */; };
@@ -75,6 +77,9 @@
 		3595439D1A2BB5C10008828E /* home_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_icon.png; sourceTree = "<group>"; };
 		359543A21A2BD8BF0008828E /* settingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = settingsViewController.h; sourceTree = "<group>"; };
 		359543A31A2BD8BF0008828E /* settingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = settingsViewController.m; sourceTree = "<group>"; };
+		359543A51A2C08460008828E /* color ramp_white text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "color ramp_white text.png"; sourceTree = "<group>"; };
+		359543A71A2C0AEA0008828E /* solValPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = solValPopover.h; sourceTree = "<group>"; };
+		359543A81A2C0AEA0008828E /* solValPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = solValPopover.m; sourceTree = "<group>"; };
 		35A254491A1BEC9A00BFBCBC /* bluepushpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluepushpin.png; sourceTree = "<group>"; };
 		35A2544B1A1BF4A200BFBCBC /* GCGeocodingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCGeocodingService.h; sourceTree = "<group>"; };
 		35A2544C1A1BF4A200BFBCBC /* GCGeocodingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCGeocodingService.m; sourceTree = "<group>"; };
@@ -226,6 +231,8 @@
 				CA8ED9541A069426009728AE /* WelcomeViewController.xib */,
 				359543A21A2BD8BF0008828E /* settingsViewController.h */,
 				359543A31A2BD8BF0008828E /* settingsViewController.m */,
+				359543A71A2C0AEA0008828E /* solValPopover.h */,
+				359543A81A2C0AEA0008828E /* solValPopover.m */,
 			);
 			path = "MN Solar App";
 			sourceTree = "<group>";
@@ -307,6 +314,7 @@
 		CAEC984B1A0D5EB400E271F4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				359543A51A2C08460008828E /* color ramp_white text.png */,
 				3595439D1A2BB5C10008828E /* home_icon.png */,
 				CA5328D61A22FD25000188F2 /* mail_ios7_ios_7.png */,
 				CADC41E71A23A6EE0075F750 /* Under_construction.png */,
@@ -408,6 +416,7 @@
 				CAEC98581A0D600200E271F4 /* LocationArrowWht-22.png in Resources */,
 				CAEC98591A0D600200E271F4 /* LocationArrowWht-44.png in Resources */,
 				CA47A8891A20FBB800ED8412 /* solar-app-transparent220x235.png in Resources */,
+				359543A61A2C08460008828E /* color ramp_white text.png in Resources */,
 				CA45DF3E1A2142C2003A79E8 /* arrow_up_wht.png in Resources */,
 				CA8ED9161A058978009728AE /* Main.storyboard in Resources */,
 				CA8ED9561A069426009728AE /* WelcomeViewController.xib in Resources */,
@@ -446,6 +455,7 @@
 				CA6E55D51A0C865A00D60677 /* TakeActionViewController.m in Sources */,
 				3530B6D51A2974E30063F256 /* recordObjectConstructor.m in Sources */,
 				35A2544D1A1BF4A200BFBCBC /* GCGeocodingService.m in Sources */,
+				359543A91A2C0AEA0008828E /* solValPopover.m in Sources */,
 				35C6F2681A22EB9B005265C2 /* FMDatabase.m in Sources */,
 				CA8ED9751A073141009728AE /* ReportCustomizedViewController.m in Sources */,
 				359543A41A2BD8BF0008828E /* settingsViewController.m in Sources */,

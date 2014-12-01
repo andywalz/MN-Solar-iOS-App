@@ -179,6 +179,18 @@
                                                 <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G2a-uw-ZLA">
+                                                <rect key="frame" x="344" y="114" width="98" height="30"/>
+                                                <state key="normal" title="hiddenSolValButton">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="fQV-aT-Agn" kind="popoverPresentation" identifier="toSolValuePopover" popoverAnchorView="G2a-uw-ZLA" id="WmE-Ja-U6s">
+                                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                    </segue>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
@@ -536,6 +548,82 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2jx-3z-acb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1851" y="284"/>
+        </scene>
+        <!--solValPopover-->
+        <scene sceneID="nbu-lB-ypq">
+            <objects>
+                <viewController title="solValPopover" modalPresentationStyle="formSheet" id="fQV-aT-Agn" customClass="solValPopover" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lNC-dA-FW1"/>
+                        <viewControllerLayoutGuide type="bottom" id="t4r-0Y-meg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fn5-3u-OGc">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Optimal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1W-9w-l5E">
+                                <rect key="frame" x="18" y="62" width="61" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Good" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skt-Sk-t90">
+                                <rect key="frame" x="18" y="119" width="43" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Poor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ndp-2x-hgP">
+                                <rect key="frame" x="18" y="183" width="37" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yearly Avg > 2.7 kWh/day" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCP-xH-wZi">
+                                <rect key="frame" x="40" y="85" width="180" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yearly Avg &lt; 1.7 kWh/day" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1U8-fu-npb">
+                                <rect key="frame" x="40" y="202" width="180" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yearly Avg > 1.7 kWh/day       and &lt; 2.7 kWh/day" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8e5-7p-dQS">
+                                <rect key="frame" x="40" y="135" width="180" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What does this mean?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8k-ei-B4s">
+                                <rect key="frame" x="15" y="20" width="220" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color ramp_white text.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Vc-xf-wAl">
+                                <rect key="frame" x="20" y="232" width="220" height="60"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="250" height="300"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="250" height="300"/>
+                    <connections>
+                        <outlet property="goodDesc" destination="8e5-7p-dQS" id="QEd-ST-vw3"/>
+                        <outlet property="goodLabel" destination="skt-Sk-t90" id="OGV-aN-y8x"/>
+                        <outlet property="optDesc" destination="XCP-xH-wZi" id="YQf-eS-sTq"/>
+                        <outlet property="optLabel" destination="h1W-9w-l5E" id="bI8-ZB-zsJ"/>
+                        <outlet property="poorDesc" destination="1U8-fu-npb" id="cMy-iu-OCU"/>
+                        <outlet property="poorLabel" destination="Ndp-2x-hgP" id="iE7-AD-mOO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rRS-mk-Sfd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1445" y="-143"/>
         </scene>
         <!--Welcome-->
         <scene sceneID="DWA-3W-AOh">
@@ -1928,6 +2016,7 @@
         <image name="LocationArrowWht-22.png" width="22" height="22"/>
         <image name="Under_construction.png" width="200" height="200"/>
         <image name="arrow_up_wht.png" width="782" height="488"/>
+        <image name="color ramp_white text.png" width="1807" height="466"/>
         <image name="mail_ios7_ios_7.png" width="118" height="118"/>
         <image name="menu-22.png" width="22" height="22"/>
         <image name="solar-app-transparent220x235.png" width="220" height="235"/>

@@ -10,6 +10,7 @@
 
 @class ReportViewController;
 @class GCGeocodingService;
+@class solValPopover;
 //@synthesize gs;
 
 @interface MapViewController () <AGSMapViewLayerDelegate, AGSQueryTaskDelegate, AGSGeoprocessorDelegate>
@@ -729,7 +730,7 @@ int warningMsgCount = 0;
     if ([[segue identifier] isEqualToString:@"toBookmarksPopover"])
     {
         [self dismissViewControllerAnimated:YES completion:nil];
-            NSLog(@"To bookmarks");
+            //NSLog(@"To bookmarks");
          NSLog(@"LeavingSegueFor BM Popover");
         
         self.bm = segue.destinationViewController;
@@ -775,7 +776,20 @@ int warningMsgCount = 0;
     if ([[segue identifier] isEqualToString:@"toMenuPopover"])
     {
         [self dismissViewControllerAnimated:YES completion:nil];
-        NSLog(@"To menu");
+        //NSLog(@"To menu");
+    }
+    
+    if ([[segue identifier] isEqualToString:@"toSolValuePopover"])
+    {
+        MapViewController *startVC;
+        solValPopover *destVC;
+        
+        startVC = (MapViewController *)segue.sourceViewController;
+        destVC = (solValPopover *)segue.destinationViewController;
+        
+        destVC.solPotentialPopover = self.solPotential.text;
+        
+        //NSLog(@"Opening Popover");
     }
     
 }
