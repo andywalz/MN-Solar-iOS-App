@@ -90,7 +90,7 @@ GCGeocodingService * myGC;
 
 -(void)oneFingerSwipeUp:(UITapGestureRecognizer *)recognizer
 {
-    NSLog(@"Swiped up");
+    //NSLog(@"Swiped up");
     
     //Chris: I may have implemented this in swipeUptoReport below, please delete if you agree
 }
@@ -215,14 +215,14 @@ int warningMsgCount = 0;
     }
     
     self.myFeature = [featureSet.features objectAtIndex:0];
-    NSLog(@"TTEST%@",self.myFeature);
+    //NSLog(@"TTEST%@",self.myFeature);
     
     NSString *temp = [self.myFeature attributeAsStringForKey:@"Name"];
 
     NSString *uTemp = [self.myFeature attributeAsStringForKey:@"FULL_NAME"];
     
     if (!temp && !uTemp){
-        NSLog(@"No Data!");
+        //NSLog(@"No Data!");
         
     }else{
         
@@ -230,7 +230,7 @@ int warningMsgCount = 0;
             self.dsmname = temp;
             
             // Error checking doesn't work, currently crashes outside MN
-            NSLog(@"DSMName: %@",self.dsmname);
+            //NSLog(@"DSMName: %@",self.dsmname);
             //[self gpTool];
         }
         else {
@@ -247,7 +247,7 @@ int warningMsgCount = 0;
             NSString *fp = [self.myFeature attributeAsStringForKey:@"PHONE"];
             self.eusaPHONE = fp;
             
-            NSLog(@"Name: %@, Phone: %@",self.eusaFULL_NAME, self.eusaPHONE);
+            //NSLog(@"Name: %@, Phone: %@",self.eusaFULL_NAME, self.eusaPHONE);
             
         };
         
@@ -273,12 +273,12 @@ int warningMsgCount = 0;
 
 // DSM query successful
 -(void) dsmqueryTask:(AGSQueryTask *)dsmqueryTask operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet{
-    NSLog(@"dsmquery");
+    //NSLog(@"dsmquery");
 }
 
 // DSM query fail - CURRENTLY CRASHES APP WHEN FAIL
 -(void)dsmqueryTask:(AGSQueryTask *)dsmqueryTask operation:(NSOperation *)op didFailWithError:(NSError *)error{
-    NSLog(@"dsmerror");
+    //NSLog(@"dsmerror");
 }
 
 - (void)operation:(NSOperation*)op didFailWithError:(NSError *)error {
@@ -456,7 +456,7 @@ int warningMsgCount = 0;
         
         NSString *chartURL = [NSString stringWithFormat:@"http://solar.maps.umn.edu/ios/chart2.php?1=%@&2=%@&3=%@&4=%@&5=%@&6=%@&7=%@&8=%@&9=%@&10=%@&11=%@&12=%@",[self.solarValueArrayNumkwh objectAtIndex:0],[self.solarValueArrayNumkwh objectAtIndex:1],[self.solarValueArrayNumkwh objectAtIndex:2],[self.solarValueArrayNumkwh objectAtIndex:3],[self.solarValueArrayNumkwh objectAtIndex:4],[self.solarValueArrayNumkwh objectAtIndex:5],[self.solarValueArrayNumkwh objectAtIndex:6],[self.solarValueArrayNumkwh objectAtIndex:7],[self.solarValueArrayNumkwh objectAtIndex:8],[self.solarValueArrayNumkwh objectAtIndex:9],[self.solarValueArrayNumkwh objectAtIndex:10],[self.solarValueArrayNumkwh objectAtIndex:11]];
         
-        NSLog(@"%@",chartURL);
+        //NSLog(@"%@",chartURL);
         NSURL *appleURL; appleURL =[ NSURL URLWithString:chartURL]; [self.chartViewer loadRequest:[ NSURLRequest requestWithURL: appleURL]];
         
         self.chartViewer.hidden = NO;
@@ -567,7 +567,7 @@ int warningMsgCount = 0;
 
 - (IBAction)geocodeSearch:(id)sender {
     NSString *address = self.searchBar.text;
-    NSLog(@"%@", address);
+    //NSLog(@"%@", address);
     [myGC geocodeAddress:address];
     
     //NSLog(@"Address: %@", myGC.geocodeResults[@"address"]);
