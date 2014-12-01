@@ -716,8 +716,10 @@ int warningMsgCount = 0;
         NSLog(@"LeavingSegueEUSA:%@",self.eusaFULL_NAME);
     }
     
-    if([[segue identifier] isEqualToString:@"toBookmarks"])
+    if ([[segue identifier] isEqualToString:@"toBookmarksPopover"])
     {
+        [self dismissViewControllerAnimated:YES completion:nil];
+            NSLog(@"To bookmarks");
          NSLog(@"LeavingSegueFor BM Popover");
         
         self.bm = segue.destinationViewController;
@@ -759,7 +761,13 @@ int warningMsgCount = 0;
     
 
     }
-     
+    
+    if ([[segue identifier] isEqualToString:@"toMenuPopover"])
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        NSLog(@"To menu");
+    }
+    
 }
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
