@@ -12,9 +12,10 @@
 #import "GCGeocodingService.h"
 #import "Reachability.h"
 
+#import "BookmarksTableViewController.h"
 #import "ReportViewController.h"
 
-@interface MapViewController : UIViewController <AGSMapViewTouchDelegate, UITextFieldDelegate>
+@interface MapViewController : UIViewController <AGSMapViewTouchDelegate, UITextFieldDelegate, UIPopoverControllerDelegate>
 
 // Internet connection check
 @property(weak,nonatomic) Reachability *internetReachableFoo;
@@ -26,6 +27,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *solarOff;
 
 - (IBAction)findLocation:(id)sender;
+
+@property AGSEnvelope *defaultEnvelope;
 
 
 @property (weak, nonatomic) IBOutlet UIView *loadingIconView;
@@ -56,9 +59,10 @@
 
 
 @property(nonatomic,strong) AGSPoint *utm15Point;
-@property(nonatomic,strong)AGSPoint *wgsPoint;
-@property(nonatomic,strong)AGSPoint *geocodePoint;
-@property(nonatomic,strong)AGSPoint *geocodePointWeb;
+@property(nonatomic,strong) AGSPoint *wgsPoint;
+@property(nonatomic,strong) AGSPoint *geocodePoint;
+@property(nonatomic,strong) AGSPoint *geocodePointWeb;
+
 
 @property (nonatomic, strong) AGSGeoprocessor *geoprocessor;
 @property (nonatomic,weak) NSString * solarValue;
@@ -98,11 +102,17 @@
 
 @property (weak,nonatomic) NSString *geocodeAddress;
 
+@property AGSEnvelope *zoomToEnvelop;
+
 
 - (IBAction)geocodeSearch:(id)sender;
 
 - (IBAction)basemapChanged:(id)sender;
 
+@property (strong,nonatomic) BookmarksTableViewController *bm;
+- (IBAction)goHomeButton:(id)sender;
+
+-(void)zoomToLocation:(AGSPoint *)point;
 
 
 // DEBUG

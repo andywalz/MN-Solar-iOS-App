@@ -7,6 +7,7 @@
 //
 
 #import "MapViewController.h"
+
 @class ReportViewController;
 @class GCGeocodingService;
 //@synthesize gs;
@@ -14,6 +15,8 @@
 @interface MapViewController () <AGSMapViewLayerDelegate, AGSQueryTaskDelegate, AGSGeoprocessorDelegate>
 
 @property (strong, nonatomic) IBOutlet UIWebView *chartViewer;
+
+@property (strong, nonatomic) UIPopoverController *bmPopoverController;
 
 - (IBAction)exitHere:(UIStoryboardSegue *)sender;
 - (IBAction)swipeUpToReport:(id)sender;
@@ -53,8 +56,8 @@ GCGeocodingService * myGC;
     [self.mapView insertMapLayer:newBasemapLayer withName:@"Basemap Tiled Layer" atIndex:0];
     
     //zoom to an area
-    AGSEnvelope *envelope = [AGSEnvelope envelopeWithXmin:-10874639 ymin:5330544 xmax:-9900890  ymax:6349425  spatialReference:self.mapView.spatialReference];
-    [self.mapView zoomToEnvelope:envelope animated:YES];
+    self.defaultEnvelope = [AGSEnvelope envelopeWithXmin:-10874639 ymin:5330544 xmax:-9900890  ymax:6349425  spatialReference:self.mapView.spatialReference];
+    [self.mapView zoomToEnvelope:self.defaultEnvelope animated:YES];
     
     //add solar layer
     NSURL* url = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer"];
@@ -76,6 +79,19 @@ GCGeocodingService * myGC;
     //NSString *address = @"1217 matilda st 55117";
     //[myGC geocodeAddress:address];
     
+    // Create gesture recognizition
+    UISwipeGestureRecognizer *oneFingerSwipeUp = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(oneFingerSwipeUp:)];
+    
+    [oneFingerSwipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
+    [[self view] addGestureRecognizer:oneFingerSwipeUp];
+    
+}
+
+-(void)oneFingerSwipeUp:(UITapGestureRecognizer *)recognizer
+{
+    NSLog(@"Swiped up");
+    
+    // ADD SEQUE HERE
 }
 
 // Checks if we have an internet connection or not
@@ -151,28 +167,7 @@ GCGeocodingService * myGC;
     
     // Run query
     [self runQueries];
-    
-    // Run GP tool
-    //[self gpTool];
 
-    
-    /*//Set up the parameters to send the webservice
-    NSMutableDictionary* params = [NSMutableDictionary dictionary];
-    [params setObject:[NSNumber numberWithDouble:utm15Point.x] forKey:@"x"];
-    [params setObject:[NSNumber numberWithDouble:utm15Point.y] forKey:@"y"];
-    //[params setObject:[NSNumber numberWithDouble:mappoint.y] forKey:@"y"];
-    
-    //Set up an operation for the current request
-    NSURL* url = [NSURL URLWithString:@"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer/query"];
-    self.currentJsonOp = [[AGSJSONRequestOperation alloc]initWithURL:url queryParameters:params];
-    self.currentJsonOp.target = self;
-    self.currentJsonOp.action = @selector(operation:didSucceedWithResponse:);
-    self.currentJsonOp.errorAction = @selector(operation:didFailWithError:);
-    
-    //Add operation to the queue to execute in the background
-    [self.queue addOperation:self.currentJsonOp];*/
-    
-    
 }
 
 - (void) runQueries {
@@ -203,11 +198,27 @@ GCGeocodingService * myGC;
     [self.dsmqueryTask executeWithQuery:self.dsmquery];
 }
 
+int warningMsgCount = 0;
+
 // EUSA query successful
 - (void) queryTask:(AGSQueryTask*)queryTask operation:(NSOperation *)op didExecuteWithFeatureSetResult:(AGSFeatureSet *)featureSet{
     
+    //NSLog(@"Query successful");
+    
+    // Handle clicks outside of the state - Alert error and exit the method
+    if ([featureSet.features count] == NULL){
+        //NSLog(@"No features");
+        if (warningMsgCount == 0){
+            UIAlertView *noFeaturesError = [[UIAlertView alloc] initWithTitle:@"Selected outside of Minnesota" message:@"You must select a point within Minnesota" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [noFeaturesError show];
+            warningMsgCount += 1;
+        }else{
+            warningMsgCount = 0;
+        }
+        return;
+    }
+    
     self.myFeature = [featureSet.features objectAtIndex:0];
-    //AGSGraphic *feature = [featureSet.features objectAtIndex:0];
     NSLog(@"TTEST%@",self.myFeature);
     
     NSString *temp = [self.myFeature attributeAsStringForKey:@"Name"];
@@ -243,11 +254,12 @@ GCGeocodingService * myGC;
             NSLog(@"Name: %@, Phone: %@",self.eusaFULL_NAME, self.eusaPHONE);
             
         };
-    
         
     }
+    
     // NEEDS ERROR CHECKING - set variable in GCGeocoding
     [self gpTool];
+    
 }
 
 // EUSA query fails
@@ -336,7 +348,7 @@ GCGeocodingService * myGC;
                        y:mappoint.y
         spatialReference:[AGSSpatialReference wgs84SpatialReference]];
     
-    NSLog(@"%@", myMarkerPoint);
+    //NSLog(@"%@", myMarkerPoint);
     
     //Create the Graphic, using the symbol and
     //geometry created earlier
@@ -417,8 +429,8 @@ GCGeocodingService * myGC;
     
     NSLog(@"Trying to zoom!");
     
-    AGSEnvelope *envelope = [AGSEnvelope envelopeWithXmin:self.geocodePointWeb.x - 200 ymin:self.geocodePointWeb.y - 200 xmax:self.geocodePointWeb.x + 200  ymax:self.geocodePointWeb.y + 200 spatialReference:self.mapView.spatialReference];
-    [self.mapView zoomToEnvelope:envelope animated:YES];
+    self.zoomToEnvelop = [AGSEnvelope envelopeWithXmin:self.geocodePointWeb.x - 200 ymin:self.geocodePointWeb.y - 200 xmax:self.geocodePointWeb.x + 200  ymax:self.geocodePointWeb.y + 200 spatialReference:self.mapView.spatialReference];
+    [self.mapView zoomToEnvelope:self.zoomToEnvelop animated:YES];
     
     [self addPoint:self.geocodePointWeb];
     
@@ -455,6 +467,11 @@ GCGeocodingService * myGC;
     // Add new basemap
     AGSTiledMapServiceLayer* newBasemapLayer = [AGSTiledMapServiceLayer tiledMapServiceLayerWithURL:basemapURL];
     [self.mapView insertMapLayer:newBasemapLayer withName:@"Basemap Tiled Layer" atIndex:0];
+    
+}
+
+- (IBAction)goHomeButton:(id)sender {
+    [self.mapView zoomToEnvelope:self.defaultEnvelope animated:YES];
     
 }
 
@@ -506,10 +523,6 @@ GCGeocodingService * myGC;
         //NSLog(@"About to fire GP tool");
         [self.geoprocessor executeWithParameters:params];
     //};
-    
-    
-    
-    
     
 }
 
@@ -686,6 +699,8 @@ GCGeocodingService * myGC;
 - (IBAction)exitHere:(UIStoryboardSegue *)sender {
     //Excute this code upon unwinding
     
+    NSLog(@"%@",@"uwind function called");
+    
 }
 
 - (IBAction)swipeUpToReport:(id)sender {
@@ -710,9 +725,66 @@ GCGeocodingService * myGC;
     
         NSLog(@"LeavingSegueEUSA:%@",self.eusaFULL_NAME);
     }
-     
+    
+    if ([[segue identifier] isEqualToString:@"toBookmarksPopover"])
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+            NSLog(@"To bookmarks");
+         NSLog(@"LeavingSegueFor BM Popover");
+        
+        self.bm = segue.destinationViewController;
+       
+        NSLog(@"LeavingSegueForBMPopover:%@",self.bm);
+        /*
+        UIStoryboardPopoverSegue *popoverSegue;
+        popoverSegue=(UIStoryboardPopoverSegue *)segue;
+        
+        
+         NSLog(@"LeavingSegueForBMPopover:%@",popoverSegue);
+        
+        UIPopoverController *popoverController;
+        popoverController= popoverSegue.popoverController;
+        
+       NSLog(@"LeavingSegueFor BMMMM Popover");
+
+        
+        popoverController.delegate=self;
+         */
+        /*
+        EditorViewController *editorVC;
+        editorVC=(EditorViewController *)popoverController.contentViewController;
+        editorVC.emailField.text=self.emailLabel.text;
+
+        BookmarksTableViewController *bmVC;
+        bmVC = (BookmarksTableViewController *)popoverController.contentViewController;
+         */
+        
+        //((UIStoryboardPopoverSegue *)segue).popoverController.delegate = self;
+        
+        MapViewController *startVC;
+        BookmarksTableViewController *destVC;
+        
+        startVC = (MapViewController *)segue.sourceViewController;
+        destVC = (BookmarksTableViewController *)segue.destinationViewController;
+        
+        destVC.mvc = startVC;
+    
+
+    }
+    
+    if ([[segue identifier] isEqualToString:@"toMenuPopover"])
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        NSLog(@"To menu");
+    }
+    
 }
 
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+   /* AGSPoint *bmPoint;
+    bmPoint = ((BookmarksTableViewController *) popoverController.contentViewController).generalPoint; */
+    NSLog(@"were back---%@",self.bm);
+}
 
 // ---------------------------------
 //  SAVED CODE
@@ -802,10 +874,25 @@ GCGeocodingService * myGC;
 - (IBAction)hideResultsDrawer:(id)sender {
     
     self.resultsDrawer.hidden = YES;
+    
 }
 - (IBAction)findLocation:(id)sender {
     // Enable user location
     [self.mapView.locationDisplay startDataSource];
+    NSLog(@"%@",self.mapView.locationDisplay.mapLocation);
+    self.zoomToEnvelop = [AGSEnvelope envelopeWithXmin:self.mapView.locationDisplay.mapLocation.x - 200 ymin:self.mapView.locationDisplay.mapLocation.y - 200 xmax:self.mapView.locationDisplay.mapLocation.x + 200  ymax:self.mapView.locationDisplay.mapLocation.y + 200 spatialReference:self.mapView.spatialReference];
+    [self.mapView zoomToEnvelope:self.zoomToEnvelop animated:YES];
+    
+    [self addPoint:self.geocodePointWeb];
 
+}
+
+-(void)zoomToLocation:(AGSPoint *)point{
+    
+    AGSPoint *myPoint = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:point toSpatialReference:[AGSSpatialReference webMercatorSpatialReference]];
+    
+    self.zoomToEnvelop = [AGSEnvelope envelopeWithXmin:myPoint.x- 200 ymin:myPoint.y - 200 xmax:myPoint.x + 200  ymax:myPoint.y + 200 spatialReference:self.mapView.spatialReference];
+    [self.mapView zoomToEnvelope:self.zoomToEnvelop animated:YES];
+    [self addPoint:myPoint];
 }
 @end

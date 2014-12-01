@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		350DA94D1A1D528800B33723 /* default.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 350DA94C1A1D528800B33723 /* default.gpx */; };
+		3530B6D51A2974E30063F256 /* recordObjectConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3530B6D41A2974E30063F256 /* recordObjectConstructor.m */; };
 		3547C4CB1A1F88A30023232F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3547C4CA1A1F88A30023232F /* SystemConfiguration.framework */; };
 		3547C4CE1A1F89660023232F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547C4CD1A1F89660023232F /* Reachability.m */; };
 		3547C4D11A1F8F5C0023232F /* resultsDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3547C4D01A1F8F5C0023232F /* resultsDrawer.m */; };
+		3595439E1A2BB5C10008828E /* home_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3595439D1A2BB5C10008828E /* home_icon.png */; };
 		35A2544A1A1BEC9A00BFBCBC /* bluepushpin.png in Resources */ = {isa = PBXBuildFile; fileRef = 35A254491A1BEC9A00BFBCBC /* bluepushpin.png */; };
 		35A2544D1A1BF4A200BFBCBC /* GCGeocodingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A2544C1A1BF4A200BFBCBC /* GCGeocodingService.m */; };
 		35A59BCE1A14194D008BEC96 /* zoomIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 35A59BCC1A14194D008BEC96 /* zoomIn.png */; };
@@ -62,11 +64,14 @@
 
 /* Begin PBXFileReference section */
 		350DA94C1A1D528800B33723 /* default.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = default.gpx; sourceTree = "<group>"; };
+		3530B6D31A2974E30063F256 /* recordObjectConstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = recordObjectConstructor.h; path = "MN Solar App/recordObjectConstructor.h"; sourceTree = "<group>"; };
+		3530B6D41A2974E30063F256 /* recordObjectConstructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = recordObjectConstructor.m; path = "MN Solar App/recordObjectConstructor.m"; sourceTree = "<group>"; };
 		3547C4CA1A1F88A30023232F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3547C4CC1A1F89660023232F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		3547C4CD1A1F89660023232F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		3547C4CF1A1F8F5C0023232F /* resultsDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resultsDrawer.h; sourceTree = "<group>"; };
 		3547C4D01A1F8F5C0023232F /* resultsDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = resultsDrawer.m; sourceTree = "<group>"; };
+		3595439D1A2BB5C10008828E /* home_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_icon.png; sourceTree = "<group>"; };
 		35A254491A1BEC9A00BFBCBC /* bluepushpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluepushpin.png; sourceTree = "<group>"; };
 		35A2544B1A1BF4A200BFBCBC /* GCGeocodingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCGeocodingService.h; sourceTree = "<group>"; };
 		35A2544C1A1BF4A200BFBCBC /* GCGeocodingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCGeocodingService.m; sourceTree = "<group>"; };
@@ -149,6 +154,8 @@
 		CA8ED8FE1A058978009728AE = {
 			isa = PBXGroup;
 			children = (
+				3530B6D31A2974E30063F256 /* recordObjectConstructor.h */,
+				3530B6D41A2974E30063F256 /* recordObjectConstructor.m */,
 				35C6F26A1A22EBF4005265C2 /* libsqlite3.dylib */,
 				CA5328D81A22FF8B000188F2 /* MessageUI.framework */,
 				3547C4CA1A1F88A30023232F /* SystemConfiguration.framework */,
@@ -172,48 +179,48 @@
 		CA8ED9091A058978009728AE /* MN Solar App */ = {
 			isa = PBXGroup;
 			children = (
+				CA8ED90E1A058978009728AE /* AppDelegate.h */,
+				CA8ED90F1A058978009728AE /* AppDelegate.m */,
+				CA8ED96D1A06DCFC009728AE /* BookmarksTableViewController.h */,
+				CA8ED96E1A06DCFC009728AE /* BookmarksTableViewController.m */,
+				CA8ED9571A069536009728AE /* CameraViewController.h */,
+				CA8ED9581A069536009728AE /* CameraViewController.m */,
+				35C6F2611A22E87E005265C2 /* DBManager.h */,
+				35C6F2621A22E87E005265C2 /* DBManager.m */,
+				CA1E55A31A22AFCC009C0D88 /* DismissSegue.h */,
+				CA1E55A41A22AFCC009C0D88 /* DismissSegue.m */,
 				35C6F2641A22EB9B005265C2 /* FMDatabase.h */,
 				35C6F2651A22EB9B005265C2 /* FMDatabase.m */,
 				35C6F2661A22EB9B005265C2 /* FMResultSet.h */,
 				35C6F2671A22EB9B005265C2 /* FMResultSet.m */,
-				CA1E55A31A22AFCC009C0D88 /* DismissSegue.h */,
-				CA5328DA1A22FFFC000188F2 /* ShareViewController.h */,
-				CA5328DB1A22FFFC000188F2 /* ShareViewController.m */,
-				CA1E55A41A22AFCC009C0D88 /* DismissSegue.m */,
-				CA8ED90E1A058978009728AE /* AppDelegate.h */,
-				CA8ED90F1A058978009728AE /* AppDelegate.m */,
-				CA8ED9111A058978009728AE /* MapViewController.h */,
-				CA8ED9121A058978009728AE /* MapViewController.m */,
+				35A2544B1A1BF4A200BFBCBC /* GCGeocodingService.h */,
+				35A2544C1A1BF4A200BFBCBC /* GCGeocodingService.m */,
+				CA8ED9171A058978009728AE /* Images.xcassets */,
+				CA8ED9191A058978009728AE /* LaunchScreen.xib */,
 				CAEC985C1A0D798800E271F4 /* LoadingView.xib */,
 				CA8ED9141A058978009728AE /* Main.storyboard */,
-				CA6E55D31A0C865A00D60677 /* TakeActionViewController.h */,
-				CA6E55D41A0C865A00D60677 /* TakeActionViewController.m */,
+				CA8ED9111A058978009728AE /* MapViewController.h */,
+				CA8ED9121A058978009728AE /* MapViewController.m */,
+				CA8ED95D1A06A514009728AE /* MenuTableViewController.h */,
+				CA8ED95E1A06A514009728AE /* MenuTableViewController.m */,
+				3547C4CC1A1F89660023232F /* Reachability.h */,
+				3547C4CD1A1F89660023232F /* Reachability.m */,
 				CA8ED9731A073141009728AE /* ReportCustomizedViewController.h */,
 				CA8ED9741A073141009728AE /* ReportCustomizedViewController.m */,
 				CA8ED9701A0729BB009728AE /* ReportSaveFormViewController.h */,
 				CA8ED9711A0729BB009728AE /* ReportSaveFormViewController.m */,
-				CA8ED96D1A06DCFC009728AE /* BookmarksTableViewController.h */,
-				CA8ED96E1A06DCFC009728AE /* BookmarksTableViewController.m */,
-				35C6F2611A22E87E005265C2 /* DBManager.h */,
-				35C6F2621A22E87E005265C2 /* DBManager.m */,
-				CA8ED95D1A06A514009728AE /* MenuTableViewController.h */,
-				CA8ED95E1A06A514009728AE /* MenuTableViewController.m */,
-				CA8ED9571A069536009728AE /* CameraViewController.h */,
-				CA8ED9581A069536009728AE /* CameraViewController.m */,
+				CA8ED94F1A068D43009728AE /* ReportViewController.h */,
+				CA8ED9501A068D43009728AE /* ReportViewController.m */,
+				3547C4CF1A1F8F5C0023232F /* resultsDrawer.h */,
+				3547C4D01A1F8F5C0023232F /* resultsDrawer.m */,
+				CA5328DA1A22FFFC000188F2 /* ShareViewController.h */,
+				CA5328DB1A22FFFC000188F2 /* ShareViewController.m */,
+				CA8ED90A1A058978009728AE /* Supporting Files */,
+				CA6E55D31A0C865A00D60677 /* TakeActionViewController.h */,
+				CA6E55D41A0C865A00D60677 /* TakeActionViewController.m */,
 				CA8ED9521A069426009728AE /* WelcomeViewController.h */,
 				CA8ED9531A069426009728AE /* WelcomeViewController.m */,
 				CA8ED9541A069426009728AE /* WelcomeViewController.xib */,
-				CA8ED94F1A068D43009728AE /* ReportViewController.h */,
-				CA8ED9501A068D43009728AE /* ReportViewController.m */,
-				CA8ED9171A058978009728AE /* Images.xcassets */,
-				CA8ED9191A058978009728AE /* LaunchScreen.xib */,
-				CA8ED90A1A058978009728AE /* Supporting Files */,
-				35A2544B1A1BF4A200BFBCBC /* GCGeocodingService.h */,
-				35A2544C1A1BF4A200BFBCBC /* GCGeocodingService.m */,
-				3547C4CC1A1F89660023232F /* Reachability.h */,
-				3547C4CD1A1F89660023232F /* Reachability.m */,
-				3547C4CF1A1F8F5C0023232F /* resultsDrawer.h */,
-				3547C4D01A1F8F5C0023232F /* resultsDrawer.m */,
 			);
 			path = "MN Solar App";
 			sourceTree = "<group>";
@@ -295,6 +302,7 @@
 		CAEC984B1A0D5EB400E271F4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				3595439D1A2BB5C10008828E /* home_icon.png */,
 				CA5328D61A22FD25000188F2 /* mail_ios7_ios_7.png */,
 				CADC41E71A23A6EE0075F750 /* Under_construction.png */,
 				CA45DF3D1A2142C2003A79E8 /* arrow_up_wht.png */,
@@ -403,6 +411,7 @@
 				CAEC985A1A0D600200E271F4 /* menu-22.png in Resources */,
 				CA8ED91B1A058978009728AE /* LaunchScreen.xib in Resources */,
 				35A59BCF1A14194D008BEC96 /* zoomOut.png in Resources */,
+				3595439E1A2BB5C10008828E /* home_icon.png in Resources */,
 				CA5328D71A22FD25000188F2 /* mail_ios7_ios_7.png in Resources */,
 				35A59BCE1A14194D008BEC96 /* zoomIn.png in Resources */,
 				CA8ED9181A058978009728AE /* Images.xcassets in Resources */,
@@ -430,6 +439,7 @@
 				3547C4D11A1F8F5C0023232F /* resultsDrawer.m in Sources */,
 				CA5328DC1A22FFFC000188F2 /* ShareViewController.m in Sources */,
 				CA6E55D51A0C865A00D60677 /* TakeActionViewController.m in Sources */,
+				3530B6D51A2974E30063F256 /* recordObjectConstructor.m in Sources */,
 				35A2544D1A1BF4A200BFBCBC /* GCGeocodingService.m in Sources */,
 				35C6F2681A22EB9B005265C2 /* FMDatabase.m in Sources */,
 				CA8ED9751A073141009728AE /* ReportCustomizedViewController.m in Sources */,
