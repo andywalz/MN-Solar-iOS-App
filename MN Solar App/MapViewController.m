@@ -78,21 +78,7 @@ GCGeocodingService * myGC;
     
     // Create reference to GCGeocodingService class
     myGC = [[GCGeocodingService alloc] init];
-    
-    //Chris: do we need this?
-    // Create gesture recognizition
-    UISwipeGestureRecognizer *oneFingerSwipeUp = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(oneFingerSwipeUp:)];
-    
-    [oneFingerSwipeUp setDirection:UISwipeGestureRecognizerDirectionUp];
-    [[self view] addGestureRecognizer:oneFingerSwipeUp];
-    
-}
 
--(void)oneFingerSwipeUp:(UITapGestureRecognizer *)recognizer
-{
-    //NSLog(@"Swiped up");
-    
-    //Chris: I may have implemented this in swipeUptoReport below, please delete if you agree
 }
 
 // Checks if we have an internet connection or not
@@ -724,47 +710,6 @@ int warningMsgCount = 0;
    /* AGSPoint *bmPoint;
     bmPoint = ((BookmarksTableViewController *) popoverController.contentViewController).generalPoint; */
     NSLog(@"were back---%@",self.bm);
-}
-
-// ---------------------------------
-//  SAVED CODE
-// ---------------------------------
-
-//Chris: Do we need this? Does not appear to be called
-- (void)operation:(NSOperation*)op didSucceedWithResponse:(NSDictionary *)solarInfo {
-    //The webservice was invoked successfully.
-    //Print the response to see what the JSON payload looks like.
-    NSLog(@"%@", solarInfo);
-    
-    /*If we got any weather information
-     if([weatherInfo objectForKey:@"weatherObservation"]!=nil){
-     NSString* station = [[weatherInfo objectForKey:@"weatherObservation"] objectForKey:@"stationName"];
-     NSString* clouds = [[weatherInfo objectForKey:@"weatherObservation"] objectForKey:@"clouds"];
-     NSString* temp = [[weatherInfo objectForKey:@"weatherObservation"] objectForKey:@"temperature"];
-     NSString* humidity = [[weatherInfo objectForKey:@"weatherObservation"] objectForKey:@"humidity"];
-     //Hide the progress indicator, display weather information
-     self.mapView.callout.customView = nil;
-     self.mapView.callout.title = station;
-     self.mapView.callout.detail = [NSString stringWithFormat:@"%@\u00B0c, %@%% Humidity, Condition:%@",temp,humidity,clouds];
-     }else {
-     //display the message returned by the webservice
-     self.mapView.callout.customView = nil;
-     self.mapView.callout.title = [[weatherInfo objectForKey:@"status"] objectForKey:@"message"];
-     self.mapView.callout.detail = @"";
-     } */
-}
-
-
-//Chris: Do we need this? Does not appear to be called
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    
-    //gs = [[GCGeocodingService alloc] init];
-    GCGeocodingService * myGC = [[GCGeocodingService alloc] init];
-    NSString *address = searchBar.text;
-    [myGC geocodeAddress:address];
-    
-    //Hide the keyboard
-    //[searchBar resignFirstResponder];
 }
 
 @end

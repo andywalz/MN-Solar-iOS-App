@@ -77,8 +77,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "369"
             endingLineNumber = "369"
-            landmarkName = "@implementation MapViewController"
-            landmarkType = "3">
+            landmarkName = "-geoprocessor:operation:didExecuteWithResults:messages:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -109,7 +109,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "292"
             endingLineNumber = "292"
-            landmarkName = "-locator:operation:didFind:"
+            landmarkName = "-operation:didFailWithError:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -173,7 +173,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "435"
             endingLineNumber = "435"
-            landmarkName = "-geocodeSearch:"
+            landmarkName = "-geoprocessor:operation:didExecuteWithResults:messages:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -189,7 +189,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "390"
             endingLineNumber = "390"
-            landmarkName = "-textFieldShouldReturn:"
+            landmarkName = "-geoprocessor:operation:didExecuteWithResults:messages:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
