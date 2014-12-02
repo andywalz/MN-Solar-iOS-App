@@ -167,7 +167,7 @@
 }
 
 - (IBAction)saveDefaults:(id)sender {
-    self.defaultCompanyName = self.defaultCompanyNameBox;
+    self.defaultCompanyName = self.defaultCompanyNameBox.text;
     self.key = @"defaultCompanyName";
     [self.defaults setObject:self.defaultCompanyName forKey:self.key];
     self.defaultCompanyNameBox.text = [self.defaults stringForKey:@"defaultCompanyName"];
