@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <ArcGIS/ArcGIS.h>
+#import <settingsViewController.h>class
 
 @class MapViewController;
 
@@ -63,7 +64,19 @@
 @property (weak, nonatomic) IBOutlet UILabel *decHr;
 @property (weak, nonatomic) IBOutlet UILabel *octHr;
 
+@property (weak, nonatomic) IBOutlet UILabel *companyName;
+@property (weak, nonatomic) IBOutlet UILabel *installerContact;
+@property (weak, nonatomic) IBOutlet UILabel *installerAddress;
+@property (weak, nonatomic) IBOutlet UILabel *installerCityStateZip;
+@property (weak, nonatomic) IBOutlet UILabel *installerPhoneEmail;
+
+
+
+
 - (IBAction)installers:(id)sender;
 - (IBAction)rebates:(id)sender;
+- (IBAction)solPotButton:(id)sender;
+
+
 
 @end

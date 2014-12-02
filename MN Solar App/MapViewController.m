@@ -11,6 +11,7 @@
 @class ReportViewController;
 @class GCGeocodingService;
 @class solValPopover;
+@class settingsViewController;
 
 @interface MapViewController () <AGSMapViewLayerDelegate, AGSQueryTaskDelegate, AGSGeoprocessorDelegate>
 
