@@ -556,6 +556,8 @@ int warningMsgCount = 0;
     //NSLog(@"%@", address);
     [myGC geocodeAddress:address];
     
+    self.myAddress = address;
+    
     //NSLog(@"Address: %@", myGC.geocodeResults[@"address"]);
     
     float x = [myGC.geocodeResults[@"lng"] floatValue];

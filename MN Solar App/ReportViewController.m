@@ -170,7 +170,12 @@
     self.EUSA.text = eusaContact;
     NSLog(@"%@",eusaContact);
     
-    self.savedData.text = nil;
+    if (self.mainMapView.myAddress==nil) {
+        self.savedData.text = nil;
+    }else{
+        self.savedData.text = self.mainMapView.myAddress;
+    }
+    
 }
 
 //3. Implement the layer delegate method
