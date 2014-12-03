@@ -36,6 +36,40 @@ GCGeocodingService * myGC;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    self.defaultCompanyName = @"TruNorth Solar";
+    self.key = @"defaultCompanyName";
+    [defaults setObject:self.defaultCompanyName forKey:self.key];
+    
+    self.defaultContactName = @"Marty Morud";
+    self.key = @"defaultContactName";
+    [defaults setObject:self.defaultContactName forKey:self.key];
+    
+    self.defaultAddress = @"5301 Edina Industrial Blvd #2";
+    self.key = @"defaultAddress";
+    [defaults setObject:self.defaultAddress forKey:self.key];
+    
+    self.defaultCity = @"Minneapolis";
+    self.key = @"defaultCity";
+    [defaults setObject:self.defaultCity forKey:self.key];
+    
+    self.defaultState = @"MN";
+    self.key = @"defaultState";
+    [defaults setObject:self.defaultState forKey:self.key];
+    
+    self.defaultZip = @"55439";
+    self.key = @"defaultZip";
+    [defaults setObject:self.defaultZip forKey:self.key];
+    
+    self.defaultPhone = @"612-888-9599";
+    self.key = @"defaultPhone";
+    [defaults setObject:self.defaultPhone forKey:self.key];
+    
+    self.defaultEmail = @"MMorud@TruNorthSolar.com";
+    self.key = @"defaultemail";
+    [defaults setObject:self.defaultEmail forKey:self.key];
+    
     // Set the client ID
     NSError *error;
     NSString* clientID = @"tG52soGpirVYT4qC";

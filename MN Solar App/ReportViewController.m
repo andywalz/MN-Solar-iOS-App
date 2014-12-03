@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     // Do any additional setup after loading the view.
     NSLog(@"%f",self.mainMapView.utm15Point.y);
     
@@ -105,6 +106,9 @@
   */
     
     // Change value label using kwh array (float) as string value
+    
+    NSString *test = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:6] stringValue];
+    
     self.janVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:0] stringValue];
     self.febVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:1] stringValue];
     self.marVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:2] stringValue];
@@ -177,6 +181,26 @@
     }else{
         self.savedData.text = self.mainMapView.myAddress;
     }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    self.companyName.text = [defaults objectForKey:@"defaultCompanyName"];
+    self.installerContact.text = [defaults objectForKey:@"defaultContactName"];
+    self.installerAddress.text = [defaults objectForKey:@"defaultAddress"];
+    
+    NSString *city = [defaults objectForKey:@"defaultCity"];
+    NSString *state = [defaults objectForKey:@"defaultState"];
+    NSString *zip = [defaults objectForKey:@"defaultZip"];
+    NSString *citystatezip  = [NSString stringWithFormat:@"%@, %@ %@", city, state, zip];
+    NSString *phone = [defaults objectForKey:@"defaultPhone"];
+    NSString *email = [defaults objectForKey:@"defaultEmail"];
+    
+    NSString *phoneemail  = [NSString stringWithFormat:@"%@ - %@", phone, email];
+    
+    self.installerCityStateZip.text = citystatezip;
+    self.installerPhoneEmail.text = phoneemail;
+    
+    
     
 }
 

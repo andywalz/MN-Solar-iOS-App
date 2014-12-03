@@ -25,6 +25,20 @@
     
     [super viewDidLoad];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *test = [defaults objectForKey:@"defaultCompanyName"];
+    
+    NSLog(@"%@", test);
+    
+    test = [defaults objectForKey:@"defaultAddress"];
+    
+    NSLog(@"%@", test);
+    
+    test = [defaults objectForKey:@"defaultPhone"];
+    
+    NSLog(@"%@", test);
+    
     // Starting Data to populate bookmarks list
     self.tableData = [NSArray arrayWithObjects:
                       [recordObjectConstructor nameOfCategory:@"student" name:@"Andy Walz" address:@"1217 Matilda St, Saint Paul, MN 55117" lat:@"44.977928" lng:@"-93.112542"],

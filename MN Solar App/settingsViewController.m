@@ -22,6 +22,8 @@
     
     self.defaults = [NSUserDefaults standardUserDefaults];
     
+    
+    
     /*self.defaultEmail = @"test@test.com";
     self.key = @"defaultemail";
     

@@ -129,4 +129,15 @@
 - (IBAction)logGeocodeValue:(id)sender;
 - (IBAction)solarSwitchToggle:(id)sender;
 
+// Defaults
+@property (weak, nonatomic) IBOutlet NSString *defaultCompanyName;
+@property (weak, nonatomic) IBOutlet NSString *defaultContactName;
+@property (weak, nonatomic) IBOutlet NSString *defaultAddress;
+@property (weak, nonatomic) IBOutlet NSString *defaultCity;
+@property (weak, nonatomic) IBOutlet NSString *defaultState;
+@property (weak, nonatomic) IBOutlet NSString *defaultZip;
+@property (weak, nonatomic) IBOutlet NSString *defaultPhone;
+@property (weak, nonatomic) IBOutlet NSString *defaultEmail;
+@property (strong, nonatomic) NSString *key;
+
 @end
