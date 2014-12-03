@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MapViewController.h"
 
 @interface MenuTableViewController : UITableViewController
+
+@property (weak,nonatomic) MapViewController *mainMapVC;
 
 @end

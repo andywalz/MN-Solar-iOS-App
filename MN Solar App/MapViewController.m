@@ -12,6 +12,7 @@
 @class GCGeocodingService;
 @class solValPopover;
 @class settingsViewController;
+@class MenuTableViewController;
 
 @interface MapViewController () <AGSMapViewLayerDelegate, AGSQueryTaskDelegate, AGSGeoprocessorDelegate>
 
@@ -76,6 +77,12 @@ GCGeocodingService * myGC;
     self.solarLayer = [AGSImageServiceLayer imageServiceLayerWithURL: url];
     
     [self.mapView insertMapLayer:self.solarLayer withName:@"Solar Tiled Layer" atIndex:1];
+    
+    // VECTOR DATA EXAMPLE
+    NSURL *featureLayerURL = [NSURL URLWithString:@"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/MN_Solar_Vector/MapServer/4"];
+    AGSFeatureLayer *featureLayer = [AGSFeatureLayer featureServiceLayerWithURL:featureLayerURL mode:AGSFeatureLayerModeOnDemand];
+    
+    [self.mapView addMapLayer:featureLayer withName:@"MN Counties"];
     
     //initialize the operation queue which will make webservice requests in the background
     self.queue = [[NSOperationQueue alloc] init];
@@ -707,6 +714,15 @@ int warningMsgCount = 0;
     
     if ([[segue identifier] isEqualToString:@"toMenuPopover"])
     {
+        MapViewController *startVC;
+        MenuTableViewController *destVC;
+        
+        startVC = (MapViewController *)segue.sourceViewController;
+        destVC = (MenuTableViewController *)segue.destinationViewController;
+        
+        destVC.mainMapVC = startVC;
+        
+        
         [self dismissViewControllerAnimated:YES completion:nil];
     }
     

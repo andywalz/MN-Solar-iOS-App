@@ -16,6 +16,7 @@
 #import "ReportViewController.h"
 #import "solValPopover.h"
 #import "settingsViewController.h"
+#import "MenuTableViewController.h"
 
 @interface MapViewController : UIViewController <AGSMapViewTouchDelegate, UITextFieldDelegate, UIPopoverControllerDelegate>
 
