@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <ArcGIS/ArcGIS.h>
+#import <MessageUI/MessageUI.h>
 
 @class MapViewController;
 @class settingsViewController;
+@class ReportSaveFormViewController;
 
-@interface ReportViewController : UIViewController
+@interface ReportViewController : UIViewController <MFMailComposeViewControllerDelegate>
+
 @property (strong, nonatomic) MapViewController *mainMapView;
 @property (weak, nonatomic) IBOutlet UIView *mainReportView;
 
@@ -64,6 +67,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *decHr;
 @property (weak, nonatomic) IBOutlet UILabel *octHr;
 
+@property (weak, nonatomic) NSString *customName;
+@property (weak, nonatomic) NSString *customNotes;
+@property (weak, nonatomic) NSString *customDate;
+@property (weak, nonatomic) NSString *customAddress;
+
+@property (weak, nonatomic) IBOutlet UILabel *reportNotes;
+
 @property (weak, nonatomic) IBOutlet UILabel *companyName;
 @property (weak, nonatomic) IBOutlet UILabel *installerContact;
 @property (weak, nonatomic) IBOutlet UILabel *installerAddress;
@@ -76,6 +86,7 @@
 - (IBAction)installers:(id)sender;
 - (IBAction)rebates:(id)sender;
 - (IBAction)solPotButton:(id)sender;
+- (IBAction)mailReport:(id)sender;
 
 
 

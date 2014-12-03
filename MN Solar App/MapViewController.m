@@ -63,7 +63,7 @@ GCGeocodingService * myGC;
     [self.mapView zoomToEnvelope:self.defaultEnvelope animated:YES];
     
     //add solar layer
-    NSURL* url = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/Solar/ImageServer"];
+    NSURL* url = [NSURL URLWithString: @"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/MN_Solar_2014/ImageServer"];
     self.solarLayer = [AGSImageServiceLayer imageServiceLayerWithURL: url];
     
     [self.mapView insertMapLayer:self.solarLayer withName:@"Solar Tiled Layer" atIndex:1];
@@ -455,6 +455,41 @@ int warningMsgCount = 0;
     
 }
 
+// Geocode address entered in search bar
+- (IBAction)geocodeSearch:(id)sender {
+    NSString *address = self.searchBar.text;
+    //NSLog(@"%@", address);
+    [myGC geocodeAddress:address];
+    
+    self.myAddress = address;
+    
+    NSLog(@"%@ Address: %@",self.myAddress,myGC.geocodeResults[@"address"]);
+    
+    self.myAddress = myGC.geocodeResults[@"address"];
+    
+    float x = [myGC.geocodeResults[@"lng"] floatValue];
+    float y = [myGC.geocodeResults[@"lat"] floatValue];
+    self.geocodePoint = [AGSPoint pointWithX:x
+                                           y:y
+                            spatialReference:[AGSSpatialReference wgs84SpatialReference]];
+    
+    self.geocodePointWeb = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:self.geocodePoint toSpatialReference:[AGSSpatialReference webMercatorSpatialReference]];
+    
+    //Store original mappoint for subclasses to access
+    self.pin = self.geocodePointWeb;
+    
+    self.zoomToEnvelop = [AGSEnvelope envelopeWithXmin:self.geocodePointWeb.x - 200 ymin:self.geocodePointWeb.y - 200 xmax:self.geocodePointWeb.x + 200  ymax:self.geocodePointWeb.y + 200 spatialReference:self.mapView.spatialReference];
+    [self.mapView zoomToEnvelope:self.zoomToEnvelop animated:YES];
+    
+    [self addPoint:self.geocodePointWeb];
+    
+    [self convertToWGS:self.geocodePoint];
+    [self convertToUTM15:self.geocodePoint];
+    
+    [self runQueries];
+    
+}
+
 //this is the delegate method that gets called when GP fails
 - (void) geoprocessor:(AGSGeoprocessor*) geoprocessor   operation:(NSOperation*) op didFailExecuteWithError:(NSError *)error{
     NSLog(@"Error: %@",error);
@@ -549,41 +584,6 @@ int warningMsgCount = 0;
 - (IBAction)solarToggle:(id)sender {
     isHidden = !isHidden;
     self.solarLayer.visible = isHidden;
-    
-}
-
-// Geocode address entered in search bar
-- (IBAction)geocodeSearch:(id)sender {
-    NSString *address = self.searchBar.text;
-    //NSLog(@"%@", address);
-    [myGC geocodeAddress:address];
-    
-    self.myAddress = address;
-    
-    NSLog(@"%@ Address: %@",self.myAddress,myGC.geocodeResults[@"address"]);
-    
-    self.myAddress = myGC.geocodeResults[@"address"];
-    
-    float x = [myGC.geocodeResults[@"lng"] floatValue];
-    float y = [myGC.geocodeResults[@"lat"] floatValue];
-    self.geocodePoint = [AGSPoint pointWithX:x
-                                          y:y
-                           spatialReference:[AGSSpatialReference wgs84SpatialReference]];
-    
-    self.geocodePointWeb = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:self.geocodePoint toSpatialReference:[AGSSpatialReference webMercatorSpatialReference]];
-    
-    //Store original mappoint for subclasses to access
-    self.pin = self.geocodePointWeb;
-    
-    self.zoomToEnvelop = [AGSEnvelope envelopeWithXmin:self.geocodePointWeb.x - 200 ymin:self.geocodePointWeb.y - 200 xmax:self.geocodePointWeb.x + 200  ymax:self.geocodePointWeb.y + 200 spatialReference:self.mapView.spatialReference];
-    [self.mapView zoomToEnvelope:self.zoomToEnvelop animated:YES];
-    
-    [self addPoint:self.geocodePointWeb];
-    
-    [self convertToWGS:self.geocodePoint];
-    [self convertToUTM15:self.geocodePoint];
-    
-    [self runQueries];
     
 }
 

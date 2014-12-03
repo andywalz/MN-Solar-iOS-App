@@ -9,6 +9,7 @@
 #import "settingsViewController.h"
 #import "ReportViewController.h"
 #import "MapViewController.h"
+#import "ReportSaveFormViewController.h"
 
 @interface ReportViewController () <AGSMapViewLayerDelegate>
 
@@ -208,6 +209,17 @@
         destVC.solPotentialPopover = self.solPotential.text;
     }
     
+    if ([[segue identifier] isEqualToString:@"toSaveReport"])
+    {
+        ReportViewController *startVC;
+        ReportSaveFormViewController *destVC;
+        
+        startVC = (ReportViewController *)segue.sourceViewController;
+        destVC = (ReportSaveFormViewController *)segue.destinationViewController;
+        
+        destVC.myReport = startVC;
+    }
+    
 }
 
 
@@ -227,5 +239,49 @@
 
 - (IBAction)solPotButton:(id)sender {
     [self performSegueWithIdentifier:@"toSolValPopover" sender:self];
+}
+
+- (IBAction)mailReport:(id)sender {
+    // Email Subject
+    NSString *emailTitle = @"Solar Report";
+    // Email Content
+    
+    NSString *messageBody = [ NSString stringWithFormat:@"http://solar.maps.umn.edu/report.php?lat=%f&long=%f",self.mainMapView.wgsPoint.y,self.mainMapView.wgsPoint.x];
+    // To address
+    //NSArray *toRecipents = [NSArray arrayWithObject:@"support@appcoda.com"];
+    
+    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+    mc.mailComposeDelegate = self;
+    [mc setSubject:emailTitle];
+    [mc setMessageBody:messageBody isHTML:NO];
+    //[mc setToRecipients:toRecipents];
+    
+    // Present mail view controller on screen
+    [self presentViewController:mc animated:YES completion:NULL];
+    
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 @end
