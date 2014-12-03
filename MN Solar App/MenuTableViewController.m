@@ -22,6 +22,13 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    if(self.mainMapVC.layerCountiesStatus==nil){
+        self.layerCounties.text = @"( ) MN Counties";
+    }else{
+        self.layerCounties.text = self.mainMapVC.layerCountiesStatus;
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -101,4 +108,24 @@
 }
 
 
+- (IBAction)toggleCounties:(id)sender {
+    
+    if ([self.layerCounties.text containsString:@"(X)"]) {
+        
+        [self.mainMapVC.mapView removeMapLayerWithName:@"MN Counties"];
+        self.layerCounties.text = @"( ) MN Counties";
+        self.mainMapVC.layerCountiesStatus = @"( ) MN Counties";
+      
+    } else {
+    
+    // CLOUD DATA
+    NSURL *featureLayerURL = [NSURL URLWithString:@"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/MN_Solar_Vector/MapServer/4"];
+    AGSFeatureLayer *featureLayer = [AGSFeatureLayer featureServiceLayerWithURL:featureLayerURL mode:AGSFeatureLayerModeOnDemand];
+    
+    [self.mainMapVC.mapView addMapLayer:featureLayer withName:@"MN Counties"];
+    self.layerCounties.text = @"(X) MN Counties";
+        self.mainMapVC.layerCountiesStatus = @"(X) MN Counties";
+
+     }
+}
 @end

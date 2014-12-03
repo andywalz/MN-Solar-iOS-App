@@ -13,4 +13,8 @@
 
 @property (weak,nonatomic) MapViewController *mainMapVC;
 
+@property (weak, nonatomic) IBOutlet UILabel *layerCounties;
+
+- (IBAction)toggleCounties:(id)sender;
+
 @end
