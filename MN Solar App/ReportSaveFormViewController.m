@@ -93,9 +93,9 @@
     self.myReport.customAddress = self.myLocation.text;
     
     
-    self.myReport.savedData.text = [NSString stringWithFormat:@"%@ %@", self.myName.text, self.myLocation.text];
+    self.myReport.savedData.text = [NSString stringWithFormat:@"%@, %@", self.myName.text, self.myLocation.text];
     self.myReport.reportNotes.text = [NSString stringWithFormat:@"NOTES: %@", self.myNotes.text];
-    self.myReport.location.text = [NSString stringWithFormat:@"%@  Date: %@", self.myDate.text];
+    self.myReport.location.text = [NSString stringWithFormat:@"%@  Date: %@", self.myReport.location.text, self.myDate.text];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }

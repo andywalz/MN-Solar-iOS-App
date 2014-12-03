@@ -173,7 +173,7 @@
     NSLog(@"addr: %@",self.mainMapView.myAddress);
     
     if(self.mainMapView.myAddress==nil) {
-        self.savedData.text = @"No address entered";
+        self.savedData.text = @"";
     }else{
         self.savedData.text = self.mainMapView.myAddress;
     }
@@ -243,17 +243,18 @@
 
 - (IBAction)mailReport:(id)sender {
     // Email Subject
-    NSString *emailTitle = @"Solar Report";
+    NSString *emailTitle = @"Solar Suitability Report";
     // Email Content
     
-    NSString *messageBody = [ NSString stringWithFormat:@"http://solar.maps.umn.edu/report.php?lat=%f&long=%f",self.mainMapView.wgsPoint.y,self.mainMapView.wgsPoint.x];
+    NSString *messageBody = [ NSString stringWithFormat:@"<h2><img style='float:left; padding-right:10px;' src='http://solar.maps.umn.edu/assets/img/solar-app-transparent220x235.png' height='165' alt='MN Solar Logo'/>Minnesota Solar Suitability Location Report</h2><p><b>Latitude</b>: %f <b>Longitude:</b> %f<br><b>Address:</b> <a href='http://solar.maps.umn.edu/app/index.html?lat=%f&long=%f'>%@</a></p> <p><b>Total Insolation per Year:</b> %@ kWh/m<sup>2</sup><br /><b>Avg per Day:</b> %@ kWh/m<sup>2</sup></p><p><a href='http://solar.maps.umn.edu/report.php?z=55401&w=www.xcelenergy.com&long=%f&lat=%f&y=%@&u=%@'>Click here to view your complete report</a></p>",self.mainMapView.wgsPoint.y, self.mainMapView.wgsPoint.x, self.mainMapView.wgsPoint.y, self.mainMapView.wgsPoint.x, self.savedData.text, self.mainMapView.totalInsVal, self.insolDaily.text, self.mainMapView.wgsPoint.x,self.mainMapView.wgsPoint.y, self.mainMapView.totalInsVal, [self.EUSA.text  stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]];
+    
     // To address
     //NSArray *toRecipents = [NSArray arrayWithObject:@"support@appcoda.com"];
     
     MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
     mc.mailComposeDelegate = self;
     [mc setSubject:emailTitle];
-    [mc setMessageBody:messageBody isHTML:NO];
+    [mc setMessageBody:messageBody isHTML:YES];
     //[mc setToRecipients:toRecipents];
     
     // Present mail view controller on screen

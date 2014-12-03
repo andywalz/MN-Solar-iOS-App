@@ -35,6 +35,15 @@ GCGeocodingService * myGC;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Set the client ID
+    NSError *error;
+    NSString* clientID = @"tG52soGpirVYT4qC";
+    [AGSRuntimeEnvironment setClientID:clientID error:&error];
+    if(error){
+        // We had a problem using our client ID
+        NSLog(@"Error using client ID : %@",[error localizedDescription]);
+    }
+    
     self.resultsDrawer.hidden=isHidden;
     self.loadingIconView.hidden=YES;
     self.solarOff.hidden = YES;

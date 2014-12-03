@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MapViewController.h"
 
 @interface AppDelegate ()
 
@@ -27,6 +28,16 @@
     [self createAndCheckDatabase];
 
     // Override point for customization after application launch.
+    
+    // Set the client ID
+    NSError *error;
+    NSString* clientID = @"tG52soGpirVYT4qC";
+    [AGSRuntimeEnvironment setClientID:clientID error:&error];
+    if(error){
+        // We had a problem using our client ID
+        NSLog(@"Error using client ID : %@",[error localizedDescription]);
+    }
+    
     return YES;
 
 }
