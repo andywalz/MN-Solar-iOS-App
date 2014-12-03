@@ -78,11 +78,12 @@ GCGeocodingService * myGC;
     
     [self.mapView insertMapLayer:self.solarLayer withName:@"Solar Tiled Layer" atIndex:1];
     
-    // VECTOR DATA EXAMPLE
+    /* VECTOR DATA EXAMPLE
     NSURL *featureLayerURL = [NSURL URLWithString:@"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/MN_Solar_Vector/MapServer/4"];
     AGSFeatureLayer *featureLayer = [AGSFeatureLayer featureServiceLayerWithURL:featureLayerURL mode:AGSFeatureLayerModeOnDemand];
     
     [self.mapView addMapLayer:featureLayer withName:@"MN Counties"];
+     */
     
     //initialize the operation queue which will make webservice requests in the background
     self.queue = [[NSOperationQueue alloc] init];
