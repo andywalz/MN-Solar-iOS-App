@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <ArcGIS/ArcGIS.h>
-#import <settingsViewController.h>class
 
 @class MapViewController;
+@class settingsViewController;
 
 @interface ReportViewController : UIViewController
 @property (strong, nonatomic) MapViewController *mainMapView;

@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 MN Solar Suitability Team. All rights reserved.
 //
 
+#import "settingsViewController.h"
 #import "ReportViewController.h"
 #import "MapViewController.h"
 
