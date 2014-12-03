@@ -83,7 +83,7 @@
 @property (nonatomic, weak) NSMutableArray * solarHoursArray;
 @property (nonatomic, strong) NSMutableArray * solarHoursArrayNum;
 @property (nonatomic, strong) NSMutableArray * solarHoursArrayNumFloat;
-@property (nonatomic, weak) NSString *myAddress;
+@property (nonatomic, strong) NSString *myAddress;
 
 // Results Drawer elements
 @property (nonatomic, strong) NSNumber *maxInsVal;

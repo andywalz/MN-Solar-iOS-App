@@ -150,11 +150,11 @@
     NSString *solPot;
     
     if(self.mainMapView.totalInsVal.doubleValue / 365.0 >= 2.7){
-        solPot = @" (Optimal)";
+        solPot = @"[ Optimal ]";
     }else if (self.mainMapView.totalInsVal.doubleValue / 365.0 >= 1.6){
-        solPot = @" (Good)";
+        solPot = @"[ Good ]";
     }else{
-        solPot = @" (Poor)";
+        solPot = @"[ Poor ]";
     }
     
     self.solPotential.text = solPot;
@@ -169,10 +169,10 @@
     NSString *eusaContact = [NSString stringWithFormat:@"%@\r%@\r%@",self.mainMapView.eusaFULL_NAME,self.mainMapView.eusaPHONE,self.mainMapView.eusaWEBSITE];
     
     self.EUSA.text = eusaContact;
-    NSLog(@"%@",eusaContact);
+    NSLog(@"addr: %@",self.mainMapView.myAddress);
     
-    if (self.mainMapView.myAddress==nil) {
-        self.savedData.text = nil;
+    if(self.mainMapView.myAddress==nil) {
+        self.savedData.text = @"No address entered";
     }else{
         self.savedData.text = self.mainMapView.myAddress;
     }
@@ -226,5 +226,6 @@
 }
 
 - (IBAction)solPotButton:(id)sender {
+    [self performSegueWithIdentifier:@"toSolValPopover" sender:self];
 }
 @end

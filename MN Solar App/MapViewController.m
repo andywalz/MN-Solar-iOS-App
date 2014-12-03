@@ -552,6 +552,7 @@ int warningMsgCount = 0;
     
 }
 
+// Geocode address entered in search bar
 - (IBAction)geocodeSearch:(id)sender {
     NSString *address = self.searchBar.text;
     //NSLog(@"%@", address);
@@ -559,16 +560,20 @@ int warningMsgCount = 0;
     
     self.myAddress = address;
     
-    //NSLog(@"Address: %@", myGC.geocodeResults[@"address"]);
+    NSLog(@"%@ Address: %@",self.myAddress,myGC.geocodeResults[@"address"]);
+    
+    self.myAddress = myGC.geocodeResults[@"address"];
     
     float x = [myGC.geocodeResults[@"lng"] floatValue];
     float y = [myGC.geocodeResults[@"lat"] floatValue];
     self.geocodePoint = [AGSPoint pointWithX:x
                                           y:y
                            spatialReference:[AGSSpatialReference wgs84SpatialReference]];
+    
     self.geocodePointWeb = (AGSPoint*) [[AGSGeometryEngine defaultGeometryEngine] projectGeometry:self.geocodePoint toSpatialReference:[AGSSpatialReference webMercatorSpatialReference]];
     
-    //NSLog(@"Trying to zoom!");
+    //Store original mappoint for subclasses to access
+    self.pin = self.geocodePointWeb;
     
     self.zoomToEnvelop = [AGSEnvelope envelopeWithXmin:self.geocodePointWeb.x - 200 ymin:self.geocodePointWeb.y - 200 xmax:self.geocodePointWeb.x + 200  ymax:self.geocodePointWeb.y + 200 spatialReference:self.mapView.spatialReference];
     [self.mapView zoomToEnvelope:self.zoomToEnvelop animated:YES];
