@@ -67,7 +67,7 @@ GCGeocodingService * myGC;
     [defaults setObject:self.defaultPhone forKey:self.key];
     
     self.defaultEmail = @"MMorud@TruNorthSolar.com";
-    self.key = @"defaultemail";
+    self.key = @"defaultEmail";
     [defaults setObject:self.defaultEmail forKey:self.key];
     
     // Set the client ID
