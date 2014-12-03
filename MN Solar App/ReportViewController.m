@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 MN Solar Suitability Team. All rights reserved.
 //
 
+#import "settingsViewController.h"
 #import "ReportViewController.h"
 #import "MapViewController.h"
 
@@ -156,9 +157,9 @@
         solPot = @" (Poor)";
     }
     
-    self.solPotential.text = @"";
+    self.solPotential.text = solPot;
     
-    self.insolDaily.text = [NSString stringWithFormat:@"%0.3f%@", (self.mainMapView.totalInsVal.doubleValue / 365.0),solPot];
+    self.insolDaily.text = [NSString stringWithFormat:@"%0.3f", (self.mainMapView.totalInsVal.doubleValue / 365.0)];
     
     self.sunHrTotal.text = [self.mainMapView.totalHrsVal stringValue];
     self.sunHrTotal2.text = [self.mainMapView.totalHrsVal stringValue];
@@ -190,15 +191,25 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+
+    
+    if ([[segue identifier] isEqualToString:@"toSolValuePopover"])
+    {
+        ReportViewController *startVC;
+        solValPopover *destVC;
+        
+        startVC = (ReportViewController *)segue.sourceViewController;
+        destVC = (solValPopover *)segue.destinationViewController;
+        
+        destVC.solPotentialPopover = self.solPotential.text;
+    }
+    
 }
-*/
+
 
 - (IBAction)backToMap:(id)sender {
     
@@ -212,5 +223,8 @@
 
 - (IBAction)rebates:(id)sender {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.dsireusa.org/solar/incentives/index.cfm?re=1&ee=1&spv=1&st=0&srp=0&state=MN"]];
+}
+
+- (IBAction)solPotButton:(id)sender {
 }
 @end

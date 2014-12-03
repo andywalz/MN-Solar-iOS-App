@@ -11,6 +11,23 @@
 @interface settingsViewController : UIViewController
 
 @property (strong, nonatomic) NSUserDefaults *defaults;
+
+@property (weak, nonatomic) IBOutlet NSString *defaultCompanyName;
+@property (weak, nonatomic) IBOutlet UITextField *defaultCompanyNameBox;
+@property (weak, nonatomic) IBOutlet NSString *defaultContactName;
+@property (weak, nonatomic) IBOutlet UITextField *defaultContactNameBox;
+@property (weak, nonatomic) IBOutlet NSString *defaultAddress;
+@property (weak, nonatomic) IBOutlet UITextField *defaultAddressBox;
+@property (weak, nonatomic) IBOutlet NSString *defaultCity;
+@property (weak, nonatomic) IBOutlet UITextField *defaultCityBox;
+@property (weak, nonatomic) IBOutlet NSString *defaultState;
+@property (weak, nonatomic) IBOutlet UITextField *defaultStateBox;
+@property (weak, nonatomic) IBOutlet NSString *defaultZip;
+@property (weak, nonatomic) IBOutlet UITextField *defaultZipBox;
+@property (weak, nonatomic) IBOutlet NSString *defaultPhone;
+@property (weak, nonatomic) IBOutlet UITextField *defaultPhoneBox;
+
+
 @property (strong, nonatomic) NSString *defaultEmail;
 @property (strong, nonatomic) IBOutlet UITextField *defaultEmailBox;
 @property (strong, nonatomic) NSString *defaultDrate;
@@ -25,5 +42,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *defaultEastBox;
 @property (strong, nonatomic) NSString *key;
 - (IBAction)resetDefaults:(id)sender;
+- (IBAction)saveDefaults:(id)sender;
 
 @end
