@@ -28,6 +28,11 @@
 		CA1E55A51A22AFCC009C0D88 /* DismissSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1E55A41A22AFCC009C0D88 /* DismissSegue.m */; };
 		CA45DF3E1A2142C2003A79E8 /* arrow_up_wht.png in Resources */ = {isa = PBXBuildFile; fileRef = CA45DF3D1A2142C2003A79E8 /* arrow_up_wht.png */; };
 		CA47A8891A20FBB800ED8412 /* solar-app-transparent220x235.png in Resources */ = {isa = PBXBuildFile; fileRef = CA47A8881A20FBB800ED8412 /* solar-app-transparent220x235.png */; };
+		CA4C605C1A2E6606003485A8 /* book92.png in Resources */ = {isa = PBXBuildFile; fileRef = CA4C605A1A2E6606003485A8 /* book92.png */; };
+		CA4C605D1A2E6606003485A8 /* home152.png in Resources */ = {isa = PBXBuildFile; fileRef = CA4C605B1A2E6606003485A8 /* home152.png */; };
+		CA4C605F1A2E66A3003485A8 /* bookmarks-outline-128.png in Resources */ = {isa = PBXBuildFile; fileRef = CA4C605E1A2E66A3003485A8 /* bookmarks-outline-128.png */; };
+		CA4C60611A2E670D003485A8 /* home64.png in Resources */ = {isa = PBXBuildFile; fileRef = CA4C60601A2E670D003485A8 /* home64.png */; };
+		CA4C60631A2E674E003485A8 /* home32.png in Resources */ = {isa = PBXBuildFile; fileRef = CA4C60621A2E674E003485A8 /* home32.png */; };
 		CA5328D71A22FD25000188F2 /* mail_ios7_ios_7.png in Resources */ = {isa = PBXBuildFile; fileRef = CA5328D61A22FD25000188F2 /* mail_ios7_ios_7.png */; };
 		CA5328D91A22FF8B000188F2 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA5328D81A22FF8B000188F2 /* MessageUI.framework */; };
 		CA5328DC1A22FFFC000188F2 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5328DB1A22FFFC000188F2 /* ShareViewController.m */; };
@@ -97,6 +102,11 @@
 		CA1E55A41A22AFCC009C0D88 /* DismissSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissSegue.m; sourceTree = "<group>"; };
 		CA45DF3D1A2142C2003A79E8 /* arrow_up_wht.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_up_wht.png; sourceTree = "<group>"; };
 		CA47A8881A20FBB800ED8412 /* solar-app-transparent220x235.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "solar-app-transparent220x235.png"; sourceTree = "<group>"; };
+		CA4C605A1A2E6606003485A8 /* book92.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book92.png; sourceTree = "<group>"; };
+		CA4C605B1A2E6606003485A8 /* home152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home152.png; sourceTree = "<group>"; };
+		CA4C605E1A2E66A3003485A8 /* bookmarks-outline-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmarks-outline-128.png"; sourceTree = "<group>"; };
+		CA4C60601A2E670D003485A8 /* home64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home64.png; sourceTree = "<group>"; };
+		CA4C60621A2E674E003485A8 /* home32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home32.png; sourceTree = "<group>"; };
 		CA5328D61A22FD25000188F2 /* mail_ios7_ios_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_ios7_ios_7.png; sourceTree = "<group>"; };
 		CA5328D81A22FF8B000188F2 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CA5328DA1A22FFFC000188F2 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
@@ -314,6 +324,11 @@
 		CAEC984B1A0D5EB400E271F4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				CA4C60621A2E674E003485A8 /* home32.png */,
+				CA4C60601A2E670D003485A8 /* home64.png */,
+				CA4C605E1A2E66A3003485A8 /* bookmarks-outline-128.png */,
+				CA4C605A1A2E6606003485A8 /* book92.png */,
+				CA4C605B1A2E6606003485A8 /* home152.png */,
 				359543A51A2C08460008828E /* color ramp_white text.png */,
 				3595439D1A2BB5C10008828E /* home_icon.png */,
 				CA5328D61A22FD25000188F2 /* mail_ios7_ios_7.png */,
@@ -412,6 +427,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA4C60611A2E670D003485A8 /* home64.png in Resources */,
 				35A2544A1A1BEC9A00BFBCBC /* bluepushpin.png in Resources */,
 				CAEC98581A0D600200E271F4 /* LocationArrowWht-22.png in Resources */,
 				CAEC98591A0D600200E271F4 /* LocationArrowWht-44.png in Resources */,
@@ -428,9 +444,13 @@
 				3595439E1A2BB5C10008828E /* home_icon.png in Resources */,
 				CA5328D71A22FD25000188F2 /* mail_ios7_ios_7.png in Resources */,
 				35A59BCE1A14194D008BEC96 /* zoomIn.png in Resources */,
+				CA4C605C1A2E6606003485A8 /* book92.png in Resources */,
+				CA4C60631A2E674E003485A8 /* home32.png in Resources */,
+				CA4C605D1A2E6606003485A8 /* home152.png in Resources */,
 				CA8ED9181A058978009728AE /* Images.xcassets in Resources */,
 				35C0E0EC1A0AF41100B32B68 /* ArcGIS.bundle in Resources */,
 				CAEC985D1A0D798800E271F4 /* LoadingView.xib in Resources */,
+				CA4C605F1A2E66A3003485A8 /* bookmarks-outline-128.png in Resources */,
 				350DA94D1A1D528800B33723 /* default.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

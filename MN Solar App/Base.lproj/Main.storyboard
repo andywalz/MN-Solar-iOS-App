@@ -436,7 +436,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="zlF-Cy-DBL"/>
-                                    <barButtonItem title="Home" id="sei-4u-12S">
+                                    <barButtonItem image="home32.png" id="sei-4u-12S">
                                         <connections>
                                             <action selector="goHomeButton:" destination="BYZ-38-t0r" id="2OL-Nc-ifi"/>
                                         </connections>
@@ -1157,15 +1157,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="363" height="198"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8vS-GN-9J2">
-                                <rect key="frame" x="201" y="28" width="84" height="68"/>
-                                <state key="normal" title="Customize and Save Report >" image="Under_construction.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="2Og-9X-PBm" kind="presentation" id="f2s-WN-XfQ"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Save Report" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xv2-rt-0jg">
                                 <rect key="frame" x="201" y="112" width="95" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1193,6 +1184,15 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8vS-GN-9J2">
+                                <rect key="frame" x="211" y="31" width="74" height="62.5"/>
+                                <state key="normal" image="bookmarks-outline-128.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="2Og-9X-PBm" kind="presentation" id="f2s-WN-XfQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -2283,7 +2283,9 @@
         <image name="LocationArrowWht-22.png" width="22" height="22"/>
         <image name="Under_construction.png" width="200" height="200"/>
         <image name="arrow_up_wht.png" width="782" height="488"/>
+        <image name="bookmarks-outline-128.png" width="128" height="128"/>
         <image name="color ramp_white text.png" width="1807" height="466"/>
+        <image name="home32.png" width="32" height="32"/>
         <image name="mail_ios7_ios_7.png" width="118" height="118"/>
         <image name="menu-22.png" width="22" height="22"/>
         <image name="solar-app-transparent220x235.png" width="220" height="235"/>
@@ -2291,6 +2293,6 @@
         <image name="zoomOut.png" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="58A-OL-oxN"/>
+        <segue reference="pHa-c8-BwX"/>
     </inferredMetricsTieBreakers>
 </document>
