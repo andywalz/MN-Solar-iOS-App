@@ -37,7 +37,7 @@ GCGeocodingService * myGC;
     [super viewDidLoad];
     
     // Reset user defaults for test
-    //[self restoreTestDefaults];
+    [self restoreTestDefaults];
     
     // Set the client ID
     NSError *error;

@@ -198,7 +198,8 @@
     NSString *phoneemail  = [NSString stringWithFormat:@"%@ - %@", phone, email];
     
     self.installerCityStateZip.text = citystatezip;
-    self.installerPhoneEmail.text = phoneemail;
+    self.installerPhoneEmail.text = phone;
+    self.installerEmail.text = email;
     
     
     

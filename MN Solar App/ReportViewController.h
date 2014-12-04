@@ -79,6 +79,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *installerAddress;
 @property (weak, nonatomic) IBOutlet UILabel *installerCityStateZip;
 @property (weak, nonatomic) IBOutlet UILabel *installerPhoneEmail;
+@property (weak, nonatomic) IBOutlet UILabel *installerEmail;
 
 
 
