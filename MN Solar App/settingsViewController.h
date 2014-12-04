@@ -10,8 +10,6 @@
 
 @interface settingsViewController : UIViewController
 
-@property (strong, nonatomic) NSUserDefaults *defaults;
-
 @property (weak, nonatomic) IBOutlet NSString *defaultCompanyName;
 @property (weak, nonatomic) IBOutlet UITextField *defaultCompanyNameBox;
 @property (weak, nonatomic) IBOutlet NSString *defaultContactName;

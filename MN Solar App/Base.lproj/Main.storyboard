@@ -1105,7 +1105,6 @@
                                     <barButtonItem systemItem="save" id="RjE-Dq-5fv">
                                         <connections>
                                             <action selector="saveDefaults:" destination="6FX-gR-g4K" id="oE9-GI-LW2"/>
-                                            <segue destination="BYZ-38-t0r" kind="custom" customClass="DismissSegue" id="9k2-1M-3RJ"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -2473,6 +2472,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VL5-iM-Wtc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="VvE-RR-6cd">
+            <objects>
+                <viewController id="ImH-gu-aFg" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1K5-ms-Lur"/>
+                        <viewControllerLayoutGuide type="bottom" id="v8A-DC-Lor"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="p40-e7-4cg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JBW-J6-ZbD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
         <image name="LocationArrowWht-22.png" width="22" height="22"/>
@@ -2488,6 +2504,6 @@
         <image name="zoomOut.png" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="58A-OL-oxN"/>
+        <segue reference="LCu-hp-fhk"/>
     </inferredMetricsTieBreakers>
 </document>
