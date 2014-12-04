@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -772,7 +772,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fll-CX-Rzy">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fll-CX-Rzy">
                                                     <rect key="frame" x="15" y="7" width="262" height="30"/>
                                                     <state key="normal">
                                                         <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -783,6 +783,11 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fll-CX-Rzy" firstAttribute="top" secondItem="5Vo-aj-gFW" secondAttribute="topMargin" constant="-1" id="GLg-pV-YT5"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="fll-CX-Rzy" secondAttribute="trailing" constant="15" id="s4s-1J-70c"/>
+                                                <constraint firstItem="fll-CX-Rzy" firstAttribute="leading" secondItem="t4i-hi-Bop" secondAttribute="leading" id="yuB-HQ-mKE"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="h5N-Np-6iq" style="IBUITableViewCellStyleDefault" id="5tP-6h-kfV">
@@ -796,7 +801,22 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yT-zT-PGs">
+                                                    <rect key="frame" x="8" y="7" width="284" height="30"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="toggleEUSA:" destination="XN7-BA-avn" eventType="touchUpInside" id="Utu-9x-6Ql"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="0yT-zT-PGs" firstAttribute="leading" secondItem="cw4-E3-X6T" secondAttribute="leadingMargin" id="LAE-1h-xNq"/>
+                                                <constraint firstItem="0yT-zT-PGs" firstAttribute="centerX" secondItem="h5N-Np-6iq" secondAttribute="centerX" id="h4y-cg-jF8"/>
+                                                <constraint firstItem="0yT-zT-PGs" firstAttribute="top" secondItem="cw4-E3-X6T" secondAttribute="topMargin" constant="-1" id="lIl-vd-QMR"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="uJZ-Ri-LgH" style="IBUITableViewCellStyleDefault" id="Pj2-pY-bQ5">
@@ -810,7 +830,22 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4R-lV-7YP">
+                                                    <rect key="frame" x="8" y="7" width="284" height="30"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="toggleSolarInstalls:" destination="XN7-BA-avn" eventType="touchUpInside" id="Hwp-9d-IHj"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="B4R-lV-7YP" firstAttribute="top" secondItem="uas-SH-Z1n" secondAttribute="topMargin" constant="-1" id="g8O-IT-fvs"/>
+                                                <constraint firstItem="B4R-lV-7YP" firstAttribute="leading" secondItem="uas-SH-Z1n" secondAttribute="leadingMargin" id="hIV-R7-d87"/>
+                                                <constraint firstItem="B4R-lV-7YP" firstAttribute="centerX" secondItem="uJZ-Ri-LgH" secondAttribute="centerX" id="hda-UH-Wfh"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="eOJ-Ts-Ush" style="IBUITableViewCellStyleDefault" id="7bF-JJ-68N">
@@ -818,13 +853,29 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7bF-JJ-68N" id="vBU-Tz-lc0">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="( ) DNR Tiling Scheme" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eOJ-Ts-Ush">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="( ) Lakes &amp; Rivers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eOJ-Ts-Ush">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3gZ-9C-x5G">
+                                                    <rect key="frame" x="8" y="3" width="284" height="37"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="toggleTiles:" destination="XN7-BA-avn" eventType="touchUpInside" id="idq-Jb-IxH"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="3gZ-9C-x5G" firstAttribute="top" secondItem="vBU-Tz-lc0" secondAttribute="topMargin" constant="-5" id="7Xt-Wj-ldu"/>
+                                                <constraint firstItem="3gZ-9C-x5G" firstAttribute="centerX" secondItem="eOJ-Ts-Ush" secondAttribute="centerX" id="T9S-ZP-P8L"/>
+                                                <constraint firstItem="3gZ-9C-x5G" firstAttribute="leading" secondItem="vBU-Tz-lc0" secondAttribute="leadingMargin" id="jfI-bb-Pgw"/>
+                                                <constraint firstItem="3gZ-9C-x5G" firstAttribute="centerY" secondItem="eOJ-Ts-Ush" secondAttribute="centerY" id="jmQ-yR-EeC"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -911,6 +962,9 @@
                     <size key="freeformSize" width="300" height="500"/>
                     <connections>
                         <outlet property="layerCounties" destination="t4i-hi-Bop" id="DMq-Ol-LAK"/>
+                        <outlet property="layerEUSA" destination="h5N-Np-6iq" id="li5-K9-S2U"/>
+                        <outlet property="layerSolarInstalls" destination="uJZ-Ri-LgH" id="gBQ-le-PLo"/>
+                        <outlet property="layerTiles" destination="eOJ-Ts-Ush" id="pOq-74-9xN"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vOk-NO-KoA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1320,6 +1374,7 @@
                                             <action selector="mailReport:" destination="qPm-w7-ifY" id="5w2-iz-eel"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem width="15" style="plain" systemItem="fixedSpace" id="9fs-d0-1uJ"/>
                                     <barButtonItem image="boolmark_add_36.png" width="40" id="WvR-k3-crC" userLabel="addBookmark">
                                         <inset key="imageInsets" minX="0.0" minY="-2" maxX="0.0" maxY="0.0"/>
                                         <connections>
@@ -2315,7 +2370,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jXg-qf-8mt">
                                 <rect key="frame" x="91" y="191" width="661" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q6y-o3-lXR">
                                 <rect key="frame" x="16" y="194" width="46" height="21"/>
@@ -2332,10 +2387,10 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="11/7/2014 12:45PM" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kkz-LX-0c8">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="11/7/2014 12:45PM" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Kkz-LX-0c8">
                                 <rect key="frame" x="91" y="135" width="661" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ACq-h4-jsy">
                                 <rect key="frame" x="16" y="251" width="67" height="21"/>
@@ -2352,10 +2407,10 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1217 Matilda St, Saint Paul, MN 55117" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zNg-md-0b8">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1217 Matilda St, Saint Paul, MN 55117" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zNg-md-0b8">
                                 <rect key="frame" x="91" y="247" width="661" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BSJ-aa-Ycc">
                                 <rect key="frame" x="91" y="349" width="661" height="255"/>

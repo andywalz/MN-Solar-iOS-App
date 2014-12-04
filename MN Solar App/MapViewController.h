@@ -42,7 +42,9 @@
 @property (nonatomic, weak) IBOutlet UIButton *solarToggle;
 
 @property (nonatomic, weak) NSString *layerCountiesStatus;
-
+@property (nonatomic, weak) NSString *layerEUSAStatus;
+@property (nonatomic, weak) NSString *layerSolarInstallsStatus;
+@property (nonatomic, weak) NSString *layerTilesStatus;
 
 // Class and method properties
 @property (nonatomic, weak) Reachability *internetReachableFoo;   // Internet connection check
