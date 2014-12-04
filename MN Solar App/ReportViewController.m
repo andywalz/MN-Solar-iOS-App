@@ -107,34 +107,34 @@
     
     // Change value label using kwh array (float) as string value
     
-    NSString *test = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:6] stringValue];
+   //NSString *test = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:6] stringValue];
     
-    self.janVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:0] stringValue];
-    self.febVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:1] stringValue];
-    self.marVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:2] stringValue];
-    self.aprVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:3] stringValue];
-    self.mayVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:4] stringValue];
-    self.junVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:5] stringValue];
-    self.julVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:6] stringValue];
-    self.augVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:7] stringValue];
-    self.sepVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:8] stringValue];
-    self.octVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:9] stringValue];
-    self.novVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:10] stringValue];
-    self.decVal.text = [[self.mainMapView.solarValueArrayNumkwh objectAtIndex:11] stringValue];
+    self.janVal.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarValueArrayNumkwh objectAtIndex:0] floatValue]];
+    self.febVal.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarValueArrayNumkwh objectAtIndex:1] floatValue]];
+    self.marVal.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarValueArrayNumkwh objectAtIndex:2] floatValue]];
+    self.aprVal.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarValueArrayNumkwh objectAtIndex:3] floatValue]];
+    self.mayVal.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarValueArrayNumkwh objectAtIndex:4] floatValue]];
+    self.junVal.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarValueArrayNumkwh objectAtIndex:5] floatValue]];
+    self.julVal.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarValueArrayNumkwh objectAtIndex:6] floatValue]];
+    self.augVal.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarValueArrayNumkwh objectAtIndex:7] floatValue]];
+    self.sepVal.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarValueArrayNumkwh objectAtIndex:8] floatValue]];
+    self.octVal.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarValueArrayNumkwh objectAtIndex:9] floatValue]];
+    self.novVal.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarValueArrayNumkwh objectAtIndex:10] floatValue]];
+    self.decVal.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarValueArrayNumkwh objectAtIndex:11] floatValue]];
     
     
-    self.janHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:0] stringValue];
-    self.febHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:1] stringValue];
-    self.marHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:2] stringValue];
-    self.aprHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:3] stringValue];
-    self.mayHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:4] stringValue];
-    self.junHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:5] stringValue];
-    self.julHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:6] stringValue];
-    self.augHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:7] stringValue];
-    self.sepHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:8] stringValue];
-    self.octHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:9] stringValue];
-    self.novHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:10] stringValue];
-    self.decHr.text = [[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:11] stringValue];
+    self.janHr.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:0] floatValue]];
+    self.febHr.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:1] floatValue]];
+    self.marHr.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:2] floatValue]];
+    self.aprHr.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:3] floatValue]];
+    self.mayHr.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:4] floatValue]];
+    self.junHr.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:5] floatValue]];
+    self.julHr.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:6] floatValue]];
+    self.augHr.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:7] floatValue]];
+    self.sepHr.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:8] floatValue]];
+    self.octHr.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:9] floatValue]];
+    self.novHr.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:10] floatValue]];
+    self.decHr.text = [ NSString stringWithFormat:@"%.2f",[[self.mainMapView.solarHoursArrayNumFloat objectAtIndex:11] floatValue]];
     
     
     NSString *chartURL = [NSString stringWithFormat:@"http://solar.maps.umn.edu/ios/chart2.php?bg=FFFFFF&1=%@&2=%@&3=%@&4=%@&5=%@&6=%@&7=%@&8=%@&9=%@&10=%@&11=%@&12=%@",[self.mainMapView.solarValueArrayNumkwh objectAtIndex:0],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:1],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:2],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:3],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:4],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:5],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:6],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:7],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:8],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:9],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:10],[self.mainMapView.solarValueArrayNumkwh objectAtIndex:11]];
