@@ -24,7 +24,7 @@
 @property (strong, nonatomic) MapViewController *mvc;
 @property (strong, nonatomic) UITableViewCell *cell;
 @property (strong, nonatomic) NSArray *firstname;
-@property (strong, nonatomic) NSArray *tableData;
+@property (strong, nonatomic) NSMutableArray *tableData;
 @property (strong, nonatomic) NSMutableArray *filteredRecords;
 @property (strong, nonatomic) AGSPoint *generalPoint;
 
