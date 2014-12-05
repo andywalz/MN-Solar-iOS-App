@@ -195,7 +195,7 @@
     NSString *phone = [defaults objectForKey:@"defaultPhone"];
     NSString *email = [defaults objectForKey:@"defaultEmail"];
     
-    NSString *phoneemail  = [NSString stringWithFormat:@"%@ - %@", phone, email];
+    //NSString *phoneemail  = [NSString stringWithFormat:@"%@ - %@", phone, email];
     
     self.installerCityStateZip.text = citystatezip;
     self.installerPhoneEmail.text = phone;
@@ -267,6 +267,18 @@
 }
 
 - (IBAction)mailReport:(id)sender {
+    
+    self.reportToolbar.hidden = YES;
+    
+    //Screenshot of report
+    UIGraphicsBeginImageContext(self.view.bounds.size);
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *screenshotimage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    //UIImageWriteToSavedPhotosAlbum(screenshotimage, nil, nil, nil);
+    
+    NSData *mydata = UIImageJPEGRepresentation(screenshotimage,1);
+    
     // Email Subject
     NSString *emailTitle = @"Solar Suitability Report";
     // Email Content
@@ -281,6 +293,9 @@
     [mc setSubject:emailTitle];
     [mc setMessageBody:messageBody isHTML:YES];
     //[mc setToRecipients:toRecipents];
+    
+    
+    [mc addAttachmentData:mydata  mimeType:@"image/jpeg" fileName:@"YourSolarReport.jpg"];
     
     // Present mail view controller on screen
     [self presentViewController:mc animated:YES completion:NULL];

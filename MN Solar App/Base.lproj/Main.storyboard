@@ -2359,6 +2359,7 @@
                         <outlet property="octHr" destination="mNI-e8-WAg" id="MC7-ty-sm2"/>
                         <outlet property="octVal" destination="g19-BS-pVn" id="KYT-SI-isM"/>
                         <outlet property="reportNotes" destination="1YQ-0f-jzC" id="PHo-GL-6Wh"/>
+                        <outlet property="reportToolbar" destination="dBu-gn-Yz1" id="1VY-UD-lXY"/>
                         <outlet property="savedData" destination="5yf-pK-lRk" id="sAf-iq-3et"/>
                         <outlet property="sepHr" destination="bhe-HN-oGm" id="R6K-EY-qCZ"/>
                         <outlet property="sepVal" destination="cIA-Z6-FtK" id="82O-U0-aUr"/>
