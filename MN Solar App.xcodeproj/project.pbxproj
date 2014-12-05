@@ -59,6 +59,7 @@
 		CA8ED9751A073141009728AE /* ReportCustomizedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED9741A073141009728AE /* ReportCustomizedViewController.m */; };
 		CAB4FE731A2EB17F001FD3FF /* TruNorthSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB4FE721A2EB17F001FD3FF /* TruNorthSmall.png */; };
 		CAC674DE1A314AD8009F0A94 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC674DD1A314AD8009F0A94 /* QuartzCore.framework */; };
+		CAC674E01A3166F3009F0A94 /* fall14SolarTeam.png in Resources */ = {isa = PBXBuildFile; fileRef = CAC674DF1A3166F3009F0A94 /* fall14SolarTeam.png */; };
 		CADC41E81A23A6EE0075F750 /* Under_construction.png in Resources */ = {isa = PBXBuildFile; fileRef = CADC41E71A23A6EE0075F750 /* Under_construction.png */; };
 		CAEC98581A0D600200E271F4 /* LocationArrowWht-22.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEC98541A0D600200E271F4 /* LocationArrowWht-22.png */; };
 		CAEC98591A0D600200E271F4 /* LocationArrowWht-44.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEC98551A0D600200E271F4 /* LocationArrowWht-44.png */; };
@@ -154,6 +155,7 @@
 		CA8ED9741A073141009728AE /* ReportCustomizedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCustomizedViewController.m; sourceTree = "<group>"; };
 		CAB4FE721A2EB17F001FD3FF /* TruNorthSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TruNorthSmall.png; sourceTree = "<group>"; };
 		CAC674DD1A314AD8009F0A94 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CAC674DF1A3166F3009F0A94 /* fall14SolarTeam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fall14SolarTeam.png; sourceTree = "<group>"; };
 		CADC41E71A23A6EE0075F750 /* Under_construction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Under_construction.png; sourceTree = "<group>"; };
 		CAEC98541A0D600200E271F4 /* LocationArrowWht-22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LocationArrowWht-22.png"; path = "Assets/LocationArrowWht-22.png"; sourceTree = "<group>"; };
 		CAEC98551A0D600200E271F4 /* LocationArrowWht-44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LocationArrowWht-44.png"; path = "Assets/LocationArrowWht-44.png"; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 		CAEC984B1A0D5EB400E271F4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				CAC674DF1A3166F3009F0A94 /* fall14SolarTeam.png */,
 				CA0234D41A2F976000F87AA0 /* boolmark_add_36.png */,
 				CA0234D21A2F970000F87AA0 /* boolmark_add_42.png */,
 				CA0234D01A2F958A00F87AA0 /* mail_48.png */,
@@ -467,6 +470,7 @@
 				CAEC985B1A0D600200E271F4 /* solar-app-loading-768x1024.png in Resources */,
 				CAEC985A1A0D600200E271F4 /* menu-22.png in Resources */,
 				CA8ED91B1A058978009728AE /* LaunchScreen.xib in Resources */,
+				CAC674E01A3166F3009F0A94 /* fall14SolarTeam.png in Resources */,
 				35A59BCF1A14194D008BEC96 /* zoomOut.png in Resources */,
 				3595439E1A2BB5C10008828E /* home_icon.png in Resources */,
 				CA5328D71A22FD25000188F2 /* mail_ios7_ios_7.png in Resources */,

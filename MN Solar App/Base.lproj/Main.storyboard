@@ -983,27 +983,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Application Help" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55v-Kp-rQW">
+                                <rect key="frame" x="16" y="20" width="127" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search an address or tap anywhere in Minnesota to view solar potential per square meter." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5C-hp-vgv">
+                                <rect key="frame" x="21" y="49" width="258" height="73"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="color ramp_white text.png" translatesAutoresizingMaskIntoConstraints="NO" id="lwn-0Y-fcI">
+                                <rect key="frame" x="30" y="160" width="240" height="92"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Map Legend:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rb-Pv-0BO">
+                                <rect key="frame" x="16" y="139" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JrE-ay-edg">
-                                <rect key="frame" x="230" y="250" width="54" height="30"/>
+                                <rect key="frame" x="225" y="262" width="59" height="30"/>
                                 <state key="normal" title="Dismiss">
+                                    <color key="titleColor" red="0.53905790857791436" green="1" blue="0.94087609705935238" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="custom" customClass="DismissSegue" id="pHa-c8-BwX"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Help Screen" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55v-Kp-rQW">
-                                <rect key="frame" x="16" y="20" width="94" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Some help information should be written here." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5C-hp-vgv">
-                                <rect key="frame" x="50" y="50" width="200" height="200"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1258,40 +1268,63 @@
                         <viewControllerLayoutGuide type="bottom" id="XeO-sJ-y8e"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1Ms-qF-BmM">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="700" height="450"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="About" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tBV-zN-cd1">
-                                <rect key="frame" x="16" y="20" width="47" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tBV-zN-cd1">
+                                <rect key="frame" x="16" y="10" width="47" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZU7-9B-Fjk">
-                                <rect key="frame" x="230" y="250" width="54" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fall14SolarTeam.png" translatesAutoresizingMaskIntoConstraints="NO" id="yBb-6V-Yed">
+                                <rect key="frame" x="49" y="167" width="573" height="184"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDD-D8-Vyc">
+                                <rect key="frame" x="16" y="39" width="673" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="4r1-Fo-U0H"/>
+                                </constraints>
+                                <string key="text">This app displays the solar potential for every square meter in the state of Minnesota using data produced the University of Minnesota Solar Suitability Team. We used a combination of custom software and Esri’s ArcGIS Spatial Analyst tools to produce the statewide solar radiation data from recently collected, publicly available lidar data.
+You can learn more at http://solar.maps.umn.edu.
+</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MN Solar Suitability Team (from left): Ian, Yuanyuan, Devon, Chris, Andy, Brink, Andrew" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jed-ou-kZi">
+                                <rect key="frame" x="49" y="343" width="665" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZU7-9B-Fjk">
+                                <rect key="frame" x="607" y="394" width="54" height="30"/>
                                 <state key="normal" title="Dismiss">
+                                    <color key="titleColor" red="0.53905790860000002" green="1" blue="0.94087609709999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="custom" customClass="DismissSegue" id="CUQ-RQ-Sw2"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This app is designed to determine the solar potential (insolation) of a given location." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDD-D8-Vyc">
-                                <rect key="frame" x="50" y="50" width="200" height="200"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RDD-D8-Vyc" firstAttribute="leading" secondItem="1Ms-qF-BmM" secondAttribute="leadingMargin" id="FMy-Mc-3V3"/>
+                            <constraint firstItem="RDD-D8-Vyc" firstAttribute="top" secondItem="tBV-zN-cd1" secondAttribute="bottom" constant="3" id="JB5-Qk-fwf"/>
+                            <constraint firstItem="RDD-D8-Vyc" firstAttribute="top" secondItem="1Ms-qF-BmM" secondAttribute="top" constant="34" id="LK8-FP-x33"/>
+                            <constraint firstItem="RDD-D8-Vyc" firstAttribute="leading" secondItem="tBV-zN-cd1" secondAttribute="leading" id="qyR-ZH-IIF"/>
+                            <constraint firstItem="ZU7-9B-Fjk" firstAttribute="top" secondItem="RDD-D8-Vyc" secondAttribute="bottom" constant="96" id="zm1-tz-stA"/>
+                        </constraints>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="300" height="300"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="300" height="300"/>
+                    <size key="freeformSize" width="700" height="450"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TWV-4H-7e6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="144" y="-1902"/>
+            <point key="canvasLocation" x="755" y="-1774"/>
         </scene>
         <!--FeedbackScreen-->
         <scene sceneID="fXY-CK-YWc">
@@ -1323,19 +1356,10 @@
                                 <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NbF-aP-sSH">
-                                <rect key="frame" x="230" y="250" width="54" height="30"/>
-                                <state key="normal" title="Dismiss">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="custom" customClass="DismissSegue" id="ZxU-1u-rXz"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="solarp@gmail.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Yq-dL-uWa">
                                 <rect key="frame" x="49" y="172" width="141" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.13870056920000001" green="0.1835808078" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.53905790860000002" green="1" blue="0.94087609709999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="with any questions or comments." lineBreakMode="wordWrap" numberOfLines="11" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41d-D8-jED">
@@ -1350,6 +1374,16 @@
                                 <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NbF-aP-sSH">
+                                <rect key="frame" x="225" y="257" width="54" height="30"/>
+                                <state key="normal" title="Dismiss">
+                                    <color key="titleColor" red="0.53905790857791436" green="1" blue="0.94087609705935238" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="custom" customClass="DismissSegue" id="ZxU-1u-rXz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -2566,23 +2600,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VL5-iM-Wtc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="VvE-RR-6cd">
-            <objects>
-                <viewController id="ImH-gu-aFg" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="1K5-ms-Lur"/>
-                        <viewControllerLayoutGuide type="bottom" id="v8A-DC-Lor"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="p40-e7-4cg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JBW-J6-ZbD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <resources>
         <image name="LocationArrowWht-22.png" width="22" height="22"/>
@@ -2590,6 +2607,7 @@
         <image name="arrow_up_wht.png" width="782" height="488"/>
         <image name="boolmark_add_36.png" width="36" height="36"/>
         <image name="color ramp_white text.png" width="1807" height="466"/>
+        <image name="fall14SolarTeam.png" width="627" height="182"/>
         <image name="home32.png" width="32" height="32"/>
         <image name="mail_48.png" width="48" height="48"/>
         <image name="menu-22.png" width="22" height="22"/>
@@ -2598,6 +2616,6 @@
         <image name="zoomOut.png" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="58A-OL-oxN"/>
+        <segue reference="CUQ-RQ-Sw2"/>
     </inferredMetricsTieBreakers>
 </document>
