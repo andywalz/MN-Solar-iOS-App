@@ -269,10 +269,12 @@
 - (IBAction)mailReport:(id)sender {
     
     self.reportToolbar.hidden = YES;
+    self.view.layer.backgroundColor = [UIColor whiteColor].CGColor;
     
     //Screenshot of report
     UIGraphicsBeginImageContext(self.view.bounds.size);
     [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    [self.solarLocMap.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *screenshotimage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     //UIImageWriteToSavedPhotosAlbum(screenshotimage, nil, nil, nil);
