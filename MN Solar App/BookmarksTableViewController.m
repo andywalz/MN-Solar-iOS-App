@@ -40,7 +40,7 @@
     NSLog(@"%@", test);
     
     // Starting Data to populate bookmarks list
-    self.tableData = [NSArray arrayWithObjects:
+    self.tableData = [NSMutableArray arrayWithObjects:
                       [recordObjectConstructor nameOfCategory:@"student" name:@"Andy Walz" address:@"1217 Matilda St, Saint Paul, MN 55117" lat:@"44.977928" lng:@"-93.112542"],
                  [recordObjectConstructor nameOfCategory:@"student" name:@"Chris Martin" address:@"730 Mercer St, Saint Paul, MN" lat:@"44.919174" lng:@"-93.136038"],
                  [recordObjectConstructor nameOfCategory:@"student" name:@"Katie Menk" address:@"2530 Cole Ave S, Minneapolis, MN" lat:@"44.985227" lng:@"-93.217008"],
@@ -157,6 +157,21 @@ recordObjectConstructor *recordToPrint = nil;
     
     [self dismissViewControllerAnimated:YES completion:nil];
     
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        
+        NSLog(@"1");
+        [self.tableData removeObjectAtIndex:indexPath.row];
+        // Delete the row from the data source
+        NSLog(@"2");
+        int delRow = [self.tableData objectAtIndex:indexPath.row];
+        NSLog(@"%i", delRow);
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    } 
 }
 
 #pragma mark Content Filtering
