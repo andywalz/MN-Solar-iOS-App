@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <ArcGIS/ArcGIS.h>
 #import <MessageUI/MessageUI.h>
+#import "QuartzCore/QuartzCore.h"
 
 @class MapViewController;
 @class settingsViewController;
@@ -24,6 +25,8 @@
 
 @property (nonatomic, strong) AGSGraphicsLayer *graphicsLayer;
 @property (nonatomic, strong) AGSPoint *thePin;
+
+@property (weak, nonatomic) IBOutlet UIToolbar *reportToolbar;
 
 @property (strong, nonatomic) IBOutlet UIWebView *monthInsWV;
 @property (strong, nonatomic) IBOutlet UIWebView *monthSunHrsWV;
@@ -79,6 +82,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *installerAddress;
 @property (weak, nonatomic) IBOutlet UILabel *installerCityStateZip;
 @property (weak, nonatomic) IBOutlet UILabel *installerPhoneEmail;
+@property (weak, nonatomic) IBOutlet UILabel *installerEmail;
 
 
 

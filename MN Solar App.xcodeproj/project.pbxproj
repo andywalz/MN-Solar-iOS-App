@@ -58,6 +58,7 @@
 		CA8ED9721A0729BB009728AE /* ReportSaveFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED9711A0729BB009728AE /* ReportSaveFormViewController.m */; };
 		CA8ED9751A073141009728AE /* ReportCustomizedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8ED9741A073141009728AE /* ReportCustomizedViewController.m */; };
 		CAB4FE731A2EB17F001FD3FF /* TruNorthSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = CAB4FE721A2EB17F001FD3FF /* TruNorthSmall.png */; };
+		CAC674DE1A314AD8009F0A94 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAC674DD1A314AD8009F0A94 /* QuartzCore.framework */; };
 		CADC41E81A23A6EE0075F750 /* Under_construction.png in Resources */ = {isa = PBXBuildFile; fileRef = CADC41E71A23A6EE0075F750 /* Under_construction.png */; };
 		CAEC98581A0D600200E271F4 /* LocationArrowWht-22.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEC98541A0D600200E271F4 /* LocationArrowWht-22.png */; };
 		CAEC98591A0D600200E271F4 /* LocationArrowWht-44.png in Resources */ = {isa = PBXBuildFile; fileRef = CAEC98551A0D600200E271F4 /* LocationArrowWht-44.png */; };
@@ -152,6 +153,7 @@
 		CA8ED9731A073141009728AE /* ReportCustomizedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCustomizedViewController.h; sourceTree = "<group>"; };
 		CA8ED9741A073141009728AE /* ReportCustomizedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCustomizedViewController.m; sourceTree = "<group>"; };
 		CAB4FE721A2EB17F001FD3FF /* TruNorthSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TruNorthSmall.png; sourceTree = "<group>"; };
+		CAC674DD1A314AD8009F0A94 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CADC41E71A23A6EE0075F750 /* Under_construction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Under_construction.png; sourceTree = "<group>"; };
 		CAEC98541A0D600200E271F4 /* LocationArrowWht-22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LocationArrowWht-22.png"; path = "Assets/LocationArrowWht-22.png"; sourceTree = "<group>"; };
 		CAEC98551A0D600200E271F4 /* LocationArrowWht-44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LocationArrowWht-44.png"; path = "Assets/LocationArrowWht-44.png"; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAC674DE1A314AD8009F0A94 /* QuartzCore.framework in Frameworks */,
 				35C6F26B1A22EBF4005265C2 /* libsqlite3.dylib in Frameworks */,
 				CA5328D91A22FF8B000188F2 /* MessageUI.framework in Frameworks */,
 				3547C4CB1A1F88A30023232F /* SystemConfiguration.framework in Frameworks */,
@@ -184,6 +187,7 @@
 		CA8ED8FE1A058978009728AE = {
 			isa = PBXGroup;
 			children = (
+				CAC674DD1A314AD8009F0A94 /* QuartzCore.framework */,
 				3530B6D31A2974E30063F256 /* recordObjectConstructor.h */,
 				3530B6D41A2974E30063F256 /* recordObjectConstructor.m */,
 				35C6F26A1A22EBF4005265C2 /* libsqlite3.dylib */,

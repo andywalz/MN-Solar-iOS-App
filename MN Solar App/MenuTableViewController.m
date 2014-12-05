@@ -29,6 +29,24 @@
         self.layerCounties.text = self.mainMapVC.layerCountiesStatus;
     }
     
+    if(self.mainMapVC.layerEUSAStatus==nil){
+        self.layerEUSA.text = @"( ) Utility Service Areas";
+    }else{
+        self.layerEUSA.text = self.mainMapVC.layerEUSAStatus;
+    }
+    
+    if(self.mainMapVC.layerSolarInstallsStatus==nil){
+        self.layerSolarInstalls.text = @"( ) Existing Solar Installations";
+    }else{
+        self.layerSolarInstalls.text = self.mainMapVC.layerSolarInstallsStatus;
+    }
+    
+    if(self.mainMapVC.layerTilesStatus==nil){
+        self.layerTiles.text = @"( ) Lakes & Rivers";
+    }else{
+        self.layerTiles.text = self.mainMapVC.layerTilesStatus;
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -111,21 +129,61 @@
 - (IBAction)toggleCounties:(id)sender {
     
     if ([self.layerCounties.text containsString:@"(X)"]) {
-        
         [self.mainMapVC.mapView removeMapLayerWithName:@"MN Counties"];
         self.layerCounties.text = @"( ) MN Counties";
         self.mainMapVC.layerCountiesStatus = @"( ) MN Counties";
-      
     } else {
+        NSURL *featureLayerURL = [NSURL URLWithString:@"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/MN_Solar_Vector/MapServer/4"];
+        AGSFeatureLayer *featureLayer = [AGSFeatureLayer featureServiceLayerWithURL:featureLayerURL mode:AGSFeatureLayerModeOnDemand];
     
-    // CLOUD DATA
-    NSURL *featureLayerURL = [NSURL URLWithString:@"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/MN_Solar_Vector/MapServer/4"];
-    AGSFeatureLayer *featureLayer = [AGSFeatureLayer featureServiceLayerWithURL:featureLayerURL mode:AGSFeatureLayerModeOnDemand];
-    
-    [self.mainMapVC.mapView addMapLayer:featureLayer withName:@"MN Counties"];
-    self.layerCounties.text = @"(X) MN Counties";
+        [self.mainMapVC.mapView addMapLayer:featureLayer withName:@"MN Counties"];
+        self.layerCounties.text = @"(X) MN Counties";
         self.mainMapVC.layerCountiesStatus = @"(X) MN Counties";
-
      }
+}
+
+- (IBAction)toggleEUSA:(id)sender {
+    if ([self.layerEUSA.text containsString:@"(X)"]) {
+        [self.mainMapVC.mapView removeMapLayerWithName:@"EUSA"];
+        self.layerEUSA.text = @"( ) Utility Service Areas";
+        self.mainMapVC.layerCountiesStatus = self.layerEUSA.text;
+    } else {
+        NSURL *featureLayerURL = [NSURL URLWithString:@"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/MN_Solar_Vector/MapServer/2"];
+        AGSFeatureLayer *featureLayer = [AGSFeatureLayer featureServiceLayerWithURL:featureLayerURL mode:AGSFeatureLayerModeOnDemand];
+        
+        [self.mainMapVC.mapView addMapLayer:featureLayer withName:@"EUSA"];
+        self.layerEUSA.text = @"(X) Utility Service Areas";
+        self.mainMapVC.layerEUSAStatus = self.layerEUSA.text;
+    }
+}
+
+- (IBAction)toggleSolarInstalls:(id)sender {
+    if ([self.layerSolarInstalls.text containsString:@"(X)"]) {
+        [self.mainMapVC.mapView removeMapLayerWithName:@"SolarInstalls"];
+        self.layerSolarInstalls.text = @"( ) Existing Solar Installations";
+        self.mainMapVC.layerSolarInstallsStatus = self.layerSolarInstalls.text;
+    } else {
+        NSURL *featureLayerURL = [NSURL URLWithString:@"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/MN_Solar_Vector/MapServer/0"];
+        AGSFeatureLayer *featureLayer = [AGSFeatureLayer featureServiceLayerWithURL:featureLayerURL mode:AGSFeatureLayerModeOnDemand];
+        
+        [self.mainMapVC.mapView addMapLayer:featureLayer withName:@"SolarInstalls"];
+        self.layerSolarInstalls.text = @"(X) Existing Solar Installations";
+        self.mainMapVC.layerSolarInstallsStatus = self.layerSolarInstalls.text;
+    }
+}
+
+- (IBAction)toggleTiles:(id)sender {
+    if ([self.layerTiles.text containsString:@"(X)"]) {
+        [self.mainMapVC.mapView removeMapLayerWithName:@"Water"];
+        self.layerTiles.text = @"( ) Lakes & Rivers";
+        self.mainMapVC.layerTilesStatus = self.layerTiles.text;
+    } else {
+        NSURL *featureLayerURL = [NSURL URLWithString:@"http://us-dspatialgis.oit.umn.edu:6080/arcgis/rest/services/solar/MN_Solar_Vector/MapServer/1"];
+        AGSFeatureLayer *featureLayer = [AGSFeatureLayer featureServiceLayerWithURL:featureLayerURL mode:AGSFeatureLayerModeOnDemand];
+        
+        [self.mainMapVC.mapView addMapLayer:featureLayer withName:@"Water"];
+        self.layerTiles.text = @"(X) Lakes & Rivers";
+        self.mainMapVC.layerTilesStatus = self.layerTiles.text;
+    }
 }
 @end

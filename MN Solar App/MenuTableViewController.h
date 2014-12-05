@@ -14,7 +14,13 @@
 @property (weak,nonatomic) MapViewController *mainMapVC;
 
 @property (weak, nonatomic) IBOutlet UILabel *layerCounties;
+@property (weak, nonatomic) IBOutlet UILabel *layerEUSA;
+@property (weak, nonatomic) IBOutlet UILabel *layerSolarInstalls;
+@property (weak, nonatomic) IBOutlet UILabel *layerTiles;
 
 - (IBAction)toggleCounties:(id)sender;
+- (IBAction)toggleEUSA:(id)sender;
+- (IBAction)toggleSolarInstalls:(id)sender;
+- (IBAction)toggleTiles:(id)sender;
 
 @end
