@@ -43,7 +43,7 @@
     self.solarLocMap.layerDelegate = self;
  
     //zoom to an area
-    AGSEnvelope *envelope = [AGSEnvelope envelopeWithXmin:(self.thePin.x - 200) ymin:(self.thePin.y - 200) xmax:(self.thePin.x + 200)  ymax:(self.thePin.y + 200)  spatialReference:self.solarLocMap.spatialReference];
+    AGSEnvelope *envelope = [AGSEnvelope envelopeWithXmin:(self.thePin.x - 120) ymin:(self.thePin.y - 120) xmax:(self.thePin.x + 120)  ymax:(self.thePin.y + 120)  spatialReference:self.solarLocMap.spatialReference];
     [self.solarLocMap zoomToEnvelope:envelope animated:NO];
    
 
@@ -271,21 +271,64 @@
     self.reportToolbar.hidden = YES;
     self.view.layer.backgroundColor = [UIColor whiteColor].CGColor;
     
-    //Screenshot of report
+    /*/Screenshot of report
     UIGraphicsBeginImageContext(self.view.bounds.size);
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    [self.solarLocMap.layer renderInContext:UIGraphicsGetCurrentContext()];
+    CGContextRef myref = UIGraphicsGetCurrentContext();
+    [self.view.layer renderInContext:myref];
+    [self.solarLocMap.layer renderInContext:myref];
     UIImage *screenshotimage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     //UIImageWriteToSavedPhotosAlbum(screenshotimage, nil, nil, nil);
     
+     */
+    CGSize imageSize = CGSizeZero;
+    
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if (UIInterfaceOrientationIsPortrait(orientation)) {
+        imageSize = [UIScreen mainScreen].bounds.size;
+    } else {
+        imageSize = CGSizeMake([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+    }
+    
+    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    for (UIWindow *window in [[UIApplication sharedApplication] windows]) {
+        CGContextSaveGState(context);
+        CGContextTranslateCTM(context, window.center.x, window.center.y);
+        CGContextConcatCTM(context, window.transform);
+        CGContextTranslateCTM(context, -window.bounds.size.width * window.layer.anchorPoint.x, -window.bounds.size.height * window.layer.anchorPoint.y);
+        if (orientation == UIInterfaceOrientationLandscapeLeft) {
+            CGContextRotateCTM(context, M_PI_2);
+            CGContextTranslateCTM(context, 0, -imageSize.width);
+        } else if (orientation == UIInterfaceOrientationLandscapeRight) {
+            CGContextRotateCTM(context, -M_PI_2);
+            CGContextTranslateCTM(context, -imageSize.height, 0);
+        } else if (orientation == UIInterfaceOrientationPortraitUpsideDown) {
+            CGContextRotateCTM(context, M_PI);
+            CGContextTranslateCTM(context, -imageSize.width, -imageSize.height);
+        }
+        if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
+            [window drawViewHierarchyInRect:window.bounds afterScreenUpdates:YES];
+        } else {
+            [window.layer renderInContext:context];
+        }
+        CGContextRestoreGState(context);
+    }
+    
+    UIImage *screenshotimage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+     
     NSData *mydata = UIImageJPEGRepresentation(screenshotimage,1);
     
+     
+     
     // Email Subject
     NSString *emailTitle = @"Solar Suitability Report";
     // Email Content
     
-    NSString *messageBody = [ NSString stringWithFormat:@"<h2><img style='float:left; padding-right:10px;' src='http://solar.maps.umn.edu/assets/img/solar-app-transparent220x235.png' height='165' alt='MN Solar Logo'/>Minnesota Solar Suitability Location Report</h2><p><b>Latitude</b>: %f <b>Longitude:</b> %f<br><b>Address:</b> <a href='http://solar.maps.umn.edu/app/index.html?lat=%f&long=%f'>%@</a></p> <p><b>Total Insolation per Year:</b> %@ kWh/m<sup>2</sup><br /><b>Avg per Day:</b> %@ kWh/m<sup>2</sup></p><p><a href='http://solar.maps.umn.edu/report.php?z=55401&w=www.xcelenergy.com&long=%f&lat=%f&y=%@&u=%@'>Click here to view your complete report</a></p>",self.mainMapView.wgsPoint.y, self.mainMapView.wgsPoint.x, self.mainMapView.wgsPoint.y, self.mainMapView.wgsPoint.x, self.savedData.text, self.mainMapView.totalInsVal, self.insolDaily.text, self.mainMapView.wgsPoint.x,self.mainMapView.wgsPoint.y, self.mainMapView.totalInsVal, [self.EUSA.text  stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]];
+   //NSString *messageBody = [ NSString stringWithFormat:@"<h2><img style='float:left; padding-right:10px;' src='http://solar.maps.umn.edu/assets/img/solar-app-transparent220x235.png' height='165' alt='MN Solar Logo'/>Minnesota Solar Suitability Location Report</h2><p><b>Latitude</b>: %f <b>Longitude:</b> %f<br><b>Address:</b> <a href='http://solar.maps.umn.edu/app/index.html?lat=%f&long=%f'>%@</a></p> <p><b>Total Insolation per Year:</b> %@ kWh/m<sup>2</sup><br /><b>Avg per Day:</b> %@ kWh/m<sup>2</sup></p><p><a href='http://solar.maps.umn.edu/report.php?z=55401&w=www.xcelenergy.com&long=%f&lat=%f&y=%@&u=%@'>Click here to view your complete report</a></p>",self.mainMapView.wgsPoint.y, self.mainMapView.wgsPoint.x, self.mainMapView.wgsPoint.y, self.mainMapView.wgsPoint.x, self.savedData.text, self.mainMapView.totalInsVal, self.insolDaily.text, self.mainMapView.wgsPoint.x,self.mainMapView.wgsPoint.y, self.mainMapView.totalInsVal, [self.EUSA.text  stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]];
+    
+    NSString *messageBody = @"Your solar suitability report is attached below. For more information visit: <a href='http://solar.maps.umn.edu/'>solar.maps.umn.edu</a>.";
     
     // To address
     //NSArray *toRecipents = [NSArray arrayWithObject:@"support@appcoda.com"];
@@ -298,6 +341,9 @@
     
     
     [mc addAttachmentData:mydata  mimeType:@"image/jpeg" fileName:@"YourSolarReport.jpg"];
+    
+    self.reportToolbar.hidden = NO;
+    self.view.layer.backgroundColor = [UIColor darkGrayColor].CGColor;
     
     // Present mail view controller on screen
     [self presentViewController:mc animated:YES completion:NULL];
